@@ -1,21 +1,18 @@
-import { createBrowserRouter } from 'react-router-dom'
-import Login from '../pages/Login/Login';
-import SignUp from '../pages/SignUp/SignUp';
+import { createBrowserRouter } from "react-router-dom";
+import Navbar from "../components/navbar/Navbar";
+import Categories from './../Page/Categories';
 
 export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <div>Hello world!</div>,
-    },
-
-
-
-
-    { path: '/login', element: <Login /> },
-    { path: '/signup', element: <SignUp /> },
-
-
-
-
-
-  ]);
+  {
+    path: "/",
+    element: (
+      <>
+        <Navbar />
+      </>
+    ),
+  },
+  {
+    path: "/categories",
+    element: <Categories></Categories>
+  }
+]);
