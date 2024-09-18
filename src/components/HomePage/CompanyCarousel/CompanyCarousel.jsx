@@ -5,7 +5,7 @@ import Slider from "react-slick";
 // Example company logos
 const categories = [
   {
-    title: "MNCs",
+     title: "MNCs",
     hiring: "1.9K+ are actively hiring",
     logos: ["/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif"],
   },
@@ -15,8 +15,8 @@ const categories = [
     logos: ["/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif"],
   },
   {
-    title: "Manufacturing",
-    hiring: "831 are actively hiring",
+     title: "Manufacturing",
+     hiring: "831 are actively hiring",
     logos: ["/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif"],
   },
   {
@@ -37,7 +37,7 @@ const CompanyCarousel = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 1,
+     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1024,
@@ -73,7 +73,7 @@ const CompanyCarousel = () => {
                   <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
 
                   <FaArrowRight/>
-                  
+
                 </div>
                 <p className="text-gray-500">{category.hiring}</p>
               </div>
