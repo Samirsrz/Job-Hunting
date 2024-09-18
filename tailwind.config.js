@@ -6,15 +6,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#60a5fa", // skyblue
+        primary: "#275df5", // skyblue 275df5
       },
       fontFamily: {
         "open-sans": '"Open Sans", sans-serif',
       },
     },
   },
-  plugins: [
-    require('daisyui'),
-  ],
-}
-
+  plugins: [require("daisyui")],
+};
