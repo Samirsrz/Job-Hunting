@@ -25,8 +25,8 @@ const categories = [
     logos: ["/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif"],
   },
   {
-    title: "Product",
-    hiring: "971 are actively hiring",
+    title: "Product", 
+    hiring: "971 are actively hiring", 
     logos: ["/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif"],
   },
 ];
