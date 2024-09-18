@@ -71,7 +71,9 @@ const CompanyCarousel = () => {
 
                 <div className="flex gap-4 items-center">
                   <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
+
                   <FaArrowRight/>
+                  
                 </div>
                 <p className="text-gray-500">{category.hiring}</p>
               </div>
