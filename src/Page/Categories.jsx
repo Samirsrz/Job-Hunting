@@ -15,7 +15,7 @@ const Categories = () => {
     (design) => design.category == "Hospitality/Travel/Tourism"
   );
   return (
-    <div className="max-w-screen-xl m-auto  mt-5 mb-20">
+    <div className="max-w-screen-xl m-auto  mt-5 mb20">
       {/* Design/Creative */}
       <div className="mt-10">
         <h1 className="text-2xl font-bold mb-8">Design/Creative</h1>
