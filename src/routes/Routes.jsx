@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
-import Home from "../components/HomePage/Home/Home";
+import HomePage from "../components/HomePage/HomePage";
+
 
 export const router = createBrowserRouter([
   {
@@ -8,7 +9,7 @@ export const router = createBrowserRouter([
     element: (
       <>
         {/* <Navbar /> */}
-        <Home/>
+        <HomePage/>
       </>
     ),
   },
