@@ -26,6 +26,14 @@ const links = [
     title: "About Us",
     link: "/about",
   },
+  {
+    title: "login",
+    link: "/login",
+  },
+  {
+    title: "Sign Up",
+    link: "/signup",
+  },
 ];
 const Navbar = () => {
   return (

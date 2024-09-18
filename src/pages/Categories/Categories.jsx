@@ -1,7 +1,6 @@
 import React from "react";
-import img1 from "../assets/CategoriesImage/webDevelopment.png";
 import { Link } from "react-router-dom";
-import CategoriesCard from "../components/navbar/CategoriesCard";
+import CategoriesCard from "../../components/navbar/CategoriesCard";
 
 const Categories = () => {
   //filter data by category..
