@@ -15,6 +15,10 @@ const links = [
     link: "/jobs",
   },
   {
+    title: "Categories",
+    link: "/categories",
+  },
+  {
     title: "Employers",
     link: "/employers",
   },
