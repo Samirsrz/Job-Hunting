@@ -1,5 +1,6 @@
 import { FaStar } from "react-icons/fa";
 import { TbListDetails } from "react-icons/tb";
+import { LuSaveAll } from "react-icons/lu";
 const JobCard = ({ job }) => {
   return (
     <div className="text-center flex flex-col rounded-md p-6 bg-white drop-shadow-md">
@@ -16,9 +17,14 @@ const JobCard = ({ job }) => {
         </div>
       </div>
       <p className="text-sm text-black grow">{job?.des}</p>
-      <button className="btn btn-sm w-fit mx-auto bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-300 mt-4">
-        View <TbListDetails className="inline" />
-      </button>
+      <div className="flex gap-2 justify-center">
+        <button className="btn btn-sm bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-300 mt-4">
+          View <TbListDetails className="inline" />
+        </button>
+        <button className="btn btn-sm bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-300 mt-4">
+          Save <LuSaveAll className="inline" />
+        </button>
+      </div>
     </div>
   );
 };
