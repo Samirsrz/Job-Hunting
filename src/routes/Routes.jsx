@@ -5,7 +5,7 @@ import HomePage from "../components/HomePage/HomePage";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/", 
     element: (
       <>
         <Navbar /> 
