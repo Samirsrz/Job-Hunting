@@ -2,7 +2,7 @@ import { FaStar } from "react-icons/fa";
 import { TbListDetails } from "react-icons/tb";
 const JobCard = ({ job }) => {
   return (
-    <div className="text-center rounded-md p-6 bg-white drop-shadow-md">
+    <div className="text-center flex flex-col rounded-md p-6 bg-white drop-shadow-md">
       <img
         className="h-12 mx-auto"
         src="https://img.naukimg.com/logo_images/groups/v2/42932.gif" //ToDo: replace src={job?.logo}
@@ -15,8 +15,8 @@ const JobCard = ({ job }) => {
           {job?.review} reviews
         </div>
       </div>
-      <p className="text-sm text-black">{job?.des}</p>
-      <button className="btn btn-sm bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-300 mt-4">
+      <p className="text-sm text-black grow">{job?.des}</p>
+      <button className="btn btn-sm w-fit mx-auto bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-300 mt-4">
         View <TbListDetails className="inline" />
       </button>
     </div>
