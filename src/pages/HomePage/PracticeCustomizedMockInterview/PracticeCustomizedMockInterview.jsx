@@ -17,7 +17,7 @@ const PracticeCustomizedMockInterview = () => {
 
             {/* Right Image Section */}
             <div>
-                <img src="/src/assets/avatar/job.png" alt="Naukri 360 AI" className='w-40' />
+                <img src="/src/assets/avatar/job.png" alt="Naukri 360 AI" className='w-40 bg-transparent' />
             </div>
         </div>
     );
