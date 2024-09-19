@@ -8,8 +8,8 @@ export const router = createBrowserRouter([
     path: "/",
     element: (
       <>
-        {/* <Navbar /> */}
-        <HomePage/>
+        <Navbar /> 
+   
       </>
     ),
   },
