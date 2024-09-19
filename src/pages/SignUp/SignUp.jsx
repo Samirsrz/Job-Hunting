@@ -1,37 +1,97 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-
+import { TiTick } from "react-icons/ti";
+import RegisterAnnimation from '../../assets/Annimations/RegisterAnnimation.json'
+import Lottie from "lottie-react";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
+import { TbFidgetSpinner } from "react-icons/tb";
+import { imageUpload } from "../../api/utils";
 const SignUp = () => {
+  const {createUser, signInWithGoogle,loading, setLoading, updateUserProfile} = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+     const form = e.target;
+     const name =  form.name.value;
+     const email =  form.email.value;
+     const password =  form.password.value;
+     const image = form.image.files[0];
+
+
+  
+     try{
+      setLoading(true)
+//upload image and get image Url
+ 
+      const photo = await imageUpload(image)
+      console.log(photo)
+ //user registration
+    const result = await createUser(email,password)
+    console.log(result);
+
+   //save user image and photo
+
+    await updateUserProfile(name, photo)
+      navigate('/')
+      toast.success('SignUp successfull')
+      }catch(err){
+       console.log(err);
+       toast.error(err.message)
+      }
+  }
+
+  const handleGoogle = async() => {
+    try {
+     await signInWithGoogle()
+    navigate('/')
+    toast.success('Signup Successful')
+    }catch(err){
+        console.log(err);
+    }
+
+  }
+
+
+
   return (
-    <div className="flex flex-col w-[1770px] items-center justify-center min-h-screen mx-auto lg:flex-row gap-10">
-      <div className=" ">
-        <div className="card lg:w-[442px] p-3 my-3 lg:mt card-compact bg-base-100 w-96 shadow-xl">
+    <div className="flex flex-col overflow-x-auto lg:w-[1770px] items-center justify-center min-h-screen mx-auto lg:flex-row gap-10">
+      
+        <div className="card lg:w-[442px]  p-3 my-3 lg:mt card-compact bg-base-100  shadow-xl">
           <figure>
-            <img
-              className="w-[60px] h-[60px] text-center items-center justify-center"
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-              alt="Shoes"
-            />
+          <Lottie animationData={RegisterAnnimation} className='h-96 w-96'></Lottie>
           </figure>
           <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <h2 className="card-title"> <TiTick/> Register to know more details </h2>
+            <h2 className="card-title"> <TiTick/> Get your dream Job </h2>
+            <h2 className="card-title"> <TiTick/> Use your skill to earn!!! </h2>
+            
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
+            <p className="px-6 text-sm text-center text-gray-400">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="hover:underline hover:text-rose-500 text-gray-600"
+            >
+              Login
+            </Link>
+            .
+          </p>
             </div>
           </div>
         </div>
-      </div>
+    
 
       <div className="flex justify-center  flex-1 items-center min-h-screen">
         <div className="flex flex-col lg:w-full p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
           <div className="mb-8 text-center">
-            <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
-            <p className="text-sm text-gray-400">
+            <h1 className="my-3 text-6xl italic font-bold">~~Sign Up~~</h1>
+            <p className="text-sm text-gray-500">
               Create your Job-Hunting profile
             </p>
           </div>
-          <form
+          <form onSubmit={handleSubmit}
             noValidate=""
             action=""
             className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -92,15 +152,34 @@ const SignUp = () => {
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 />
               </div>
+              <div>
+                <div className="flex justify-between">
+                  <label htmlFor="phone" className="text-sm mb-2">
+                    Phone
+                  </label>
+                </div>
+                <input
+                  type="number"
+                  name="phone"
+                  autoComplete="new-password"
+                  id="phone"
+                  required
+                  placeholder="+880**********"
+                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                />
+              </div>
             </div>
 
             <div>
-              <button
-                type="submit"
-                className="bg-[#275df5] w-full rounded-md py-3 text-white"
-              >
-                Continue
-              </button>
+            <button
+            disabled ={loading}
+              type='submit'
+              className='bg-primary w-full lg:[100px] rounded-md py-3 text-white'
+            >
+             {
+              loading? <TbFidgetSpinner className='animate-spin m-auto'></TbFidgetSpinner>  : 'Register Now'
+             }
+            </button>
             </div>
           </form>
           <div className="flex items-center pt-4 space-x-1">
@@ -110,21 +189,14 @@ const SignUp = () => {
             </p>
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
           </div>
-          <div className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer">
-            <FcGoogle size={32} />
-
-            <p>Continue with Google</p>
-          </div>
-          <p className="px-6 text-sm text-center text-gray-400">
-            Already have an account?{" "}
-            <Link
-              to="/login"
-              className="hover:underline hover:text-rose-500 text-gray-600"
-            >
-              Login
-            </Link>
-            .
-          </p>
+          <button
+        disabled={loading}
+         onClick={handleGoogle}
+        className='flex disabled:cursor-not-allowed justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+          <FcGoogle size={32} />
+          <p>Continue with Google</p>
+        </button>
+         
         </div>
       </div>
     </div>

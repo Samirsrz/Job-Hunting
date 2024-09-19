@@ -1,11 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
-import { GoogleAuthProvider } from "firebase/auth/web-extension";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider =  new GoogleAuthProvider();
+// const key = import.meta.env.VITE_apiKey;
+// console.log(key);
 const AuthProvider = ({children}) => {
     
     const [user, setUser] = useState(null);
@@ -71,4 +73,4 @@ const AuthProvider = ({children}) => {
     }
     
  
-    
+    export default AuthProvider
