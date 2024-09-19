@@ -1,88 +1,104 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { TiTick } from "react-icons/ti";
-import RegisterAnnimation from '../../assets/Annimations/RegisterAnnimation.json'
+import RegisterAnnimation from "../../assets/Annimations/RegisterAnnimation.json";
 import Lottie from "lottie-react";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { imageUpload } from "../../api/utils";
+import { Helmet } from "react-helmet-async";
 const SignUp = () => {
-  const {createUser, signInWithGoogle,loading, setLoading, updateUserProfile} = useAuth();
+  const {
+    createUser,
+    signInWithGoogle,
+    loading,
+    setLoading,
+    updateUserProfile,
+  } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-     const form = e.target;
-     const name =  form.name.value;
-     const email =  form.email.value;
-     const password =  form.password.value;
-     const image = form.image.files[0];
-
-
-  
-     try{
-      setLoading(true)
-//upload image and get image Url
- 
-      const photo = await imageUpload(image)
-      console.log(photo)
- //user registration
-    const result = await createUser(email,password)
-    console.log(result);
-
-   //save user image and photo
-
-    await updateUserProfile(name, photo)
-      navigate('/')
-      toast.success('SignUp successfull')
-      }catch(err){
-       console.log(err);
-       toast.error(err.message)
-      }
-  }
-
-  const handleGoogle = async() => {
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const image = form.image.files[0];
     try {
-     await signInWithGoogle()
-    navigate('/')
-    toast.success('Signup Successful')
-    }catch(err){
-        console.log(err);
+      setLoading(true);
+
+      //upload image and get image Url
+      const photo = await imageUpload(image);
+      console.log(photo);
+      //user registration
+      const result = await createUser(email, password);
+      console.log(result);
+
+      //save user image and photo
+
+      await updateUserProfile(name, photo);
+      navigate("/");
+      toast.success("SignUp successfull");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
     }
+  };
 
-  }
-
-
+  const handleGoogle = async () => {
+    try {
+      await signInWithGoogle();
+      navigate("/");
+      toast.success("Signup Successful");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="flex flex-col overflow-x-auto lg:w-[1770px] items-center justify-center min-h-screen mx-auto lg:flex-row gap-10">
-      
-        <div className="card lg:w-[442px]  p-3 my-3 lg:mt card-compact bg-base-100  shadow-xl">
-          <figure>
-          <Lottie animationData={RegisterAnnimation} className='h-96 w-96'></Lottie>
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title"> <TiTick/> Register to know more details </h2>
-            <h2 className="card-title"> <TiTick/> Get your dream Job </h2>
-            <h2 className="card-title"> <TiTick/> Use your skill to earn!!! </h2>
-            
-            <div className="card-actions justify-end">
+      <Helmet>
+        <title>Job Hunting | Sign Up</title>
+      </Helmet>
+      <div className="card lg:w-[442px]  p-3 my-3 lg:mt card-compact bg-base-100  shadow-xl">
+        <figure>
+          <Lottie
+            animationData={RegisterAnnimation}
+            className="h-96 w-96"
+          ></Lottie>
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">
+            {" "}
+            <TiTick /> Register to know more details{" "}
+          </h2>
+          <h2 className="card-title">
+            {" "}
+            <TiTick /> Get your dream Job{" "}
+          </h2>
+          <h2 className="card-title">
+            {" "}
+            <TiTick /> Use your skill to earn!!!{" "}
+          </h2>
+
+          <div className="card-actions justify-end">
             <p className="px-6 text-sm text-center text-gray-400">
-            Already have an account?{" "}
-            <Link
-              onClick={() => document.getElementById("my_modal_3").showModal()}
-              // to="/login"
-              className="hover:underline hover:text-rose-500 text-gray-600"
-            >
-              Login
-            </Link>
-            .
-          </p>
-            </div>
+              Already have an account?{" "}
+              <Link
+                onClick={() =>
+                  document.getElementById("my_modal_3").showModal()
+                }
+                // to="/login"
+                className="hover:underline hover:text-rose-500 text-gray-600"
+              >
+                Login
+              </Link>
+              .
+            </p>
           </div>
         </div>
-    
+      </div>
 
       <div className="flex justify-center  flex-1 items-center min-h-screen">
         <div className="flex flex-col lg:w-full p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
@@ -92,7 +108,8 @@ const SignUp = () => {
               Create your Job-Hunting profile
             </p>
           </div>
-          <form onSubmit={handleSubmit}
+          <form
+            onSubmit={handleSubmit}
             noValidate=""
             action=""
             className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -172,15 +189,17 @@ const SignUp = () => {
             </div>
 
             <div>
-            <button
-            disabled ={loading}
-              type='submit'
-              className='bg-primary w-full lg:[100px] rounded-md py-3 text-white'
-            >
-             {
-              loading? <TbFidgetSpinner className='animate-spin m-auto'></TbFidgetSpinner>  : 'Register Now'
-             }
-            </button>
+              <button
+                disabled={loading}
+                type="submit"
+                className="bg-primary w-full lg:[100px] rounded-md py-3 text-white"
+              >
+                {loading ? (
+                  <TbFidgetSpinner className="animate-spin m-auto"></TbFidgetSpinner>
+                ) : (
+                  "Register Now"
+                )}
+              </button>
             </div>
           </form>
           <div className="flex items-center pt-4 space-x-1">
@@ -191,13 +210,13 @@ const SignUp = () => {
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
           </div>
           <button
-        disabled={loading}
-         onClick={handleGoogle}
-        className='flex disabled:cursor-not-allowed justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
-          <FcGoogle size={32} />
-          <p>Continue with Google</p>
-        </button>
-         
+            disabled={loading}
+            onClick={handleGoogle}
+            className="flex disabled:cursor-not-allowed justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+          >
+            <FcGoogle size={32} />
+            <p>Continue with Google</p>
+          </button>
         </div>
       </div>
     </div>
