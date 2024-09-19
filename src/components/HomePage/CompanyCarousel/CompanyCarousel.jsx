@@ -1,43 +1,105 @@
-import React from "react";
-import { FaArrowRight } from "react-icons/fa";
+
+
+
+
+import React, { useState } from "react";
 import Slider from "react-slick";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 // Example company logos
 const categories = [
   {
-     title: "MNCs",
+    title: "MNCs",
     hiring: "1.9K+ are actively hiring",
-    logos: ["/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif"],
+    logos: [
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+    ],
   },
   {
     title: "Internet",
     hiring: "194 are actively hiring",
-    logos: ["/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif"],
+    logos: [
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+    ],
   },
   {
-     title: "Manufacturing",
-     hiring: "831 are actively hiring",
-    logos: ["/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif"],
+    title: "Manufacturing",
+    hiring: "831 are actively hiring",
+    logos: [
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+    ],
   },
   {
     title: "Fortune 500",
     hiring: "107 are actively hiring",
-    logos: ["/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif"],
+    logos: [
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+    ],
   },
   {
-    title: "Product", 
-    hiring: "971 are actively hiring", 
-    logos: ["/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif", "/src/assets/company/4467146.gif"],
+    title: "Product",
+    hiring: "971 are actively hiring",
+    logos: [
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+      "/src/assets/company/4467146.gif",
+    ],
   },
 ];
 
+// Custom Arrow Components
+const NextArrow = ({ onClick, hide }) => {
+  return (
+    <div
+      className={`absolute top-1/2 right-0 transform -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300 ${hide ? 'hidden' : ''}`}
+      onClick={onClick}
+    >
+      <IoIosArrowForward size={24} />
+    </div>
+  );
+};
+
+const PrevArrow = ({ onClick, hide }) => {
+  return (
+    <div
+      className={`absolute top-1/2 left-0 transform -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300 ${hide ? 'hidden' : ''}`}
+      onClick={onClick}
+    >
+      <IoIosArrowBack size={24} />
+    </div>
+  );
+};
+
 const CompanyCarousel = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Handle changes when a slide changes
+  const handleBeforeChange = (oldIndex, newIndex) => {
+    setCurrentSlide(newIndex);
+  };
+
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
-     slidesToScroll: 1,
+    slidesToScroll: 1,
+    variableWidth: true,
+    beforeChange: handleBeforeChange,
+    nextArrow: <NextArrow hide={currentSlide === categories.length - 1} />, // Hide if at last slide
+    prevArrow: <PrevArrow hide={currentSlide === 0} />, // Hide if at first slide
     responsive: [
       {
         breakpoint: 1024,
@@ -46,6 +108,7 @@ const CompanyCarousel = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: true,
+          variableWidth: true,
         },
       },
       {
@@ -53,28 +116,26 @@ const CompanyCarousel = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          variableWidth: true,
         },
       },
     ],
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 max-w-6xl mx-auto relative">
       <h2 className="text-center text-2xl font-semibold mb-8">
         Top companies hiring now
       </h2>
       <Slider {...settings}>
         {categories.map((category, index) => (
-          <div key={index} className="p-4">
+          <div key={index} className="p-4" style={{ width: "auto" }}>
             <div className="border rounded-lg p-4 shadow-lg h-full flex flex-col justify-between">
               <div>
-
-                <div className="flex gap-4 items-center">
-                  <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
-
-                  <FaArrowRight/>
-
-                </div>
+                <h3 className="text-xl font-semibold mb-2 flex items-center">
+                  {category.title}
+                  <IoIosArrowForward className="opacity-45 ml-2" />
+                </h3>
                 <p className="text-gray-500">{category.hiring}</p>
               </div>
               <div className="flex gap-2 mt-4">

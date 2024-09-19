@@ -15,12 +15,24 @@ const links = [
     link: "/jobs",
   },
   {
+    title: "Categories",
+    link: "/categories",
+  },
+  {
     title: "Employers",
     link: "/employers",
   },
   {
     title: "About Us",
     link: "/about",
+  },
+  {
+    title: "login",
+    link: "/login",
+  },
+  {
+    title: "Sign Up",
+    link: "/signup",
   },
 ];
 const Navbar = () => {
