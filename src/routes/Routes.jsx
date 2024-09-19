@@ -5,30 +5,33 @@ import App from "../App";
 import Home from "../pages/HomePage/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import Jobs from "../pages/Jobs/Jobs";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element:<App></App>,
-    children:[
+    element: <App></App>,
+    children: [
       {
-        path:"/",
-        element:<Home/>
+        path: "/",
+        element: <Home />,
       },
       {
-          path: "/categories",
-          element: <Categories></Categories>,
+        path: "/categories",
+        element: <Categories></Categories>,
       },
       {
-        path:"/login",
-        element:<Login/>
+        path: "/login",
+        element: <Login />,
       },
       {
-        path:"/signup",
-        element:<SignUp/>
-      }
-      
-    ]
+        path: "/signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/jobs",
+        element: <Jobs />,
+      },
+    ],
   },
-  
 ]);
