@@ -1,4 +1,6 @@
-import React from "react";
+// import React from "react";
+
+import HomePage from "../../components/HomePage/HomePage";
 
 const Home = () => {
   return (
@@ -6,7 +8,9 @@ const Home = () => {
       {/* here add all section of home page,
       every section import here. create home page section inside the home page folder
       */}
-      <h1>this is home page</h1>
+ 
+ <HomePage/>
+    
     </div>
   );
 };

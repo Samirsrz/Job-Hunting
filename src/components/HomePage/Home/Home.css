@@ -1,0 +1,14 @@
+.custom-select {
+    background-color: #f3f4f6; /* Custom background color */
+    color: #4a5568; /* Custom text color */
+    padding-right: 2.5rem; /* Space for custom arrow */
+}
+
+.custom-select option {
+    background-color: #f3f4f6; /* Background color for options */
+    color: #4a5568; /* Text color for options */
+}
+
+.custom-select::-ms-expand {
+    display: none; /* Hide default dropdown arrow in IE */
+}
