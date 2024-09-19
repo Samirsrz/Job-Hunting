@@ -11,6 +11,8 @@ export default {
       fontFamily: {
         "open-sans": '"Open Sans", sans-serif',
       },
+
+
     },
   },
   plugins: [
@@ -18,3 +20,26 @@ export default {
   ],
 }
 
+
+
+// module.exports = {
+//   theme: {
+//     extend: {
+//       animation: {
+//         'bottom-to-top': 'bottomToTop 3s linear infinite',
+//         'top-to-bottom': 'topToBottom 3s linear infinite',
+//       },
+//       keyframes: {
+//         bottomToTop: {
+//           '0%': { transform: 'translateY(100%)' },
+//           '100%': { transform: 'translateY(-100%)' },
+//         },
+//         topToBottom: {
+//           '0%': { transform: 'translateY(-100%)' },
+//           '100%': { transform: 'translateY(100%)' },
+//         },
+//       },
+//     },
+//   },
+//   plugins: [],
+// };
