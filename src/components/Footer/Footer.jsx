@@ -1,9 +1,10 @@
 import React from "react";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
   return (
-    <div className="mt-20">
-      <footer className="bg-white dark:bg-gray-900">
+    <div className="mt-20 ">
+      <footer className="bg-base-200 dark:bg-gray-900">
         <div className="container p-6 mx-auto">
           <div className="lg:flex">
             <div className="w-full -mx-6 lg:w-2/5">
@@ -13,7 +14,10 @@ const Footer = () => {
                     className="w-auto h-7"
                     src="https://i.ibb.co.com/vdZjnCr/images-2.png"
                     alt=""
-                  /> <span className="text-xl font-bold text-primary">JobHunting</span>
+                  />{" "}
+                  <span className="text-xl font-bold text-primary">
+                    JobHunting
+                  </span>
                 </a>
 
                 <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">
@@ -163,7 +167,7 @@ const Footer = () => {
 
           <div>
             <p className="text-center text-gray-500 dark:text-gray-400">
-              © Brand 2020 - All rights reserved
+              &copy; {year} Innovative Codex -- All Rights Reserved.
             </p>
           </div>
         </div>
