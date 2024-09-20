@@ -1,9 +1,45 @@
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
+  const { userSignIn, signInWithGoogle, loading, setLoading } = useAuth();
+  const navigate = useNavigate();
+
+  //sign in email and password
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email);
+    userSignIn(email, password)
+      .then((result) => {
+        const loggedInUser = result.user;
+        toast.success("Signup Successful");
+        console.log(loggedInUser);
+        setLoading(true);
+      })
+      .catch((error) => {
+        toast.success(error);
+      });
+  };
+
+  //google login
+  const handleGoogle = async () => {
+    try {
+      await signInWithGoogle();
+      toast.success("Signup Successful");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div>
+      <Helmet><title>Job Hunting | login</title></Helmet>
       <dialog id="my_modal_3" className="modal flex justify-end ">
         <div className="modal-box size-full ">
           <form method="dialog">
@@ -18,7 +54,7 @@ const Login = () => {
                 <h1 className="text-4xl text-black font-semibold mt-5">
                   Login
                 </h1>
-                <form className="card-body p-0 mt-5">
+                <form onSubmit={handleLogin} className="card-body p-0 mt-5">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text">Email</span>
@@ -26,6 +62,7 @@ const Login = () => {
                     <input
                       name="email"
                       type="email"
+                      id="email"
                       placeholder="email"
                       className="input input-bordered"
                       required
@@ -39,7 +76,7 @@ const Login = () => {
                       name="password"
                       type="password"
                       placeholder="password"
-                      className="input input-bordered"
+                      className="input input-bordered text-black"
                       required
                     />
                     <label className="label">
@@ -62,7 +99,10 @@ const Login = () => {
                   <div className="divider">OR</div>
 
                   <div className=" text-center border-2 border-primary rounded-2xl">
-                    <button className="text-primary  mr-3">
+                    <button
+                      onClick={handleGoogle}
+                      className="text-primary  mr-3"
+                    >
                       <p className="flex items-center gap-3">
                         <FcGoogle className="text-2xl" />
                         <span className="text-lg font-bold">

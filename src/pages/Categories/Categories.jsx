@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CategoriesCard from "../../components/navbar/CategoriesCard";
+import { Helmet } from "react-helmet-async";
 
 const Categories = () => {
   //filter data by category..
@@ -15,6 +16,9 @@ const Categories = () => {
   );
   return (
     <div className="max-w-screen-xl m-auto  mt-5 mb-20">
+      <Helmet>
+        <title>Job Hunting | Categories</title>
+      </Helmet>
       {/* Design/Creative */}
       <div className="mt-10">
         <h1 className="text-2xl font-bold mb-8">Design/Creative</h1>
