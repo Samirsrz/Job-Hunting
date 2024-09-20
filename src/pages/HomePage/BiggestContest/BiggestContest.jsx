@@ -3,6 +3,7 @@
 
 import React from 'react';
 import './BiggestContest.css'; // Create a separate CSS file for the animation styles
+import companyContest from '../../../../src/assets/company/838020_file.svg'
 
 const BiggestContest = () => {
   return (
@@ -14,22 +15,22 @@ const BiggestContest = () => {
           <div className="animate-marquee-top flex flex-col gap-3">
             <img
               className="w-[50px] bg-white rounded-lg"
-              src="/src/assets/company/838020_file.svg"
+              src={companyContest}
               alt="Company Logo"
             />
             <img
               className="w-[50px] bg-white rounded-lg"
-              src="/src/assets/company/838020_file.svg"
+              src={companyContest}
               alt="Company Logo"
             />
             <img
               className="w-[50px] bg-white rounded-lg"
-              src="/src/assets/company/838020_file.svg"
+              src={companyContest}
               alt="Company Logo"
             />
             <img
               className="w-[50px] bg-white rounded-lg"
-              src="/src/assets/company/838020_file.svg"
+              src={companyContest}
               alt="Company Logo"
             />
           </div>
@@ -40,22 +41,22 @@ const BiggestContest = () => {
           <div className="animate-marquee-bottom flex flex-col gap-3">
             <img
               className="w-[50px] bg-white rounded-lg"
-              src="/src/assets/company/838020_file.svg"
+              src={companyContest}
               alt="Company Logo"
             />
             <img
               className="w-[50px] bg-white rounded-lg"
-              src="/src/assets/company/838020_file.svg"
+              src={companyContest}
               alt="Company Logo"
             />
             <img
               className="w-[50px] bg-white rounded-lg"
-              src="/src/assets/company/838020_file.svg"
+              src={companyContest}
               alt="Company Logo"
             />
             <img
               className="w-[50px] bg-white rounded-lg"
-              src="/src/assets/company/838020_file.svg"
+              src={companyContest}
               alt="Company Logo"
             />
           </div>
