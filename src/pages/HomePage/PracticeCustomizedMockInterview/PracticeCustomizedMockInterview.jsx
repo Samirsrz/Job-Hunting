@@ -1,4 +1,6 @@
 
+import avatar from '../../../../src/assets/avatar/job.png'
+
 const PracticeCustomizedMockInterview = () => {
     return (
         <div className='max-w-6xl mx-auto bg-gradient-to-r from-teal-500 to-teal-100 rounded-3xl p-8 flex items-center justify-between'>
@@ -17,7 +19,7 @@ const PracticeCustomizedMockInterview = () => {
 
             {/* Right Image Section */}
             <div>
-                <img src="/src/assets/avatar/job.png" alt="Naukri 360 AI" className='w-40' />
+                <img src={avatar} alt="Naukri 360 AI" className='w-40 bg-transparent' />
             </div>
         </div>
     );
