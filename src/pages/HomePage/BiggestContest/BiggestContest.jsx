@@ -64,8 +64,8 @@ const BiggestContest = () => {
        
       </article>
 
-      <article className=''>
-        <h1 className='font-bold text-3xl text-white'>Bangladesh &rsquo;s  biggest skill contest <br/> to help you stand out to reqruiters</h1>
+      <article className='text-center lg:text-left '  >
+        <h1 className='font-bold text-3xl text-white px-3 lg:p-0'>Bangladesh &rsquo;s  biggest skill contest <br/> to help you stand out to reqruiters</h1>
         <button className='border border-white rounded-3xl px-4 mt-3 py-2 bg-[#5900f454] text-white font-semibold'>win from a prize pool of 2 lac Tk</button>
         <button className='border border-white rounded-3xl px-4 mt-3 py-2 bg-[#5900f454] text-white font-semibold'> Boost with a winner&#39;s certificate</button>
       </article>
