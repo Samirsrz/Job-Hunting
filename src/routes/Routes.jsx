@@ -7,6 +7,7 @@ import Home from "../pages/HomePage/Home";
 import SignUp from "../pages/SignUp/SignUp";
 import Jobs from "../pages/Jobs/Jobs";
 
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -20,7 +21,6 @@ export const router = createBrowserRouter([
         path: "/categories",
         element: <Categories></Categories>,
       },
-     
       {
         path: "/signup",
         element: <SignUp />,

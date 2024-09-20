@@ -2,56 +2,56 @@
 import { useState } from "react";
 import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-
+import logo1 from '../../../../src/assets/company/4467146.gif'; 
 // Example company logos
 const categories = [
   {
     title: "MNCs",
     hiring: "1.9K+ are actively hiring",
     logos: [
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
+      logo1,
+      logo1,
+      logo1,
+      logo1,
     ],
   },
   {
     title: "Internet",
     hiring: "194 are actively hiring",
     logos: [
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
+      logo1,
+      logo1,
+      logo1,
+      logo1,
     ],
   },
   {
     title: "Manufacturing",
     hiring: "831 are actively hiring",
     logos: [
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
+      logo1,
+      logo1,
+      logo1,
+      logo1,
     ],
   },
   {
     title: "Fortune 500",
     hiring: "107 are actively hiring",
     logos: [
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
+      logo1,
+      logo1,
+      logo1,
+      logo1,
     ],
   },
   {
     title: "Product",
     hiring: "971 are actively hiring",
     logos: [
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
-      "/src/assets/company/4467146.gif",
+      logo1,
+      logo1,
+      logo1,
     ],
   },
 ];
