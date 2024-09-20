@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { TbMinusVertical } from "react-icons/tb";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-
+import companyFeatueredIcon from "../../../../src/assets/company/4156.gif"
 // Custom Arrow Components
 const NextArrow = ({ onClick, isVisible }) => {
   return isVisible ? (
@@ -104,9 +104,9 @@ const FeaturedCompanies = () => {
                   className="flex justify-center"
                 >
                   <img
-                    src="/src/assets/company/4156.gif"
+                    src={companyFeatueredIcon}
                     alt="title image"
-                    // className="w-20 h-20 object-contain"
+                    className="w-full h-20 object-contain"
                   />
                 </div>
                 <div
