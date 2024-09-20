@@ -9,7 +9,7 @@ import HomeSearch from "./HomeSearch/HomeSearch";
 import PracticeCustomizedMockInterview from "./PracticeCustomizedMockInterview/PracticeCustomizedMockInterview";
 
 import { Helmet } from "react-helmet-async";
-import HomePage from "../../components/HomePage/HomePage";
+
 
 const Home = () => {
   return (
@@ -26,9 +26,7 @@ const Home = () => {
       <FeaturedCompanies />
       <BiggestContest />
       <Helmet><title>Job Hunting | Home</title></Helmet>
- 
- <HomePage/>
-    
+
     </div>
   );
 };
