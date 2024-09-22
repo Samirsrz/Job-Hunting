@@ -6,11 +6,14 @@ import Home from "../pages/HomePage/Home";
 
 import SignUp from "../pages/SignUp/SignUp";
 import Jobs from "../pages/Jobs/Jobs";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement: <ErrorPage/>,
+
     children: [
       {
         path: "/",
@@ -20,14 +23,7 @@ export const router = createBrowserRouter([
         path: "/categories",
         element: <Categories></Categories>,
       },
-<<<<<<< HEAD
      
-=======
-      {
-        path: "/login",
-        element: <Login />,
-      },
->>>>>>> 6de546b9f1d9bfa2a50e5a75ae56bfdf7fed9664
       {
         path: "/signup",
         element: <SignUp />,
