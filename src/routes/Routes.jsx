@@ -8,6 +8,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import Jobs from "../pages/Jobs/Jobs";
 import Login from "../pages/Login/Login";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
+import DashboardLayout from "../DashboardLayout/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -26,10 +27,6 @@ export const router = createBrowserRouter([
       },
      
       {
-        path: "/login",
-        element: <Login/>,
-      },
-      {
         path: "/signup",
         element: <SignUp />,
       },
@@ -40,4 +37,29 @@ export const router = createBrowserRouter([
 
     ],
   },
+
+ {
+   path: '/dashboard',
+   element: <DashboardLayout/>,
+   children: [
+ 
+
+
+
+
+
+
+
+
+
+
+
+   ]
+ }
+ 
+
+
+
+
+
 ]);
