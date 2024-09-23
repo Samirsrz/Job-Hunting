@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom";
+import Login from "../../pages/Login/Login";
+import useAuth from "../../hooks/useAuth";
 
 const SearchBar = () => (
+ 
+
+
   <button className="py-2 px-2 md:px-4 rounded-full bg-white/20 hover:bg-white/40 hover:scale-105 md:rounded-md font-semibold">
     <span className="hidden md:inline md:mr-1">Search now</span>🔍
   </button>
@@ -27,15 +32,13 @@ const links = [
     link: "/about",
   },
   {
-    title: "login",
-    link: "/login",
-  },
-  {
     title: "Sign Up",
     link: "/signup",
   },
 ];
 const Navbar = () => {
+
+  const { user, logOut } = useAuth();
   return (
     <div id="sidebar" className="navbar bg-primary text-white">
       <div className="navbar-start">
@@ -76,6 +79,15 @@ const Navbar = () => {
               <NavLink to={link}>{title}</NavLink>
             </li>
           ))}
+
+          {/* login btn  */}
+          <button
+            className=""
+            onClick={() => document.getElementById("my_modal_3").showModal()}
+          >
+            Sign In
+          </button>
+          {/* end login btn */}
         </ul>
       </div>
       <div className="navbar-end gap-4">
@@ -88,6 +100,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      <Login></Login>
     </div>
   );
 };
