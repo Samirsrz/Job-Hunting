@@ -5,11 +5,12 @@ import JobCard from "../../components/jobs/JobCard";
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState("");
   useEffect(() => {
     axios
-      .get("http://localhost:8000/jobs")
+      .get(`http://localhost:8000/jobs?category=${category}`)
       .then((data) => setJobs(data.data.data));
-  }, []);
+  }, [category]);
 
   useEffect(() => {
     axios
@@ -25,9 +26,24 @@ const Jobs = () => {
       <div className="mx-6">
         <h2 className="text-lg font-semibold my-2">Categories</h2>
         <div className="flex flex-row flex-wrap gap-2">
-          <button className="btn btn-sm">All</button>
+          <button
+            className={`btn btn-sm ${category || "bg-primary text-white"}`}
+            onClick={() => {
+              setCategory("");
+            }}
+          >
+            All
+          </button>
           {categories?.map((cat, idx) => (
-            <button className="btn btn-sm" key={idx}>
+            <button
+              className={`btn btn-sm ${
+                category === cat && "bg-primary text-white"
+              }`}
+              onClick={() => {
+                setCategory(cat);
+              }}
+              key={idx}
+            >
               {cat}
             </button>
           ))}
