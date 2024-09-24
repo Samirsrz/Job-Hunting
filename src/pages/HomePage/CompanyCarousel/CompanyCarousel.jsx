@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import  { useState } from "react";
+import { useState } from "react";
 import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import logo1 from '../../../../src/assets/company/4467146.gif'; 
@@ -60,7 +60,9 @@ const categories = [
 const NextArrow = ({ onClick, hide }) => {
   return (
     <div
-      className={`absolute top-1/2 right-0 transform -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300 ${hide ? 'hidden' : ''}`}
+      className={`absolute top-1/2 right-0 transform -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300 ${
+        hide ? "hidden" : ""
+      }`}
       onClick={onClick}
     >
       <IoIosArrowForward size={24} />
@@ -71,7 +73,9 @@ const NextArrow = ({ onClick, hide }) => {
 const PrevArrow = ({ onClick, hide }) => {
   return (
     <div
-      className={`absolute top-1/2 left-0 transform -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300 ${hide ? 'hidden' : ''}`}
+      className={`absolute top-1/2 left-0 transform -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300 ${
+        hide ? "hidden" : ""
+      }`}
       onClick={onClick}
     >
       <IoIosArrowBack size={24} />
