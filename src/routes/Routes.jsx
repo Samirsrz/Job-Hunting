@@ -9,6 +9,7 @@ import Jobs from "../pages/Jobs/Jobs";
 import Login from "../pages/Login/Login";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
+import ViewsJob from "../pages/UserDashboard/ViewsJob";
 
 export const router = createBrowserRouter([
   {
@@ -42,17 +43,11 @@ export const router = createBrowserRouter([
    path: '/dashboard',
    element: <DashboardLayout/>,
    children: [
- 
+    {
+      path:"/dashboard/viewjobs",
+      element:<ViewsJob></ViewsJob>
 
-
-
-
-
-
-
-
-
-
+    }
 
    ]
  }
