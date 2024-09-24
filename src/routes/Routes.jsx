@@ -6,11 +6,14 @@ import Home from "../pages/HomePage/Home";
 
 import SignUp from "../pages/SignUp/SignUp";
 import Jobs from "../pages/Jobs/Jobs";
+
 import Login from "../pages/Login/Login";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import ViewsJob from "../pages/UserDashboard/ViewsJob";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
+=======
+
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +30,7 @@ export const router = createBrowserRouter([
         path: "/categories",
         element: <Categories></Categories>,
       },
-     
+
       {
         path: "/signup",
         element: <SignUp />,
