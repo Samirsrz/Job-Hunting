@@ -10,6 +10,12 @@ import HomeSearch from "./HomeSearch/HomeSearch";
 import PracticeCustomizedMockInterview from "./PracticeCustomizedMockInterview/PracticeCustomizedMockInterview";
 
 import { Helmet } from "react-helmet-async";
+import SponsoredCompanies from "./SponsoredCompanies/SponsoredCompanies";
+import UpcomingEvents from "./UpcomingEvents/UpcomingEvents";
+import EventCard from "./UpcomingEvents/UpcomingEvents";
+import InterviewCompanies from "./InterviewCompanies/InterviewCompanies";
+import ViewAllJobsCompany from "../ViewAllJobsCompany/ViewAllJobsCompany";
+
 
 
 const Home = () => {
@@ -26,7 +32,11 @@ const Home = () => {
       <CompanyCarousel />
       <FeaturedCompanies />
       <BiggestContest />
-      <DiscoverJobs/>
+      <DiscoverJobs />
+      <SponsoredCompanies />
+      <EventCard />
+      <InterviewCompanies />
+      <ViewAllJobsCompany />
       <Helmet><title>Job Hunting | Home</title></Helmet>
 
     </div>

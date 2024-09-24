@@ -1,67 +1,14 @@
-
-
-
-
-
-
-import { IoIosArrowForward } from "react-icons/io";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "/public/searchingJobs/Animation - 1726837190077.json";
 
 // Job roles data
-const jobRoles = [
-  { title: 'Full Stack Developer', jobs: '20.9K+ Jobs' },
-  { title: 'Mobile / App Developer', jobs: '2.2K+ Jobs' },
-  { title: 'Front End Developer', jobs: '3.4K+ Jobs' },
-  { title: 'DevOps Engineer', jobs: '2.3K+ Jobs' },
-  { title: 'Engineering Manager', jobs: '1.4K+ Jobs' },
-  { title: 'Technical Lead', jobs: '12K+ Jobs' },
-  { title: 'Front End Developer', jobs: '3.4K+ Jobs' },
-  { title: 'DevOps Engineer', jobs: '2.3K+ Jobs' },
-  { title: 'Engineering Manager', jobs: '1.4K+ Jobs' },
-  { title: 'Technical Lead', jobs: '12K+ Jobs' },
-  { title: 'DevOps Engineer', jobs: '2.3K+ Jobs' },
-  { title: 'Engineering Manager', jobs: '1.4K+ Jobs' },
-  { title: 'Technical Lead', jobs: '12K+ Jobs' },
-  { title: 'Front End Developer', jobs: '3.4K+ Jobs' },
-  { title: 'DevOps Engineer', jobs: '2.3K+ Jobs' },
-  { title: 'Engineering Manager', jobs: '1.4K+ Jobs' },
-  { title: 'Technical Lead', jobs: '12K+ Jobs' },
-];
 
-const NextArrow = ({ onClick }) => (
-  <div onClick={onClick} className="absolute right-0  cursor-pointer z-10 flex items-center justify-center">
-    <IoIosArrowForward className="text-gray-500" />
-  </div>
-);
 
-const PrevArrow = ({ onClick }) => (
-  <div onClick={onClick} className="absolute left-0 cursor-pointer z-10">
-    <IoIosArrowForward className="text-gray-500 rotate-180" />
-  </div>
-);
 
 const DiscoverJobs = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1, // Show 1 group (6 cards) at a time
-    slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    responsive: [
-      {
-        breakpoint: 768, // Adjust behavior for mobile screens
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
+ 
   return (
     <section className='mt-16 relative'>
       <div className="flex h-[340px] flex-col md:flex-row justify-between items-center p-10 bg-gradient-to-r from-orange-100 to-white rounded-xl shadow-lg">
