@@ -8,5 +8,4 @@ const ViewsJob = () => {
         </div>
     );
 };
-
 export default ViewsJob;

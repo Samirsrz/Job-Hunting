@@ -10,6 +10,7 @@ import Login from "../pages/Login/Login";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import ViewsJob from "../pages/UserDashboard/ViewsJob";
+import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
 
 export const router = createBrowserRouter([
   {
@@ -46,7 +47,10 @@ export const router = createBrowserRouter([
     {
       path:"/dashboard/viewjobs",
       element:<ViewsJob></ViewsJob>
-
+    },
+    {
+      path:"/dashboard/appliedjobs",
+      element:<AppliedJobs></AppliedJobs>
     }
 
    ]
