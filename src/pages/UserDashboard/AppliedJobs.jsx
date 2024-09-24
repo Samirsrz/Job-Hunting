@@ -169,7 +169,7 @@ const AppliedJobs = () => {
                         authurmelo@example.com
                       </td>
                       <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 dark:bg-gray-800 bg-indigo-100/60">
+                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-blue-100 dark:bg-gray-800 dark:text-blue-400">
                           <h2 className="text-sm font-normal text-indigo-500">
                             View
                           </h2>
