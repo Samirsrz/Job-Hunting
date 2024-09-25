@@ -15,7 +15,7 @@
     "@mui/material": "^6.1.1",
     "@mui/x-charts": "^7.18.0",
     "axios": "^1.7.7",
-    "firebase": "^10.13.1",
+    "firebase": "^10.13.2",
     "localforage": "^1.10.0",
     "lottie-react": "^2.4.0",
     "match-sorter": "^6.3.4",
