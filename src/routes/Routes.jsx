@@ -13,6 +13,7 @@ import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import ViewsJob from "../pages/UserDashboard/ViewsJob";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
 import Statictis from "../components/Dashboard/Statictis";
+import UserProfile from "../pages/UserDashboard/UserProfile";
 
 
 
@@ -50,15 +51,19 @@ export const router = createBrowserRouter([
    children: [
     {
       path:"/dashboard",
-      element:<Statictis></Statictis>
+      element:<Statictis/>
     },
     {
       path:"/dashboard/viewjobs",
-      element:<ViewsJob></ViewsJob>
+      element:<ViewsJob/>
     },
     {
       path:"/dashboard/appliedjobs",
-      element:<AppliedJobs></AppliedJobs>
+      element:<AppliedJobs/>
+    },
+    {
+      path:'/dashboard/userprofile',
+      element:<UserProfile/>
     }
 
    ]

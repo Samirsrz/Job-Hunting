@@ -1,24 +1,15 @@
 import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
-
-import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
+// const colors={['red', 'blue', 'green']};
+
 const items = [
-  { value: 10, label: "Views Application" },
+  { value: 30, label: "Views Application",color:"#275DF5"},
   { id: "id_B", value: 15, label: "Appointed" },
-  { id: "id_C", value: 20, label: "Rejected" },
+  { id: "id_C", value: 5, label: "Rejected" },
 ];
 
-const formatObject = (obj) => {
-  if (obj === null) {
-    return "  undefined";
-  }
-  return JSON.stringify(obj, null, 2)
-    .split("\n")
-    .map((l) => `  ${l}`)
-    .join("\n");
-};
 const PieCharts = () => {
   const [identifier, setIdentifier] = React.useState(null);
   const [id, setId] = React.useState(undefined);
