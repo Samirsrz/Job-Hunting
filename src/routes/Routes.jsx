@@ -12,14 +12,13 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import ViewsJob from "../pages/UserDashboard/ViewsJob";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
-=======
-
+import JobDetails from "../pages/Jobs/JobDetails";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
 
     children: [
       {
@@ -39,29 +38,25 @@ export const router = createBrowserRouter([
         path: "/jobs",
         element: <Jobs />,
       },
-
+      {
+        path: "/jobs/:id",
+        element: <JobDetails />,
+      },
     ],
   },
 
- {
-   path: '/dashboard',
-   element: <DashboardLayout/>,
-   children: [
-    {
-      path:"/dashboard/viewjobs",
-      element:<ViewsJob></ViewsJob>
-    },
-    {
-      path:"/dashboard/appliedjobs",
-      element:<AppliedJobs></AppliedJobs>
-    }
-
-   ]
- }
- 
-
-
-
-
-
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard/viewjobs",
+        element: <ViewsJob></ViewsJob>,
+      },
+      {
+        path: "/dashboard/appliedjobs",
+        element: <AppliedJobs></AppliedJobs>,
+      },
+    ],
+  },
 ]);
