@@ -8,7 +8,14 @@ import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { imageUpload } from "../../api/utils";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import Swal from "sweetalert2";
 const SignUp = () => {
+
+  const [isHostChecked, setIsHostChecked] = useState(false);
+    const [isGuestChecked, setIsGuestChecked] = useState(false);
+
+
   const {
     createUser,
     signInWithGoogle,
@@ -16,6 +23,8 @@ const SignUp = () => {
     setLoading,
     updateUserProfile,
   } = useAuth();
+
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -25,6 +34,18 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0];
+    
+    let role = '' ;
+
+    if(isGuestChecked){
+      role = 'guest'
+    }else{
+      role = 'host'
+    }
+   
+  
+
+  console.log(role);
     try {
       setLoading(true);
 
@@ -51,6 +72,13 @@ const SignUp = () => {
       await signInWithGoogle();
       navigate("/");
       toast.success("Signup Successful");
+      setLoading(false)
+      if(isGuestChecked){
+       console.log('guest');
+      }else if(isHostChecked){
+        console.log('host');
+      }
+    
     } catch (err) {
       console.log(err);
     }
@@ -61,7 +89,7 @@ const SignUp = () => {
       <Helmet>
         <title>Job Hunting | Sign Up</title>
       </Helmet>
-      <div className="card lg:w-[442px]  p-3 my-3 lg:mt card-compact bg-base-100  shadow-xl">
+      <div className="card lg:w-[442px]  p-3 my-3 lg:mt card-compact   shadow-xl">
         <figure>
           <Lottie
             animationData={RegisterAnnimation}
@@ -101,7 +129,7 @@ const SignUp = () => {
       </div>
 
       <div className="flex justify-center  flex-1 items-center min-h-screen">
-        <div className="flex flex-col lg:w-full p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
+        <div className="flex flex-col lg:w-full p-6 rounded-md sm:p-10 border-x-2  text-gray-900">
           <div className="mb-8 text-center">
             <h1 className="my-3 text-6xl italic font-bold">~~Sign Up~~</h1>
             <p className="text-sm text-gray-500">
@@ -186,6 +214,30 @@ const SignUp = () => {
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 />
               </div>
+
+              <div className="flex justify-center items-center mt-20">
+            <label className="flex items-center mr-10">
+                <input
+                    type="checkbox"
+                    disabled={isGuestChecked}
+                    checked={isHostChecked}
+                    onChange={() => setIsHostChecked(!isHostChecked)}
+                    className="w-8 h-8 mr-3"
+                />
+                <span className="text-2xl">Join as a host</span>
+            </label>
+            <label className="flex items-center">
+                <input
+                    type="checkbox"
+                    disabled={isHostChecked}
+                    checked={isGuestChecked}
+                    onChange={() => setIsGuestChecked(!isGuestChecked)}
+                    className="w-8 h-8 mr-3"
+                />
+                <span className="text-2xl">Join as a guest</span>
+            </label>
+        </div>
+
             </div>
 
             <div>
@@ -211,13 +263,77 @@ const SignUp = () => {
           </div>
           <button
             disabled={loading}
+            onClick={()=>document.getElementById('my_modal_1').showModal()}
+            className="flex disabled:cursor-not-allowed justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+          >
+            <FcGoogle size={32} />
+            <p>Continue with Google</p>
+
+
+
+          </button>
+        </div>
+         
+       
+<dialog id="my_modal_1" className="modal">
+  <div className="modal-box">
+    <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Press ESC key or click the button below to close</p>
+    <div className="modal-action">
+   
+    
+      <form method="dialog">
+        {/* if there is a button in form, it will close the modal */}
+        <div className="flex justify-center items-center mt-2">
+            <label className="flex items-center mr-10">
+                <input
+                    type="checkbox"
+                    disabled={isGuestChecked}
+                    checked={isHostChecked}
+                    onChange={() => setIsHostChecked('host')}
+                    className="w-8 h-8 mr-3"
+                />
+                <span className="text-2xl">Join as a host</span>
+            </label>
+            <label className="flex items-center">
+                <input
+                    type="checkbox"
+                    disabled={isHostChecked}
+                    checked={isGuestChecked}
+                    onChange={() => setIsGuestChecked('guest')}
+                    className="w-8 h-8 mr-3"
+                />
+                <span className="text-2xl">Join as a guest</span>
+            </label>
+        </div>
+     
+         
+        <button
+            disabled={loading || (!isGuestChecked && !isHostChecked)}
+            onClick={handleGoogle}
+            className="flex disabled:cursor-not-allowed lg:w-full justify-center mx-auto items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+          >
+            <FcGoogle size={32} />
+            <p>Continue with Google</p>
+
+          </button>
+      </form>
+    </div>
+    {/* <button
+            disabled={loading}
             onClick={handleGoogle}
             className="flex disabled:cursor-not-allowed justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
           >
             <FcGoogle size={32} />
             <p>Continue with Google</p>
-          </button>
-        </div>
+
+          </button> */}
+
+  </div>
+</dialog>
+
+
+
       </div>
     </div>
   );
