@@ -1,8 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Login from "../../pages/Login/Login";
+import useAuth from "../../hooks/useAuth";
+import { CiDark, CiLight } from "react-icons/ci";
+import { HiOutlineLogout } from "react-icons/hi";
+import { FiLogIn } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import Lang from "../../libs/Lang";
 
 const SearchBar = () => (
-  <button className="py-2 px-2 md:px-4 rounded-full bg-white/20 hover:bg-white/40 hover:scale-105 md:rounded-md font-semibold">
+  <button className="py-2 px-1 md:hover:px-2 lg:px-4 rounded-full md:bg-white/20 hover:bg-white/40 hover:scale-105 md:rounded-md md:font-semibold">
     <span className="hidden md:inline md:mr-1">Search now</span>🔍
   </button>
 );
@@ -27,12 +33,44 @@ const links = [
     title: "About Us",
     link: "/about",
   },
-  {
-    title: "Sign Up",
-    link: "/signup",
-  },
 ];
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [lang, setLang] = useState(null);
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    setIsDarkMode(storedTheme === "dark");
+
+    document.documentElement.classList.toggle("dark", storedTheme === "dark");
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    localStorage.setItem("theme", newMode ? "dark" : "light");
+    document.documentElement.classList.toggle("dark", newMode);
+  };
+
+  useEffect(() => {
+    const storedLang = localStorage.getItem("lang");
+    if (Lang[storedLang]) {
+      setLang(storedLang);
+    } else {
+      setLang(Lang.EN);
+    }
+    //todo
+  }, []);
+
+  const changeLang = () => {
+    const newLang = lang === Lang.EN ? "BN" : "EN";
+    setLang(newLang);
+    localStorage.setItem("lang", newLang);
+
+    //todo
+  };
+
   return (
     <div id="sidebar" className="navbar bg-primary text-white">
       <div className="navbar-start">
@@ -55,10 +93,10 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black dark:bg-gray-700 dark:text-white"
           >
             {links.map(({ title, link }, idx) => (
-              <li key={idx}>
+              <li className="dark:hover:bg-gray-500 rounded-xl" key={idx}>
                 <NavLink to={link}>{title}</NavLink>
               </li>
             ))}
@@ -73,28 +111,61 @@ const Navbar = () => {
               <NavLink to={link}>{title}</NavLink>
             </li>
           ))}
-
-          {/* login btn  */}
-          <button
-            className=""
-            onClick={() => document.getElementById("my_modal_3").showModal()}
-          >
-            Sign In
-          </button>
-          {/* end login btn */}
         </ul>
       </div>
-      <div className="navbar-end gap-4">
-        <div>
+      <div className="navbar-end flex items-center">
+        <div className="md:mx-2 flex md:justify-center items-center h-full">
           <SearchBar />
+          <button
+            onClick={toggleDarkMode}
+            className="rounded-full hover:bg-white/40 py-2 px-1 text-2xl md:px-2 md:text-3xl"
+          >
+            {isDarkMode ? <CiDark /> : <CiLight />}
+          </button>
+          <button
+            onClick={changeLang}
+            className="mr-2 md:mr-0 rounded-full hover:bg-white/40 py-2 px-1 md:px-2 md:text-lg"
+          >
+            {lang === Lang.EN ? "EN" : "BN"}
+          </button>
         </div>
-        <div className="avatar">
-          <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring ring-offset-2">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+        {user ? (
+          <>
+            <div className="dropdown dropdown-end">
+              <img
+                tabIndex={0}
+                role="button"
+                src={user?.photoURL}
+                className="w-10 lg:w-12 aspect-square object-center mr-2 md:mr-4 rounded-full ring-4 ring-sky-500 dark:ring-gray-400"
+              />
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-4 text-black dark:bg-gray-700 dark:text-white"
+              >
+                <span className="mx-4 mt-2 font-bold">{user?.displayName}</span>
+                <li className="dark:hover:bg-gray-500 rounded-xl">
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <button
+                  className="btn btn-sm text-xs p-0 bg-white dark:bg-gray-500 dark:border-gray-400 dark:text-white"
+                  onClick={logOut}
+                >
+                  Logout <HiOutlineLogout />
+                </button>
+              </ul>
+            </div>
+          </>
+        ) : (
+          <div className="hidden md:flex gap-2">
+            <NavLink
+              to="/signup"
+              className="btn bg-white dark:bg-gray-500 dark:border-gray-400 dark:text-white"
+            >
+              Join Us <FiLogIn />
+            </NavLink>
           </div>
-        </div>
+        )}
       </div>
-
       <Login></Login>
     </div>
   );

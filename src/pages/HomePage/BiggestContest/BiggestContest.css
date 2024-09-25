@@ -1,0 +1,41 @@
+
+
+/* Top to Bottom Animation */
+@keyframes marqueeTopToBottom {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+  
+  /* Bottom to Top Animation */
+  @keyframes marqueeBottomToTop {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  
+  /* Animate images in the first column (top to bottom) */
+  .animate-marquee-top {
+    animation: marqueeTopToBottom 6s linear infinite;
+  }
+  
+  /* Animate images in the second column (bottom to top) */
+  .animate-marquee-bottom {
+    animation: marqueeBottomToTop 6s linear infinite;
+  }
+  
+  /* General Styles for Images */
+  img {
+    display: block;
+    width: 50px;
+    height: auto;
+    border-radius: 8px;
+    background-color: white;
+  }
+  
