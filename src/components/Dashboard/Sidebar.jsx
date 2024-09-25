@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import { useState } from 'react'
-import { GrLogout } from 'react-icons/gr'
-import { FcSettings } from 'react-icons/fc'
-import { BsFillHouseAddFill } from 'react-icons/bs'
-
-import { MdHomeWork } from 'react-icons/md'
-import { AiOutlineBars } from 'react-icons/ai'
-import { BsGraphUp } from 'react-icons/bs'
-import { NavLink } from 'react-router-dom'
-=======
 import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
@@ -18,7 +7,6 @@ import { MdHomeWork } from "react-icons/md";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
->>>>>>> bc6b25b4d0d1a6e0694e2d5848b4b5412c297cba
 
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
