@@ -10,7 +10,7 @@ const AllUser = () => {
   const handleDelete = () => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "You won't be able to delete User!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -20,7 +20,7 @@ const AllUser = () => {
       if (result.isConfirmed) {
         Swal.fire({
           title: "Deleted!",
-          text: "Your file has been deleted.",
+          text: "Your user has been deleted.",
           icon: "success",
         });
       }
@@ -121,9 +121,58 @@ const AllUser = () => {
                       </td>
 
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                          <h2 className="text-sm font-normal text-emerald-500">
+                            Admin
+                          </h2>
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        authurmelo@example.com
+                      </td>
+
+                      <td className="px-4 py-4 text-sm whitespace-nowrap">
+                        <div className="flex items-center gap-x-6">
+                          <button
+                            onClick={handleDelete}
+                            className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
+                          >
+                            <RiDeleteBin5Line className="text-xl" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="pl-4">2</td>
+
+                      {/* company name  */}
+                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                        <div className="inline-flex items-center gap-x-3">
+                          <div className="flex items-center gap-x-2">
+                            <div>
+                              <h2 className="font-medium text-gray-800 dark:text-white ">
+                                <div className="flex items-center gap-x-2">
+                                  <img
+                                    className="object-cover w-10 h-10 rounded-full"
+                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                                    alt=""
+                                  />
+                                  <div>
+                                    <h2 className="font-medium text-gray-800 dark:text-white ">
+                                      Arthur Melo
+                                    </h2>
+                                  </div>
+                                </div>
+                              </h2>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-start  px-3 py-1 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
                           <h2 className="text-sm font-normal text-red-500">
-                            Rejected
+                            Guest
                           </h2>
                         </div>
                       </td>
