@@ -14,6 +14,7 @@ import ViewsJob from "../pages/UserDashboard/ViewsJob";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
 import Statictis from "../components/Dashboard/Statictis";
 import UserProfile from "../pages/UserDashboard/UserProfile";
+import AllUser from "../pages/AdminDashboard/AllUser";
 
 
 
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
     {
       path:'/dashboard/userprofile',
       element:<UserProfile/>
+    },
+    {
+      path:'/dashboard/alluser',
+      element:<AllUser/>
     }
 
    ]
