@@ -7,12 +7,15 @@ import Home from "../pages/HomePage/Home";
 import SignUp from "../pages/SignUp/SignUp";
 import Jobs from "../pages/Jobs/Jobs";
 
-import Login from "../pages/Login/Login";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import ViewsJob from "../pages/UserDashboard/ViewsJob";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
 import PostJobs from "../pages/HostDashboard/PostJobs";
+import Statictis from "../components/Dashboard/Statictis";
+import UserProfile from "../pages/UserDashboard/UserProfile";
+import AllUser from "../pages/AdminDashboard/AllUser";
+import JobDetails from './../pages/Jobs/JobDetails';
 
 
 
@@ -20,7 +23,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
 
     children: [
       {
@@ -31,7 +34,6 @@ export const router = createBrowserRouter([
         path: "/categories",
         element: <Categories></Categories>,
       },
-
       {
         path: "/signup",
         element: <SignUp />,
@@ -40,7 +42,10 @@ export const router = createBrowserRouter([
         path: "/jobs",
         element: <Jobs />,
       },
-
+      {
+        path: "/jobs/:id",
+        element: <JobDetails />,
+      },
     ],
   },
 
@@ -49,8 +54,12 @@ export const router = createBrowserRouter([
    element: <DashboardLayout/>,
    children: [
     {
+      path:"/dashboard",
+      element:<Statictis/>
+    },
+    {
       path:"/dashboard/viewjobs",
-      element:<ViewsJob></ViewsJob>
+      element:<ViewsJob/>
     },
     {
       path:"/dashboard/appliedjobs",
@@ -60,14 +69,18 @@ export const router = createBrowserRouter([
     {
       path:"/dashboard/post-jobs",
       element: <PostJobs/>
+     
+    },
+    {
+      path:'/dashboard/userprofile',
+      element:<UserProfile/>
+    },
+    {
+      path:'/dashboard/alluser',
+      element:<AllUser/>
     }
 
    ]
  }
- 
-
-
-
-
 
 ]);
