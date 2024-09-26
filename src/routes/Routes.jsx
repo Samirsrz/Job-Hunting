@@ -12,7 +12,8 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import ViewsJob from "../pages/UserDashboard/ViewsJob";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
-=======
+import PostJobs from "../pages/HostDashboard/PostJobs";
+
 
 
 export const router = createBrowserRouter([
@@ -54,6 +55,11 @@ export const router = createBrowserRouter([
     {
       path:"/dashboard/appliedjobs",
       element:<AppliedJobs></AppliedJobs>
+    },
+
+    {
+      path:"/dashboard/post-jobs",
+      element: <PostJobs/>
     }
 
    ]
