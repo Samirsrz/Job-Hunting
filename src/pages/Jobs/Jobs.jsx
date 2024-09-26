@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import JobCard from "../../components/jobs/JobCard";
 import { FaSearch } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -57,6 +58,7 @@ const Jobs = () => {
 
   return (
     <div>
+      <Helmet><title>Job Hunting | Jobs</title></Helmet>
       <h1 className="text-center text-5xl font-bold mt-10 mb-6">
         Jobs ({jobs?.length})
       </h1>
