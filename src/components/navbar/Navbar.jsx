@@ -6,10 +6,12 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { FiLogIn } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import Lang from "../../libs/Lang";
+import { FaSearch } from "react-icons/fa";
 
 const SearchBar = () => (
-  <button className="py-2 px-1 md:hover:px-2 lg:px-4 rounded-full md:bg-white/20 hover:bg-white/40 hover:scale-105 md:rounded-md md:font-semibold">
-    <span className="hidden md:inline md:mr-1">Search now</span>🔍
+  <button className="py-2 flex gap-1 items-center justify-center px-1 md:hover:px-2 lg:px-4 rounded-full md:bg-white/20 hover:bg-white/40 hover:scale-105 md:rounded-md md:font-semibold">
+    <span className="hidden md:inline md:mr-1">Search now</span>
+    <FaSearch className="inline" />
   </button>
 );
 const links = [
