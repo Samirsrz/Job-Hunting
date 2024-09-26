@@ -11,6 +11,7 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import ViewsJob from "../pages/UserDashboard/ViewsJob";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
+import PostJobs from "../pages/HostDashboard/PostJobs";
 import Statictis from "../components/Dashboard/Statictis";
 import UserProfile from "../pages/UserDashboard/UserProfile";
 import AllUser from "../pages/AdminDashboard/AllUser";
@@ -68,7 +69,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/appliedjobs",
-        element: <AppliedJobs />,
+        element: <AppliedJobs></AppliedJobs>,
+      },
+
+      {
+        path: "/dashboard/post-jobs",
+        element: <PostJobs />,
       },
       {
         path: "/dashboard/userprofile",

@@ -19,6 +19,7 @@ const Sidebar = () => {
   const handleToggle = () => {
     setActive(!isActive);
   };
+
   return (
     <div>
       {/* Small Screen Navbar */}
@@ -27,8 +28,8 @@ const Sidebar = () => {
           <div className="block cursor-pointer p-4 font-bold">
             <Link to="/">
               <img
-                // className='hidden md:block'
-                src="https://i.ibb.co/4ZXzmq5/logo.png"
+                // className='hidden md:block rounded-full'
+                src="https://i.ibb.co.com/vdZjnCr/images-2.png"
                 alt="logo"
                 width="100"
                 height="100"
@@ -53,15 +54,16 @@ const Sidebar = () => {
       >
         <div>
           <div>
-            <div className="w-full hidden md:flex px-4 py-4 shadow-lg rounded-lg justify-center items-center bg-primary mx-auto">
+            <div className="w-full hidden md:flex px-4 py-4 shadow-lg rounded-lg justify-center items-center mx-auto">
               <Link to="/">
                 <img
-                  // className='hidden md:block'
+                  className='hidden md:block rounded-full'
                   src="https://i.ibb.co.com/vdZjnCr/images-2.png"
                   alt="logo"
-                  width="100"
-                  height="100"
+                  width="200"
+                  height="200"
                 />
+              
               </Link>
             </div>
           </div>
@@ -103,7 +105,7 @@ const Sidebar = () => {
 
               {/*Post jobs ---> Host*/}
               <NavLink
-                to="post-jobs"
+                to="/dashboard/post-jobs"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
