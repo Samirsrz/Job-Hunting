@@ -1,9 +1,0 @@
-{
-    "rewrites": [
-      {
-        "source": "/jobs/viewAllJobsCompany",
-        "destination": "/jobs/viewAllJobsCompany"
-      }
-    ]
-  }
-  
