@@ -20,7 +20,7 @@ import ViewAllJobsCompany from "../ViewAllJobsCompany/ViewAllJobsCompany";
 
 const Home = () => {
   return (
-  
+
     // <div className="container max-w-screen-xl m-auto">
     <div className="max-w-6xl mx-auto">
       {/* here add all section of home page,
@@ -36,14 +36,16 @@ const Home = () => {
       <BiggestContest />
       <DiscoverJobs />
       <SponsoredCompanies />
-      <div className="my-8">
-          <EventCard />    
-      </div>
-<div className="mt-8 relative">
-      <InterviewCompanies />
-</div>
-  
-  
+    
+        <EventCard />
+    
+    <div className="h-[20px]">
+
+    </div>
+        <InterviewCompanies />
+    
+
+
       <Helmet><title>Job Hunting | Home</title></Helmet>
 
     </div>
