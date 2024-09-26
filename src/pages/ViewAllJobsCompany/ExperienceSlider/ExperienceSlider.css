@@ -1,0 +1,26 @@
+.range-slider {
+  -webkit-appearance: none; /* Override default CSS styles */
+  width: 100%; /* Full-width */
+  height: 8px; /* Slider height */
+  border-radius: 5px; /* Round edges */
+  background: transparent; /* Make background transparent to show custom gradient */
+  outline: none; /* Remove outline */
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default styles */
+  appearance: none;
+  width: 23px; /* Thumb size */
+  height: 23px; /* Thumb size */
+  background: #000000; /* Thumb color */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 50%; /* Round thumb */
+}
+
+.range-slider::-moz-range-thumb {
+  width: 20px; /* Thumb size */
+  height: 20px; /* Thumb size */
+  background: #007bff; /* Thumb color */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 50%; /* Round thumb */
+}
