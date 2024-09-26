@@ -13,14 +13,18 @@ import PostJobs from "../pages/HostDashboard/PostJobs";
 import Statictis from "../components/Dashboard/Statictis";
 import UserProfile from "../pages/UserDashboard/UserProfile";
 import AllUser from "../pages/AdminDashboard/AllUser";
-import JobDetails from './../pages/Jobs/JobDetails';
+import LangProvider from "../providers/LangProvider";
+import JobDetails from "./../pages/Jobs/JobDetails";
 import ViewAllJobsCompany from "../pages/ViewAllJobsCompany/ViewAllJobsCompany";
-
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>,
+    element: (
+      <LangProvider>
+        <App></App>
+      </LangProvider>
+    ),
     errorElement: <ErrorPage />,
 
     children: [
@@ -44,45 +48,45 @@ export const router = createBrowserRouter([
         path: "/jobs/:id",
         element: <JobDetails />,
       },
-            {
-              path:"/jobs/viewAllJobsCompany",
-              element:<ViewAllJobsCompany/>
-            }
+      {
+        path: "/jobs/viewAllJobsCompany",
+        element: <ViewAllJobsCompany />,
+      },
     ],
   },
-
   {
-    path: '/dashboard',
-    element: <DashboardLayout />,
+    path: "/dashboard",
+    element: (
+      <LangProvider>
+        <DashboardLayout />
+      </LangProvider>
+    ),
     children: [
       {
         path: "/dashboard",
-        element: <Statictis />
+        element: <Statictis />,
       },
       {
         path: "/dashboard/viewjobs",
-        element: <ViewsJob />
+        element: <ViewsJob />,
       },
       {
         path: "/dashboard/appliedjobs",
-        element: <AppliedJobs></AppliedJobs>
+        element: <AppliedJobs></AppliedJobs>,
       },
 
       {
         path: "/dashboard/post-jobs",
-        element: <PostJobs />
-
+        element: <PostJobs />,
       },
       {
-        path: '/dashboard/userprofile',
-        element: <UserProfile />
+        path: "/dashboard/userprofile", 
+        element: <UserProfile />,
       },
       {
-        path: '/dashboard/alluser',
-        element: <AllUser />
-      }
-
-    ]
-  }
-
+        path: "/dashboard/alluser",
+        element: <AllUser />,
+      },
+    ],
+  },
 ]);

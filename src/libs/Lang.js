@@ -1,5 +1,5 @@
 const Lang = {
-  BN: "BN",
-  EN: "EN",
+  BN: "bn",
+  EN: "en",
 };
 export default Lang;
