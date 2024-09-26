@@ -14,14 +14,17 @@ import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
 import Statictis from "../components/Dashboard/Statictis";
 import UserProfile from "../pages/UserDashboard/UserProfile";
 import AllUser from "../pages/AdminDashboard/AllUser";
-import JobDetails from './../pages/Jobs/JobDetails';
-
-
+import JobDetails from "./../pages/Jobs/JobDetails";
+import LangProvider from "../providers/LangProvider";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>,
+    element: (
+      <LangProvider>
+        <App></App>
+      </LangProvider>
+    ),
     errorElement: <ErrorPage />,
 
     children: [
@@ -47,33 +50,34 @@ export const router = createBrowserRouter([
       },
     ],
   },
-
- {
-   path: '/dashboard',
-   element: <DashboardLayout/>,
-   children: [
-    {
-      path:"/dashboard",
-      element:<Statictis/>
-    },
-    {
-      path:"/dashboard/viewjobs",
-      element:<ViewsJob/>
-    },
-    {
-      path:"/dashboard/appliedjobs",
-      element:<AppliedJobs/>
-    },
-    {
-      path:'/dashboard/userprofile',
-      element:<UserProfile/>
-    },
-    {
-      path:'/dashboard/alluser',
-      element:<AllUser/>
-    }
-
-   ]
- }
-
+  {
+    path: "/dashboard",
+    element: (
+      <LangProvider>
+        <DashboardLayout />
+      </LangProvider>
+    ),
+    children: [
+      {
+        path: "/dashboard",
+        element: <Statictis />,
+      },
+      {
+        path: "/dashboard/viewjobs",
+        element: <ViewsJob />,
+      },
+      {
+        path: "/dashboard/appliedjobs",
+        element: <AppliedJobs />,
+      },
+      {
+        path: "/dashboard/userprofile",
+        element: <UserProfile />,
+      },
+      {
+        path: "/dashboard/alluser",
+        element: <AllUser />,
+      },
+    ],
+  },
 ]);
