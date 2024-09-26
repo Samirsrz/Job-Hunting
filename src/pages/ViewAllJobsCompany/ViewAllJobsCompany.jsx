@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import DepartmentsHiring from './DepartmentsHiring/DepartmentsHiring';
 import StandardCharteredJobs from './StandardCharteredJobs/StandardCharteredJobs';
-
+import company from "../../../src/assets/company/standard-chartered_1920x534.jpg"
+import logoCompany from'../../../src/assets/company/32270.gif'
 const ViewAllJobsCompany = () => {
     // State to track the active tab
     const [activeTab, setActiveTab] = useState('jobs'); // Default is 'jobs'
@@ -18,14 +19,14 @@ const ViewAllJobsCompany = () => {
         <section className="w-full font-sans">
             {/* Background Section */}
             <div className="relative text-left">
-                <img src="/src/assets/company/standard-chartered_1920x534.jpg" alt="Optum Header" className="w-full h-auto" />
+                <img src={company} alt="Optum Header" className="w-full h-auto" />
 
                 {/* Company Info */}
                 <div className="flex flex-col lg:flex-row p-6 bg-white rounded-lg shadow-lg relative md:-top-12">
 
                     {/* Company Logo */}
                     <img
-                        src="/src/assets/company/32270.gif"
+                        src={logoCompany}
                         alt="Company Logo"
                         className="w-[100px] h-20 rounded-2xl mr-6 mt-[-60px]"
                     />

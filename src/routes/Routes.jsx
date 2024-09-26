@@ -1,3 +1,4 @@
+
 import { createBrowserRouter } from "react-router-dom";
 import Categories from "../pages/Categories/Categories";
 import App from "../App";
@@ -79,7 +80,7 @@ export const router = createBrowserRouter([
         element: <PostJobs />,
       },
       {
-        path: "/dashboard/userprofile",
+        path: "/dashboard/userprofile", 
         element: <UserProfile />,
       },
       {
