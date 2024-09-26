@@ -36,7 +36,7 @@ const StandardCharteredJobs = () => {
     return (
         <section>
             <aside className='relative my-3'>
-                <div id='btns for dropdown' className='flex gap-3'>
+                <div id='btns for dropdown' className='flex gap-3 flex-wrap'>
                     <button
                         className='px-4 py-2 rounded-3xl border border-black flex items-center gap-1'
                         onClick={handleToggle}>
