@@ -27,19 +27,19 @@ const roles = [
 
 const InterviewCompanies = () => {
     return (
-        <section className='mt-7 relative bg-gradient-to-r from-orange-100 to-orange-50 rounded-xl flex justify-between h-[410px]'>
+        <section className='mt-7 relative bg-gradient-to-r from-orange-100 to-orange-50 rounded-xl flex flex-col lg:flex-row justify-between lg:h-[410px]'>
 
             <aside className='text-center flex gap-3 flex-col items-center justify-center p-3'>
                 <img  src={interviewPng} className='bg-transparent w-[270px]' alt="" />
                 <h1 className='font-bold text-2xl'>Prepare for your <br/> next interview</h1>
             </aside>
 
-            <aside className='w-[70%] flex gap-3 absolute top-[-19px] right-3 bottom-[-19px] mt-1 mr-7'>
+            <aside className='w-full lg:w-[70%] flex flex-col lg:flex-row gap-3 lg:absolute top-[-19px] right-3 bottom-[-19px] mt-1 mr-7'>
                 <div className="p-6 bg-white rounded-lg shadow-lg h-[440px] flex flex-col justify-between">
-                    <h2 className="text-xl font-semibold mb-4">Interview questions by company</h2>
+                    <h2 className="text-xl font-semibold mb-4 text-center lg:text-balance">Interview questions by company</h2>
 
                     {/* Company cards container */}
-                    <div className="grid grid-cols-2 gap-4 ">
+                    <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-4 ">
                         {companies.map((company, index) => (
                             <div key={index} className="px-4 py-2 border rounded-lg flex justify-between items-center shadow-sm hover:shadow-lg transition-shadow duration-200">
                                 <div className="flex items-center space-x-4">
@@ -67,8 +67,8 @@ const InterviewCompanies = () => {
                     </div>
                 </div>
 
-                <div className='h-[440px]'>
-                    <div className="p-6 bg-white rounded-lg shadow-lg w-80 h-full  flex flex-col justify-between">
+                <div className='lg:h-[440px] mb-3 lg:mb-0 '>
+                    <div className="p-6 bg-white rounded-lg shadow-lg w-full lg:w-80 h-full  flex flex-col justify-between">
                         <h2 className="text-xl font-semibold mb-4">Interview questions by role</h2>
 
                         <div className="space-y-4">

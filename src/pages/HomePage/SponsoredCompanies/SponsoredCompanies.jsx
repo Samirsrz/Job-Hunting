@@ -1,4 +1,9 @@
 
+
+
+
+// // this compo right not above
+
 import { useState } from 'react';
 import { FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import arrow icons
 import Slider from "react-slick";
@@ -54,19 +59,42 @@ const SponsoredCompanies = () => {
   };
 
   const settings = {
-    // dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4, // 4 columns
+    slidesToShow: 4, // 4 columns for large screens
     slidesToScroll: 4, // Scrolls through 4 cards at a time
     rows: 2, // 2 rows of cards
     arrows: true,
     prevArrow: <CustomPrevArrow />, // Custom previous arrow
     nextArrow: <CustomNextArrow />, // Custom next arrow
+    responsive: [
+      {
+        breakpoint: 1024, // For large screens and above
+        settings: {
+          slidesToShow: 4, // Show 4 slides on large screens
+          slidesToScroll: 4,
+        },
+      },
+      {
+        breakpoint: 768, // For medium screens
+        settings: {
+          slidesToShow: 2, // Show 2 slides on medium screens
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480, // For small screens
+        settings: {
+          slidesToShow: 1, // Show 1 slide on small screens
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
     <section className="mt-7 relative"> {/* Added relative position for arrows */}
+    <h1 className='font-bold text-center text-2xl my-2'>Sponsored companies</h1>
       <div id="btns" className="flex flex-wrap gap-3 justify-center">
         {categories.map((category, index) => {
           const isActive = activeCategory === category;

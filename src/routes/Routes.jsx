@@ -12,7 +12,8 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import ViewsJob from "../pages/UserDashboard/ViewsJob";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
-=======
+import ViewAllJobsCompany from "../pages/ViewAllJobsCompany/ViewAllJobsCompany";
+// =======
 
 
 export const router = createBrowserRouter([
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
         path: "/jobs",
         element: <Jobs />,
       },
+      {
+        path:"/jobs/viewAllJobsCompany",
+        element:<ViewAllJobsCompany/>
+      }
 
     ],
   },
@@ -58,10 +63,5 @@ export const router = createBrowserRouter([
 
    ]
  }
- 
-
-
-
-
 
 ]);
