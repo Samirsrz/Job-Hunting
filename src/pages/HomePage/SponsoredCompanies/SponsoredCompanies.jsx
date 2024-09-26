@@ -7,6 +7,7 @@
 import { useState } from 'react';
 import { FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import arrow icons
 import Slider from "react-slick";
+import logo from '../../../../src/assets/company/838020_file.svg'
 
 const SponsoredCompanies = () => {
   const categories = [
@@ -117,7 +118,7 @@ const SponsoredCompanies = () => {
             <div className="shadow-lg rounded-xl p-4 text-center flex flex-col gap-3 items-center border border-gray-200">
               {/* Company Logo */}
               <div className="flex justify-center mb-2">
-                <img src="/src/assets/company/838020_file.svg" alt="Shahi" className="w-16 h-16" />
+                <img src={logo} alt="Shahi" className="w-16 h-16" />
               </div>
 
               {/* Company Name */}
