@@ -5,12 +5,12 @@ import { PiQuestion } from "react-icons/pi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 
-const AppliedJobs = () => {
+const AllUser = () => {
   //handle Delete function
   const handleDelete = () => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "You won't be able to delete User!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -20,7 +20,7 @@ const AppliedJobs = () => {
       if (result.isConfirmed) {
         Swal.fire({
           title: "Deleted!",
-          text: "Your file has been deleted.",
+          text: "Your user has been deleted.",
           icon: "success",
         });
       }
@@ -56,7 +56,7 @@ const AppliedJobs = () => {
                         className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
                         <div className="flex items-center gap-x-3">
-                          <span>Company Name</span>
+                          <span>User Name</span>
                         </div>
                       </th>
 
@@ -65,7 +65,7 @@ const AppliedJobs = () => {
                         className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
                         <button className="flex items-center gap-x-2">
-                          <span>Role</span>
+                          <span>User Role</span>
 
                           <PiQuestion className="text-lg" />
                         </button>
@@ -77,16 +77,7 @@ const AppliedJobs = () => {
                       >
                         Email address
                       </th>
-                      <th
-                        scope="col"
-                        className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                      >
-                        <button className="flex items-center gap-x-2">
-                          <span>Status</span>
 
-                          <FcAlphabeticalSortingAz />
-                        </button>
-                      </th>
                       <th
                         scope="col"
                         className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
@@ -111,26 +102,35 @@ const AppliedJobs = () => {
                           <div className="flex items-center gap-x-2">
                             <div>
                               <h2 className="font-medium text-gray-800 dark:text-white ">
-                                Arthur Melo
+                                <div className="flex items-center gap-x-2">
+                                  <img
+                                    className="object-cover w-10 h-10 rounded-full"
+                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                                    alt=""
+                                  />
+                                  <div>
+                                    <h2 className="font-medium text-gray-800 dark:text-white ">
+                                      Arthur Melo
+                                    </h2>
+                                  </div>
+                                </div>
                               </h2>
                             </div>
                           </div>
                         </div>
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        Design Director
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        authurmelo@example.com
-                      </td>
-                      <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                           <h2 className="text-sm font-normal text-emerald-500">
-                            Pending
+                            Admin
                           </h2>
                         </div>
                       </td>
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        authurmelo@example.com
+                      </td>
+
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
                         <div className="flex items-center gap-x-6">
                           <button
@@ -139,15 +139,11 @@ const AppliedJobs = () => {
                           >
                             <RiDeleteBin5Line className="text-xl" />
                           </button>
-
-                          <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                            <FaRegEdit className="text-xl" />
-                          </button>
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="pl-4">1</td>
+                      <td className="pl-4">2</td>
 
                       {/* company name  */}
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -155,70 +151,35 @@ const AppliedJobs = () => {
                           <div className="flex items-center gap-x-2">
                             <div>
                               <h2 className="font-medium text-gray-800 dark:text-white ">
-                                Arthur Melo
+                                <div className="flex items-center gap-x-2">
+                                  <img
+                                    className="object-cover w-10 h-10 rounded-full"
+                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                                    alt=""
+                                  />
+                                  <div>
+                                    <h2 className="font-medium text-gray-800 dark:text-white ">
+                                      Arthur Melo
+                                    </h2>
+                                  </div>
+                                </div>
                               </h2>
                             </div>
                           </div>
                         </div>
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        Design Director
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        authurmelo@example.com
-                      </td>
-                      <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-blue-100 dark:bg-gray-800 dark:text-blue-400">
-                          <h2 className="text-sm font-normal text-indigo-500">
-                            View
-                          </h2>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <div className="flex items-center gap-x-6">
-                          <button
-                            onClick={handleDelete}
-                            className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
-                          >
-                            <RiDeleteBin5Line className="text-xl" />
-                          </button>
-
-                          <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                            <FaRegEdit className="text-xl" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="pl-4">1</td>
-
-                      {/* company name  */}
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3">
-                          <div className="flex items-center gap-x-2">
-                            <div>
-                              <h2 className="font-medium text-gray-800 dark:text-white ">
-                                Arthur Melo
-                              </h2>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        Design Director
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        authurmelo@example.com
-                      </td>
-                      <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
+                        <div className="inline-flex items-start  px-3 py-1 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
                           <h2 className="text-sm font-normal text-red-500">
-                            Rejected
+                            Guest
                           </h2>
                         </div>
                       </td>
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        authurmelo@example.com
+                      </td>
+
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
                         <div className="flex items-center gap-x-6">
                           <button
@@ -226,10 +187,6 @@ const AppliedJobs = () => {
                             className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
                           >
                             <RiDeleteBin5Line className="text-xl" />
-                          </button>
-
-                          <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                            <FaRegEdit className="text-xl" />
                           </button>
                         </div>
                       </td>
@@ -245,4 +202,4 @@ const AppliedJobs = () => {
   );
 };
 
-export default AppliedJobs;
+export default AllUser;
