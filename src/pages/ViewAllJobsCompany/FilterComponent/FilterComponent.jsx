@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { FaClosedCaptioning } from 'react-icons/fa';
 
 const departments = [

@@ -53,7 +53,7 @@
 
 
 
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import './ExperienceSlider.css'; // Import the custom CSS
 
 const ExperienceSlider = () => {

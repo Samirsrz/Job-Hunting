@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react';
+import  { useRef, useState } from 'react';
 
 let locations = [
     { name: 'Chennai', count: 22 },
