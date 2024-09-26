@@ -15,14 +15,16 @@ const Jobs = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8000/jobs?category=${category}&sort=${sort}&search=${search}`
+        `${
+          import.meta.env.VITE_Backend_Api
+        }/jobs?category=${category}&sort=${sort}&search=${search}`
       )
       .then((data) => setJobs(data.data.data));
   }, [category, sort, search]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/category")
+      .get("${import.meta.env.VITE_Backend_Api}/category")
       .then((data) => setCategories(data.data.data));
   }, []);
 
@@ -30,7 +32,7 @@ const Jobs = () => {
     if (search.length > 0) {
       try {
         const response = await fetch(
-          `http://localhost:8000/job-suggestions?search=${search}`
+          `${import.meta.env.VITE_Backend_Api}/job-suggestions?search=${search}`
         );
         const data = await response.json();
 
@@ -58,7 +60,9 @@ const Jobs = () => {
 
   return (
     <div>
-      <Helmet><title>Job Hunting | Jobs</title></Helmet>
+      <Helmet>
+        <title>Job Hunting | Jobs</title>
+      </Helmet>
       <h1 className="text-center text-5xl font-bold mt-10 mb-6">
         Jobs ({jobs?.length})
       </h1>
