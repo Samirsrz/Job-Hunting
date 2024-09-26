@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import Login from "../../pages/Login/Login";
 import useAuth from "../../hooks/useAuth";
 import { CiDark, CiLight } from "react-icons/ci";
@@ -41,6 +41,19 @@ const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [lang, setLang] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const changeLangPath = (lang) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set("lang", lang);
+    navigate(
+      {
+        pathname: location.pathname,
+        search: searchParams.toString(),
+      },
+      { replace: true }
+    );
+  };
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
@@ -63,14 +76,13 @@ const Navbar = () => {
     } else {
       setLang(Lang.EN);
     }
-    navigate(`/?lang=${storedLang}`);
-  }, [navigate]);
+  }, []);
 
   const changeLang = () => {
     const newLang = lang === Lang.EN ? "bn" : "en";
     setLang(newLang);
     localStorage.setItem("lang", newLang);
-    navigate(`/?lang=${newLang}`);
+    changeLangPath(newLang);
   };
 
   return (
