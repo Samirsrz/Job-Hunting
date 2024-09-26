@@ -15,7 +15,7 @@ const JobDetails = () => {
   const [job, setJob] = useState({});
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/jobs/${id}`)
+      .get(`${import.meta.env.VITE_Backend_Api}/jobs/${id}`)
       .then((data) => setJob(data.data.data));
   }, [id]);
 
