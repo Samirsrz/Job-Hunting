@@ -8,7 +8,12 @@ import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { imageUpload } from "../../api/utils";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import Swal from "sweetalert2";
 const SignUp = () => {
+  const [isHostChecked, setIsHostChecked] = useState(false);
+  const [isGuestChecked, setIsGuestChecked] = useState(false);
+
   const {
     createUser,
     signInWithGoogle,
@@ -16,6 +21,7 @@ const SignUp = () => {
     setLoading,
     updateUserProfile,
   } = useAuth();
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -25,6 +31,16 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0];
+
+    let role = "";
+
+    if (isGuestChecked) {
+      role = "guest";
+    } else {
+      role = "host";
+    }
+
+    console.log(role);
     try {
       setLoading(true);
 
@@ -48,24 +64,40 @@ const SignUp = () => {
 
   const handleGoogle = async () => {
     try {
-      await signInWithGoogle();
+      if(isHostChecked || isGuestChecked){
+        await signInWithGoogle();
+        setLoading(false)
       navigate("/");
       toast.success("Signup Successful");
+      setLoading(false);
+      if (isGuestChecked) {
+        console.log("guest");
+      } else if (isHostChecked) {
+        console.log("host");
+      }
+      }
+ 
+    else{
+       return toast.error('select a role')
+    }
+      setLoading(false)
+     
+    
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div className="flex flex-col overflow-x-auto lg:w-[1770px] items-center justify-center min-h-screen mx-auto lg:flex-row gap-10">
+    <div className="container max-w-screen-xl m-auto flex flex-col overflow-x-auto lg:w-[1770px] items-center justify-center min-h-screen mx-auto lg:flex-row gap-10 ">
       <Helmet>
         <title>Job Hunting | Sign Up</title>
       </Helmet>
-      <div className="card lg:w-[442px]  p-3 my-3 lg:mt card-compact bg-base-100  shadow-xl">
+      <div className="card lg:w-[442px] p-3 my-3 lg:mt card-compact  shadow-xl">
         <figure>
           <Lottie
             animationData={RegisterAnnimation}
-            className="h-96 w-96"
+            className="h-96 w-72 lg:w-96"
           ></Lottie>
         </figure>
         <div className="card-body">
@@ -82,15 +114,15 @@ const SignUp = () => {
             <TiTick /> Use your skill to earn!!!{" "}
           </h2>
 
-          <div className="card-actions justify-end">
-            <p className="px-6 text-sm text-center text-gray-400">
+          <div className="card-actions">
+            <p className="lg:px-6 text-sm text-center text-gray-400">
               Already have an account?{" "}
               <Link
                 onClick={() =>
                   document.getElementById("my_modal_3").showModal()
                 }
                 // to="/login"
-                className="hover:underline hover:text-rose-500 text-gray-600"
+                className="hover:underline text-rose-500 text-lg font-bold"
               >
                 Login
               </Link>
@@ -100,8 +132,9 @@ const SignUp = () => {
         </div>
       </div>
 
+      {/* sign up form  */}
       <div className="flex justify-center  flex-1 items-center min-h-screen">
-        <div className="flex flex-col lg:w-full p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
+        <div className="flex flex-col lg:w-full p-6 rounded-md sm:p-10 border-x-2  text-gray-900">
           <div className="mb-8 text-center">
             <h1 className="my-3 text-6xl italic font-bold">~~Sign Up~~</h1>
             <p className="text-sm text-gray-500">
@@ -186,11 +219,34 @@ const SignUp = () => {
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 />
               </div>
+
+              <div className="flex justify-center items-center mt-20">
+                <label className="flex items-center mr-10">
+                  <input
+                    type="checkbox"
+                     disabled={isGuestChecked}
+                    checked={isHostChecked}
+                    onChange={() => setIsHostChecked(!isHostChecked)}
+                    className="w-8 h-8 mr-3"
+                  />
+                  <span className="text-2xl">Join as a host</span>
+                </label>
+                <label className="flex items-center ">
+                  <input
+                    type="checkbox"
+                    disabled={isHostChecked}
+                    checked={isGuestChecked}
+                    onChange={() => setIsGuestChecked(!isGuestChecked)}
+                    className="w-8 h-8 mr-3"
+                  />
+                  <span className="text-2xl">Join as a guest</span>
+                </label>
+              </div>
             </div>
 
             <div>
               <button
-                disabled={loading}
+                 disabled={loading || (!isGuestChecked && !isHostChecked)}
                 type="submit"
                 className="bg-primary w-full lg:[100px] rounded-md py-3 text-white"
               >
@@ -210,14 +266,16 @@ const SignUp = () => {
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
           </div>
           <button
-            disabled={loading}
+            //  disabled={loading || (!isGuestChecked && !isHostChecked)}
             onClick={handleGoogle}
             className="flex disabled:cursor-not-allowed justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
           >
-            <FcGoogle size={32} />
+            <FcGoogle size={36} />
             <p>Continue with Google</p>
           </button>
         </div>
+         
+
       </div>
     </div>
   );
