@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import { FaClosedCaptioning } from 'react-icons/fa';
+
 
 const departments = [
   { name: 'Engineering - Software & QA', count: 22 },
@@ -31,11 +31,8 @@ console.log(btnDrop);
   };
 
   return (
-    <div className="p-4 border rounded shadow-lg w-64 bg-white">
-        <div className='flex justify-end'>
-            <FaClosedCaptioning onClick={()=>setBtnDrop('')
-            }/>
-        </div>
+    <div className="p-4 border rounded-lg shadow-lg w-[286px] bg-white">
+        
       <h3 className="text-lg font-semibold mb-4">Search department</h3>
       {departments.map((dept) => (
         <div key={dept.name} className="flex items-center mb-2">
@@ -54,13 +51,13 @@ console.log(btnDrop);
       <div className="flex justify-between mt-4">
         <button
           onClick={handleClear}
-          className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+          className="text-blue-500 font-bold"
         >
           Clear
         </button>
         <button
           onClick={handleApply}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="px-4 py-2 bg-blue-700 rounded-3xl  text-white  flex items-center"
         >
           Apply
         </button>

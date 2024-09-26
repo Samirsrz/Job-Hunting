@@ -56,10 +56,10 @@ const LocationFilterComponent = () => {
     };
     
     return (
-        <div className="p-4 border rounded shadow-lg w-64 bg-white">
+        <div className="p-4 border rounded-lg shadow-lg w-[286px] bg-white">
             <h3 className="text-lg font-semibold mb-4">Search location</h3>
             <div id='search-location'>
-                <input onChange={()=>handleSearchChange(event)} ref={searchData} type="text" name='search' placeholder='Search location' className='outline-none mb-3 border py-2 px-4 rounded-3xl' />
+                <input onChange={()=>handleSearchChange(event)} ref={searchData} type="text" name='search' placeholder='Search location' className='outline-none w-full mb-3 border py-2 px-4 rounded-3xl' />
             </div>
             <div className=' overflow-auto h-[250px] bg-white'>
                 {locationsData.length==0 && <h4>No data found</h4> }
@@ -82,13 +82,13 @@ const LocationFilterComponent = () => {
             <div className="flex justify-between mt-4">
                 <button
                     onClick={handleClear}
-                    className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+                    className="text-blue-500 font-bold"
                 >
                     Clear
                 </button>
                 <button
                     onClick={handleApply}
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className="px-4 py-2 bg-blue-700 rounded-3xl  text-white  flex items-center"
                 >
                     Apply
                 </button>

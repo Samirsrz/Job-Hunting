@@ -21,8 +21,8 @@ import ViewAllJobsCompany from "../ViewAllJobsCompany/ViewAllJobsCompany";
 const Home = () => {
   return (
 
-    // <div className="container max-w-screen-xl m-auto">
-    <div className="max-w-6xl mx-auto">
+    <div className="container max-w-screen-xl m-auto">
+ 
       {/* here add all section of home page,
       every section import here. create home page section inside the home page folder
       */}
@@ -39,7 +39,7 @@ const Home = () => {
     
         <EventCard />
     
-    <div className="h-[20px]">
+    <div className="h-[15px]">
 
     </div>
         <InterviewCompanies />

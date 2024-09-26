@@ -35,7 +35,7 @@ const InterviewCompanies = () => {
             </aside>
 
             <aside className='w-full lg:w-[70%] flex flex-col lg:flex-row gap-3 lg:absolute top-[-19px] right-3 bottom-[-19px] mt-1 mr-7'>
-                <div className="p-6 bg-white rounded-lg shadow-lg h-[440px] flex flex-col justify-between">
+                <div className="p-6 bg-white rounded-lg shadow-lg lg:h-[440px] flex flex-col justify-between">
                     <h2 className="text-xl font-semibold mb-4 text-center lg:text-balance">Interview questions by company</h2>
 
                     {/* Company cards container */}
@@ -68,7 +68,7 @@ const InterviewCompanies = () => {
                 </div>
 
                 <div className='lg:h-[440px] mb-3 lg:mb-0 '>
-                    <div className="p-6 bg-white rounded-lg shadow-lg w-full lg:w-80 h-full  flex flex-col justify-between">
+                    <div className="p-6 bg-white rounded-lg shadow-lg w-full lg:w-80 lg:h-full  flex flex-col justify-between">
                         <h2 className="text-xl font-semibold mb-4">Interview questions by role</h2>
 
                         <div className="space-y-4">

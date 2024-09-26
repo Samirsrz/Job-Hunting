@@ -11,7 +11,7 @@ const DiscoverJobs = () => {
  
   return (
     <section className='mt-16 relative'>
-      <div className="flex lg:h-[340px] flex-col md:flex-row justify-between items-center p-10 bg-gradient-to-r from-orange-100 to-white rounded-xl shadow-lg">
+      <div className="flex lg:h-[340px] flex-col md:flex-row justify-between items-center p-2 md:p-4 lg:p-10 bg-gradient-to-r from-orange-100 to-white rounded-xl shadow-lg">
         {/* Left section: Illustration and text */}
         <div className="w-full md:w-1/2 p-4 flex flex-col h-[350px] ">
           <Lottie animationData={groovyWalkAnimation} loop={true} height={100 + 'px'} className='h-full' />

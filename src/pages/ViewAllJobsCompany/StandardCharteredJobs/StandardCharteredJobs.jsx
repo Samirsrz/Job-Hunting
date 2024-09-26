@@ -14,6 +14,8 @@ import { Link } from 'react-router-dom';
 import FilterComponent from '../FilterComponent/FilterComponent';
 import LocationFilterComponent from '../LocationFilterComponent/LocationFilterComponent';
 import ExperienceSlider from '../ExperienceSlider/ExperienceSlider';
+import { IoIosArrowDown } from "react-icons/io";
+
 
 const StandardCharteredJobs = () => {
     const [btnDrop, setBtnDrop] = useState(''); // Store selected button
@@ -33,24 +35,27 @@ const StandardCharteredJobs = () => {
 
     return (
         <section>
-            <aside className='relative'>
+            <aside className='relative my-3'>
                 <div id='btns for dropdown' className='flex gap-3'>
                     <button
-                        className='px-4 py-2 rounded-3xl border border-black'
+                        className='px-4 py-2 rounded-3xl border border-black flex items-center gap-1'
                         onClick={handleToggle}>
                         Department
+                        <IoIosArrowDown/>
                     </button>
                     <button
-                        className='px-4 py-2 rounded-3xl border border-black'
+                        className='px-4 py-2 rounded-3xl border border-black flex items-center gap-1'
                         onClick={handleToggle}>
                         Location
+                        <IoIosArrowDown/>
                     </button>
                     <button
-                        className='px-4 py-2 rounded-3xl border border-black'
+                        className='px-4 py-2 rounded-3xl border border-black flex items-center gap-1'
                         onClick={handleToggle}>
 
                         Experience
-                        
+                        <IoIosArrowDown/>
+
                     </button>
                 </div>
 

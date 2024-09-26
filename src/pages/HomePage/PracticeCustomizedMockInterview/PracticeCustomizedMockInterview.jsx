@@ -3,7 +3,7 @@ import avatar from '../../../../src/assets/avatar/job.png'
 
 const PracticeCustomizedMockInterview = () => {
     return (
-        <div className='max-w-6xl mx-auto bg-gradient-to-r from-teal-500 to-teal-100 rounded-3xl p-8 text-center lg:text-left lg:gap-0 gap-3 flex flex-col-reverse lg:flex-row  items-center justify-between'>
+        <div className=' bg-gradient-to-r from-teal-500 to-teal-100 rounded-3xl p-8 text-center lg:text-left lg:gap-0 gap-3 flex flex-col-reverse lg:flex-row  items-center justify-between'>
             {/* Left Text Section */}
             <div>
                 <h2 className='text-white text-3xl font-bold mb-2'>

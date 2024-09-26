@@ -63,12 +63,12 @@ const EventCard = () => {
   };
 
   return (
-    <div className="my-6">
+    <div className="mt-11">
       <section className="flex flex-col lg:flex-row mb-6 gap-3 overflow-hidden">
 
         {/* Sidebar for the title and image */}
-        <aside className="w-full lg:w-[30%] text-center mb-4 lg:mb-0">
-          <h1 className="font-bold text-xl lg:text-2xl">
+        <aside className="w-full lg:w-[30%] text-center mb-4 lg:mb-0 md:p-2">
+          <h1 className="font-bold text-xl lg:text-3xl">
             Upcoming events and <br /> challenges
           </h1>
           <div className="w-full flex justify-center">

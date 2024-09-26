@@ -25,7 +25,7 @@ const DepartmentsHiring = () => {
   ];
 
   return (
-    <section className="bg-[#FFF9F1] py-8 px-4 rounded-lg max-w-7xl mx-auto">
+    <section className=" bg-gradient-to-t from-[#fff4df] to-[#fffbf5eb] py-8 px-4 rounded-lg max-w-7xl mx-auto">
       <h2 className="text-lg font-semibold text-gray-800 mb-6">
         Departments hiring at Standard Chartered
       </h2>

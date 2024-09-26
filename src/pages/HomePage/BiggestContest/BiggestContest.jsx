@@ -7,7 +7,7 @@ import companyContest from '../../../../src/assets/company/838020_file.svg'
 
 const BiggestContest = () => {
   return (
-    <section className="bg-[#5900f4f9] mt-8 relative flex justify-between flex-col lg:flex-row gap-3 items-center lg:h-[200px] max-w-6xl mx-auto rounded-3xl">
+    <section className="bg-[#5900f4f9] mt-12 relative flex justify-between flex-col lg:flex-row gap-3 items-center lg:h-[200px] rounded-3xl">
       <article className="flex justify-between items-center lg:justify-normal lg:gap-10 bg-[#00000055] px-14 w-full lg:w-[300px] rounded-r-3xl  lg:rounded-r-[70px] rounded-l-3xl overflow-hidden">
         
         {/* First Column (Top to Bottom Animation) */}

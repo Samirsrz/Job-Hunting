@@ -81,7 +81,7 @@ const FeaturedCompanies = () => {
   return (
     <section>
       <div>
-        <h1 className="text-center font-bold text-2xl mb-3">Featured companies actively hiring</h1>
+        <h1 className="font-bold text-center text-3xl mb-3">Featured companies actively hiring</h1>
         <div id="btns" className="flex justify-center space-x-4 mb-8">
           <button className="border rounded-3xl px-4 py-2 hover:shadow-lg duration-150">
             All
@@ -95,7 +95,7 @@ const FeaturedCompanies = () => {
         </div>
       </div>
 
-      <div className="relative max-w-6xl mx-auto">
+      <div className="relative ">
         <Slider {...settings}>
           {companies.map((card, index) => (
             <div key={index} className="p-4">
