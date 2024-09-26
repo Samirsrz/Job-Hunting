@@ -69,15 +69,18 @@ const SignUp = () => {
 
   const handleGoogle = async () => {
     try {
-      await signInWithGoogle();
+      if(isHostChecked || isGuestChecked){
+        await signInWithGoogle();
+        setLoading(false)
       navigate("/");
       toast.success("Signup Successful");
-      setLoading(false)
-      if(isGuestChecked){
-       console.log('guest');
-      }else if(isHostChecked){
-        console.log('host');
       }
+ 
+    else{
+       return toast.error('select a role')
+    }
+      setLoading(false)
+     
     
     } catch (err) {
       console.log(err);
@@ -219,7 +222,7 @@ const SignUp = () => {
             <label className="flex items-center mr-10">
                 <input
                     type="checkbox"
-                    disabled={isGuestChecked}
+                     disabled={isGuestChecked}
                     checked={isHostChecked}
                     onChange={() => setIsHostChecked(!isHostChecked)}
                     className="w-8 h-8 mr-3"
@@ -242,7 +245,7 @@ const SignUp = () => {
 
             <div>
               <button
-                disabled={loading}
+                 disabled={loading || (!isGuestChecked && !isHostChecked)}
                 type="submit"
                 className="bg-primary w-full lg:[100px] rounded-md py-3 text-white"
               >
@@ -262,11 +265,11 @@ const SignUp = () => {
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
           </div>
           <button
-            disabled={loading}
-            onClick={()=>document.getElementById('my_modal_1').showModal()}
+            //  disabled={loading || (!isGuestChecked && !isHostChecked)}
+            onClick={handleGoogle}
             className="flex disabled:cursor-not-allowed justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
           >
-            <FcGoogle size={32} />
+            <FcGoogle size={36} />
             <p>Continue with Google</p>
 
 
@@ -274,65 +277,6 @@ const SignUp = () => {
           </button>
         </div>
          
-       
-<dialog id="my_modal_1" className="modal">
-  <div className="modal-box">
-    <h3 className="font-bold text-lg">Hello!</h3>
-    <p className="py-4">Press ESC key or click the button below to close</p>
-    <div className="modal-action">
-   
-    
-      <form method="dialog">
-        {/* if there is a button in form, it will close the modal */}
-        <div className="flex justify-center items-center mt-2">
-            <label className="flex items-center mr-10">
-                <input
-                    type="checkbox"
-                    disabled={isGuestChecked}
-                    checked={isHostChecked}
-                    onChange={() => setIsHostChecked('host')}
-                    className="w-8 h-8 mr-3"
-                />
-                <span className="text-2xl">Join as a host</span>
-            </label>
-            <label className="flex items-center">
-                <input
-                    type="checkbox"
-                    disabled={isHostChecked}
-                    checked={isGuestChecked}
-                    onChange={() => setIsGuestChecked('guest')}
-                    className="w-8 h-8 mr-3"
-                />
-                <span className="text-2xl">Join as a guest</span>
-            </label>
-        </div>
-     
-         
-        <button
-            disabled={loading || (!isGuestChecked && !isHostChecked)}
-            onClick={handleGoogle}
-            className="flex disabled:cursor-not-allowed lg:w-full justify-center mx-auto items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
-          >
-            <FcGoogle size={32} />
-            <p>Continue with Google</p>
-
-          </button>
-      </form>
-    </div>
-    {/* <button
-            disabled={loading}
-            onClick={handleGoogle}
-            className="flex disabled:cursor-not-allowed justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
-          >
-            <FcGoogle size={32} />
-            <p>Continue with Google</p>
-
-          </button> */}
-
-  </div>
-</dialog>
-
-
 
       </div>
     </div>
