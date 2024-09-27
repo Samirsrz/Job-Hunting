@@ -3,8 +3,8 @@
 import React from "react";
 import { FaCalendarAlt, FaUserAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Slider from "react-slick";
-import eventImage from '../../../../src/assets/events/eventsBannerFallback_1.png';
-import eventCompany from '../../../../src/assets/company/ll.gif';
+import eventImage from '../../../../public/events/eventsBannerFallback_1.png';
+import eventCompany from '../../../../public/company/ll.gif';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 

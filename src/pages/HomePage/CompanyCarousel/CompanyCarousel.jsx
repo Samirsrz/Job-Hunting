@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import logo1 from '../../../../src/assets/company/4467146.gif'; 
+import logo1 from '../../../../public/company/4467146.gif'; 
 // Example company logos
 const categories = [
   {

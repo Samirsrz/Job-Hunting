@@ -1,5 +1,5 @@
 
-import avatar from '../../../../src/assets/avatar/job.png'
+import avatar from '../../../../public/avatar/job.png'
 
 const PracticeCustomizedMockInterview = () => {
     return (

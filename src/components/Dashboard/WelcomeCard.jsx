@@ -1,6 +1,6 @@
 import Lottie from "lottie-react";
 import React from "react";
-import RegisterAnnimation from "../../assets/Annimations/RegisterAnnimation.json";
+import RegisterAnnimation from "../../../public/Annimations/RegisterAnnimation.json";
 
 const WelcomeCard = () => {
   return (
