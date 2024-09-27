@@ -4,9 +4,9 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { TbMinusVertical } from "react-icons/tb";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import companyFeatueredIcon from "../../../../src/assets/company/4156.gif"
+import companyFeatueredIcon from "../../../../src/assets/company/4156.gif";
 import { Link } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 // Custom Arrow Components
 const NextArrow = ({ onClick, isVisible }) => {
   return isVisible ? (
@@ -41,16 +41,8 @@ const FeaturedCompanies = () => {
     speed: 500,
     slidesToShow: 4.5,
     slidesToScroll: 1,
-    nextArrow: (
-      <NextArrow
-        isVisible={currentSlide < companies.length - 4.5}
-      />
-    ),
-    prevArrow: (
-      <PrevArrow
-        isVisible={currentSlide > 0}
-      />
-    ),
+    nextArrow: <NextArrow isVisible={currentSlide < companies.length - 4.5} />,
+    prevArrow: <PrevArrow isVisible={currentSlide > 0} />,
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
     responsive: [
       {
@@ -83,7 +75,9 @@ const FeaturedCompanies = () => {
   return (
     <section>
       <div>
-        <h1 className="font-bold text-center text-3xl mb-3">{t('Featuredcompaniesactivelyhiring')} </h1>
+        <h1 className="font-bold text-center text-3xl mb-3">
+          {t("Featuredcompaniesactivelyhiring")}{" "}
+        </h1>
         <div id="btns" className="flex justify-center space-x-4 mb-8">
           <button className="border rounded-3xl px-4 py-2 hover:shadow-lg duration-150">
             All
@@ -102,10 +96,7 @@ const FeaturedCompanies = () => {
           {companies.map((card, index) => (
             <div key={index} className="p-4">
               <div className="border text-center space-y-3 p-4 w-full rounded-xl hover:shadow-lg duration-200">
-                <div
-                  id="company-icon"
-                  className="flex justify-center"
-                >
+                <div id="company-icon" className="flex justify-center">
                   <img
                     src={companyFeatueredIcon}
                     alt="title image"
@@ -128,21 +119,24 @@ const FeaturedCompanies = () => {
                   <p>Leading ITeS company with global presence.</p>
                 </div>
                 <div>
-                  <Link to={'/jobs/viewAllJobsCompany'} className="w-full h-full">
+                  <Link
+                    to={"/jobs/viewAllJobsCompany"}
+                    className="w-full h-full"
+                  >
                     <button className="relative rounded-3xl border-none hover:shadow-lg duration-300 text-blue-600 bg-blue-100 font-semibold px-4 py-2">
-                     View jobs
+                      View jobs
                     </button>
                   </Link>
                 </div>
-
-
               </div>
             </div>
           ))}
         </Slider>
       </div>
-      <div className="text-center" id="view all companies button" >
-        <button className="border hover:shadow-md hover:shadow-blue-700 duration-300 border-blue-600 px-4 py-2 rounded-3xl text-blue-600 font-semibold">View all companies</button>
+      <div className="text-center" id="view all companies button">
+        <button className="border hover:shadow-md hover:shadow-blue-700 duration-300 border-blue-600 px-4 py-2 rounded-3xl text-blue-600 font-semibold">
+          View all companies
+        </button>
       </div>
     </section>
   );
