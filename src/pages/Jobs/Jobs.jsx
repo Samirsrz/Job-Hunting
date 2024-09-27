@@ -24,7 +24,7 @@ const Jobs = () => {
 
   useEffect(() => {
     axios
-      .get("${import.meta.env.VITE_Backend_Api}/category")
+      .get(`${import.meta.env.VITE_Backend_Api}/category`)
       .then((data) => setCategories(data.data.data));
   }, []);
 

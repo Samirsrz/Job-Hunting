@@ -14,10 +14,10 @@ i18n
         translation: bnTranslation,
       },
     },
-    lng: 'en', // default language
-    fallbackLng: 'en', // fallback language if the translation isn't available
+    lng: 'bn', // default language
+    fallbackLng: 'bn',
     interpolation: {
-      escapeValue: false, // react already escapes by default
+      escapeValue: false, // React already escapes by default
     },
   });
 

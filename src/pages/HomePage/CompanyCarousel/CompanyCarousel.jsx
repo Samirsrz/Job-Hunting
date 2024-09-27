@@ -3,6 +3,7 @@ import { useState } from "react";
 import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import logo1 from '../../../../public/company/4467146.gif'; 
+import { useTranslation } from 'react-i18next';
 // Example company logos
 const categories = [
   {
@@ -58,6 +59,7 @@ const categories = [
 
 // Custom Arrow Components
 const NextArrow = ({ onClick, hide }) => {
+  
   return (
     <div
       className={`absolute top-1/2 right-0 transform -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300 ${
@@ -84,6 +86,7 @@ const PrevArrow = ({ onClick, hide }) => {
 };
 
 const CompanyCarousel = () => {
+  const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // Handle changes when a slide changes
@@ -92,6 +95,7 @@ const CompanyCarousel = () => {
   };
 
   const settings = {
+    
     // dots: true,
     infinite: true,
     speed: 500,
@@ -126,7 +130,7 @@ const CompanyCarousel = () => {
   return (
     <div className="py-8 relative">
       <h2 className="font-bold text-center text-3xl mb-8">
-        Top companies hiring now
+      {t('Topcompanieshiringnow')} 
       </h2>
       <Slider {...settings}>
         {categories.map((category, index) => (

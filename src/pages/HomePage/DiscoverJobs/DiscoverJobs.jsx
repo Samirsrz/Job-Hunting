@@ -2,12 +2,16 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "/public/searchingJobs/Animation - 1726837190077.json";
+import { useTranslation } from 'react-i18next';
+
 
 // Job roles data
 
 
 
 const DiscoverJobs = () => {
+  const { t } = useTranslation();
+
  
   return (
     <section className='mt-16 relative'>
@@ -20,7 +24,7 @@ const DiscoverJobs = () => {
         {/* <div className="flex items-center flex-col w-full"> */}
         <div className="flex h-full flex-col items-center gap-5 text-center right-3 w-full md:w-1/2 p-4 border  bg-white rounded-3xl">
          <div className=" h-full space-y-6">
-           <h1 className='font-bold text-xl md:text-3xl'> Discover jobs across <br /> popular roles</h1>
+           <h1 className='font-bold text-xl md:text-3xl'>{t('Discoverjobsacross')}  <br /> {t('popularroles')} </h1>
           <p>Select a role and we'll show <br /> you relevant jobs for it!</p>
           <div>
             <button className='px-4 py-2 rounded-3xl bg-blue-700 text-white'>Explore</button>

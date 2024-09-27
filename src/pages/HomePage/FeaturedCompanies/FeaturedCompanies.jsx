@@ -6,6 +6,7 @@ import { TbMinusVertical } from "react-icons/tb";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import companyFeatueredIcon from "../../../../public/company/4156.gif"
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 // Custom Arrow Components
 const NextArrow = ({ onClick, isVisible }) => {
   return isVisible ? (
@@ -30,6 +31,7 @@ const PrevArrow = ({ onClick, isVisible }) => {
 };
 
 const FeaturedCompanies = () => {
+  const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0); //
   const companies = [1, 1, 1, 1, 1, 1, 1]; // Example company data
 
@@ -81,7 +83,7 @@ const FeaturedCompanies = () => {
   return (
     <section>
       <div>
-        <h1 className="font-bold text-center text-3xl mb-3">Featured companies actively hiring</h1>
+        <h1 className="font-bold text-center text-3xl mb-3">{t('Featuredcompaniesactivelyhiring')} </h1>
         <div id="btns" className="flex justify-center space-x-4 mb-8">
           <button className="border rounded-3xl px-4 py-2 hover:shadow-lg duration-150">
             All
