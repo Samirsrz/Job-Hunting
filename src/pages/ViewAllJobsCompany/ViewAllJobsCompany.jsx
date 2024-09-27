@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import DepartmentsHiring from './DepartmentsHiring/DepartmentsHiring';
 import StandardCharteredJobs from './StandardCharteredJobs/StandardCharteredJobs';
-import company from "../../../src/assets/company/standard-chartered_1920x534.jpg"
-import logoCompany from'../../../src/assets/company/32270.gif'
+import company from "../../../public/company/standard-chartered_1920x534.jpg"
+import logoCompany from'../../../public/company/32270.gif'
+
 const ViewAllJobsCompany = () => {
     // State to track the active tab
     const [activeTab, setActiveTab] = useState('jobs'); // Default is 'jobs'

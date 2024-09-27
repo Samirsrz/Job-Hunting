@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { TiTick } from "react-icons/ti";
-import RegisterAnnimation from "../../assets/Annimations/RegisterAnnimation.json";
+import RegisterAnnimation from "../../../public/Annimations/RegisterAnnimation.json";
 import Lottie from "lottie-react";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
