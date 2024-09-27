@@ -1,15 +1,9 @@
 
-
-
-
-
-
-
 import  { useState } from 'react';
 import { FaRegBookmark, FaMapMarkerAlt, FaBriefcase, FaRupeeSign, FaStar } from 'react-icons/fa'; // Importing icons
 import { AiFillStar } from 'react-icons/ai'; // Rating star icon
 import { MdOutlineContactPage } from "react-icons/md";
-import companyLogo from '../../../../src/assets/company/32270.gif'
+import companyLogo from '../../../../public/company/32270.gif'
 import { Link } from 'react-router-dom';
 import FilterComponent from '../FilterComponent/FilterComponent';
 import LocationFilterComponent from '../LocationFilterComponent/LocationFilterComponent';

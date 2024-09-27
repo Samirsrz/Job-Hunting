@@ -1,7 +1,8 @@
 import React from 'react';
 import { IoIosArrowForward } from "react-icons/io";
-import logo from '../../../../src/assets/company/amazon-ot.png'
-import interviewPng from '../../../../src/assets/interview/ab-interview-ot-removebg-preview.png'
+import logo from '../../../../public/company/amazon-ot.png'
+import interviewPng from '../../../../public/interview/ab-interview-ot-removebg-preview.png'
+//amazon-ot.png
 
 // import { IoIosArrowForward } from 'react-icons/io';
 // Company interview data
