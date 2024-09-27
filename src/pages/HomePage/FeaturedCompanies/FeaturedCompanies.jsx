@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { TbMinusVertical } from "react-icons/tb";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import companyFeatueredIcon from "../../../../src/assets/company/4156.gif";
+import companyFeatueredIcon from "../../../../public/company/4156.gif"
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 // Custom Arrow Components

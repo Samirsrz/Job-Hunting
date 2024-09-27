@@ -7,7 +7,7 @@
 import { useState } from 'react';
 import { FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import arrow icons
 import Slider from "react-slick";
-import logo from '../../../../src/assets/company/838020_file.svg'
+import logo from '../../../../public/company/838020_file.svg'
 
 const SponsoredCompanies = () => {
   const categories = [
