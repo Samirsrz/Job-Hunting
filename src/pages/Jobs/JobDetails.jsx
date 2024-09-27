@@ -15,7 +15,7 @@ const JobDetails = () => {
   const [job, setJob] = useState({});
   useEffect(() => {
     axios
-      .get(`https://job-hunting-server-phi.vercel.app/jobs/${id}`)
+      .get(`${import.meta.env.VITE_Backend_Api}/jobs/${id}`)
       .then((data) => setJob(data.data.data));
   }, [id]);
 
