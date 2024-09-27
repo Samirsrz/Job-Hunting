@@ -39,7 +39,7 @@ const ViewAllJobsCompany = () => {
                         </div>
                         <div>
                             <p>Here for good </p>
-                            <div className=''>
+                            <div className='space-x-1'>
                                 <button className='px-2 py-1 text-xs rounded-3xl border border-gray-300'>Banking</button>
                                 <button className='px-2 py-1 text-xs rounded-3xl border border-gray-300'>Financial Services</button>
                                 <button className='px-2 py-1 text-xs rounded-3xl border border-gray-300'>NGO / Social Services / Industry Associations</button><br />
