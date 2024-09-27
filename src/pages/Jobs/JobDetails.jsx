@@ -9,14 +9,13 @@ import {
 } from "react-icons/md";
 import { GiRoundStar, GiCash } from "react-icons/gi";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { axiosCommon } from "../../hooks/useAxiosCommon";
+
 const JobDetails = () => {
   const { id } = useParams();
   const [job, setJob] = useState({});
   useEffect(() => {
-    axios
-      .get(`https://job-hunting-server-phi.vercel.app/jobs/${id}`)
-      .then((data) => setJob(data.data.data));
+    axiosCommon.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
   }, [id]);
 
   return (
