@@ -82,7 +82,7 @@ const PostJobs = () => {
                     className='w-full px-4 py-3 border-primary focus:outline-blue-800 rounded-md'
                     name="company"
                     id="company">
-                    <option defaultValue="" disabled selected>Select your company</option>
+                    {/* <option defaultValue="" disabled selected>Select your company</option> */}
                     <option value="google">Google</option>
                     <option value="microsoft">Microsoft</option>
                     <option value="amazon">Amazon</option>
@@ -117,7 +117,7 @@ const PostJobs = () => {
                     className='w-full px-4 py-3 border-primary focus:outline-blue-800 rounded-md'
                      name="category" 
                      id="category">
-                 <option defaultValue="" disabled selected>Select a category</option>
+                 {/* <option defaultValue="" disabled selected>Select a category</option> */}
                  <option>Design</option>
                  <option >Telecommunication</option>
                  <option >Tourism</option>
@@ -143,7 +143,7 @@ const PostJobs = () => {
                     className='w-full px-4 py-3 border-primary focus:outline-blue-800 rounded-md'
                      name="type" 
                      id="type">
-                 <option defaultValue="" disabled selected>Select job type</option>
+                 {/* <option defaultValue="" disabled selected>Select job type</option> */}
                  
                     <option >Part-Time Remote</option>
                     <option >Full-Time Remote</option> 

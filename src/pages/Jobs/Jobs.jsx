@@ -15,14 +15,14 @@ const Jobs = () => {
   useEffect(() => {
     axios
       .get(
-        `${import.meta.env.VITE_Backend_Api}/jobs?category=${category}&sort=${sort}&search=${search}`
+        `https://job-hunting-server-phi.vercel.app/jobs?category=${category}&sort=${sort}&search=${search}`
       )
       .then((data) => setJobs(data.data.data));
   }, [category, sort, search]);
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_Backend_Api}/category`)
+      .get(`https://job-hunting-server-phi.vercel.app/category`)
       .then((data) => setCategories(data.data.data));
   }, []);
 
@@ -30,7 +30,7 @@ const Jobs = () => {
     if (search.length > 0) {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_Backend_Api}/job-suggestions?search=${search}`
+          `https://job-hunting-server-phi.vercel.app/job-suggestions?search=${search}`
         );
         const data = await response.json();
 
