@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import JobCard from "../../components/jobs/JobCard";
 import { FaSearch } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+import { axiosCommon } from "../../hooks/useAxiosCommon";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -12,27 +12,21 @@ const Jobs = () => {
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [catCount, setCatCount] = useState(5);
+
   useEffect(() => {
-    axios
-      .get(
-        `https://job-hunting-server-phi.vercel.app/jobs?category=${category}&sort=${sort}&search=${search}`
-      )
+    axiosCommon
+      .get(`/jobs?category=${category}&sort=${sort}&search=${search}`)
       .then((data) => setJobs(data.data.data));
   }, [category, sort, search]);
 
   useEffect(() => {
-    axios
-      .get(`https://job-hunting-server-phi.vercel.app/category`)
-      .then((data) => setCategories(data.data.data));
+    axiosCommon.get(`/category`).then((data) => setCategories(data.data.data));
   }, []);
 
   const fetchSuggestions = async (search) => {
     if (search.length > 0) {
       try {
-        const response = await fetch(
-          `https://job-hunting-server-phi.vercel.app/job-suggestions?search=${search}`
-        );
-        const data = await response.json();
+        const { data } = await axiosCommon(`/job-suggestions?search=${search}`);
 
         if (data.success) {
           setSuggestions(data.data);
