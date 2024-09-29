@@ -6,6 +6,7 @@ import {
   MdOutlineCategory,
   MdOutlineHomeWork,
   MdGroupAdd,
+  MdDelete,
 } from "react-icons/md";
 import { GiRoundStar, GiCash } from "react-icons/gi";
 import { useEffect, useState } from "react";
@@ -18,11 +19,10 @@ const JobDetails = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [job, setJob] = useState({});
+
   useEffect(() => {
     axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
   }, [id, axiosSecure]);
-
-  console.log(job);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,6 +38,18 @@ const JobDetails = () => {
 
     axiosSecure
       .post(`/jobs/${id}/apply`, application)
+      .then(({ data }) => {
+        toast.success(data.message);
+        axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
+
+  const handleCancel = () => {
+    axiosSecure
+      .delete(`/jobs/${id}/apply`)
       .then(({ data }) => {
         toast.success(data.message);
         axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
@@ -95,7 +107,7 @@ const JobDetails = () => {
         </div>
         <div>
           <p>{job?.description}</p>
-          <div className="mt-2 md:mt-4">
+          <div className="mt-2 md:mt-4 gap-2 flex">
             <button
               disabled={job?.applied}
               onClick={() => document.getElementById("apply_modal").showModal()}
@@ -104,6 +116,16 @@ const JobDetails = () => {
               {job?.applied ? "Applied" : "Apply"}{" "}
               <MdGroupAdd className="inline" />
             </button>
+            {job?.applied && (
+              <button
+                disabled={!job?.applied}
+                onClick={handleCancel}
+                className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
+              >
+                Cancel
+                <MdDelete className="inline" />
+              </button>
+            )}
           </div>
         </div>
       </div>
