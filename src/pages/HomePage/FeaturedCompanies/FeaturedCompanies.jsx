@@ -141,7 +141,7 @@ const FeaturedCompanies = () => {
                 </div>
                 <div>
                   <Link
-                    to={"/jobs/viewAllJobsCompany"}
+                    to={`/jobs/viewAllJobsCompany/${card._id}`}
                     className="w-full h-full"
                   >
                     <button className="relative rounded-3xl border-none hover:shadow-lg duration-300 text-blue-600 bg-blue-100 font-semibold px-4 py-2">
