@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import JobCard from "../../components/jobs/JobCard";
 import { FaSearch } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
+import { axiosCommon } from "../../hooks/useAxiosCommon";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -11,27 +12,21 @@ const Jobs = () => {
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [catCount, setCatCount] = useState(5);
+
   useEffect(() => {
-    axios
-      .get(
-        `http://localhost:8000/jobs?category=${category}&sort=${sort}&search=${search}`
-      )
+    axiosCommon
+      .get(`/jobs?category=${category}&sort=${sort}&search=${search}`)
       .then((data) => setJobs(data.data.data));
   }, [category, sort, search]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/category")
-      .then((data) => setCategories(data.data.data));
+    axiosCommon.get(`/category`).then((data) => setCategories(data.data.data));
   }, []);
 
   const fetchSuggestions = async (search) => {
     if (search.length > 0) {
       try {
-        const response = await fetch(
-          `http://localhost:8000/job-suggestions?search=${search}`
-        );
-        const data = await response.json();
+        const { data } = await axiosCommon(`/job-suggestions?search=${search}`);
 
         if (data.success) {
           setSuggestions(data.data);
@@ -57,6 +52,9 @@ const Jobs = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Job Hunting | Jobs</title>
+      </Helmet>
       <h1 className="text-center text-5xl font-bold mt-10 mb-6">
         Jobs ({jobs?.length})
       </h1>

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { TiTick } from "react-icons/ti";
-import RegisterAnnimation from "../../assets/Annimations/RegisterAnnimation.json";
+import RegisterAnnimation from "../../../public/Annimations/RegisterAnnimation.json";
 import Lottie from "lottie-react";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
@@ -11,10 +11,8 @@ import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import Swal from "sweetalert2";
 const SignUp = () => {
-
   const [isHostChecked, setIsHostChecked] = useState(false);
-    const [isGuestChecked, setIsGuestChecked] = useState(false);
-
+  const [isGuestChecked, setIsGuestChecked] = useState(false);
 
   const {
     createUser,
@@ -23,7 +21,6 @@ const SignUp = () => {
     setLoading,
     updateUserProfile,
   } = useAuth();
-
 
   const navigate = useNavigate();
 
@@ -34,18 +31,16 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0];
-    
-    let role = '' ;
 
-    if(isGuestChecked){
-      role = 'guest'
-    }else{
-      role = 'host'
+    let role = "";
+
+    if (isGuestChecked) {
+      role = "guest";
+    } else {
+      role = "host";
     }
-   
-  
 
-  console.log(role);
+    console.log(role);
     try {
       setLoading(true);
 
@@ -74,6 +69,12 @@ const SignUp = () => {
         setLoading(false)
       navigate("/");
       toast.success("Signup Successful");
+      setLoading(false);
+      if (isGuestChecked) {
+        console.log("guest");
+      } else if (isHostChecked) {
+        console.log("host");
+      }
       }
  
     else{
@@ -88,15 +89,15 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col overflow-x-auto lg:w-[1770px] items-center justify-center min-h-screen mx-auto lg:flex-row gap-10">
+    <div className="container max-w-screen-xl m-auto flex flex-col overflow-x-auto lg:w-[1770px] items-center justify-center min-h-screen mx-auto lg:flex-row gap-10 ">
       <Helmet>
         <title>Job Hunting | Sign Up</title>
       </Helmet>
-      <div className="card lg:w-[442px]  p-3 my-3 lg:mt card-compact   shadow-xl">
+      <div className="card lg:w-[442px] p-3 my-3 lg:mt card-compact  shadow-xl">
         <figure>
           <Lottie
             animationData={RegisterAnnimation}
-            className="h-96 w-96"
+            className="h-96 w-72 lg:w-96"
           ></Lottie>
         </figure>
         <div className="card-body">
@@ -113,15 +114,15 @@ const SignUp = () => {
             <TiTick /> Use your skill to earn!!!{" "}
           </h2>
 
-          <div className="card-actions justify-end">
-            <p className="px-6 text-sm text-center text-gray-400">
+          <div className="card-actions">
+            <p className="lg:px-6 text-sm text-center text-gray-400">
               Already have an account?{" "}
               <Link
                 onClick={() =>
                   document.getElementById("my_modal_3").showModal()
                 }
                 // to="/login"
-                className="hover:underline hover:text-rose-500 text-gray-600"
+                className="hover:underline text-rose-500 text-lg font-bold"
               >
                 Login
               </Link>
@@ -131,6 +132,7 @@ const SignUp = () => {
         </div>
       </div>
 
+      {/* sign up form  */}
       <div className="flex justify-center  flex-1 items-center min-h-screen">
         <div className="flex flex-col lg:w-full p-6 rounded-md sm:p-10 border-x-2  text-gray-900">
           <div className="mb-8 text-center">
@@ -219,28 +221,27 @@ const SignUp = () => {
               </div>
 
               <div className="flex justify-center items-center mt-20">
-            <label className="flex items-center mr-10">
-                <input
+                <label className="flex items-center mr-10">
+                  <input
                     type="checkbox"
                      disabled={isGuestChecked}
                     checked={isHostChecked}
                     onChange={() => setIsHostChecked(!isHostChecked)}
                     className="w-8 h-8 mr-3"
-                />
-                <span className="text-2xl">Join as a host</span>
-            </label>
-            <label className="flex items-center">
-                <input
+                  />
+                  <span className="text-2xl">Join as a host</span>
+                </label>
+                <label className="flex items-center ">
+                  <input
                     type="checkbox"
                     disabled={isHostChecked}
                     checked={isGuestChecked}
                     onChange={() => setIsGuestChecked(!isGuestChecked)}
                     className="w-8 h-8 mr-3"
-                />
-                <span className="text-2xl">Join as a guest</span>
-            </label>
-        </div>
-
+                  />
+                  <span className="text-2xl">Join as a guest</span>
+                </label>
+              </div>
             </div>
 
             <div>
@@ -271,9 +272,6 @@ const SignUp = () => {
           >
             <FcGoogle size={36} />
             <p>Continue with Google</p>
-
-
-
           </button>
         </div>
          
