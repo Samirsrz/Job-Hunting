@@ -1,6 +1,4 @@
 import  { useState } from 'react';
-
-
 const departments = [
   { name: 'Engineering - Software & QA', count: 22 },
   { name: 'BFSI, Investments & Trading', count: 4 },
