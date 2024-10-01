@@ -6,7 +6,7 @@ let store = configureStore({
     reducer: {
         [featuredJobsApi.reducerPath]: featuredJobsApi.reducer
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(featuredJobsApi.middleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(featuredJobsApi.middleware) 
 })
 setupListeners(store.dispatch);
 export default store
