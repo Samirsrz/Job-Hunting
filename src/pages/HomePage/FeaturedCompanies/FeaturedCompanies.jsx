@@ -119,7 +119,7 @@ const FeaturedCompanies = () => {
               <div className="border text-center space-y-3 p-4 w-full rounded-xl hover:shadow-lg duration-200">
                 <div id="company-icon" className="flex justify-center">
                   <img
-                    src={companyFeatueredIcon}
+                    src={card.logo}
                     alt="title image"
                     className="w-full h-20 object-contain"
                   />
