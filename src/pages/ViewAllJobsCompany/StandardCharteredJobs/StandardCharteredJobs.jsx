@@ -30,7 +30,7 @@ const StandardCharteredJobs = () => {
     return (
         <section>
             <aside className='relative my-3'>
-                <div id='btns for dropdown' className='flex gap-3'>
+                <div id='btns for dropdown' className='flex gap-3 flex-wrap'>
                     <button
                         className='px-4 py-2 rounded-3xl border border-black flex items-center gap-1'
                         onClick={handleToggle}>
@@ -72,13 +72,13 @@ const StandardCharteredJobs = () => {
                 )}
             </aside>
 
-            <section className='grid grid-cols-1 lg:grid-cols-[700px_400px] gap-4'>
+            <section className='grid grid-cols-1 xl:grid-cols-[700px_400px] gap-4'>
                 <aside className=''>
                     {/* Job card */}
                     <div className="bg-white shadow-md rounded-lg p-5 flex flex-col justify-between ">
-                        <div className="flex justify-between">
+                        <div className="flex justify-between flex-col-reverse lg:flex-row">
                             <div>
-                                <h2 className="text-xl font-semibold text-gray-800">Relationship Manager - NRI</h2>
+                                <h2 className="text-3xl md:text-xl font-semibold text-gray-800">Relationship Manager - NRI</h2>
                                 <div className="text-sm text-gray-600 flex items-center gap-1">
                                     <span>Standard Chartered</span>
                                     <AiFillStar className="text-yellow-400" />
@@ -88,10 +88,10 @@ const StandardCharteredJobs = () => {
                             </div>
 
                             {/* Company logo */}
-                            <img src={companyLogo} alt="Company Logo" className="w-10 h-10" />
+                            <img src={companyLogo} alt="Company Logo" className="w-full md:w-[80%] lg:w-10 lg:h-10" />
                         </div>
 
-                        <div className="flex items-center gap-4 text-gray-600 my-3">
+                        <div className="flex flex-col md:flex-row items-center gap-4 text-gray-600 my-3">
                             <div className="flex items-center gap-1">
                                 <FaBriefcase />
                                 <span>4-8 Yrs</span>
@@ -134,10 +134,13 @@ const StandardCharteredJobs = () => {
                 <aside className=''>
                     <div className='w-full border rounded-xl p-4'>
                         <div className='flex justify-between w-full'>
-                            <div className='space-y-2 w-full'>
+                            <div className='space-y-2 w-full flex flex-col justify-center'>
                                 <h3 className='font-semibold'>Love jobs by Standard Chartered?</h3>
                                 <p>Register with us and let company recruiters find you</p>
+                                <div>
                                 <button className='px-4 py-2 bg-red-500 rounded-3xl text-white font-semibold'>Register Now</button>
+
+                                </div>
                             </div>
                             <img className='w-[140px]' src="https://static.naukimg.com/s/7/109/assets/images/cp-register.be877ebb.png" alt="" />
                         </div>
@@ -162,7 +165,7 @@ const StandardCharteredJobs = () => {
                             </div>
 
                             <div id='work place' className=' border rounded-xl p-4'>
-                                <div className='flex justify-between'>
+                                <div className='flex flex-col-reverse gap-3 lg:gap-0 md:flex-row justify-between'>
                                     <div>
                                         <p>Write a review & help millions!</p>
                                         <h5>Rate Standard Chartered as a <br /> workplace</h5>
