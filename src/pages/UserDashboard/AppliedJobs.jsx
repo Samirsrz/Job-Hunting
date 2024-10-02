@@ -1,13 +1,26 @@
-import React from "react";
-import { FaRegEdit } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
 import { FcAlphabeticalSortingAz } from "react-icons/fc";
 import { PiQuestion } from "react-icons/pi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
+import { axiosCommon } from "../../hooks/useAxiosCommon";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AppliedJobs = () => {
+  const { user, loading } = useAuth();
+  const [applications, setApplications] = useState([]);
+  const axiosSequre = useAxiosSecure();
+
+  //fetch data form allciationClient
+  useEffect(() => {
+    axiosCommon
+      .get(`/application?email=${user?.email}`)
+      .then((data) => setApplications(data.data));
+  }, [applications]);
+
   //handle Delete function
-  const handleDelete = () => {
+  const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -18,14 +31,22 @@ const AppliedJobs = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
+        // here get delet data
+        axiosSequre.delete(`/application/${id}`).then((res) => {
+          if (res.data.deletedCount) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
         });
       }
     });
   };
+
+  if (loading) return <p>Loading...</p>;
+
   return (
     <div className="mt-14">
       <section className="px-8">
@@ -36,7 +57,7 @@ const AppliedJobs = () => {
           </h2>
 
           <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-            100 Application
+            {applications.length} Application
           </span>
         </div>
 
@@ -65,7 +86,7 @@ const AppliedJobs = () => {
                         className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
                         <button className="flex items-center gap-x-2">
-                          <span>Role</span>
+                          <span>Job Title</span>
 
                           <PiQuestion className="text-lg" />
                         </button>
@@ -102,138 +123,49 @@ const AppliedJobs = () => {
 
                   {/* table Body ........... */}
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                    <tr>
-                      <td className="pl-4">1</td>
+                    {applications?.map((application, index) => (
+                      <tr key={application._id}>
+                        <td className="pl-4">{index + 1}</td>
 
-                      {/* company name  */}
-                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3">
-                          <div className="flex items-center gap-x-2">
-                            <div>
-                              <h2 className="font-medium text-gray-800 dark:text-white ">
-                                Arthur Melo
-                              </h2>
+                        {/* company name  */}
+                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center gap-x-3">
+                            <div className="flex items-center gap-x-2">
+                              <div>
+                                <h2 className="font-medium text-gray-800 dark:text-white ">
+                                  {application.companyName}
+                                </h2>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </td>
+                        </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        Design Director
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        authurmelo@example.com
-                      </td>
-                      <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                          <h2 className="text-sm font-normal text-emerald-500">
-                            Pending
-                          </h2>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <div className="flex items-center gap-x-6">
-                          <button
-                            onClick={handleDelete}
-                            className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
-                          >
-                            <RiDeleteBin5Line className="text-xl" />
-                          </button>
-
-                          <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                            <FaRegEdit className="text-xl" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="pl-4">1</td>
-
-                      {/* company name  */}
-                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3">
-                          <div className="flex items-center gap-x-2">
-                            <div>
-                              <h2 className="font-medium text-gray-800 dark:text-white ">
-                                Arthur Melo
-                              </h2>
-                            </div>
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                          {application.jobTitle}
+                        </td>
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                          {application.applicantEmail}
+                        </td>
+                        <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                            <h2 className="text-sm font-normal text-emerald-500">
+                              {application.status}
+                            </h2>
                           </div>
-                        </div>
-                      </td>
+                        </td>
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-6">
+                            <button
+                              onClick={() => handleDelete(application._id)}
+                              className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
+                            >
+                              <RiDeleteBin5Line className="text-xl" />
+                            </button>
 
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        Design Director
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        authurmelo@example.com
-                      </td>
-                      <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-blue-100 dark:bg-gray-800 dark:text-blue-400">
-                          <h2 className="text-sm font-normal text-indigo-500">
-                            View
-                          </h2>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <div className="flex items-center gap-x-6">
-                          <button
-                            onClick={handleDelete}
-                            className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
-                          >
-                            <RiDeleteBin5Line className="text-xl" />
-                          </button>
-
-                          <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                            <FaRegEdit className="text-xl" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="pl-4">1</td>
-
-                      {/* company name  */}
-                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3">
-                          <div className="flex items-center gap-x-2">
-                            <div>
-                              <h2 className="font-medium text-gray-800 dark:text-white ">
-                                Arthur Melo
-                              </h2>
-                            </div>
                           </div>
-                        </div>
-                      </td>
-
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        Design Director
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        authurmelo@example.com
-                      </td>
-                      <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
-                          <h2 className="text-sm font-normal text-red-500">
-                            Rejected
-                          </h2>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <div className="flex items-center gap-x-6">
-                          <button
-                            onClick={handleDelete}
-                            className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
-                          >
-                            <RiDeleteBin5Line className="text-xl" />
-                          </button>
-
-                          <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                            <FaRegEdit className="text-xl" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
