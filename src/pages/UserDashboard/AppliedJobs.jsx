@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { FaRegEdit } from "react-icons/fa";
 import { FcAlphabeticalSortingAz } from "react-icons/fc";
 import { PiQuestion } from "react-icons/pi";
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -87,7 +86,7 @@ const AppliedJobs = () => {
                         className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
                         <button className="flex items-center gap-x-2">
-                          <span>Role</span>
+                          <span>Job Title</span>
 
                           <PiQuestion className="text-lg" />
                         </button>
@@ -142,7 +141,7 @@ const AppliedJobs = () => {
                         </td>
 
                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                          {application.applicantName}
+                          {application.jobTitle}
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           {application.applicantEmail}
@@ -163,9 +162,6 @@ const AppliedJobs = () => {
                               <RiDeleteBin5Line className="text-xl" />
                             </button>
 
-                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                              <FaRegEdit className="text-xl" />
-                            </button>
                           </div>
                         </td>
                       </tr>
