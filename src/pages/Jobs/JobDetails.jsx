@@ -30,7 +30,8 @@ const JobDetails = () => {
     const applicantName = e.target.applicantName.value;
     const resumeLink = e.target.resumeLink.value;
     const coverLetter = e.target.coverLetter.value;
-    const application = { applicantName, resumeLink };
+    const status = "pending";
+    const application = { applicantName, resumeLink, status };
     if (coverLetter) {
       application.coverLetter = coverLetter;
     }
