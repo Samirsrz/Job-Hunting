@@ -33,12 +33,13 @@ const PrevArrow = ({ onClick, isVisible }) => {
 };
 
 const FeaturedCompanies = () => {
-  let { data: featuredJobs, isError, isLoading } = useGetFeaturedJobsQuery()
+  let { data: featuredJobs, isError, error, isLoading } = useGetFeaturedJobsQuery()
+  //console.log(error);
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0); //
   const companies = [1, 1, 1, 1, 1, 1, 1]; // Example company data
 
-  console.log(featuredJobs);
+  //console.log(featuredJobs);
 
   const settings = {
     // dots: true,
