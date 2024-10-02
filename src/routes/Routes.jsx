@@ -7,7 +7,6 @@ import SignUp from "../pages/SignUp/SignUp";
 import Jobs from "../pages/Jobs/Jobs";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
-import ViewsJob from "../pages/UserDashboard/ViewsJob";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
 import PostJobs from "../pages/HostDashboard/PostJobs";
 import Statictis from "../components/Dashboard/Statictis";
@@ -34,7 +33,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/categories",
-        element: <Categories></Categories>,
+        element: <Categories />,
       },
       {
         path: "/signup",
@@ -67,12 +66,8 @@ export const router = createBrowserRouter([
         element: <Statictis />,
       },
       {
-        path: "/dashboard/viewjobs",
-        element: <ViewsJob />,
-      },
-      {
         path: "/dashboard/appliedjobs",
-        element: <AppliedJobs></AppliedJobs>,
+        element: <AppliedJobs />,
       },
 
       {
