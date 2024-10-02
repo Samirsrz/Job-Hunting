@@ -29,7 +29,7 @@ const SponsoredCompanies = () => {
   // Custom Arrow Component for Next and Prev Arrows
   const CustomPrevArrow = (props) => {
     const { onClick, currentSlide } = props;
-    const showArrow = currentSlide > 0 && slidesData.length > 4; // Show if not on the first slide and enough slides
+    const showArrow = currentSlide > 0 && slidesData?.length > 4; // Show if not on the first slide and enough slides
     return (
       showArrow && (
         <button

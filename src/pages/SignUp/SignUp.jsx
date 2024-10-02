@@ -10,10 +10,11 @@ import { imageUpload } from "../../api/utils";
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const SignUp = () => {
   const [isHostChecked, setIsHostChecked] = useState(false);
   const [isGuestChecked, setIsGuestChecked] = useState(false);
-
+  const axiosSecure = useAxiosSecure();
   const {
     createUser,
     signInWithGoogle,
@@ -31,9 +32,11 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0];
+   
+ 
 
     let role = "";
-
+    
     if (isGuestChecked) {
       role = "guest";
     } else {
@@ -42,20 +45,28 @@ const SignUp = () => {
 
     console.log(role);
     try {
-      setLoading(true);
 
+      setLoading(true);
+       
       //upload image and get image Url
       const photo = await imageUpload(image);
       console.log(photo);
       //user registration
       const result = await createUser(email, password);
       console.log(result);
-
-      //save user image and photo
-
       await updateUserProfile(name, photo);
-      navigate("/");
       toast.success("SignUp successfull");
+      const userData = {
+        name,email, password,photo,role
+      }
+    //  console.table(userData);
+
+   if(result?.user){
+   const {data} = await axiosSecure.put('/user', userData)
+     navigate("/");
+   }
+      //save user image and photo
+    
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -65,24 +76,40 @@ const SignUp = () => {
   const handleGoogle = async () => {
     try {
       if(isHostChecked || isGuestChecked){
-        await signInWithGoogle();
-        setLoading(false)
-      navigate("/");
+    const login = await signInWithGoogle();
+       console.log(login);
+    // setLoading(false)
+    console.log(login?.user);
+    const user = login?.user
+  
+      let role = ""
       toast.success("Signup Successful");
       setLoading(false);
       if (isGuestChecked) {
+        role = 'guest'
         console.log("guest");
       } else if (isHostChecked) {
+        role = 'host'
         console.log("host");
       }
-      }
- 
+
+    const userData = {
+      role,
+      name: user?.displayName,
+      email : user?.email,
+      photo: user?.photoURL,
+
+    }
+
+ if(login?.user){
+  const {data} = await axiosSecure.put('/user', userData)
+  navigate("/");
+  }
+     }
     else{
        return toast.error('select a role')
     }
-      setLoading(false)
-     
-    
+      setLoading(false)  
     } catch (err) {
       console.log(err);
     }

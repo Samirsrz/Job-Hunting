@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 let featuredJobsApi = createApi({
     reducerPath: 'FeaturedJobsApi',
-    baseQuery: fetchBaseQuery({ baseUrl: `${import.meta.env.VITE_base_url}` }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${import.meta.env.VITE_API_URL}` }),
     tagTypes: ['FeaturedJobs','Followers'],
     endpoints: (builder) => ({
         getFeaturedJobs: builder.query({

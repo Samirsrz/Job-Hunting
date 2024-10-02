@@ -23,6 +23,8 @@ const Login = () => {
       .then((result) => {
         const loggedInUser = result.user;
         toast.success("Signup Successful");
+        navigate('/')
+        
         console.log(loggedInUser);
         setLoading(true);
       })
@@ -67,7 +69,7 @@ const Login = () => {
                       type="email"
                       id="email"
                       placeholder="email"
-                      className="input input-bordered"
+                      className="input text-black input-bordered"
                       required
                     />
                   </div>

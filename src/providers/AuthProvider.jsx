@@ -52,7 +52,9 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    
     const unSubscribe = onAuthStateChanged(auth, (user) => {
+      setLoading(false);
       setUser(user);
       if (user) {
         const userInfo = { email: user?.email };
