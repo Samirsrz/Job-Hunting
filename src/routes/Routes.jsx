@@ -15,6 +15,7 @@ import AllUser from "../pages/AdminDashboard/AllUser";
 import LangProvider from "../providers/LangProvider";
 import JobDetails from "./../pages/Jobs/JobDetails";
 import ViewAllJobsCompany from "../pages/ViewAllJobsCompany/ViewAllJobsCompany";
+import Login from "../pages/Login/Login";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,11 @@ export const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
+        path: "/login",
+        element: <Login />,
+      },
+     
+      {
         path: "/jobs",
         element: <Jobs />,
       },
@@ -53,6 +59,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/dashboard",
     element: (
