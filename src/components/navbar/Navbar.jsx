@@ -183,7 +183,7 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <Login></Login>
+       
       </div>
     </div>
   );

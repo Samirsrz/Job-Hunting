@@ -145,13 +145,9 @@ const SignUp = () => {
             <p className="lg:px-6 text-sm text-center text-gray-400">
               Already have an account?{" "}
               <Link
-                onClick={() =>
-                  document.getElementById("my_modal_3").showModal()
-                }
-                // to="/login"
-                className="hover:underline text-rose-500 text-lg font-bold"
+               to='/login'
               >
-                Login
+               <span className="text-primary text-xl font-bold">Login</span>
               </Link>
               .
             </p>
