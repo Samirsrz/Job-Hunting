@@ -103,7 +103,7 @@ const CompanyCarousel = () => {
     slidesToScroll: 1,
     variableWidth: true,
     beforeChange: handleBeforeChange,
-    nextArrow: <NextArrow hide={currentSlide === categories.length - 1} />, // Hide if at last slide
+    nextArrow: <NextArrow hide={currentSlide === categories?.length - 1} />, // Hide if at last slide
     prevArrow: <PrevArrow hide={currentSlide === 0} />, // Hide if at first slide
     responsive: [
       {

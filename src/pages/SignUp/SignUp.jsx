@@ -50,12 +50,16 @@ const SignUp = () => {
       //user registration
       const result = await createUser(email, password);
       console.log(result);
-
-      //save user image and photo
-
       await updateUserProfile(name, photo);
-      navigate("/");
       toast.success("SignUp successfull");
+      // const login = await signInWithGoogle();
+      // console.log(login);
+   // setLoading(false)
+   if(result?.user){
+     navigate("/");
+   }
+      //save user image and photo
+    
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -65,9 +69,13 @@ const SignUp = () => {
   const handleGoogle = async () => {
     try {
       if(isHostChecked || isGuestChecked){
-        await signInWithGoogle();
-        setLoading(false)
+    const login = await signInWithGoogle();
+       console.log(login);
+    // setLoading(false)
+    if(login?.user){
       navigate("/");
+    }
+      //
       toast.success("Signup Successful");
       setLoading(false);
       if (isGuestChecked) {

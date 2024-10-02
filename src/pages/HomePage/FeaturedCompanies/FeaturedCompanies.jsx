@@ -46,7 +46,7 @@ const FeaturedCompanies = () => {
     speed: 500,
     slidesToShow: 4.5,
     slidesToScroll: 1,
-    nextArrow: <NextArrow isVisible={currentSlide < companies.length - 4.5} />,
+    nextArrow: <NextArrow isVisible={currentSlide < companies?.length - 4.5} />,
     prevArrow: <PrevArrow isVisible={currentSlide > 0} />,
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
     responsive: [
@@ -114,7 +114,7 @@ const FeaturedCompanies = () => {
 
       <div className="relative ">
         <Slider {...settings}>
-          {featuredJobs.length > 0 && featuredJobs.map((card, index) => (
+          {featuredJobs?.length > 0 && featuredJobs.map((card, index) => (
             <div key={index} className="p-4">
               <div className="border text-center space-y-3 p-4 w-full rounded-xl hover:shadow-lg duration-200">
                 <div id="company-icon" className="flex justify-center">
