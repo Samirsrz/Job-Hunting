@@ -133,7 +133,7 @@ const AppliedJobs = () => {
                             <div className="flex items-center gap-x-2">
                               <div>
                                 <h2 className="font-medium text-gray-800 dark:text-white ">
-                                  {application.applicantName}
+                                  {application.companyName}
                                 </h2>
                               </div>
                             </div>
