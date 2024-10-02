@@ -24,7 +24,7 @@ const Jobs = () => {
   }, []);
 
   const fetchSuggestions = async (search) => {
-    if (search.length > 0) {
+    if (search?.length > 0) {
       try {
         const { data } = await axiosCommon(`/job-suggestions?search=${search}`);
 

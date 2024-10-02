@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
         element: <JobDetails />,
       },
       {
-        path: "/jobs/viewAllJobsCompany",
+        path: "/jobs/viewAllJobsCompany/:id",
         element: <ViewAllJobsCompany />,
       },
     ],

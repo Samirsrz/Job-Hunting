@@ -11,8 +11,11 @@ import AuthProvider from "./providers/AuthProvider.jsx";
 import { Toaster } from "react-hot-toast";
 import { HelmetProvider } from "react-helmet-async";
 import { I18nextProvider } from "react-i18next";
+import { Provider } from "react-redux";
+import store from "./store/store.jsx";
 
 createRoot(document.getElementById("root")).render(
+  <Provider store={store}> 
   <StrictMode>
     <HelmetProvider>
       <I18nextProvider>
@@ -24,4 +27,5 @@ createRoot(document.getElementById("root")).render(
       
     </HelmetProvider>
   </StrictMode>
+  </Provider>
 );

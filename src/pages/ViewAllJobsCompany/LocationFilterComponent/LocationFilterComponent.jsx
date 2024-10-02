@@ -62,7 +62,7 @@ const LocationFilterComponent = () => {
                 <input onChange={()=>handleSearchChange(event)} ref={searchData} type="text" name='search' placeholder='Search location' className='outline-none w-full mb-3 border py-2 px-4 rounded-3xl' />
             </div>
             <div className=' overflow-auto h-[250px] bg-white'>
-                {locationsData.length==0 && <h4>No data found</h4> }
+                {locationsData?.length==0 && <h4>No data found</h4> }
                 {locationsData.map((loc) => (
                     <div key={loc.name} className="flex items-center mb-2">
                         <input

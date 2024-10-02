@@ -1,19 +1,62 @@
-
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import DepartmentsHiring from './DepartmentsHiring/DepartmentsHiring';
 import StandardCharteredJobs from './StandardCharteredJobs/StandardCharteredJobs';
 import company from "../../../public/company/standard-chartered_1920x534.jpg"
-import logoCompany from'../../../public/company/32270.gif'
+import logoCompany from '../../../public/company/32270.gif'
+import { useParams } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import { useAddFollowerMutation, useGetuserFromFollowersQuery, useUnfollowCompanyMutation } from '../../RTK/Api/FeaturedJobsApi/FeaturedJobsApi';
+import useAxiosCommon from '../../hooks/useAxiosCommon';
 
 const ViewAllJobsCompany = () => {
     // State to track the active tab
+    let [addFollower] = useAddFollowerMutation();
+    let [follower, setFollower] = useState(false);
+    let [unfollowCompany] = useUnfollowCompanyMutation();
+
+    let { user } = useAuth() || {};
+    let { id } = useParams();
+
+    let { data, refetch } = useGetuserFromFollowersQuery(user?.email, { skip: !user?.email });
+
     const [activeTab, setActiveTab] = useState('jobs'); // Default is 'jobs'
+    let axiosCommon = useAxiosCommon();
+
+    useEffect(() => {
+        if (!user?.email) return;
+
+        async function getFollower(user) {
+            let res = await axiosCommon.get(`/follower/${user.email}`);
+            setFollower(res.data.isFound);
+        }
+
+        getFollower(user);
+    }, [user, axiosCommon, refetch]);
 
     // Function to change active tab
     const handleTabChange = (tab) => {
         setActiveTab(tab);
+    };
+
+    const handleFollow = async () => {
+        let user2 = {
+            name: user.displayName,
+            email: user.email,
+            profile: user.photoURL,
+            companyId: id
+        };
+        let res = await addFollower(user2).unwrap();
+        setFollower(true); // Set follower state to true after following
+        console.log(res);
+    };
+
+    const handleunFollow = async () => {
+        let user2 = user.email;
+        console.log('unfollow', user2);
+        let res = await unfollowCompany(user2).unwrap();
+        setFollower(false); // Set follower state to false after unfollowing
+        console.log(res);
     };
 
     return (
@@ -40,7 +83,7 @@ const ViewAllJobsCompany = () => {
                         </div>
                         <div>
                             <p>Here for good </p>
-                            <div className=''>
+                            <div className='space-x-1'>
                                 <button className='px-2 py-1 text-xs rounded-3xl border border-gray-300'>Banking</button>
                                 <button className='px-2 py-1 text-xs rounded-3xl border border-gray-300'>Financial Services</button>
                                 <button className='px-2 py-1 text-xs rounded-3xl border border-gray-300'>NGO / Social Services / Industry Associations</button><br />
@@ -56,7 +99,14 @@ const ViewAllJobsCompany = () => {
                     {/* Follow Button */}
                     <div className="text-right flex gap-4 items-center">
                         <span className="block text-gray-600">60.4K followers</span>
-                        <button className="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition duration-300">+ Follow</button>
+                        {follower ? (
+                            <div>
+                                <button className="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition duration-300" onClick={handleFollow}>Following</button>
+                                <button className="bg-white text-black border py-2 px-4 rounded-full hover:shadow-md transition duration-300" onClick={handleunFollow}>Unfollow</button>
+                            </div>
+                        ) : (
+                            <button className="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition duration-300" onClick={handleFollow}>+ Follow</button>
+                        )}
                     </div>
                 </div>
             </div>
@@ -64,20 +114,20 @@ const ViewAllJobsCompany = () => {
             {/* Tab Navigation */}
             <aside className=' max-w-6xl mx-auto mt-5'>
                 <div className='text-gray-500 flex gap-7 border-b-2 '>
-                    <p 
-                        className={`cursor-pointer ${activeTab === 'overview' ? 'text-blue-600 border-b-2 pb-2 border-blue-600' : ''}`} 
+                    <p
+                        className={`cursor-pointer ${activeTab === 'overview' ? 'text-blue-600 border-b-2 pb-2 border-blue-600' : ''}`}
                         onClick={() => handleTabChange('overview')}
                     >
                         Overview
                     </p>
-                    <p 
-                        className={`cursor-pointer ${activeTab === 'whyjoinus' ? 'text-blue-600 border-b-2 pb-2 border-blue-600' : ''}`} 
+                    <p
+                        className={`cursor-pointer ${activeTab === 'whyjoinus' ? 'text-blue-600 border-b-2 pb-2 border-blue-600' : ''}`}
                         onClick={() => handleTabChange('whyjoinus')}
                     >
                         Why Join Us
                     </p>
-                    <p 
-                        className={`cursor-pointer ${activeTab === 'jobs' ? 'text-blue-600 border-b-2 pb-2 border-blue-600' : ''}`} 
+                    <p
+                        className={`cursor-pointer ${activeTab === 'jobs' ? 'text-blue-600 border-b-2 pb-2 border-blue-600' : ''}`}
                         onClick={() => handleTabChange('jobs')}
                     >
                         Jobs
@@ -116,9 +166,10 @@ const ViewAllJobsCompany = () => {
                     )}
                 </div>
             </aside>
-            {/* <FilterComponent/> */}
         </section>
     );
 };
 
 export default ViewAllJobsCompany;
+
+
