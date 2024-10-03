@@ -52,7 +52,7 @@ const AllUser = () => {
           </h2>
 
           <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-            {users.length} Application
+            {users.length + 1} Users
           </span>
         </div>
 
@@ -109,61 +109,8 @@ const AllUser = () => {
 
                   {/* table Body ........... */}
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                    {users?.map((user, index) => (
-                      <tr key={user._id}>
-                        <td className="pl-4">{index + 1} </td>
-
-                        {/* company name  */}
-                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="inline-flex items-center gap-x-3">
-                            <div className="flex items-center gap-x-2">
-                              <div>
-                                <h2 className="font-medium text-gray-800 dark:text-white ">
-                                  <div className="flex items-center gap-x-2">
-                                    <img
-                                      className="object-cover w-10 h-10 rounded-full"
-                                      src={user.photo}
-                                      alt={user.name}
-                                    />
-                                    <div>
-                                      <h2 className="font-medium text-gray-800 dark:text-white ">
-                                        {user.name}
-                                      </h2>
-                                    </div>
-                                  </div>
-                                </h2>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-
-                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                            <h2 className="text-sm font-normal text-emerald-500">
-                              {user.role}
-                            </h2>
-                          </div>
-                        </td>
-                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                          {user.email}
-                        </td>
-
-                        <td className="px-4 py-4 text-sm whitespace-nowrap">
-                          <div className="flex items-center gap-x-6">
-                            <button
-                              onClick={handleDelete}
-                              className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
-                            >
-                              <RiDeleteBin5Line className="text-xl" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-
-                    {/* ********************************************* */}
-                    {/* <tr>
-                      <td className="pl-4">2</td>
+                  <tr>
+                      <td className="pl-4">1</td>
 
                       
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -190,9 +137,9 @@ const AllUser = () => {
                       </td>
 
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-start  px-3 py-1 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
-                          <h2 className="text-sm font-normal text-red-500">
-                            Guest
+                        <div className="inline-flex items-start  px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800 text-emerald-500">
+                          <h2 className="text-sm font-normal ">
+                            Admin 
                           </h2>
                         </div>
                       </td>
@@ -210,7 +157,59 @@ const AllUser = () => {
                           </button>
                         </div>
                       </td>
-                    </tr> */}
+                    </tr>
+                    {users?.map((user, index) => (
+                      <tr key={user._id}>
+                        <td className="pl-4">{index + 1 +1} </td>
+
+                        {/* company name  */}
+                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center gap-x-3">
+                            <div className="flex items-center gap-x-2">
+                              <div>
+                                <h2 className="font-medium text-gray-800 dark:text-white ">
+                                  <div className="flex items-center gap-x-2">
+                                    <img
+                                      className="object-cover w-10 h-10 rounded-full"
+                                      src={user.photo}
+                                      alt={user.name}
+                                    />
+                                    <div>
+                                      <h2 className="font-medium text-gray-800 dark:text-white ">
+                                        {user.name}
+                                      </h2>
+                                    </div>
+                                  </div>
+                                </h2>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 ${user.role == "admin" && "bg-emerald-100/60 dark:bg-gray-800 text-emerald-500"} ${user.role == "guest" && "bg-red-100/60 dark:bg-gray-800 text-red-500"} ${user.role == "host" && "text-gray-500 bg-gray-100 dark:text-gray-400 gap-x-2 dark:bg-gray-800"}`}>
+                            <h2 className="text-sm font-normal ">
+                              {user.role}
+                            </h2>
+                          </div>
+                        </td>
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                          {user.email}
+                        </td>
+
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-6">
+                            <button
+                              onClick={handleDelete}
+                              className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
+                            >
+                              <RiDeleteBin5Line className="text-xl" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+
                   </tbody>
                 </table>
               </div>
