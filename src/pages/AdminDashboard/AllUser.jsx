@@ -13,14 +13,15 @@ const AllUser = () => {
   //fetch user api
   try {
     axiosSequre.get(`/users`).then((data) => setUsers(data.data));
-    loading(false);
+    // loading(false);
   } catch (error) {
     console.log(error);
   }
-  console.log("this is all users", users);
+  // console.log("this is all users", users);
 
   //handle Delete function
-  const handleDelete = () => {
+  const handleDelete = (id) => {
+    console.log('user id ', id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to delete User!",
@@ -31,16 +32,20 @@ const AllUser = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your user has been deleted.",
-          icon: "success",
+        axiosSequre.delete(`/user/${id}`).then((res) => {
+          if (res.data.deletedCount) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your user has been deleted.",
+              icon: "success",
+            });
+          }
         });
       }
     });
   };
 
-  if (loading) return <p>Loading...</p>;
+  // if (loading) return <p>Loading...</p>;
 
   return (
     <div className="mt-14">
@@ -109,10 +114,9 @@ const AllUser = () => {
 
                   {/* table Body ........... */}
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                  <tr>
+                    <tr>
                       <td className="pl-4">1</td>
 
-                      
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-center gap-x-3">
                           <div className="flex items-center gap-x-2">
@@ -138,9 +142,7 @@ const AllUser = () => {
 
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-start  px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800 text-emerald-500">
-                          <h2 className="text-sm font-normal ">
-                            Admin 
-                          </h2>
+                          <h2 className="text-sm font-normal ">Admin</h2>
                         </div>
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
@@ -160,7 +162,7 @@ const AllUser = () => {
                     </tr>
                     {users?.map((user, index) => (
                       <tr key={user._id}>
-                        <td className="pl-4">{index + 1 +1} </td>
+                        <td className="pl-4">{index + 1 + 1} </td>
 
                         {/* company name  */}
                         <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -187,7 +189,18 @@ const AllUser = () => {
                         </td>
 
                         <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 ${user.role == "admin" && "bg-emerald-100/60 dark:bg-gray-800 text-emerald-500"} ${user.role == "guest" && "bg-red-100/60 dark:bg-gray-800 text-red-500"} ${user.role == "host" && "text-gray-500 bg-gray-100 dark:text-gray-400 gap-x-2 dark:bg-gray-800"}`}>
+                          <div
+                            className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 ${
+                              user.role == "admin" &&
+                              "bg-emerald-100/60 dark:bg-gray-800 text-emerald-500"
+                            } ${
+                              user.role == "guest" &&
+                              "bg-red-100/60 dark:bg-gray-800 text-red-500"
+                            } ${
+                              user.role == "host" &&
+                              "text-gray-500 bg-gray-100 dark:text-gray-400 gap-x-2 dark:bg-gray-800"
+                            }`}
+                          >
                             <h2 className="text-sm font-normal ">
                               {user.role}
                             </h2>
@@ -200,7 +213,7 @@ const AllUser = () => {
                         <td className="px-4 py-4 text-sm whitespace-nowrap">
                           <div className="flex items-center gap-x-6">
                             <button
-                              onClick={handleDelete}
+                              onClick={() => handleDelete(user._id)}
                               className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
                             >
                               <RiDeleteBin5Line className="text-xl" />
@@ -209,7 +222,6 @@ const AllUser = () => {
                         </td>
                       </tr>
                     ))}
-
                   </tbody>
                 </table>
               </div>
