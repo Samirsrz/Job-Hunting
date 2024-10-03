@@ -33,12 +33,13 @@ const PrevArrow = ({ onClick, isVisible }) => {
 };
 
 const FeaturedCompanies = () => {
-  let { data: featuredJobs, isError, isLoading } = useGetFeaturedJobsQuery()
+  let { data: featuredJobs, isError, error, isLoading } = useGetFeaturedJobsQuery()
+  //console.log(error);
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0); //
   const companies = [1, 1, 1, 1, 1, 1, 1]; // Example company data
 
-  console.log(featuredJobs);
+  //console.log(featuredJobs);
 
   const settings = {
     // dots: true,
@@ -46,7 +47,7 @@ const FeaturedCompanies = () => {
     speed: 500,
     slidesToShow: 4.5,
     slidesToScroll: 1,
-    nextArrow: <NextArrow isVisible={currentSlide < companies.length - 4.5} />,
+    nextArrow: <NextArrow isVisible={currentSlide < companies?.length - 4.5} />,
     prevArrow: <PrevArrow isVisible={currentSlide > 0} />,
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
     responsive: [
@@ -117,7 +118,7 @@ const FeaturedCompanies = () => {
 
       <div className="relative ">
         <Slider {...settings}>
-          {featuredJobs.length > 0 && featuredJobs.map((card, index) => (
+          {featuredJobs?.length > 0 && featuredJobs.map((card, index) => (
             <div key={index} className="p-4">
               <div className="border text-center space-y-3 p-4 w-full rounded-xl hover:shadow-lg duration-200">
                 <div id="company-icon" className="flex justify-center">

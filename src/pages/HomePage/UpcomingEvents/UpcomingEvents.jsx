@@ -1,15 +1,18 @@
 
 
-import React from "react";
+// import React from "react";
 import { FaCalendarAlt, FaUserAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Slider from "react-slick";
 import eventImage from '../../../../public/events/eventsBannerFallback_1.png';
 import eventCompany from '../../../../public/company/ll.gif';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useTranslation } from 'react-i18next';
+
 
 // Custom Next Arrow Component
 const NextArrow = ({ onClick }) => (
+  
   <div
     className="absolute right-[0px] top-[50%] bg-white rounded-full p-2 shadow-md transform translate-y-[-50%] z-10 cursor-pointer text-purple-500 hover:text-purple-600"
     onClick={onClick}
@@ -28,7 +31,10 @@ const PrevArrow = ({ onClick }) => (
   </div>
 );
 
-const EventCard = () => {
+const EventCard = () =>
+ 
+ {
+  const { t } = useTranslation();
   let events = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; // Sample events data
 
   // Slick settings for the slider
@@ -69,7 +75,7 @@ const EventCard = () => {
         {/* Sidebar for the title and image */}
         <aside className="w-full lg:w-[30%] text-center mb-4 lg:mb-0 md:p-2">
           <h1 className="font-bold text-xl lg:text-3xl">
-            Upcoming events and <br /> challenges
+          {t('Upcoming events and')}  <br />  {t('challenges')}
           </h1>
           <div className="w-full flex justify-center">
             <img className="w-[50%] lg:w-[70%]" src="https://static.naukimg.com/s/0/0/i/Events/eventsSwiperLeft-ot.png" alt="" />
