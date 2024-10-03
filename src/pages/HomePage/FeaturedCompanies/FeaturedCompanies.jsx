@@ -94,6 +94,9 @@ const FeaturedCompanies = () => {
     return <h1>somethin went wrong</h1>
   }
 
+  console.log(featuredJobs);
+  
+
   return (
     <section>
       <div>
@@ -130,15 +133,15 @@ const FeaturedCompanies = () => {
                   className="p-4 rounded-lg flex flex-col gap-2 items-center"
                   style={{ background: "rgb(247, 248, 251)" }}
                 >
-                  <h1>Cognizant</h1>
+                  <h1>{card.companyName}</h1>
                   <div className="flex items-center opacity-75">
-                    <FaStar className="text-yellow-500" /> <span>3.9</span>
+                    <FaStar className="text-yellow-500" /> <span>{card.ratings}</span>
                     <TbMinusVertical />
                     <p>4K+ reviews</p>
                   </div>
                 </div>
                 <div id="company-content">
-                  <p>Leading ITeS company with global presence.</p>
+                  <p>{card.company_title}.</p>
                 </div>
                 <div>
                   <Link
