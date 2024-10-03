@@ -7,7 +7,6 @@ import SignUp from "../pages/SignUp/SignUp";
 import Jobs from "../pages/Jobs/Jobs";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
-import ViewsJob from "../pages/UserDashboard/ViewsJob";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
 import PostJobs from "../pages/HostDashboard/PostJobs";
 import Statictis from "../components/Dashboard/Statictis";
@@ -16,6 +15,8 @@ import AllUser from "../pages/AdminDashboard/AllUser";
 import LangProvider from "../providers/LangProvider";
 import JobDetails from "./../pages/Jobs/JobDetails";
 import ViewAllJobsCompany from "../pages/ViewAllJobsCompany/ViewAllJobsCompany";
+import Login from "../pages/Login/Login";
+import CompanyProfile from "../components/companyForm/CompanyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -34,12 +35,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "/categories",
-        element: <Categories></Categories>,
+        element: <Categories />,
       },
       {
         path: "/signup",
         element: <SignUp />,
       },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+     
       {
         path: "/jobs",
         element: <Jobs />,
@@ -54,6 +60,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/dashboard",
     element: (
@@ -67,17 +74,17 @@ export const router = createBrowserRouter([
         element: <Statictis />,
       },
       {
-        path: "/dashboard/viewjobs",
-        element: <ViewsJob />,
-      },
-      {
         path: "/dashboard/appliedjobs",
-        element: <AppliedJobs></AppliedJobs>,
+        element: <AppliedJobs />,
       },
 
       {
         path: "/dashboard/post-jobs",
         element: <PostJobs />,
+      },
+      {
+        path: "/dashboard/company-profile",
+        element: <CompanyProfile/>
       },
       {
         path: "/dashboard/userprofile", 

@@ -11,17 +11,36 @@ import useAxiosCommon from '../../hooks/useAxiosCommon';
 
 const ViewAllJobsCompany = () => {
     // State to track the active tab
+
+
     let [addFollower] = useAddFollowerMutation();
     let [follower, setFollower] = useState(false);
     let [unfollowCompany] = useUnfollowCompanyMutation();
-
+    let axiosCommon = useAxiosCommon();
+   let  [fjob, setfjob] = useState({})
     let { user } = useAuth() || {};
     let { id } = useParams();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                let res = await axiosCommon.get(`${import.meta.env.VITE_API_URL}/featured/jobs/${id}`);
+                setfjob(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+    }, [axiosCommon,id]);
+    
+    console.log(fjob);
+    
+
 
     let { data, refetch } = useGetuserFromFollowersQuery(user?.email, { skip: !user?.email });
 
     const [activeTab, setActiveTab] = useState('jobs'); // Default is 'jobs'
-    let axiosCommon = useAxiosCommon();
+   
 
     useEffect(() => {
         if (!user?.email) return;
@@ -161,7 +180,7 @@ const ViewAllJobsCompany = () => {
                         <div>
                             {/* Jobs Section */}
                             <DepartmentsHiring />
-                            <StandardCharteredJobs />
+                            <StandardCharteredJobs companyName={fjob.companyName} />
                         </div>
                     )}
                 </div>
