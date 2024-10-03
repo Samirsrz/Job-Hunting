@@ -2,12 +2,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 let featuredJobsApi = createApi({
     reducerPath: 'FeaturedJobsApi',
-    baseQuery: fetchBaseQuery({ baseUrl: `${import.meta.env.VITE_base_url}` }),
-    tagTypes: ['FeaturedJobs','Followers'],
+    baseQuery: fetchBaseQuery({ baseUrl: `${import.meta.env.VITE_API_URL}` }),
+    tagTypes: ['FeaturedJobs','Followers','CompanyJobs'],
     endpoints: (builder) => ({
         getFeaturedJobs: builder.query({
-            query: () => '/jobs',
-            transformResponse: (res) => res.data,
+            query: () => '/featured/jobs',
+            // transformResponse: (res) => res.data,
             providesTags: ['FeaturedJobs']
         }),
         addFollower: builder.mutation({
@@ -28,6 +28,10 @@ let featuredJobsApi = createApi({
                 method: 'DELETE',
             }),
             invalidatesTags: ['Followers']
+        }),
+        getCompanyBasedJobs:builder.query({
+            query:({page,limit,companyName})=>`/company/jobs?page=${page}&limit=${limit}&companyName=${companyName}`,
+            providesTags:['CompanyJobs']
         })
     })
 })
@@ -38,6 +42,7 @@ export let {
     useGetFeaturedJobsQuery,
     useAddFollowerMutation,
     useGetuserFromFollowersQuery,
-    useUnfollowCompanyMutation
+    useUnfollowCompanyMutation,
+    useGetCompanyBasedJobsQuery
 } = featuredJobsApi
 export default featuredJobsApi
