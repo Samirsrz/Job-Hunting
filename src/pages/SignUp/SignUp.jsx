@@ -63,7 +63,13 @@ const SignUp = () => {
 
    if(result?.user){
    const {data} = await axiosSecure.put('/user', userData)
-     navigate("/");
+    //  navigate("/");
+    if(role=='host'){
+      navigate('/dashboard/company-profile')
+    }
+    else{
+      navigate('/')
+    }
    }
       //save user image and photo
     
@@ -87,10 +93,10 @@ const SignUp = () => {
       setLoading(false);
       if (isGuestChecked) {
         role = 'guest'
-        console.log("guest");
+     
       } else if (isHostChecked) {
         role = 'host'
-        console.log("host");
+       
       }
 
     const userData = {
@@ -103,7 +109,14 @@ const SignUp = () => {
 
  if(login?.user){
   const {data} = await axiosSecure.put('/user', userData)
+ 
+ if(role=='host'){
+  navigate('/dashboard/company-profile')
+ }
+else{
   navigate("/");
+}
+  
   }
      }
     else{

@@ -16,6 +16,7 @@ import LangProvider from "../providers/LangProvider";
 import JobDetails from "./../pages/Jobs/JobDetails";
 import ViewAllJobsCompany from "../pages/ViewAllJobsCompany/ViewAllJobsCompany";
 import Login from "../pages/Login/Login";
+import CompanyProfile from "../components/companyForm/CompanyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/post-jobs",
         element: <PostJobs />,
+      },
+      {
+        path: "/dashboard/company-profile",
+        element: <CompanyProfile/>
       },
       {
         path: "/dashboard/userprofile", 
