@@ -1,15 +1,17 @@
 
-
-
+  
 
 // // this compo right not above
 
 import { useState } from 'react';
 import { FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import arrow icons
 import Slider from "react-slick";
-import logo from '../../../../public/company/838020_file.svg'
+import logo from '../../../../public/company/838020_file.svg';
+import { useTranslation } from 'react-i18next';
+
 
 const SponsoredCompanies = () => {
+  const { t } = useTranslation();
   const categories = [
     "All",
     "IT Services",
@@ -44,6 +46,8 @@ const SponsoredCompanies = () => {
   };
 
   const CustomNextArrow = (props) => {
+    
+    
     const { onClick, currentSlide, slideCount } = props;
     const showArrow = currentSlide < slideCount - 4 && slideCount > 4; // Show if not on the last slide and enough slides
     return (
@@ -60,6 +64,7 @@ const SponsoredCompanies = () => {
   };
 
   const settings = {
+    
     infinite: false,
     speed: 500,
     slidesToShow: 4, // 4 columns for large screens
@@ -95,7 +100,8 @@ const SponsoredCompanies = () => {
 
   return (
     <section className="mt-11 relative"> {/* Added relative position for arrows */}
-    <h1 className='font-bold text-center text-3xl my-2'>Sponsored companies</h1>
+    <h1 className='font-bold text-center text-3xl my-2'>
+      {t('Sponsoredcompanies')}   </h1>
       <div id="btns" className="flex flex-wrap gap-3 justify-center">
         {categories.map((category, index) => {
           const isActive = activeCategory === category;
