@@ -38,7 +38,7 @@ const ProfileCard = () => {
           <div className="">
             <div className="mb-5">
               <h2 className="text-2xl font-bold text-[#121224] flex gap-3 items-center">
-                Abu Rahat Shaum <MdEdit className="text-gray-500 size-5"/>
+              {user?.displayName} <MdEdit className="text-gray-500 size-5"/>
               </h2>
               
               <p className="text-gray-500 text-sm">
