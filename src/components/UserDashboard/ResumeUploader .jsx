@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import { GrFormUpload } from "react-icons/gr";
 import { RxCrossCircled } from "react-icons/rx";
+import { MdOutlineFileDownload } from "react-icons/md";
+import { RiDeleteBinLine } from "react-icons/ri";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const ResumeUploader = () => {
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -19,6 +23,38 @@ const ResumeUploader = () => {
     }
   };
 
+  //downloade file
+  const handleFileDownload = () => {
+    const url = URL.createObjectURL(uploadedFile);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", uploadedFile.name);
+    document.body.appendChild(link);
+    link.click();
+  };
+
+  //handel handleResumeDelete
+  const handleResumeDelete = async () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
+
+  //uploade fiel in Db
   const handleFileUpload = async () => {
     if (!uploadedFile) return;
 
@@ -38,12 +74,13 @@ const ResumeUploader = () => {
 
       console.log(response.data);
       setFileId(response.data._id); // Store the file ID from MongoDB
-      alert("File uploaded successfully");
+      toast.success("resume uploaded successfully!");
     } catch (error) {
       console.error("There was an error uploading the file:", error);
     }
   };
 
+  //handele cancle uploade
   const handleFileDelete = () => {
     setUploadedFile(null);
     setUploadDate(null);
@@ -57,6 +94,22 @@ const ResumeUploader = () => {
         Your resume is the first impression you make on potential employers.
         Craft it carefully to secure your desired job or internship.
       </p>
+
+      <div className="mb-4 flex justify-between">
+        <div>
+          <p className="font-medium text-blue-600">Uploade file name</p>
+          <p className="text-sm text-gray-500">Uploaded on {uploadDate}</p>
+        </div>
+
+        <div className="flex space-x-4 mt-2">
+          <button onClick={handleFileDownload} className="text-blue-600">
+            <MdOutlineFileDownload className="text-2xl" />
+          </button>
+          <button onClick={handleResumeDelete} className="text-red-600">
+            <RiDeleteBinLine />
+          </button>
+        </div>
+      </div>
 
       {uploadedFile ? (
         <div className="mb-4">
