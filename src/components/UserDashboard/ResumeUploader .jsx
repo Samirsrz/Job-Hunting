@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { MdOutlineFileDownload } from "react-icons/md";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import axios from "axios";
+import { GrFormUpload } from "react-icons/gr";
+import { RxCrossCircled } from "react-icons/rx";
 
 const ResumeUploader = () => {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploadDate, setUploadDate] = useState(null);
+  const [fileId, setFileId] = useState(null); // To store MongoDB file ID
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -17,18 +19,35 @@ const ResumeUploader = () => {
     }
   };
 
+  const handleFileUpload = async () => {
+    if (!uploadedFile) return;
+
+    const formData = new FormData();
+    formData.append("resume", uploadedFile);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log(response.data);
+      setFileId(response.data._id); // Store the file ID from MongoDB
+      alert("File uploaded successfully");
+    } catch (error) {
+      console.error("There was an error uploading the file:", error);
+    }
+  };
+
   const handleFileDelete = () => {
     setUploadedFile(null);
     setUploadDate(null);
-  };
-
-  const handleFileDownload = () => {
-    const url = URL.createObjectURL(uploadedFile);
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", uploadedFile.name);
-    document.body.appendChild(link);
-    link.click();
+    setFileId(null);
   };
 
   return (
@@ -40,24 +59,24 @@ const ResumeUploader = () => {
       </p>
 
       {uploadedFile ? (
-        <div className="mb-4 flex justify-between">
-          <div>
-            <p className="font-medium text-blue-600">{uploadedFile.name}</p>
-            <p className="text-sm text-gray-500">Uploaded on {uploadDate}</p>
-          </div>
+        <div className="mb-4">
+          <p className="font-medium text-blue-600">{uploadedFile.name}</p>
+          <p className="text-sm text-gray-500">Uploaded on {uploadDate}</p>
 
           <div className="flex space-x-4 mt-2">
             <button
-              onClick={handleFileDownload}
-              className="text-blue-600 hover:underline flex items-center"
+              onClick={handleFileUpload}
+              className="btn text-white bg-blue-600 flex items-center hover:bg-white hover:text-blue-400"
             >
-              <MdOutlineFileDownload />
+              <GrFormUpload className="text-xl" />
+              Upload
             </button>
             <button
               onClick={handleFileDelete}
-              className="text-red-600 hover:underline flex items-center"
+              className="text-red-600 btn flex items-center"
             >
-              <RiDeleteBin6Line />
+              <RxCrossCircled className="text-xl" />
+              Delete
             </button>
           </div>
         </div>
