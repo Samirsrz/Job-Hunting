@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const UserEducation = () => {
+  const [educationalinfo, setEeducationainfo] = useState([]);
   const [formData, setFormData] = useState({
     education: "",
     university: "",
@@ -19,8 +20,10 @@ const UserEducation = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setEeducationainfo(formData);
     console.log("Form Data Submitted", formData);
   };
+
   return (
     <div>
       <div className="bg-white shadow rounded-lg p-6 mt-5 flex justify-between">
@@ -31,6 +34,10 @@ const UserEducation = () => {
           <p className="text-sm text-gray-500">
             Your qualifications help employers know your educational background
           </p>
+          <div className="mt-4">
+            <h1 className="font-semibold">B.Sc form Green University of Bangladesh</h1>
+            <p className="text-sm font-medium">Graduating in 2031, Full Time</p>
+          </div>
         </div>
 
         <div className="">
@@ -219,8 +226,11 @@ const UserEducation = () => {
 
               <div className="flex justify-end space-x-4">
                 <button type="button" className="text-blue-500 ">
-                  <label className="font-semibold cursor-pointer" htmlFor="my_modal_7">
-                  Cancle
+                  <label
+                    className="font-semibold cursor-pointer"
+                    htmlFor="my_modal_7"
+                  >
+                    Cancle
                   </label>
                 </button>
                 <button
@@ -233,8 +243,6 @@ const UserEducation = () => {
             </form>
           </div>
         </div>
-
-       
       </div>
     </div>
   );
