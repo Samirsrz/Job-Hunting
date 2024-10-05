@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MdEdit } from "react-icons/md";
 
 const UserSkill = () => {
-  const [newskills, setNewSkills] = useState(["Java", "VSM"]);
+  const [newskills, setNewSkills] = useState(["HTML", "JavaScript","React.js","Node.js"]);
 
   const [skills, setSkills] = useState([]);
   const [inputValue, setInputValue] = useState("");
