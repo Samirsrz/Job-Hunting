@@ -1,4 +1,3 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import Categories from "../pages/Categories/Categories";
 import App from "../App";
@@ -9,7 +8,6 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
 import PostJobs from "../pages/HostDashboard/PostJobs";
-import Statictis from "../components/Dashboard/Statictis";
 import UserProfile from "../pages/UserDashboard/UserProfile";
 import AllUser from "../pages/AdminDashboard/AllUser";
 import LangProvider from "../providers/LangProvider";
@@ -17,6 +15,7 @@ import JobDetails from "./../pages/Jobs/JobDetails";
 import ViewAllJobsCompany from "../pages/ViewAllJobsCompany/ViewAllJobsCompany";
 import Login from "../pages/Login/Login";
 import CompanyProfile from "../components/companyForm/CompanyProfile";
+import Statictis from "../pages/UserDashboard/Statictis";
 
 export const router = createBrowserRouter([
   {
@@ -45,7 +44,7 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
-     
+
       {
         path: "/jobs",
         element: <Jobs />,
@@ -84,10 +83,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/company-profile",
-        element: <CompanyProfile/>
+        element: <CompanyProfile />,
       },
       {
-        path: "/dashboard/userprofile", 
+        path: "/dashboard/userprofile",
         element: <UserProfile />,
       },
       {
