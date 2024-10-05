@@ -2,6 +2,7 @@ import React from 'react';
 import ProfileCard from '../../components/UserDashboard/ProfileCard';
 import UserSkill from '../../components/UserDashboard/UserSkill';
 import UserEducation from '../../components/UserDashboard/UserEducation';
+import ResumeUploader from '../../components/UserDashboard/ResumeUploader ';
 
 
 const UserProfile = () => {
@@ -10,6 +11,7 @@ const UserProfile = () => {
             <ProfileCard/>
             <UserSkill/>
             <UserEducation />
+            <ResumeUploader/>
         </div>
     );
 };
