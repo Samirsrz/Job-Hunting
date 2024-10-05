@@ -36,7 +36,7 @@ const UserSkill = () => {
   );
 
   return (
-    <div className="mt-10 bg-white shadow-md rounded-lg p-4">
+    <div className="mt-5 bg-white shadow-md rounded-lg p-4">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-gray-800 text-lg font-semibold">Key skills</h2>
         <button
