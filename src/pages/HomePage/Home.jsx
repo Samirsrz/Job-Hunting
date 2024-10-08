@@ -17,12 +17,15 @@ import InterviewCompanies from "./InterviewCompanies/InterviewCompanies";
 import ViewAllJobsCompany from "../ViewAllJobsCompany/ViewAllJobsCompany";
 
 
+import MainComponent from "./Jobsform/MainComponent";
+
+
 
 const Home = () => {
   return (
 
     <div className="container max-w-screen-xl m-auto">
- 
+
       {/* here add all section of home page,
       every section import here. create home page section inside the home page folder
       */}
@@ -36,15 +39,15 @@ const Home = () => {
       <BiggestContest />
       <DiscoverJobs />
       <SponsoredCompanies />
-    
-        <EventCard />
-    
-    <div className="h-[15px]">
 
-    </div>
-        <InterviewCompanies />
-    
+      <EventCard />
 
+      <div className="h-[15px]">
+
+      </div>
+      <InterviewCompanies />
+
+      {/* <MainComponent /> */}
 
       <Helmet><title>Job Hunting | Home</title></Helmet>
 
