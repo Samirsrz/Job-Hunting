@@ -15,7 +15,8 @@ import JobDetails from "./../pages/Jobs/JobDetails";
 import ViewAllJobsCompany from "../pages/ViewAllJobsCompany/ViewAllJobsCompany";
 import Login from "../pages/Login/Login";
 import CompanyProfile from "../components/companyForm/CompanyProfile";
-import Statictis from "../pages/UserDashboard/Statictis";
+import Statictis from "../DashboardLayout/Statictis";
+import AdminStatistic from "../pages/AdminDashboard/AdminStatistic";
 
 export const router = createBrowserRouter([
   {
@@ -88,6 +89,11 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/userprofile",
         element: <UserProfile />,
+      },
+      //admin route
+      {
+        path: "/dashboard/adminstatictis",
+        element: <AdminStatistic />,
       },
       {
         path: "/dashboard/alluser",

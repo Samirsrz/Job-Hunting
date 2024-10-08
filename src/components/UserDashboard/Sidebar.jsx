@@ -10,15 +10,20 @@ import { NavLink } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Sidebar = () => {
-  const { logOut } = useAuth();
+  const { logOut, user } = useAuth();
   const [isActive, setActive] = useState(false);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
   };
+
+
+
+  // console.log("user info :", loginUser);
 
   return (
     <div>
@@ -57,13 +62,12 @@ const Sidebar = () => {
             <div className="w-full hidden md:flex px-4 py-4 shadow-lg rounded-lg justify-center items-center mx-auto">
               <Link to="/">
                 <img
-                  className='hidden md:block rounded-full'
+                  className="hidden md:block rounded-full"
                   src="https://i.ibb.co.com/vdZjnCr/images-2.png"
                   alt="logo"
                   width="200"
                   height="200"
                 />
-              
               </Link>
             </div>
           </div>
@@ -75,6 +79,7 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav>
               {/* Statistics for Admin */}
+
               <NavLink
                 to="/dashboard"
                 end
@@ -162,7 +167,7 @@ const Sidebar = () => {
 
             <span className="mx-4 font-medium">Profile</span>
           </NavLink>
-        
+
           <button
             onClick={logOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
