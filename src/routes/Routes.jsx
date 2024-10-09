@@ -17,6 +17,7 @@ import Login from "../pages/Login/Login";
 import CompanyProfile from "../components/companyForm/CompanyProfile";
 import Statictis from "../pages/UserDashboard/Statictis";
 import VeiwCompanyJob from "../pages/ViewAllJobsCompany/ViewCompanyJob/VeiwCompanyJob";
+import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
         path: "/view-company-job/:id",
         element: <VeiwCompanyJob/>,
       },
+      {
+        path:'view-all-companies',
+        element:<ViewAllCompanies/>
+      }
     ],
   },
 

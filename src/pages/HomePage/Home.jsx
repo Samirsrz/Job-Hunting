@@ -11,13 +11,14 @@ import PracticeCustomizedMockInterview from "./PracticeCustomizedMockInterview/P
 
 import { Helmet } from "react-helmet-async";
 import SponsoredCompanies from "./SponsoredCompanies/SponsoredCompanies";
-import UpcomingEvents from "./UpcomingEvents/UpcomingEvents";
+
 import EventCard from "./UpcomingEvents/UpcomingEvents";
 import InterviewCompanies from "./InterviewCompanies/InterviewCompanies";
-import ViewAllJobsCompany from "../ViewAllJobsCompany/ViewAllJobsCompany";
+import ViewAllCompanies from "../ViewAllCompanies/ViewAllCompanies";
 
 
-import MainComponent from "./Jobsform/MainComponent";
+
+
 
 
 
@@ -46,7 +47,7 @@ const Home = () => {
 
       </div>
       <InterviewCompanies />
-
+      <ViewAllCompanies />
       {/* <MainComponent /> */}
 
       <Helmet><title>Job Hunting | Home</title></Helmet>
