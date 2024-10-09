@@ -152,6 +152,7 @@ const Jobs = () => {
           </div>
         </div>
       </div>
+      {jobs?.length || <p className="m-6">No jobs found!</p>}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6">
         {jobs?.map((job, idx) => (
           <JobCard {...{ job }} key={idx} />
