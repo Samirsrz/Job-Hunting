@@ -5,6 +5,9 @@ import { FiUsers } from "react-icons/fi";
 import { GoBell } from "react-icons/go";
 import { LuFileInput } from "react-icons/lu";
 import AdminRecharts from "../../components/AdminDashboard/AdminRecharts";
+import Map from "../../components/AdminDashboard/Map";
+// import Map from "../../components/AdminDashboard/Map";
+
 
 const AdminStatistic = () => {
   return (
@@ -107,7 +110,10 @@ const AdminStatistic = () => {
         </div>
       </div>
 
-      <AdminRecharts/>
+     
+        <AdminRecharts />
+        {/* <Map /> */}
+     
     </div>
   );
 };

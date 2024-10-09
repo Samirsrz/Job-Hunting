@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   LineChart,
   Line,
@@ -8,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import TrafficChart from "./TrafficChart";
 
 // Sample data
 const data = [
@@ -27,38 +29,42 @@ const data = [
 
 const AdminRecharts = () => {
   return (
-    <div>
-      <h1 className="text-2xl font-bold bg-white rounded-t-lg p-5 w-[70%]">
-        User Activity
-      </h1>
-      <ResponsiveContainer
-        width="70%"
-        height={300}
-        className="bg-white  rounded-b-lg"
-      >
-        <LineChart
-          data={data}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
+    <div className="flex justify-between gap-4">
+      <div className="flex-1">
+        <h1 className="text-2xl font-bold bg-white rounded-t-lg p-5 w-[100%]">
+          User Activity
+        </h1>
+        <ResponsiveContainer
+          width="100%"
+          height={300}
+          className="bg-white  rounded-b-lg"
         >
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" />
-          <YAxis 
-          domain={[0, 800]} // Setting the range of Y axis
-          tickCount={9}      // Control the number of ticks (increments of 100)
-          interval={0}       // Force rendering every tick
-          tickFormatter={(value) => `${value}`} // Format Y axis values
-          />
-          <Tooltip />
-          <Line type="monotone" dataKey="total" stroke="#8884d8" />
-          <Line type="monotone" dataKey="success" stroke="#82ca9d" />
-          <Line type="monotone" dataKey="failed" stroke="#82ca9d" />
-        </LineChart>
-      </ResponsiveContainer>
+          <LineChart
+            data={data}
+            margin={{
+              top: 10,
+              right: 30,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+            <XAxis dataKey="name" />
+            <YAxis
+              domain={[0, 800]} // Setting the range of Y axis
+              tickCount={9} // Control the number of ticks (increments of 100)
+              interval={0} // Force rendering every tick
+              tickFormatter={(value) => `${value}`} // Format Y axis values
+            />
+            <Tooltip />
+            <Line type="monotone" dataKey="total" stroke="#8884d8" />
+            <Line type="monotone" dataKey="success" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="failed" stroke="#82ca9d" />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+
+      <TrafficChart />
     </div>
   );
 };

@@ -8,6 +8,7 @@ const Statictis = () => {
   const { user } = useAuth();
   const [loginUser, setLoginUser] = useState("");
   const axionsequre = useAxiosSecure();
+  
   //get user information
   try {
     axionsequre
@@ -16,7 +17,8 @@ const Statictis = () => {
   } catch (error) {
     console.log(error);
   }
-  // console.log(object);
+  // console.log(loginUser);
+
   return (
     <div className="bg-[#f5f6fa] p-10">
       {/* here set all statictis role  */}
