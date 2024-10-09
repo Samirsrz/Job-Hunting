@@ -5,10 +5,10 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import AdminStatistic from "../pages/AdminDashboard/AdminStatistic";
 
 const Statictis = () => {
-  const { user } = useAuth();
+  const { user, setLoading } = useAuth();
   const [loginUser, setLoginUser] = useState("");
   const axionsequre = useAxiosSecure();
-  
+
   //get user information
   try {
     axionsequre
@@ -17,13 +17,14 @@ const Statictis = () => {
   } catch (error) {
     console.log(error);
   }
-  // console.log(loginUser);
 
   return (
     <div className="bg-[#f5f6fa] p-10">
       {/* here set all statictis role  */}
       {/* <UserStatictis /> */}
-      {loginUser.role == "host" ? <UserStatictis /> : <AdminStatistic />}
+      {/* {loginUser.role == "admin" ? <AdminStatistic /> : <UserStatictis />} */}
+      {loginUser.role == "admin" && <AdminStatistic />}
+      {loginUser.role == "guest" && <UserStatictis />}
     </div>
   );
 };

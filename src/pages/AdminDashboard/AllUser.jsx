@@ -18,10 +18,36 @@ const AllUser = () => {
     console.log(error);
   }
   // console.log("this is all users", users);
+  //handleAdmin
+  const handleAdmin = (id) => {
+    console.log("this is admin ", id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to create an admin!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Create it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSequre.put(`/user/${id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount) {
+            Swal.fire({
+              title: "created!",
+              text: "Your user has been create admin!.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
   //handle Delete function
   const handleDelete = (id) => {
-    console.log('user id ', id);
+    console.log("user id ", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to delete User!",
@@ -113,56 +139,10 @@ const AllUser = () => {
                   </thead>
 
                   {/* table Body ........... */}
-                  <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                    <tr>
-                      <td className="pl-4">1</td>
-
-                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3">
-                          <div className="flex items-center gap-x-2">
-                            <div>
-                              <h2 className="font-medium text-gray-800 dark:text-white ">
-                                <div className="flex items-center gap-x-2">
-                                  <img
-                                    className="object-cover w-10 h-10 rounded-full"
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                                    alt=""
-                                  />
-                                  <div>
-                                    <h2 className="font-medium text-gray-800 dark:text-white ">
-                                      Arthur Melo
-                                    </h2>
-                                  </div>
-                                </div>
-                              </h2>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-
-                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-start  px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800 text-emerald-500">
-                          <h2 className="text-sm font-normal ">Admin</h2>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        authurmelo@example.com
-                      </td>
-
-                      <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <div className="flex items-center gap-x-6">
-                          <button
-                            onClick={handleDelete}
-                            className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
-                          >
-                            <RiDeleteBin5Line className="text-xl" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                  <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900 z-10">
                     {users?.map((user, index) => (
                       <tr key={user._id}>
-                        <td className="pl-4">{index + 1 + 1} </td>
+                        <td className="pl-4">{index + 1} </td>
 
                         {/* company name  */}
                         <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -201,9 +181,24 @@ const AllUser = () => {
                               "text-gray-500 bg-gray-100 dark:text-gray-400 gap-x-2 dark:bg-gray-800"
                             }`}
                           >
-                            <h2 className="text-sm font-normal ">
-                              {user.role}
-                            </h2>
+                            <div className="dropdown dropdown-bottom">
+                              <div tabIndex={0} role="button" className=" m-1">
+                                <h2 className="text-sm font-normal ">
+                                  {user.role}
+                                </h2>
+                              </div>
+                              <ul
+                                tabIndex={0}
+                                className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow"
+                              >
+                                <li
+                                  className="z-10"
+                                  onClick={() => handleAdmin(user._id)}
+                                >
+                                  <a>admin</a>
+                                </li>
+                              </ul>
+                            </div>
                           </div>
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
