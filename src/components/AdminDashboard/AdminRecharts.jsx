@@ -28,7 +28,9 @@ const data = [
 const AdminRecharts = () => {
   return (
     <div>
-      <h1 className="text-2xl font-bold bg-white rounded-t-lg p-5 w-[70%]">User Activity</h1>
+      <h1 className="text-2xl font-bold bg-white rounded-t-lg p-5 w-[70%]">
+        User Activity
+      </h1>
       <ResponsiveContainer
         width="70%"
         height={300}
@@ -43,9 +45,14 @@ const AdminRecharts = () => {
             bottom: 0,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis dataKey="name" />
-          <YAxis />
+          <YAxis 
+          domain={[0, 800]} // Setting the range of Y axis
+          tickCount={9}      // Control the number of ticks (increments of 100)
+          interval={0}       // Force rendering every tick
+          tickFormatter={(value) => `${value}`} // Format Y axis values
+          />
           <Tooltip />
           <Line type="monotone" dataKey="total" stroke="#8884d8" />
           <Line type="monotone" dataKey="success" stroke="#82ca9d" />
