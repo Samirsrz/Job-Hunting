@@ -1,4 +1,3 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import Categories from "../pages/Categories/Categories";
 import App from "../App";
@@ -7,15 +6,16 @@ import SignUp from "../pages/SignUp/SignUp";
 import Jobs from "../pages/Jobs/Jobs";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
-import ViewsJob from "../pages/UserDashboard/ViewsJob";
 import AppliedJobs from "../pages/UserDashboard/AppliedJobs";
 import PostJobs from "../pages/HostDashboard/PostJobs";
-import Statictis from "../components/Dashboard/Statictis";
 import UserProfile from "../pages/UserDashboard/UserProfile";
 import AllUser from "../pages/AdminDashboard/AllUser";
 import LangProvider from "../providers/LangProvider";
 import JobDetails from "./../pages/Jobs/JobDetails";
 import ViewAllJobsCompany from "../pages/ViewAllJobsCompany/ViewAllJobsCompany";
+import Login from "../pages/Login/Login";
+import CompanyProfile from "../components/companyForm/CompanyProfile";
+import Statictis from "../pages/UserDashboard/Statictis";
 
 export const router = createBrowserRouter([
   {
@@ -34,12 +34,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "/categories",
-        element: <Categories></Categories>,
+        element: <Categories />,
       },
       {
         path: "/signup",
         element: <SignUp />,
       },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+
       {
         path: "/jobs",
         element: <Jobs />,
@@ -49,11 +54,12 @@ export const router = createBrowserRouter([
         element: <JobDetails />,
       },
       {
-        path: "/jobs/viewAllJobsCompany",
+        path: "/jobs/viewAllJobsCompany/:id",
         element: <ViewAllJobsCompany />,
       },
     ],
   },
+
   {
     path: "/dashboard",
     element: (
@@ -67,12 +73,8 @@ export const router = createBrowserRouter([
         element: <Statictis />,
       },
       {
-        path: "/dashboard/viewjobs",
-        element: <ViewsJob />,
-      },
-      {
         path: "/dashboard/appliedjobs",
-        element: <AppliedJobs></AppliedJobs>,
+        element: <AppliedJobs />,
       },
 
       {
@@ -80,7 +82,11 @@ export const router = createBrowserRouter([
         element: <PostJobs />,
       },
       {
-        path: "/dashboard/userprofile", 
+        path: "/dashboard/company-profile",
+        element: <CompanyProfile />,
+      },
+      {
+        path: "/dashboard/userprofile",
         element: <UserProfile />,
       },
       {

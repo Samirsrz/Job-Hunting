@@ -1,13 +1,16 @@
 import Lottie from "lottie-react";
 import React from "react";
 import RegisterAnnimation from "../../../public/Annimations/RegisterAnnimation.json";
+import useAuth from "../../hooks/useAuth";
 
 const WelcomeCard = () => {
+ const {user} = useAuth()
+
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 text-[#4a5568] lg:flex  md:flex-row lg:flex-row items-center">
       <div className="space-y-2">
         <h1 className="text-2xl">
-          Hi, <span className="font-bold">Abu Rahat Shaum</span>
+          Hi, <span className="font-bold">{user?.name || user?.displayName}</span>
         </h1>
         <h1 className="text-3xl font-semibold text-wrap">
           Welcome to "Job Hunting"{" "}

@@ -7,6 +7,8 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import companyFeatueredIcon from "../../../../public/company/4156.gif"
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useGetFeaturedJobsQuery } from "../../../RTK/Api/FeaturedJobsApi/FeaturedJobsApi";
+import { Blocks } from "react-loader-spinner";
 // Custom Arrow Components
 const NextArrow = ({ onClick, isVisible }) => {
   return isVisible ? (
@@ -31,9 +33,13 @@ const PrevArrow = ({ onClick, isVisible }) => {
 };
 
 const FeaturedCompanies = () => {
+  let { data: featuredJobs, isError, error, isLoading } = useGetFeaturedJobsQuery()
+  //console.log(error);
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0); //
   const companies = [1, 1, 1, 1, 1, 1, 1]; // Example company data
+
+  //console.log(featuredJobs);
 
   const settings = {
     // dots: true,
@@ -41,7 +47,7 @@ const FeaturedCompanies = () => {
     speed: 500,
     slidesToShow: 4.5,
     slidesToScroll: 1,
-    nextArrow: <NextArrow isVisible={currentSlide < companies.length - 4.5} />,
+    nextArrow: <NextArrow isVisible={currentSlide < companies?.length - 4.5} />,
     prevArrow: <PrevArrow isVisible={currentSlide > 0} />,
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
     responsive: [
@@ -72,6 +78,25 @@ const FeaturedCompanies = () => {
     ],
   };
 
+  if (isLoading) {
+    return <div className="flex justify-center"> <Blocks
+      height="80"
+      width="80"
+      color="#4fa94d"
+      ariaLabel="blocks-loading"
+      wrapperStyle={{}}
+      wrapperClass="blocks-wrapper"
+      visible={true}
+    /></div>
+  }
+
+  if (isError) {
+    return <h1>somethin went wrong</h1>
+  }
+
+  console.log(featuredJobs);
+  
+
   return (
     <section>
       <div>
@@ -93,12 +118,12 @@ const FeaturedCompanies = () => {
 
       <div className="relative ">
         <Slider {...settings}>
-          {companies.map((card, index) => (
+          {featuredJobs?.length > 0 && featuredJobs.map((card, index) => (
             <div key={index} className="p-4">
               <div className="border text-center space-y-3 p-4 w-full rounded-xl hover:shadow-lg duration-200">
                 <div id="company-icon" className="flex justify-center">
                   <img
-                    src={companyFeatueredIcon}
+                    src={card.logo}
                     alt="title image"
                     className="w-full h-20 object-contain"
                   />
@@ -108,19 +133,19 @@ const FeaturedCompanies = () => {
                   className="p-4 rounded-lg flex flex-col gap-2 items-center"
                   style={{ background: "rgb(247, 248, 251)" }}
                 >
-                  <h1>Cognizant</h1>
+                  <h1>{card.companyName}</h1>
                   <div className="flex items-center opacity-75">
-                    <FaStar className="text-yellow-500" /> <span>3.9</span>
+                    <FaStar className="text-yellow-500" /> <span>{card.ratings}</span>
                     <TbMinusVertical />
                     <p>4K+ reviews</p>
                   </div>
                 </div>
                 <div id="company-content">
-                  <p>Leading ITeS company with global presence.</p>
+                  <p>{card.company_title}.</p>
                 </div>
                 <div>
                   <Link
-                    to={"/jobs/viewAllJobsCompany"}
+                    to={`/jobs/viewAllJobsCompany/${card._id}`}
                     className="w-full h-full"
                   >
                     <button className="relative rounded-3xl border-none hover:shadow-lg duration-300 text-blue-600 bg-blue-100 font-semibold px-4 py-2">

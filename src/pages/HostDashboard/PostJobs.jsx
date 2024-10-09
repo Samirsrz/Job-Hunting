@@ -4,6 +4,7 @@ import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { imageUpload } from "../../api/utils";
 import toast from "react-hot-toast";
+import useAxiosCommon, { axiosCommon } from "../../hooks/useAxiosCommon";
 
 const PostJobs = () => {
   const [loading, setLoading] = useState(false);
