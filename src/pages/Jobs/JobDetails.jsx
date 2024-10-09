@@ -14,19 +14,28 @@ import {
 import { GiRoundStar, GiCash } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { axiosCommon } from "../../hooks/useAxiosCommon";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import JobCard from "../../components/jobs/JobCard";
 
 const JobDetails = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [job, setJob] = useState({});
+  const [relatedJobs, setRelatedJobs] = useState([]);
   const [rating, setRating] = useState(3);
 
   useEffect(() => {
     axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
   }, [id, axiosSecure]);
+
+  useEffect(() => {
+    axiosCommon
+      .get(`/jobs/${id}/related`)
+      .then((data) => setRelatedJobs(data.data.data));
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +47,13 @@ const JobDetails = () => {
     const companyName = job?.company;
     const jobTitle = job?.title;
     console.log(jobTitle);
-    const application = { applicantName, resumeLink, status, jobTitle, companyName };
+    const application = {
+      applicantName,
+      resumeLink,
+      status,
+      jobTitle,
+      companyName,
+    };
     if (coverLetter) {
       application.coverLetter = coverLetter;
     }
@@ -94,7 +109,7 @@ const JobDetails = () => {
 
   return (
     <div>
-      <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4  drop-shadow-sm">
+      <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4 drop-shadow-sm">
         <div className="flex flex-col md:flex-row gap-6 md:items-center border-b md:mb-6 mb-2 border-gray-400 md:pb-6 pb-4">
           <img
             src={job?.logo}
@@ -168,6 +183,15 @@ const JobDetails = () => {
               Give a Review <FaMessage className="inline" />
             </button>
           </div>
+        </div>
+      </div>
+      {/* related jobs */}
+      <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4 drop-shadow-sm">
+        <h3 className="text-3xl font-semibold">Related Jobs</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-4 mt-6">
+          {relatedJobs?.map((job, idx) => (
+            <JobCard {...{ job }} key={idx} />
+          ))}
         </div>
       </div>
       <dialog id="apply_modal" className="modal">

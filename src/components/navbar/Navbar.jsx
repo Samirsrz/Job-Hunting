@@ -1,5 +1,4 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import Login from "../../pages/Login/Login";
 import useAuth from "../../hooks/useAuth";
 import { CiDark, CiLight } from "react-icons/ci";
 import { HiOutlineLogout } from "react-icons/hi";
@@ -9,10 +8,12 @@ import Lang from "../../libs/Lang";
 import { FaSearch } from "react-icons/fa";
 
 const SearchBar = () => (
-  <button className="py-2 flex gap-1 items-center justify-center px-1 md:hover:px-2 lg:px-4 rounded-full md:bg-white/20 hover:bg-white/40 hover:scale-105 md:rounded-md md:font-semibold">
-    <span className="hidden md:inline md:mr-1">Search now</span>
-    <FaSearch className="inline" />
-  </button>
+  <Link to="/jobs">
+    <button className="py-2 flex gap-1 items-center justify-center px-1 md:hover:px-2 lg:px-4 rounded-full md:bg-white/20 hover:bg-white/40 hover:scale-105 md:rounded-md md:font-semibold">
+      <span className="hidden md:inline md:mr-1">Search now</span>
+      <FaSearch className="inline" />
+    </button>
+  </Link>
 );
 const links = [
   {
@@ -87,7 +88,10 @@ const Navbar = () => {
 
   return (
     <div className="bg-primary">
-      <div id="sidebar" className="container max-w-screen-xl m-auto navbar  text-white">
+      <div
+        id="sidebar"
+        className="container max-w-screen-xl m-auto navbar  text-white"
+      >
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -183,7 +187,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-       
       </div>
     </div>
   );
