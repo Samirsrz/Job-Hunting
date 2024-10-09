@@ -186,14 +186,18 @@ const JobDetails = () => {
         </div>
       </div>
       {/* related jobs */}
-      <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4 drop-shadow-sm">
-        <h3 className="text-3xl font-semibold">Related Jobs</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-4 mt-6">
-          {relatedJobs?.map((job, idx) => (
-            <JobCard {...{ job }} key={idx} />
-          ))}
+      {relatedJobs?.length ? (
+        <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4 drop-shadow-sm">
+          <h3 className="text-3xl font-semibold">Related Jobs</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-4 mt-6">
+            {relatedJobs?.map((job, idx) => (
+              <JobCard {...{ job }} key={idx} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <p className="lg:m-10 m-4">No related jobs found!</p>
+      )}
       <dialog id="apply_modal" className="modal">
         <div className="modal-box">
           <form method="dialog">
