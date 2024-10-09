@@ -28,8 +28,15 @@ const JobDetails = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [job, setJob] = useState({});
+  const [existingReview, setExistingReview] = useState({});
   const [relatedJobs, setRelatedJobs] = useState([]);
   const [rating, setRating] = useState(5);
+
+  useEffect(() => {
+    setExistingReview(
+      job?.reviews?.find((review) => review.email === user.email)
+    );
+  }, [job, user]);
 
   useEffect(() => {
     axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
@@ -193,7 +200,8 @@ const JobDetails = () => {
               }
               className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
             >
-              Give a Review <FaMessage className="inline" />
+              {existingReview ? "Update your" : "Give a"} review!{" "}
+              <FaMessage className="inline" />
             </button>
           </div>
         </div>
@@ -308,12 +316,14 @@ const JobDetails = () => {
               ✕
             </button>
           </form>
-          <h3 className="font-bold text-lg">Give your review!</h3>
+          <h3 className="font-bold text-lg">
+            {existingReview ? "Update" : "Give"} your review!
+          </h3>
           <form onSubmit={handleReview} className="flex flex-col gap-4 mt-4">
             <label className="input input-bordered flex items-center gap-2">
               Review
               <input
-                defaultValue="Awesome"
+                defaultValue={existingReview?.review}
                 type="text"
                 className="grow"
                 placeholder="Write your Review"
@@ -325,7 +335,7 @@ const JobDetails = () => {
               Rating
               <Rating
                 onChange={setRating}
-                initialRating={rating}
+                initialRating={existingReview?.rating || rating}
                 className="text-xl translate-y-[2px]"
                 emptySymbol={<MdStarBorder />}
                 fullSymbol={<MdStar />}
