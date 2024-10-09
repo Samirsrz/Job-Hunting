@@ -18,6 +18,7 @@ import { axiosCommon } from "../../hooks/useAxiosCommon";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import JobCard from "../../components/jobs/JobCard";
+import { Helmet } from "react-helmet-async";
 
 const JobDetails = () => {
   const { user } = useAuth();
@@ -109,6 +110,9 @@ const JobDetails = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>{job?.title ?? "Job Details"} | Job hunting</title>
+      </Helmet>
       <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4 drop-shadow-sm">
         <div className="flex flex-col md:flex-row gap-6 md:items-center border-b md:mb-6 mb-2 border-gray-400 md:pb-6 pb-4">
           <img
