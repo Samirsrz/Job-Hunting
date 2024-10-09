@@ -16,7 +16,12 @@ import ViewAllJobsCompany from "../pages/ViewAllJobsCompany/ViewAllJobsCompany";
 import Login from "../pages/Login/Login";
 import CompanyProfile from "../components/companyForm/CompanyProfile";
 import Statictis from "../pages/UserDashboard/Statictis";
+<<<<<<< HEAD
 
+=======
+import VeiwCompanyJob from "../pages/ViewAllJobsCompany/ViewCompanyJob/VeiwCompanyJob";
+import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
+>>>>>>> 96a970f39a49e1ed48f896f78a4aaf202759db8e
 import PrivateRoute from "./PrivateRoute";
 
 
@@ -64,6 +69,14 @@ export const router = createBrowserRouter([
         path: "/jobs/viewAllJobsCompany/:id",
         element: <ViewAllJobsCompany />,
       },
+      {
+        path: "/view-company-job/:id",
+        element: <VeiwCompanyJob/>,
+      },
+      {
+        path:'view-all-companies',
+        element:<ViewAllCompanies/>
+      }
     ],
   },
 

@@ -240,6 +240,7 @@ import { useGetCompanyBasedJobsQuery } from '../../../RTK/Api/FeaturedJobsApi/Fe
 import FilterComponent from '../FilterComponent/FilterComponent';
 import LocationFilterComponent from '../LocationFilterComponent/LocationFilterComponent';
 import ExperienceSlider from '../ExperienceSlider/ExperienceSlider';
+import { Link } from 'react-router-dom';
 
 // const StandardCharteredJobs = () => {
   
@@ -526,7 +527,8 @@ const StandardCharteredJobs = ({companyName}) => {
                 <aside className=' grid grid-cols-1 gap-5'>
                     {/* Job cards */}
                     {jobs && jobs.map((job, index) => (
-                        <div key={job._id || index} className="bg-white shadow-md rounded-lg p-5 flex flex-col justify-between ">
+                   
+                        <Link key={job._id || index} to={`/view-company-job/${job._id}`}>     <div  className="bg-white shadow-md rounded-lg p-5 flex flex-col justify-between ">
                             <div className="flex justify-between flex-col-reverse lg:flex-row">
                                 <div>
                                     <h2 className="text-3xl md:text-xl font-semibold text-gray-800">{job.title}</h2>
@@ -572,6 +574,7 @@ const StandardCharteredJobs = ({companyName}) => {
                                 </button>
                             </div>
                         </div>
+ </Link>
                     ))}
 
                     {/* Pagination */}

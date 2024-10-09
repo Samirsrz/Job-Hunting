@@ -33,7 +33,7 @@ const ViewAllJobsCompany = () => {
         fetchData();
     }, [axiosCommon,id]);
     
-    console.log(fjob);
+    // console.log(fjob);
     
 
 
@@ -67,7 +67,7 @@ const ViewAllJobsCompany = () => {
         };
         let res = await addFollower(user2).unwrap();
         setFollower(true); // Set follower state to true after following
-        console.log(res);
+        // console.log(res);
     };
 
     const handleunFollow = async () => {
@@ -75,7 +75,7 @@ const ViewAllJobsCompany = () => {
         console.log('unfollow', user2);
         let res = await unfollowCompany(user2).unwrap();
         setFollower(false); // Set follower state to false after unfollowing
-        console.log(res);
+        // console.log(res);
     };
 
     return (

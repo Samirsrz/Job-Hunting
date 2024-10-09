@@ -6,7 +6,7 @@ const departments = [
   { name: 'Finance & Accounting', count: 3 },
   { name: 'Risk Management & Compliance', count: 3 },
 ];
-
+ 
 const FilterComponent = ({setBtnDrop,btnDrop}) => {
   const [selectedDepartments, setSelectedDepartments] = useState([]);
 console.log(btnDrop);
