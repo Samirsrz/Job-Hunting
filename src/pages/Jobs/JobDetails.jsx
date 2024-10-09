@@ -19,14 +19,24 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import JobCard from "../../components/jobs/JobCard";
 import { Helmet } from "react-helmet-async";
+import { Autoplay, EffectCards } from "swiper/modules";
+import { SwiperSlide, Swiper } from "swiper/react";
+import getRandomColor from "../../libs/getRandomColor";
 
 const JobDetails = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [job, setJob] = useState({});
+  const [existingReview, setExistingReview] = useState({});
   const [relatedJobs, setRelatedJobs] = useState([]);
-  const [rating, setRating] = useState(3);
+  const [rating, setRating] = useState(5);
+
+  useEffect(() => {
+    setExistingReview(
+      job?.reviews?.find((review) => review.email === user.email)
+    );
+  }, [job, user]);
 
   useEffect(() => {
     axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
@@ -76,29 +86,39 @@ const JobDetails = () => {
     document.getElementById("review_modal").close();
     const review = e.target.review.value;
 
-    const result = {
+    const reviewData = {
       review,
       rating,
     };
 
-    console.log(result);
+    e.target.reset();
 
-    // e.target.reset();
-
-    // axiosSecure
-    //   .post(`/jobs/${id}/apply`, application)
-    //   .then(({ data }) => {
-    //     toast.success(data.message);
-    //     axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
-    //   })
-    //   .catch((err) => {
-    //     toast.error(err.response.data.message);
-    //   });
+    axiosSecure
+      .post(`/jobs/${id}/review`, reviewData)
+      .then(({ data }) => {
+        toast.success(data.message);
+        axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
   };
 
   const handleCancel = () => {
     axiosSecure
       .delete(`/jobs/${id}/apply`)
+      .then(({ data }) => {
+        toast.success(data.message);
+        axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
+
+  const handleDeleteReview = () => {
+    axiosSecure
+      .delete(`/jobs/${id}/review`)
       .then(({ data }) => {
         toast.success(data.message);
         axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
@@ -132,10 +152,18 @@ const JobDetails = () => {
               <GiCash className="inline" /> <span>{job?.salary}</span>
             </p>
             <div>
-              <span>
-                <GiRoundStar className="inline" /> {job?.rating ?? 0}
-              </span>{" "}
-              |<span> {job?.reviews?.length ?? 0} reviews</span>
+              <button
+                onClick={() =>
+                  document.getElementById("show_review_modal").showModal()
+                }
+                className="link-hover"
+              >
+                <span>
+                  <GiRoundStar className="inline relative top-[-2px] mr-1" />
+                  {(job?.rating ?? 0).toFixed(1)}
+                </span>{" "}
+                |<span> {job?.reviews?.length ?? 0} reviews</span>
+              </button>
             </div>
             <p>
               <MdOutlineCategory className="inline" />{" "}
@@ -184,7 +212,8 @@ const JobDetails = () => {
               }
               className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
             >
-              Give a Review <FaMessage className="inline" />
+              {existingReview ? "Update your" : "Give a"} review!{" "}
+              <FaMessage className="inline" />
             </button>
           </div>
         </div>
@@ -246,6 +275,52 @@ const JobDetails = () => {
           </form>
         </div>
       </dialog>
+      <dialog id="show_review_modal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg">All reviews!</h3>
+          <div className="mt-6">
+            <Swiper
+              autoplay={{
+                delay: 900,
+                disableOnInteraction: false,
+              }}
+              effect={"cards"}
+              grabCursor={true}
+              modules={[Autoplay, EffectCards]}
+              className="w-full lg:w-[300px] drop-shadow-md"
+            >
+              {job?.reviews?.map(({ email, review, rating }, idx) => (
+                <SwiperSlide
+                  key={idx}
+                  style={{ backgroundColor: getRandomColor() }}
+                  className="rounded-lg"
+                >
+                  <div className="p-2 bg-black/30 text-white">
+                    <h1 className="border-b border-white pb-2 mb-2 font-bold text-center">
+                      {email}
+                    </h1>
+                    <p>
+                      <Rating
+                        readonly
+                        initialRating={rating}
+                        className="text-xl translate-y-[2px]"
+                        emptySymbol={<MdStarBorder />}
+                        fullSymbol={<MdStar />}
+                      />
+                    </p>
+                    <h1>{review}</h1>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+      </dialog>
       <dialog id="review_modal" className="modal">
         <div className="modal-box">
           <form method="dialog">
@@ -253,12 +328,14 @@ const JobDetails = () => {
               ✕
             </button>
           </form>
-          <h3 className="font-bold text-lg">Give your review!</h3>
+          <h3 className="font-bold text-lg">
+            {existingReview ? "Update" : "Give"} your review!
+          </h3>
           <form onSubmit={handleReview} className="flex flex-col gap-4 mt-4">
             <label className="input input-bordered flex items-center gap-2">
               Review
               <input
-                defaultValue={user?.displayName}
+                defaultValue={existingReview?.review}
                 type="text"
                 className="grow"
                 placeholder="Write your Review"
@@ -270,15 +347,26 @@ const JobDetails = () => {
               Rating
               <Rating
                 onChange={setRating}
-                initialRating={rating}
+                initialRating={existingReview?.rating || rating}
                 className="text-xl translate-y-[2px]"
                 emptySymbol={<MdStarBorder />}
                 fullSymbol={<MdStar />}
               />
             </label>
-            <button className="btn btn-primary" type="submit">
-              Review
-            </button>
+            <div className="flex gap-3">
+              <button className="btn btn-primary grow" type="submit">
+                Review
+              </button>
+              {existingReview && (
+                <button
+                  onClick={handleDeleteReview}
+                  className="btn btn-error text-white grow"
+                >
+                  Remove
+                  <MdDelete className="inline" />
+                </button>
+              )}
+            </div>
           </form>
         </div>
       </dialog>
