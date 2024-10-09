@@ -1,28 +1,42 @@
 import { Link, useParams } from "react-router-dom";
+import Rating from "react-rating";
 import moment from "moment";
-import { FaLocationDot, FaClockRotateLeft } from "react-icons/fa6";
+import { FaLocationDot, FaClockRotateLeft, FaMessage } from "react-icons/fa6";
 import { LuFileType } from "react-icons/lu";
 import {
   MdOutlineCategory,
   MdOutlineHomeWork,
   MdGroupAdd,
   MdDelete,
+  MdStarBorder,
+  MdStar,
 } from "react-icons/md";
 import { GiRoundStar, GiCash } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { axiosCommon } from "../../hooks/useAxiosCommon";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import JobCard from "../../components/jobs/JobCard";
+import { Helmet } from "react-helmet-async";
 
 const JobDetails = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [job, setJob] = useState({});
+  const [relatedJobs, setRelatedJobs] = useState([]);
+  const [rating, setRating] = useState(3);
 
   useEffect(() => {
     axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
   }, [id, axiosSecure]);
+
+  useEffect(() => {
+    axiosCommon
+      .get(`/jobs/${id}/related`)
+      .then((data) => setRelatedJobs(data.data.data));
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,7 +48,13 @@ const JobDetails = () => {
     const companyName = job?.company;
     const jobTitle = job?.title;
     console.log(jobTitle);
-    const application = { applicantName, resumeLink, status, jobTitle, companyName };
+    const application = {
+      applicantName,
+      resumeLink,
+      status,
+      jobTitle,
+      companyName,
+    };
     if (coverLetter) {
       application.coverLetter = coverLetter;
     }
@@ -51,6 +71,31 @@ const JobDetails = () => {
       });
   };
 
+  const handleReview = (e) => {
+    e.preventDefault();
+    document.getElementById("review_modal").close();
+    const review = e.target.review.value;
+
+    const result = {
+      review,
+      rating,
+    };
+
+    console.log(result);
+
+    // e.target.reset();
+
+    // axiosSecure
+    //   .post(`/jobs/${id}/apply`, application)
+    //   .then(({ data }) => {
+    //     toast.success(data.message);
+    //     axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
+    //   })
+    //   .catch((err) => {
+    //     toast.error(err.response.data.message);
+    //   });
+  };
+
   const handleCancel = () => {
     axiosSecure
       .delete(`/jobs/${id}/apply`)
@@ -65,7 +110,10 @@ const JobDetails = () => {
 
   return (
     <div>
-      <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4  drop-shadow-sm">
+      <Helmet>
+        <title>{job?.title ?? "Job Details"} | Job hunting</title>
+      </Helmet>
+      <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4 drop-shadow-sm">
         <div className="flex flex-col md:flex-row gap-6 md:items-center border-b md:mb-6 mb-2 border-gray-400 md:pb-6 pb-4">
           <img
             src={job?.logo}
@@ -85,7 +133,7 @@ const JobDetails = () => {
             </p>
             <div>
               <span>
-                <GiRoundStar className="inline" /> {job?.rating}
+                <GiRoundStar className="inline" /> {job?.rating ?? 0}
               </span>{" "}
               |<span> {job?.reviews?.length ?? 0} reviews</span>
             </div>
@@ -130,9 +178,30 @@ const JobDetails = () => {
                 <MdDelete className="inline" />
               </button>
             )}
+            <button
+              onClick={() =>
+                document.getElementById("review_modal").showModal()
+              }
+              className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
+            >
+              Give a Review <FaMessage className="inline" />
+            </button>
           </div>
         </div>
       </div>
+      {/* related jobs */}
+      {relatedJobs?.length ? (
+        <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4 drop-shadow-sm">
+          <h3 className="text-3xl font-semibold">Related Jobs</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-4 mt-6">
+            {relatedJobs?.map((job, idx) => (
+              <JobCard {...{ job }} key={idx} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <p className="lg:m-10 m-4">No related jobs found!</p>
+      )}
       <dialog id="apply_modal" className="modal">
         <div className="modal-box">
           <form method="dialog">
@@ -173,6 +242,42 @@ const JobDetails = () => {
             </label>
             <button className="btn btn-primary" type="submit">
               Apply
+            </button>
+          </form>
+        </div>
+      </dialog>
+      <dialog id="review_modal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg">Give your review!</h3>
+          <form onSubmit={handleReview} className="flex flex-col gap-4 mt-4">
+            <label className="input input-bordered flex items-center gap-2">
+              Review
+              <input
+                defaultValue={user?.displayName}
+                type="text"
+                className="grow"
+                placeholder="Write your Review"
+                name="review"
+                required
+              />
+            </label>
+            <label className="input input-bordered flex items-center gap-2">
+              Rating
+              <Rating
+                onChange={setRating}
+                initialRating={rating}
+                className="text-xl translate-y-[2px]"
+                emptySymbol={<MdStarBorder />}
+                fullSymbol={<MdStar />}
+              />
+            </label>
+            <button className="btn btn-primary" type="submit">
+              Review
             </button>
           </form>
         </div>
