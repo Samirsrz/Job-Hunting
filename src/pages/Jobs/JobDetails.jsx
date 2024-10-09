@@ -13,43 +13,86 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const JobDetails = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [job, setJob] = useState({});
+ const axiosCommon =  useAxiosCommon();
+ 
 
-  useEffect(() => {
+ useEffect(() => {
     axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
   }, [id, axiosSecure]);
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   document.getElementById("apply_modal").close();
+
+  //   const applicantName = e.target.applicantName.value;
+  //   const applicantEmail = e.target.email.value;
+  //   const resumeFile = e.target.resumeFile.files[0];
+  //   const coverLetter = e.target.coverLetter.value;
+
+
+  //   const status = "pending";
+  //   const companyName = job?.company;
+  //   const jobTitle = job?.title;
+  //   console.log(jobTitle);
+  //   const application = { applicantName,applicantEmail, resumeFile, status, jobTitle, companyName };
+  //   if (coverLetter) {
+  //     application.coverLetter = coverLetter;
+  //   }
+  //   e.target.reset();
+
+  //   axiosSecure
+  //     .post(`/jobs/${id}/apply`, application)
+  //     .then(({ data }) => {
+  //       toast.success(data.message);
+  //       axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
+  //     })
+  //     .catch((err) => {
+  //       toast.error(err.response.data.message);
+  //     });
+  // };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    document.getElementById("apply_modal").close();
-    const applicantName = e.target.applicantName.value;
-    const resumeLink = e.target.resumeLink.value;
-    const coverLetter = e.target.coverLetter.value;
-    const status = "pending";
-    const companyName = job?.company;
-    const jobTitle = job?.title;
-    console.log(jobTitle);
-    const application = { applicantName, resumeLink, status, jobTitle, companyName };
-    if (coverLetter) {
-      application.coverLetter = coverLetter;
-    }
-    e.target.reset();
+   const form = e.target;
+   document.getElementById("apply_modal").close();
+   const applicantName = form.applicantName.value;
+     const file = form.resumeFile.files[0];
+     const coverLetter = form.coverLetter.value;
+         const formData = new FormData();
+         formData.append("applicantName", applicantName);
+         formData.append("file", file);
 
-    axiosSecure
-      .post(`/jobs/${id}/apply`, application)
-      .then(({ data }) => {
-        toast.success(data.message);
-        axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      });
-  };
+         if(coverLetter){
+          formData.append("coverLetter", coverLetter); 
+         }   
+        
+
+     axiosSecure.post(`/jobs/${id}/apply`,formData,{
+    headers : {"Content-Type" : "multipart/form-data"}
+   })
+   .then(({ data }) => {
+          toast.success(data.message);
+          axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
+           form.reset();
+
+        })
+        .catch((err) => {
+          toast.error(err.response.data.message);
+        });
+
+   
+  }
+
+
 
   const handleCancel = () => {
     axiosSecure
@@ -133,7 +176,7 @@ const JobDetails = () => {
           </div>
         </div>
       </div>
-      <dialog id="apply_modal" className="modal">
+      {/* <dialog id="apply_modal" className="modal">
         <div className="modal-box">
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -176,7 +219,51 @@ const JobDetails = () => {
             </button>
           </form>
         </div>
-      </dialog>
+      </dialog> */}
+
+<dialog id="apply_modal" className="modal">
+  <form onSubmit={handleSubmit} method="dialog" className="modal-box w-full max-w-3xl">
+    <h3 className="font-bold text-lg">Apply for the Job</h3>
+
+    {/* Name Input */}
+    <div className="form-control my-4">
+      <label className="label">
+        <span className="label-text">Name</span>
+      </label>
+      <input   name="applicantName"  defaultValue={user?.displayName} type="text" placeholder="Your Name" className="input input-bordered w-full" />
+    </div>
+
+    {/* Email Input */}
+    <div className="form-control my-4">
+      <label className="label">
+        <span className="label-text">Email</span>
+      </label>
+      <input name='email'  defaultValue={user?.email} type="email" placeholder="Your Email" className="input input-bordered w-full" />
+    </div>
+
+    {/* File Input for Resume */}
+    <div className="form-control my-4">
+      <label className="label">
+        <span className="label-text">Upload Resume</span>
+      </label>
+      <input name="resumeFile" type="file" className="file-input file-input-bordered file-input-primary w-full border-dashed" />
+    </div>
+
+    {/* Cover Letter Textarea */}
+    <div className="form-control my-4">
+      <label className="label">
+        <span className="label-text">Cover Letter</span>
+      </label>
+      <textarea  name="coverLetter" className="textarea textarea-bordered w-full h-48" placeholder="Write your cover letter here..."></textarea>
+    </div>
+
+    {/* Apply Button */}
+    <div className="modal-action">
+      <button type="submit" className="btn btn-primary ">Apply</button>
+    </div>
+  </form>
+</dialog>
+      
     </div>
   );
 };

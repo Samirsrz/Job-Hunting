@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
 
       {
         path: "/jobs",
-        element: <PrivateRoute><Jobs /></PrivateRoute>,
+        element: <PrivateRoute> <Jobs /></PrivateRoute>,
       },
       {
         path: "/jobs/:id",
