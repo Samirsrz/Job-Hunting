@@ -116,6 +116,18 @@ const JobDetails = () => {
       });
   };
 
+  const handleDeleteReview = () => {
+    axiosSecure
+      .delete(`/jobs/${id}/review`)
+      .then(({ data }) => {
+        toast.success(data.message);
+        axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
+
   return (
     <div>
       <Helmet>
@@ -341,9 +353,20 @@ const JobDetails = () => {
                 fullSymbol={<MdStar />}
               />
             </label>
-            <button className="btn btn-primary" type="submit">
-              Review
-            </button>
+            <div className="flex gap-3">
+              <button className="btn btn-primary grow" type="submit">
+                Review
+              </button>
+              {existingReview && (
+                <button
+                  onClick={handleDeleteReview}
+                  className="btn btn-error text-white grow"
+                >
+                  Remove
+                  <MdDelete className="inline" />
+                </button>
+              )}
+            </div>
           </form>
         </div>
       </dialog>
