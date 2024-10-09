@@ -4,6 +4,7 @@ import { FaSackDollar } from "react-icons/fa6";
 import { FiUsers } from "react-icons/fi";
 import { GoBell } from "react-icons/go";
 import { LuFileInput } from "react-icons/lu";
+import AdminRecharts from "../../components/AdminDashboard/AdminRecharts";
 
 const AdminStatistic = () => {
   return (
@@ -12,14 +13,15 @@ const AdminStatistic = () => {
         <div className="space-y-2">
           <h1 className="text-2xl font-bold">Welcome Back Abu Rahat</h1>
           <p className="text-sm text-gray-700 font-semibold">
-            you have <span className="text-blue-700">5 unread</span> notification
+            you have <span className="text-blue-700">5 unread</span>{" "}
+            notification
           </p>
         </div>
         <div>
           <div className="flex items-center  gap-4">
-          <div className="border rounded-full p-3 ">
-          <GoBell  className="text-xl"/>
-          </div>
+            <div className="border rounded-full p-3 ">
+              <GoBell className="text-xl" />
+            </div>
             <div className="stat-figure text-secondary">
               <div className="avatar">
                 <div className="w-12 rounded-full">
@@ -29,7 +31,9 @@ const AdminStatistic = () => {
             </div>
             <div className="pr-2">
               <div className="stat-title">Abu Rahat</div>
-              <div className="stat-desc text-secondary">Admin</div>
+              <div className="stat-desc font-semibold text-secondary">
+                Admin
+              </div>
             </div>
           </div>
         </div>
@@ -97,15 +101,15 @@ const AdminStatistic = () => {
               Earning
             </p>
             <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-            $ 05
+              $ 05
             </h4>
           </div>
         </div>
       </div>
+
+      <AdminRecharts/>
     </div>
   );
 };
 
 export default AdminStatistic;
-
-
