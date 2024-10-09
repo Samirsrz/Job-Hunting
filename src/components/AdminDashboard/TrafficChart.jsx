@@ -39,9 +39,15 @@ const TrafficChart = () => {
                 <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
                 <stop offset="95%" stopColor="#8884d8" stopOpacity={0.2} />
               </linearGradient>
+
               <linearGradient id="colorLastWeek" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#4ade80" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#11998E" stopOpacity={0.8} />
+                <stop
+                  offset="95%"
+                  stopColor="#11998E"
+                  stopOpacity={0.8}
+                  className="rounded-b-lg"
+                />
               </linearGradient>
             </defs>
 
