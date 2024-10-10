@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import Rating from "react-rating";
+// import Rating from "react-rating";
 import moment from "moment";
 import { FaLocationDot, FaClockRotateLeft, FaMessage } from "react-icons/fa6";
 import { LuFileType } from "react-icons/lu";
@@ -19,8 +19,8 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import JobCard from "../../components/jobs/JobCard";
 import { Helmet } from "react-helmet-async";
-import { Autoplay, EffectCards } from "swiper/modules";
-import { SwiperSlide, Swiper } from "swiper/react";
+// import { Autoplay, EffectCards } from "swiper/modules";
+// import { SwiperSlide, Swiper } from "swiper/react";
 import getRandomColor from "../../libs/getRandomColor";
 
 const JobDetails = () => {

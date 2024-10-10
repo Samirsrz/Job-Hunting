@@ -38,9 +38,9 @@ const ProfileCard = () => {
           <div className="">
             <div className="mb-5">
               <h2 className="text-2xl font-bold text-[#121224] flex gap-3 items-center">
-              {user?.displayName} <MdEdit className="text-gray-500 size-5"/>
+                {user?.displayName} <MdEdit className="text-gray-500 size-5" />
               </h2>
-              
+
               <p className="text-gray-500 text-sm">
                 Profile last updated -{" "}
                 <span className="font-semibold">Today</span>
@@ -63,7 +63,9 @@ const ProfileCard = () => {
                 </div>
                 <div className="flex items-center space-x-2 mt-2">
                   <CiCalendar className="text-gray-500 size-5" />
-                  <span className="text-gray-700">Add availability to join</span>
+                  <span className="text-gray-700">
+                    Add availability to join
+                  </span>
                 </div>
               </div>
               <div className="divider divider-horizontal"></div>
@@ -105,7 +107,7 @@ const ProfileCard = () => {
           </ul>
           {/* Add Details Button */}
           <button className="w-full mt-4 bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition-colors duration-200">
-            Add 11 missing details
+            Add missing details
           </button>
         </div>
       </div>

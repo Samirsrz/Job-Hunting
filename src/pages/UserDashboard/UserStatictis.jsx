@@ -1,8 +1,8 @@
 import React from "react";
 import { MdCancelPresentation, MdOutlineWork } from "react-icons/md";
 import { FaBookReader, FaRegCalendarCheck } from "react-icons/fa";
-import WelcomeCard from "./WelcomeCard";
-import PieCharts from "./PieCharts";
+import WelcomeCard from "../../components/UserDashboard/WelcomeCard";
+import PieCharts from "../../components/UserDashboard/PieCharts";
 
 const UserStatictis = () => {
   return (
