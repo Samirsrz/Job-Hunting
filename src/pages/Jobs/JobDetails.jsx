@@ -48,38 +48,39 @@ const JobDetails = () => {
       .then((data) => setRelatedJobs(data.data.data));
   }, [id]);
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    document.getElementById("apply_modal").close();
-    const applicantName = e.target.applicantName.value;
-    const resumeLink = e.target.resumeLink.value;
-    const coverLetter = e.target.coverLetter.value;
-    const status = "pending";
-    const companyName = job?.company;
-    const jobTitle = job?.title;
-    console.log(jobTitle);
-    const application = {
-      applicantName,
-      resumeLink,
-      status,
-      jobTitle,
-      companyName,
-    };
-    if (coverLetter) {
-      application.coverLetter = coverLetter;
-    }
-    e.target.reset();
+   const form = e.target;
+   document.getElementById("apply_modal").close();
+   const applicantName = form.applicantName.value;
+     const file = form.resumeFile.files[0];
+     const coverLetter = form.coverLetter.value;
+         const formData = new FormData();
+         formData.append("applicantName", applicantName);
+         formData.append("file", file);
 
-    axiosSecure
-      .post(`/jobs/${id}/apply`, application)
-      .then(({ data }) => {
-        toast.success(data.message);
-        axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      });
-  };
+         if(coverLetter){
+          formData.append("coverLetter", coverLetter); 
+         }   
+        
+
+     axiosSecure.post(`/jobs/${id}/apply`,formData,{
+    headers : {"Content-Type" : "multipart/form-data"}
+   })
+   .then(({ data }) => {
+          toast.success(data.message);
+          axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
+           form.reset();
+
+        })
+        .catch((err) => {
+          toast.error(err.response.data.message);
+        });
+
+   
+  }
+
 
   const handleReview = (e) => {
     e.preventDefault();
@@ -231,50 +232,58 @@ const JobDetails = () => {
       ) : (
         <p className="lg:m-10 m-4">No related jobs found!</p>
       )}
-      <dialog id="apply_modal" className="modal">
-        <div className="modal-box">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              ✕
-            </button>
-          </form>
-          <h3 className="font-bold text-lg">Apply for jobs!</h3>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4">
-            <label className="input input-bordered flex items-center gap-2">
-              Name
-              <input
-                defaultValue={user?.displayName}
-                type="text"
-                className="grow"
-                placeholder="Applicant Name"
-                name="applicantName"
-                required
-              />
-            </label>
-            <label className="input input-bordered flex items-center gap-2">
-              Resume
-              <input
-                type="text"
-                className="grow"
-                placeholder="Resume Link"
-                name="resumeLink"
-              />
-            </label>
-            <label className="input input-bordered flex items-center gap-2">
-              Letter
-              <input
-                type="text"
-                className="grow"
-                placeholder="Cover Letter"
-                name="coverLetter"
-              />
-            </label>
-            <button className="btn btn-primary" type="submit">
-              Apply
-            </button>
-          </form>
-        </div>
-      </dialog>
+
+
+ 
+<dialog id="apply_modal" className="modal">
+  <form onSubmit={handleSubmit} method="dialog" className="modal-box w-full max-w-3xl">
+    <h3 className="font-bold text-lg">Apply for the Job</h3>
+
+  
+    <div className="form-control my-4">
+      <label className="label">
+        <span className="label-text">Name</span>
+      </label>
+      <input   name="applicantName"  defaultValue={user?.displayName} type="text" placeholder="Your Name" className="input input-bordered w-full" />
+    </div>
+
+    
+    <div className="form-control my-4">
+      <label className="label">
+        <span className="label-text">Email</span>
+      </label>
+      <input name='email'  defaultValue={user?.email} type="email" placeholder="Your Email" className="input input-bordered w-full" />
+    </div>
+
+   
+    <div className="form-control my-4">
+      <label className="label">
+        <span className="label-text">Upload Resume</span>
+      </label>
+      <input name="resumeFile" type="file" className="file-input file-input-bordered file-input-primary w-full border-dashed" />
+    </div>
+
+
+    <div className="form-control my-4">
+      <label className="label">
+        <span className="label-text">Cover Letter</span>
+      </label>
+      <textarea  name="coverLetter" className="textarea textarea-bordered w-full h-48" placeholder="Write your cover letter here..."></textarea>
+    </div>
+
+    
+    <div className="modal-action">
+      <button type="submit" className="btn btn-primary ">Apply</button>
+    </div>
+  </form>
+</dialog>
+
+
+
+
+
+
+
       <dialog id="show_review_modal" className="modal">
         <div className="modal-box">
           <form method="dialog">
