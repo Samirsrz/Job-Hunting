@@ -58,7 +58,7 @@ const PostJobs = () => {
   return (
     <div>
       <Helmet>
-        <title>Job-Hunting | Post-Jobs</title>
+        <title>Next-Hire | Post-Jobs</title>
       </Helmet>
       <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
         <h1 className="lg:text-5xl my-7 font-bold">~~Post-Jobs Form~~</h1>

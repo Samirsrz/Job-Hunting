@@ -19,9 +19,10 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import JobCard from "../../components/jobs/JobCard";
 import { Helmet } from "react-helmet-async";
-// import { Autoplay, EffectCards } from "swiper/modules";
-// import { SwiperSlide, Swiper } from "swiper/react";
+import { Autoplay, EffectCards } from "swiper/modules";
+import { SwiperSlide, Swiper } from "swiper/react";
 import getRandomColor from "../../libs/getRandomColor";
+import Rating from "react-rating";
 
 const JobDetails = () => {
   const { user } = useAuth();

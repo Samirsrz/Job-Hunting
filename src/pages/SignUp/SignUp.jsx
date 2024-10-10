@@ -174,7 +174,7 @@ else{
           <div className="mb-8 text-center">
             <h1 className="my-3 text-6xl italic font-bold">~~Sign Up~~</h1>
             <p className="text-sm text-gray-500">
-              Create your Job-Hunting profile
+              Create your Next-Hire profile
             </p>
           </div>
           <form

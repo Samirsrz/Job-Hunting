@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import DepartmentsHiring from './DepartmentsHiring/DepartmentsHiring';
 import StandardCharteredJobs from './StandardCharteredJobs/StandardCharteredJobs';

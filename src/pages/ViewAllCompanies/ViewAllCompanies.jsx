@@ -112,7 +112,7 @@ const ViewAllCompanies = () => {
    
     
     return (
-        <section className=''>
+        <section className='max-w-screen-2xl m-auto'>
             <h1 className='font-bold text-3xl my-6 text-center'>Featured companies actively hiring</h1>
             <small className='w-[98%] flex justify-end'>Showing {featuredCompanies.totalJobs} companies</small>
             <aside className='grid grid-cols-1 md:grid-cols-[280px_1fr] gap-3 '>

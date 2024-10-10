@@ -53,7 +53,7 @@ const Jobs = () => {
   return (
     <div>
       <Helmet>
-        <title>Job Hunting | Jobs</title>
+        <title>Next-Hire | Jobs</title>
       </Helmet>
       <h1 className="text-center text-5xl font-bold mt-10 mb-6">
         Jobs ({jobs?.length})
