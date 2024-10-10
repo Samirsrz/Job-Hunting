@@ -1,19 +1,13 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import Login from "../../pages/Login/Login";
 import useAuth from "../../hooks/useAuth";
 import { CiDark, CiLight } from "react-icons/ci";
 import { HiOutlineLogout } from "react-icons/hi";
 import { FiLogIn } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import Lang from "../../libs/Lang";
-import { FaSearch } from "react-icons/fa";
 
-const SearchBar = () => (
-  <button className="py-2 flex gap-1 items-center justify-center px-1 md:hover:px-2 lg:px-4 rounded-full md:bg-white/20 hover:bg-white/40 hover:scale-105 md:rounded-md md:font-semibold">
-    <span className="hidden md:inline md:mr-1">Search now</span>
-    <FaSearch className="inline" />
-  </button>
-);
+
+
 const links = [
   {
     title: "Home",
@@ -22,14 +16,6 @@ const links = [
   {
     title: "Jobs",
     link: "/jobs",
-  },
-  {
-    title: "Categories",
-    link: "/categories",
-  },
-  {
-    title: "Employers",
-    link: "/employers",
   },
   {
     title: "About Us",
@@ -86,8 +72,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-primary">
-      <div id="sidebar" className="container max-w-screen-xl m-auto navbar  text-white">
+    <div className="  bg-slate-200 py-2  ">
+      <div
+        id="sidebar"
+        className="container max-w-screen-xl m-auto navbar   text-primary"
+      >
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -108,7 +97,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black dark:bg-gray-700 dark:text-white"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2  text-black dark:bg-gray-700 dark:text-white"
             >
               {links.map(({ title, link }, idx) => (
                 <li className="dark:hover:bg-gray-500 rounded-xl" key={idx}>
@@ -117,29 +106,30 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl font-semibold">Job Hunting</a>
+          <Link to='/' className="flex items-center justify-center gap-1 text-2xl font-bold"><img className="rounded-full"  src="https://i.ibb.co.com/gMWTKhm/nexthire-hiring-logo.jpg" alt="" /> Next Hire</Link>
+         
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className=" menu-horizontal space-x-3 px-6">
             {links.map(({ title, link }, idx) => (
               <li key={idx}>
-                <NavLink to={link}>{title}</NavLink>
+                <NavLink className="font-semibold p-2 text-xl  lg:px-5" to={link}>{title}</NavLink>
               </li>
             ))}
           </ul>
         </div>
         <div className="navbar-end flex items-center">
           <div className="md:mx-2 flex md:justify-center items-center h-full">
-            <SearchBar />
+     
             <button
               onClick={toggleDarkMode}
-              className="rounded-full hover:bg-white/40 py-2 px-1 text-2xl md:px-2 md:text-3xl"
+              className="rounded-full hover:bg-white/40 py-2 px-2 text-2xl md:px-2 md:text-3xl"
             >
               {isDarkMode ? <CiDark /> : <CiLight />}
             </button>
             <button
               onClick={changeLang}
-              className="mr-2 md:mr-0 rounded-full hover:bg-white/40 py-2 px-1 md:px-2 md:text-lg"
+              className="mr-2 md:mr-0 px-3 rounded-full hover:bg-white/40 py-2  md:px-2 md:text-lg"
             >
               {lang === Lang.EN ? "EN" : "BN"}
             </button>
@@ -183,7 +173,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-       
       </div>
     </div>
   );
