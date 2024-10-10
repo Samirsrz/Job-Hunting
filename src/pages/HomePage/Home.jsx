@@ -14,10 +14,6 @@ import SponsoredCompanies from "./SponsoredCompanies/SponsoredCompanies";
 
 import EventCard from "./UpcomingEvents/UpcomingEvents";
 import InterviewCompanies from "./InterviewCompanies/InterviewCompanies";
-import ViewAllCompanies from "../ViewAllCompanies/ViewAllCompanies";
-
-
-
 
 
 
@@ -47,7 +43,7 @@ const Home = () => {
 
       </div>
       <InterviewCompanies />
-      <ViewAllCompanies />
+     
       {/* <MainComponent /> */}
 
       <Helmet><title>Job Hunting | Home</title></Helmet>
