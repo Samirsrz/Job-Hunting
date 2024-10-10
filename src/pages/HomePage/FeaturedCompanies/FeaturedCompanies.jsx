@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { TbMinusVertical } from "react-icons/tb";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import companyFeatueredIcon from "../../../../public/company/4156.gif"
+import companyFeatueredIcon from "../../../../public/company/4156.gif";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useGetFeaturedJobsQuery } from "../../../RTK/Api/FeaturedJobsApi/FeaturedJobsApi";
@@ -33,7 +33,12 @@ const PrevArrow = ({ onClick, isVisible }) => {
 };
 
 const FeaturedCompanies = () => {
-  let { data: featuredJobs, isError, error, isLoading } = useGetFeaturedJobsQuery()
+  let {
+    data: featuredJobs,
+    isError,
+    error,
+    isLoading,
+  } = useGetFeaturedJobsQuery();
   //console.log(error);
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0); //
@@ -79,28 +84,33 @@ const FeaturedCompanies = () => {
   };
 
   if (isLoading) {
-    return <div className="flex justify-center"> <Blocks
-      height="80"
-      width="80"
-      color="#4fa94d"
-      ariaLabel="blocks-loading"
-      wrapperStyle={{}}
-      wrapperClass="blocks-wrapper"
-      visible={true}
-    /></div>
+    return (
+      <div className="flex justify-center">
+        {" "}
+        <Blocks
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          visible={true}
+        />
+      </div>
+    );
   }
 
   if (isError) {
-    return <h1>somethin went wrong</h1>
+    return <h1>somethin went wrong</h1>;
   }
 
   console.log(featuredJobs);
-  
 
   return (
-    <section>
+    <section className="mt-8">
+
       <div>
-        <h1 className="font-bold text-center text-3xl mb-3">
+        <h1 className="font-bold text-center text-3xl mb-6">
           {t("Featuredcompaniesactivelyhiring")}{" "}
         </h1>
         <div id="btns" className="flex justify-center space-x-4 mb-8">
@@ -118,48 +128,50 @@ const FeaturedCompanies = () => {
 
       <div className="relative ">
         <Slider {...settings}>
-          {featuredJobs?.length > 0 && featuredJobs.map((card, index) => (
-            <div key={index} className="p-4">
-              <div className="border text-center space-y-3 p-4 w-full rounded-xl hover:shadow-lg duration-200">
-                <div id="company-icon" className="flex justify-center">
-                  <img
-                    src={card.logo}
-                    alt="title image"
-                    className="w-full h-20 object-contain"
-                  />
-                </div>
-                <div
-                  id="company-title"
-                  className="p-4 rounded-lg flex flex-col gap-2 items-center"
-                  style={{ background: "rgb(247, 248, 251)" }}
-                >
-                  <h1>{card.companyName}</h1>
-                  <div className="flex items-center opacity-75">
-                    <FaStar className="text-yellow-500" /> <span>{card.ratings}</span>
-                    <TbMinusVertical />
-                    <p>4K+ reviews</p>
+          {featuredJobs?.length > 0 &&
+            featuredJobs.map((card, index) => (
+              <div key={index} className="px-4">
+                <div className="border  text-center space-y-3 p-4 w-full lg:h-80 rounded-xl hover:shadow-lg duration-200">
+                  <div id="company-icon" className="flex justify-center">
+                    <img
+                      src={card.logo}
+                      alt="title image"
+                      className="w-full h-20 object-contain"
+                    />
+                  </div>
+                  <div
+                    id="company-title"
+                    className="p-4 rounded-lg flex flex-col gap-2 items-center"
+                    style={{ background: "rgb(247, 248, 251)" }}
+                  >
+                    <h1>{card.companyName}</h1>
+                    <div className="flex items-center opacity-75">
+                      <FaStar className="text-yellow-500" />{" "}
+                      <span>{card.ratings}</span>
+                      <TbMinusVertical />
+                      <p>4K+ reviews</p>
+                    </div>
+                  </div>
+                  <div id="company-content">
+                    <p>{card.company_title}.</p>
+                  </div>
+                  <div>
+                    <Link
+                      to={`/jobs/viewAllJobsCompany/${card._id}`}
+                      className="w-full h-full"
+                    >
+                      <button className="relative rounded-3xl border-none hover:shadow-lg duration-300 text-blue-600 bg-blue-100 font-semibold px-4 py-2">
+                        View jobs
+                      </button>
+                    </Link>
                   </div>
                 </div>
-                <div id="company-content">
-                  <p>{card.company_title}.</p>
-                </div>
-                <div>
-                  <Link
-                    to={`/jobs/viewAllJobsCompany/${card._id}`}
-                    className="w-full h-full"
-                  >
-                    <button className="relative rounded-3xl border-none hover:shadow-lg duration-300 text-blue-600 bg-blue-100 font-semibold px-4 py-2">
-                      View jobs
-                    </button>
-                  </Link>
-                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </Slider>
       </div>
       <div className="text-center" id="view all companies button">
-        <button className="border hover:shadow-md hover:shadow-blue-700 duration-300 border-blue-600 px-4 py-2 rounded-3xl text-blue-600 font-semibold">
+        <button className="mt-8 border hover:shadow-md hover:shadow-blue-700 duration-300 border-blue-600 px-4 py-2 rounded-3xl text-blue-600 font-semibold">
           View all companies
         </button>
       </div>
