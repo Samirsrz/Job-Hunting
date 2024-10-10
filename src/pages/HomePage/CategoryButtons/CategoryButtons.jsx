@@ -1,5 +1,16 @@
-
-import { FaHome, FaBuilding, FaCertificate, FaUserGraduate, FaBriefcase, FaChartBar, FaChartLine, FaClipboardCheck, FaDesktop, FaRocket, FaHandshake } from "react-icons/fa";
+import {
+  FaHome,
+  FaBuilding,
+  FaCertificate,
+  FaUserGraduate,
+  FaBriefcase,
+  FaChartBar,
+  FaChartLine,
+  FaClipboardCheck,
+  FaDesktop,
+  FaRocket,
+  FaHandshake,
+} from "react-icons/fa";
 
 const categories = [
   { name: "Remote", icon: <FaHome /> },
@@ -14,17 +25,20 @@ const categories = [
   { name: "Software & IT", icon: <FaDesktop /> },
   { name: "Startup", icon: <FaRocket /> },
 ];
+// const sm = categories.splice(0, 5);
 
 const CategoryButtons = () => {
   return (
-    <div className="flex flex-wrap gap-4 justify-center p-5">
+    <div className={`flex flex-wrap gap-4 justify-center p-5 mt-8`}>
       {categories.map((category, index) => (
         <button
           key={index}
           className="flex items-center gap-2 px-4 py-3 border rounded-lg shadow-sm hover:shadow-lg hover:bg-gray-100 transition-all duration-200 ease-in-out w-48 justify-center"
         >
           <span className="text-2xl text-gray-700">{category.icon}</span>
-          <span className="text-lg font-medium text-gray-700">{category.name}</span>
+          <span className="text-lg font-medium text-gray-700">
+            {category.name}
+          </span>
         </button>
       ))}
     </div>

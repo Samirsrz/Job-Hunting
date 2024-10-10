@@ -2,64 +2,39 @@
 import { useState } from "react";
 import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import logo1 from '../../../../public/company/4467146.gif'; 
-import { useTranslation } from 'react-i18next';
+import logo1 from "../../../../public/company/4467146.gif";
+import { useTranslation } from "react-i18next";
 // Example company logos
 const categories = [
   {
     title: "MNCs",
     hiring: "1.9K+ are actively hiring",
-    logos: [
-      logo1,
-      logo1,
-      logo1,
-      logo1,
-    ],
+    logos: [logo1, logo1, logo1, logo1],
   },
   {
     title: "Internet",
     hiring: "194 are actively hiring",
-    logos: [
-      logo1,
-      logo1,
-      logo1,
-      logo1,
-    ],
+    logos: [logo1, logo1, logo1, logo1],
   },
   {
     title: "Manufacturing",
     hiring: "831 are actively hiring",
-    logos: [
-      logo1,
-      logo1,
-      logo1,
-      logo1,
-    ],
+    logos: [logo1, logo1, logo1, logo1],
   },
   {
     title: "Fortune 500",
     hiring: "107 are actively hiring",
-    logos: [
-      logo1,
-      logo1,
-      logo1,
-      logo1,
-    ],
+    logos: [logo1, logo1, logo1, logo1],
   },
   {
     title: "Product",
     hiring: "971 are actively hiring",
-    logos: [
-      logo1,
-      logo1,
-      logo1,
-    ],
+    logos: [logo1, logo1, logo1, logo1],
   },
 ];
 
 // Custom Arrow Components
 const NextArrow = ({ onClick, hide }) => {
-  
   return (
     <div
       className={`absolute top-1/2 right-0 transform -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300 ${
@@ -95,7 +70,6 @@ const CompanyCarousel = () => {
   };
 
   const settings = {
-    
     // dots: true,
     infinite: true,
     speed: 500,
@@ -128,13 +102,13 @@ const CompanyCarousel = () => {
   };
 
   return (
-    <div className="py-8 relative">
-      <h2 className="font-bold text-center text-3xl mb-8">
-      {t('Topcompanieshiringnow')} 
+    <div className="py-8 relative mb-8">
+      <h2 className="font-bold text-center text-3xl mb-5 mt-8">
+        {t("Topcompanieshiringnow")}
       </h2>
       <Slider {...settings}>
         {categories.map((category, index) => (
-          <div key={index} className="p-4" style={{ width: "auto" }}>
+          <div key={index} className="p-4 w-80">
             <div className="border rounded-lg p-4 shadow-lg h-full flex flex-col justify-between">
               <div>
                 <h3 className="text-xl font-semibold mb-2 flex items-center">
