@@ -66,7 +66,7 @@ const BiggestContest = () => {
         <h1 className="font-bold text-3xl text-white px-3 lg:p-0">
         {t('Bangladeshsbiggestskillcontesttohelpyoustandouttoreqruiters')} 
         </h1>
-        <button className="border border-white rounded-3xl px-4 mt-3 py-2 bg-[#5900f454] text-white font-semibold">
+        <button className="border mr-2 border-white rounded-3xl px-4 mt-3 py-2 bg-[#5900f454] text-white font-semibold">
         {t('winfromaprizepoolof2lacTk')} 
         </button>
         <button className="border border-white rounded-3xl px-4 mt-3 py-2 bg-[#5900f454] text-white font-semibold">

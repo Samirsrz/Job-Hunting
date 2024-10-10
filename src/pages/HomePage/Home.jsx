@@ -39,7 +39,7 @@ const Home = () => {
 
       <EventCard />
 
-      <div className="h-[15px]">
+      <div className="h-[30px]">
 
       </div>
       <InterviewCompanies />
