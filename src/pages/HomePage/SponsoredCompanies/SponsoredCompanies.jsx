@@ -100,7 +100,7 @@ const SponsoredCompanies = () => {
 
   return (
     <section className="mt-11 relative"> {/* Added relative position for arrows */}
-    <h1 className='font-bold text-center text-3xl my-2'>
+    <h1 className='font-bold text-center text-3xl my-8'>
       {t('Sponsoredcompanies')}   </h1>
       <div id="btns" className="flex flex-wrap gap-3 justify-center">
         {categories.map((category, index) => {

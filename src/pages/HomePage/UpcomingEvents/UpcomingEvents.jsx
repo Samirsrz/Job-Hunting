@@ -69,7 +69,7 @@ const EventCard = () =>
   };
 
   return (
-    <div className="mt-11">
+    <div className="mt-16">
       <section className="flex flex-col lg:flex-row mb-6 gap-3 overflow-hidden">
 
         {/* Sidebar for the title and image */}
