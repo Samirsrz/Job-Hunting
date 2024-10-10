@@ -18,6 +18,11 @@ import CompanyProfile from "../components/companyForm/CompanyProfile";
 import Statictis from "../DashboardLayout/Statictis";
 import AdminStatistic from "../pages/AdminDashboard/AdminStatistic";
 
+import VeiwCompanyJob from "../pages/ViewAllJobsCompany/ViewCompanyJob/VeiwCompanyJob";
+import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
+import PrivateRoute from "./PrivateRoute";
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -48,16 +53,28 @@ export const router = createBrowserRouter([
 
       {
         path: "/jobs",
-        element: <Jobs />,
+        element: <PrivateRoute> <Jobs /></PrivateRoute>,
       },
       {
         path: "/jobs/:id",
-        element: <JobDetails />,
+        element: (
+          <PrivateRoute>
+            <JobDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/jobs/viewAllJobsCompany/:id",
         element: <ViewAllJobsCompany />,
       },
+      {
+        path: "/view-company-job/:id",
+        element: <VeiwCompanyJob/>,
+      },
+      {
+        path:'view-all-companies',
+        element:<ViewAllCompanies/>
+      }
     ],
   },
 

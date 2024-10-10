@@ -15,7 +15,7 @@ const JobCard = ({ job }) => {
       </div>
       <p className="text-sm text-black grow">{job?.des}</p>
       <div className="flex gap-2 justify-center">
-        <Link to={`${job?._id}`}>
+        <Link to={`/jobs/${job?._id}`}>
           <button className="btn btn-sm bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-300 mt-4">
             View <TbListDetails className="inline" />
           </button>

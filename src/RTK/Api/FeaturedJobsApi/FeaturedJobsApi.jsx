@@ -32,6 +32,14 @@ let featuredJobsApi = createApi({
         getCompanyBasedJobs:builder.query({
             query:({page,limit,companyName})=>`/company/jobs?page=${page}&limit=${limit}&companyName=${companyName}`,
             providesTags:['CompanyJobs']
+        }),
+        getRandom5InterestedJobs:builder.query({
+            query:()=> '/company/collection/interested',
+            providesTags:['CompanyJobs']
+        }),
+        getFeaturedComanies:builder.query({
+            query:({page,limit})=> `/featured/company/jobs?page=${page}&limit=${limit}`,
+            providesTags:['FeaturedJobs']
         })
     })
 })
@@ -43,6 +51,8 @@ export let {
     useAddFollowerMutation,
     useGetuserFromFollowersQuery,
     useUnfollowCompanyMutation,
-    useGetCompanyBasedJobsQuery
+    useGetCompanyBasedJobsQuery,
+    useGetRandom5InterestedJobsQuery,
+    useGetFeaturedComaniesQuery
 } = featuredJobsApi
 export default featuredJobsApi
