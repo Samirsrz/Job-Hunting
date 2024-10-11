@@ -75,7 +75,7 @@ const EventCard = () =>
         {/* Sidebar for the title and image */}
         <aside className="w-full lg:w-[30%] text-center mb-4 lg:mb-0 md:p-2">
           <h1 className="font-bold text-xl lg:text-3xl">
-          {t('Upcoming events and')}  <br />  {t('challenges')}
+          {t('Upcomingeventsand')}  <br />  {t('challenges')}
           </h1>
           <div className="w-full flex justify-center">
             <img className="w-[50%] lg:w-[70%]" src="https://static.naukimg.com/s/0/0/i/Events/eventsSwiperLeft-ot.png" alt="" />
