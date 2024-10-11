@@ -51,6 +51,7 @@ const Sidebar = () => {
               />
             </Link>
           </div>
+      
         </div>
 
         <button
@@ -72,13 +73,16 @@ const Sidebar = () => {
           <div>
             <div className="w-full hidden md:flex px-4 py-4 shadow-lg rounded-lg justify-center items-center mx-auto">
               <Link to="/">
-                <img
-                  className="hidden md:block rounded-full"
+             <p>   <img
+                  className="hidden lg:inline md:block rounded-full"
                   src="https://i.ibb.co.com/gMWTKhm/nexthire-hiring-logo.jpg"
                   alt="logo"
                   width="200"
                   height="200"
                 />
+               <span className="font-bold text-pretty text-2xl text-primary"> Next-Hire</span>
+                </p>
+            
               </Link>
             </div>
           </div>

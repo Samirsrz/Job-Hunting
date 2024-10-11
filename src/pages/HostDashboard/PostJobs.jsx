@@ -4,7 +4,7 @@ import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { imageUpload } from "../../api/utils";
 import toast from "react-hot-toast";
-import useAxiosCommon, { axiosCommon } from "../../hooks/useAxiosCommon";
+
 
 const PostJobs = () => {
   const [loading, setLoading] = useState(false);
@@ -22,6 +22,7 @@ const PostJobs = () => {
     const salary = form.salary.value;
     const location = form.location.value;
     const description = form.description.value;
+    const experience = form.experience.value;
     const image = form.image.files[0];
 
     try {
@@ -36,6 +37,7 @@ const PostJobs = () => {
         location,
         description,
         logo,
+        experience
       };
 
       const { data } = await axiosSecure.post(`/jobs/new`, jobData);
@@ -71,22 +73,14 @@ const PostJobs = () => {
                   Company Name
                 </label>
 
-                <select
+                <input
                   required
+                  placeholder="Company Name"
                   className="w-full px-4 py-3 border-primary focus:outline-blue-800 rounded-md"
                   name="company"
                   id="company"
-                >
-                  {/* <option defaultValue="" disabled selected>Select your company</option> */}
-                  <option value="google">Google</option>
-                  <option value="microsoft">Microsoft</option>
-                  <option value="amazon">Amazon</option>
-                  <option value="apple">Apple</option>
-                  <option value="facebook">Facebook</option>
-                  <option value="netflix">Netflix</option>
-                  <option value="tesla">Tesla</option>
-                  <option value="adobe">Adobe</option>
-                </select>
+                />
+               
               </div>
 
               <div className="space-y-1 text-sm">
@@ -177,6 +171,29 @@ const PostJobs = () => {
                   />
                 </div>
               </div>
+              
+              <div className="space-y-1 text-sm">
+                <label htmlFor="job-type" className="block text-gray-600">
+                  Experience
+                </label>
+                <select
+                  required
+                  className="w-full px-4 py-3 border-primary focus:outline-blue-800 rounded-md"
+                  name="experience"
+                  id="experience"
+                >
+             
+                  <option>fresher</option>
+                  <option>1-year</option>
+                  <option>2-year</option>
+                  <option>3-year</option>
+                  <option>4-year</option>
+                </select>
+              </div>
+
+
+
+
 
               <div className="justify-between gap-2">
                 <div className="space-y-1 text-sm">
