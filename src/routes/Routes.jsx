@@ -21,6 +21,7 @@ import AdminStatistic from "../pages/AdminDashboard/AdminStatistic";
 import VeiwCompanyJob from "../pages/ViewAllJobsCompany/ViewCompanyJob/VeiwCompanyJob";
 import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../pages/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -115,6 +116,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/alluser",
         element: <AllUser />,
+      },
+      {
+        path: "/dashboard/payment",
+        element: <Payment/>,
       },
     ],
   },

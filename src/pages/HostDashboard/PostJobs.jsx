@@ -4,7 +4,8 @@ import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { imageUpload } from "../../api/utils";
 import toast from "react-hot-toast";
-import useAxiosCommon, { axiosCommon } from "../../hooks/useAxiosCommon";
+import { Link } from "react-router-dom";
+
 
 const PostJobs = () => {
   const [loading, setLoading] = useState(false);
@@ -22,6 +23,7 @@ const PostJobs = () => {
     const salary = form.salary.value;
     const location = form.location.value;
     const description = form.description.value;
+    const experience = form.experience.value;
     const image = form.image.files[0];
 
     try {
@@ -36,6 +38,7 @@ const PostJobs = () => {
         location,
         description,
         logo,
+        experience
       };
 
       const { data } = await axiosSecure.post(`/jobs/new`, jobData);
@@ -71,22 +74,14 @@ const PostJobs = () => {
                   Company Name
                 </label>
 
-                <select
+                <input
                   required
+                  placeholder="Company Name"
                   className="w-full px-4 py-3 border-primary focus:outline-blue-800 rounded-md"
                   name="company"
                   id="company"
-                >
-                  {/* <option defaultValue="" disabled selected>Select your company</option> */}
-                  <option value="google">Google</option>
-                  <option value="microsoft">Microsoft</option>
-                  <option value="amazon">Amazon</option>
-                  <option value="apple">Apple</option>
-                  <option value="facebook">Facebook</option>
-                  <option value="netflix">Netflix</option>
-                  <option value="tesla">Tesla</option>
-                  <option value="adobe">Adobe</option>
-                </select>
+                />
+               
               </div>
 
               <div className="space-y-1 text-sm">
@@ -177,6 +172,29 @@ const PostJobs = () => {
                   />
                 </div>
               </div>
+              
+              <div className="space-y-1 text-sm">
+                <label htmlFor="job-type" className="block text-gray-600">
+                  Experience
+                </label>
+                <select
+                  required
+                  className="w-full px-4 py-3 border-primary focus:outline-blue-800 rounded-md"
+                  name="experience"
+                  id="experience"
+                >
+             
+                  <option>fresher</option>
+                  <option>1-year</option>
+                  <option>2-year</option>
+                  <option>3-year</option>
+                  <option>4-year</option>
+                </select>
+              </div>
+
+
+
+
 
               <div className="justify-between gap-2">
                 <div className="space-y-1 text-sm">
@@ -207,6 +225,34 @@ const PostJobs = () => {
               </div>
             </div>
           </div>
+
+             <Link to='/dashboard/payment'>
+             <div className="flex justify-center space-x-6 py-8">
+
+  <div className="card bg-gray-100 rounded-lg shadow-lg p-8 text-center w-1/3">
+    <h2 className="text-2xl font-bold mb-4">Regular Membership</h2>
+    <p className="text-gray-700 mb-6">Basic job posting with standard visibility.</p>
+    <p className="text-xl font-semibold mb-6">$10 per/month</p>
+    <p className="bg-blue-500 text-white font-semibold py-2 px-6 rounded hover:bg-blue-600 transition block">
+      Select Regular
+    </p>
+  </div>
+
+
+  <div className="card bg-yellow-100 rounded-lg shadow-lg p-8 text-center w-1/3">
+    <h2 className="text-2xl font-bold mb-4">Premium Membership</h2>
+    <p className="text-gray-700 mb-6">Featured job posting with high visibility and priority listing.</p>
+    <p className="text-xl font-semibold mb-6">$100 per/year</p>
+    <p className="bg-green-500 text-white font-semibold py-2 px-6 rounded hover:bg-green-600 transition block">
+      Select Premium
+    </p>
+  </div>
+</div>
+
+</Link>
+
+
+
 
           <button
             disabled={loading}
