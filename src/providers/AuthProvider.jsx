@@ -7,18 +7,17 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
-  signOut,
   updateProfile,
 } from "firebase/auth";
+import { axiosCommon } from "../hooks/useAxiosCommon";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
-// const key = import.meta.env.VITE_apiKey;
-// console.log(key);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -42,25 +41,36 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  const logOut = async () => {
-    setLoading(true);
-    // await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-    //   withCredentials: true,
-    // })
-    return signOut(auth);
+  const logOut = () => {
+    try {
+      auth.signOut().then(() => {
+        localStorage.removeItem("access-token");
+      });
+    } catch (err) {
+      toast.error(err);
+    }
   };
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      if (currentUser) {
-        console.log("this is user");
-      }
+    const unSubscribe = onAuthStateChanged(auth, (user) => {
       setLoading(false);
+      setUser(user);
+      if (user) {
+        const userInfo = { email: user?.email };
+        axiosCommon.post("/jwt", userInfo).then(({ data }) => {
+          if (data?.token) {
+            localStorage.setItem("access-token", data.token);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+      }
     });
     return () => {
-      return unsubscribe();
+      unSubscribe();
     };
   }, []);
+
   const authInfo = {
     user,
     loading,
