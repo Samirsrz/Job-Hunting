@@ -15,6 +15,7 @@
     "@mui/material": "^6.1.1",
     "@mui/x-charts": "^7.18.0",
     "@reduxjs/toolkit": "^2.2.7",
+    "@stripe/react-stripe-js": "^2.8.1",
     "axios": "^1.7.7",
     "d3-scale": "^4.0.2",
     "firebase": "^10.13.1",
