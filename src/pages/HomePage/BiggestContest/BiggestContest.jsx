@@ -1,6 +1,7 @@
 // import React from "react";
 import "./BiggestContest.css"; // Create a separate CSS file for the animation styles
-import companyContest from "../../../../public/company/838020_file.svg";
+// import companyContest from "../../../../public/company/838020_file.svg";
+import companyContest from "../../../../public/company/ad.jpg";
 import { useTranslation } from 'react-i18next';
 
 
