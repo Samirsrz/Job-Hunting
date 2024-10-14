@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Categories from "../pages/Categories/Categories";
 import App from "../App";
 import Home from "../pages/HomePage/Home";
+import Ai from "../pages/Ai/ai";
 import SignUp from "../pages/SignUp/SignUp";
 import Jobs from "../pages/Jobs/Jobs";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
@@ -23,7 +24,6 @@ import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Payment/Payment";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +40,10 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/ai",
+        element: <Ai />,
+      },
+      {
         path: "/categories",
         element: <Categories />,
       },
@@ -54,7 +58,12 @@ export const router = createBrowserRouter([
 
       {
         path: "/jobs",
-        element: <PrivateRoute> <Jobs /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Jobs />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/jobs/:id",
@@ -70,12 +79,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/view-company-job/:id",
-        element: <VeiwCompanyJob/>,
+        element: <VeiwCompanyJob />,
       },
       {
-        path:'view-all-companies',
-        element:<ViewAllCompanies/>
-      }
+        path: "view-all-companies",
+        element: <ViewAllCompanies />,
+      },
     ],
   },
 
@@ -119,7 +128,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/payment",
-        element: <Payment/>,
+        element: <Payment />,
       },
     ],
   },
