@@ -34,7 +34,7 @@ const Sidebar = () => {
     setActive(!isActive);
   };
   if (setLoading) <p>loading...</p>;
-  
+
   return (
     <div>
       {/* Small Screen Navbar */}
@@ -51,7 +51,6 @@ const Sidebar = () => {
               />
             </Link>
           </div>
-      
         </div>
 
         <button
@@ -73,16 +72,20 @@ const Sidebar = () => {
           <div>
             <div className="w-full hidden md:flex px-4 py-4 shadow-lg rounded-lg justify-center items-center mx-auto">
               <Link to="/">
-             <p>   <img
-                  className="hidden lg:inline md:block rounded-full"
-                  src="https://i.ibb.co.com/gMWTKhm/nexthire-hiring-logo.jpg"
-                  alt="logo"
-                  width="200"
-                  height="200"
-                />
-               <span className="font-bold text-pretty text-2xl text-primary"> Next-Hire</span>
+                <p>
+                  {" "}
+                  <img
+                    className="hidden lg:inline md:block rounded-full"
+                    src="https://i.ibb.co.com/gMWTKhm/nexthire-hiring-logo.jpg"
+                    alt="logo"
+                    width="200"
+                    height="200"
+                  />
+                  <span className="font-bold text-pretty text-2xl text-primary">
+                    {" "}
+                    Next-Hire
+                  </span>
                 </p>
-            
               </Link>
             </div>
           </div>
@@ -110,63 +113,70 @@ const Sidebar = () => {
 
               {/* View Jobs --> guest and admin*/}
               {loginUser?.role == "admin" && "host" && (
-              <div>
+                <div>
                   <NavLink
-                  to="/jobs"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <BsFillHouseAddFill className="w-5 h-5" />
+                    to="/dashboard/viewjobs"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <BsFillHouseAddFill className="w-5 h-5" />
 
-                  <span className="mx-4 font-medium">View Jobs</span>
-                </NavLink>
+                    <span className="mx-4 font-medium">View Jobs</span>
+                  </NavLink>
 
+                  <NavLink
+                    to="/dashboard/payment"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <FaCcApplePay className="w-5 h-5" />
 
-                <NavLink
-                  to="/dashboard/payment"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <FaCcApplePay className="w-5 h-5" />
-
-                  <span className="mx-4 font-medium">Payment Management</span>
-                </NavLink>
-              </div>
+                    <span className="mx-4 font-medium">Payment Management</span>
+                  </NavLink>
+                </div>
               )}
 
               {/*Post jobs ---> Host*/}
               {loginUser?.role == "host" && (
                 <div>
                   <NavLink
-                  to="/dashboard/post-jobs"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <MdHomeWork className="w-5 h-5" />
+                    to="/dashboard/post-jobs"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <MdHomeWork className="w-5 h-5" />
 
-                  <span className="mx-4 font-medium">Post Jobs</span>
-                </NavLink>
+                    <span className="mx-4 font-medium">Post Jobs</span>
+                  </NavLink>
                   <NavLink
-                  to="/dashboard/payment"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <FaCcApplePay className="w-5 h-5" />
+                    to="/dashboard/payment"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <FaCcApplePay className="w-5 h-5" />
 
-                  <span className="mx-4 font-medium">Payment Management</span>
-                </NavLink>
+                    <span className="mx-4 font-medium">Payment Management</span>
+                  </NavLink>
                 </div>
               )}
 

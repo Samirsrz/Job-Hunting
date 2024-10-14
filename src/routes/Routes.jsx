@@ -22,7 +22,7 @@ import VeiwCompanyJob from "../pages/ViewAllJobsCompany/ViewCompanyJob/VeiwCompa
 import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Payment/Payment";
-
+import ViewJobs from "../DashboardLayout/ViewJobs";
 
 export const router = createBrowserRouter([
   {
@@ -54,7 +54,12 @@ export const router = createBrowserRouter([
 
       {
         path: "/jobs",
-        element: <PrivateRoute> <Jobs /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Jobs />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/jobs/:id",
@@ -70,12 +75,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/view-company-job/:id",
-        element: <VeiwCompanyJob/>,
+        element: <VeiwCompanyJob />,
       },
       {
-        path:'view-all-companies',
-        element:<ViewAllCompanies/>
-      }
+        path: "view-all-companies",
+        element: <ViewAllCompanies />,
+      },
     ],
   },
 
@@ -119,7 +124,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/payment",
-        element: <Payment/>,
+        element: <Payment />,
+      },
+      {
+        path: "/dashboard/viewjobs",
+        element: <ViewJobs />,
       },
     ],
   },
