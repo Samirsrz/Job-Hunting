@@ -111,10 +111,25 @@ const Sidebar = () => {
                 <span className="mx-4 font-medium">Statistics</span>
               </NavLink>
 
+
+              <NavLink
+                to="/dashboard/viewjobs"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  } ${loginUser?.role =="guest" && "hidden"}`
+                }
+              >
+                <BsFillHouseAddFill className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">View Jobs</span>
+              </NavLink>
+
+
               {/* View Jobs --> guest and admin*/}
               {loginUser?.role == "admin" && "host" && (
                 <div>
-                  <NavLink
+                  {/* <NavLink
                     to="/dashboard/viewjobs"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
@@ -127,7 +142,7 @@ const Sidebar = () => {
                     <BsFillHouseAddFill className="w-5 h-5" />
 
                     <span className="mx-4 font-medium">View Jobs</span>
-                  </NavLink>
+                  </NavLink> */}
 
                   <NavLink
                     to="/dashboard/payment"
