@@ -7,47 +7,47 @@ import Rating from "react-rating";
 import { MdStar, MdStarBorder } from "react-icons/md";
 import Swal from "sweetalert2";
 
-const ViewHostJobs = () => {
+const ManageApplication = () => {
   const { user, loading, setLoading } = useAuth();
   const [jobs, setJobs] = useState();
   const axiosSequre = useAxiosSecure();
 
   //fetch jobs data by email
-  try {
-    setLoading(true);
+  //   try {
+  //     setLoading(true);
 
-    axiosSequre
-      .get(`/job?email=${user?.email}`)
-      .then((res) => setJobs(res.data));
-  } catch (error) {
-    console.log(error);
-  }
-  setLoading(false);
+  //     axiosSequre
+  //       .get(`/job?email=${user?.email}`)
+  //       .then((res) => setJobs(res.data));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   setLoading(false);
 
   //handle Delete function
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to delete Post!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSequre.delete(`/job/${id}`).then((res) => {
-          if (res.data.deletedCount) {
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your post has been deleted.",
-              icon: "success",
-            });
-          }
-        });
-      }
-    });
-  };
+  //   const handleDelete = (id) => {
+  //     Swal.fire({
+  //       title: "Are you sure?",
+  //       text: "You won't be able to delete Post!",
+  //       icon: "warning",
+  //       showCancelButton: true,
+  //       confirmButtonColor: "#3085d6",
+  //       cancelButtonColor: "#d33",
+  //       confirmButtonText: "Yes, delete it!",
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+  //         axiosSequre.delete(`/job/${id}`).then((res) => {
+  //           if (res.data.deletedCount) {
+  //             Swal.fire({
+  //               title: "Deleted!",
+  //               text: "Your post has been deleted.",
+  //               icon: "success",
+  //             });
+  //           }
+  //         });
+  //       }
+  //     });
+  //   };
 
   return (
     <>
@@ -57,11 +57,11 @@ const ViewHostJobs = () => {
         <div className="mt-14">
           <div className="flex items-center gap-x-3 mb-5">
             <h2 className="text-lg font-medium text-gray-800 dark:text-white">
-              Total Post
+              Total application{" "}
             </h2>
 
             <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-              {jobs?.length} post
+              {jobs?.length} application
             </span>
           </div>
           <div className="overflow-x-auto">
@@ -70,9 +70,9 @@ const ViewHostJobs = () => {
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>Name</th>
                   <th>Job Title</th>
-                  <th>Rating</th>
-                  <th>Reviews</th>
+                  <th>Status</th>
                   <th>Teams</th>
                 </tr>
               </thead>
@@ -136,4 +136,4 @@ const ViewHostJobs = () => {
   );
 };
 
-export default ViewHostJobs;
+export default ManageApplication;

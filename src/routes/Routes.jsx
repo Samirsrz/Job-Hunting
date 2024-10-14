@@ -23,6 +23,7 @@ import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Payment/Payment";
 import ViewJobs from "../DashboardLayout/ViewJobs";
+import ManageApplication from "../pages/HostDashboard/ManageApplication";
 
 export const router = createBrowserRouter([
   {
@@ -129,6 +130,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/viewjobs",
         element: <ViewJobs />,
+      },
+      {
+        path: "/dashboard/manage_application",
+        element: <ManageApplication />,
       },
     ],
   },
