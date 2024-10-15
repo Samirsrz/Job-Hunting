@@ -1,27 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
-
+import toast from "react-hot-toast";
 
 const ManageApplication = () => {
   const { user, loading, setLoading } = useAuth();
   const axiosSequre = useAxiosSecure();
   const [applications, setApplications] = useState([]);
 
-  //fetch jobs data by email
-  try {
-    setLoading(true);
-    axiosSequre
-      .get(`/applications-host?email=${user?.email}`)
-      .then((res) => setApplications(res.data));
-  } catch (error) {
-    console.log(error);
-  } finally {
-    setLoading(false);
-  }
-  //handle Delete function
+  // Fetch jobs data by email inside useEffect
+  useEffect(() => {
+    const fetchApplications = async () => {
+      try {
+        setLoading(true);
+        const res = await axiosSequre.get(
+          `/applications-host?email=${user?.email}`
+        );
+        setApplications(res.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user?.email) {
+      fetchApplications();
+    }
+  }, [user, axiosSequre, setLoading]);
+
+  // Handle Delete function
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -33,7 +43,6 @@ const ManageApplication = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // here get delet data
         axiosSequre.delete(`/application/${id}`).then((res) => {
           if (res.data.deletedCount) {
             Swal.fire({
@@ -41,14 +50,15 @@ const ManageApplication = () => {
               text: "Your file has been deleted.",
               icon: "success",
             });
+            setApplications((prev) => prev.filter((app) => app._id !== id));
           }
         });
       }
     });
   };
 
-  //Resume downloader
-  function handleFileDownload(fileId) {
+  // Resume downloader
+  const handleFileDownload = (fileId) => {
     const url = `${import.meta.env.VITE_API_URL}/resume/${fileId}`;
     const link = document.createElement("a");
     link.href = url;
@@ -56,25 +66,45 @@ const ManageApplication = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }
+  };
+
+  // Update application status
+  const handleStatus = (id) => {
+    const status = document.getElementById(`status-${id}`).value;
+    console.log("Updated status for ID:", id, "Status:", status);
+
+    //  now send the status update to the server
+    axiosSequre
+      .put(`/applications/${id}`, { status })
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          setApplications((prev) =>
+            prev.map((app) => (app._id === id ? { ...app, status } : app))
+          );
+          toast.success("update");
+        }
+      })
+      .catch((error) => {
+        console.log("Error updating status:", error);
+      });
+  };
 
   return (
     <>
       {loading ? (
-        <d>loading...</d>
+        <div>Loading...</div>
       ) : (
         <div className="overflow-x-auto mt-14">
           <div className="flex items-center gap-x-3 mb-5">
             <h2 className="text-lg font-medium text-gray-800 dark:text-white">
               Total Application
             </h2>
-
             <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-              {applications?.length} application
+              {applications?.length} application(s)
             </span>
           </div>
           <table className="table">
-            {/* head */}
+            {/* Table head */}
             <thead>
               <tr>
                 <th>#</th>
@@ -82,7 +112,7 @@ const ManageApplication = () => {
                 <th>Job Title</th>
                 <th>Status</th>
                 <th>Resume</th>
-                <th></th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -93,48 +123,51 @@ const ManageApplication = () => {
                     <div className="flex items-center gap-3">
                       <div>
                         <div className="font-bold">
-                          {application.applicant.name}
+                          {application?.applicant?.name}
                         </div>
                         <div className="text-sm opacity-50">
-                          {application.email}
+                          {application?.email}
                         </div>
                       </div>
                     </div>
                   </td>
                   <td>
-                    {application.jobTitle}
+                    {application?.jobTitle}
                     <br />
                     <span className="badge badge-ghost badge-sm">
-                      {application.company}
+                      {application?.company}
                     </span>
                   </td>
                   <td>
-                    <select className="select select-info select-sm max-w-xs">
-                      <option disabled selected>
-                        {application.status}
-                      </option>
-                      <option>View</option>
-                      <option>reject</option>
+                    <select
+                      onChange={() => handleStatus(application?._id)}
+                      name="status"
+                      id={`status-${application._id}`}
+                      className="select select-info select-sm max-w-xs"
+                      defaultValue={application?.status}
+                    >
+                      <option value="pending">pending</option>
+                      <option value="View">View</option>
+                      <option value="Reject">Reject</option>
                     </select>
                   </td>
-                  <th>
+                  <td>
                     <button
-                      onClick={() => handleFileDownload(application.resume)}
+                      onClick={() => handleFileDownload(application?.resume)}
                       className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400"
                     >
                       View
                     </button>
-                  </th>
-
-                  <th>
+                  </td>
+                  <td>
                     <button
-                      onClick={() => handleDelete(application._id)}
+                      onClick={() => handleDelete(application?._id)}
                       className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none tooltip tooltip-left"
                       data-tip="Delete"
                     >
                       <RiDeleteBin5Line className="text-xl" />
                     </button>
-                  </th>
+                  </td>
                 </tr>
               ))}
             </tbody>
