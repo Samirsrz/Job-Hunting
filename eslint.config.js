@@ -17,11 +17,17 @@ export default [
         sourceType: "module",
       },
     },
+    env: {
+      browser: true,
+      es2020: true,
+      "vitest-globals/env": true,
+    },
     settings: { react: { version: "18.3" } },
     plugins: {
       react,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
+      "vitest-globals": true,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -35,5 +41,12 @@ export default [
       ],
       "react/prop-types": "off",
     },
+    extends: [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:react-hooks/recommended",
+      "plugin:vitest-globals/recommended",
+    ],
   },
 ];

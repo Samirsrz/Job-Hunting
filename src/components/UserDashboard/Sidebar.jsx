@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
 import { BsFillHouseAddFill } from "react-icons/bs";
-
+import { FaCcApplePay } from "react-icons/fa";
 import { MdHomeWork } from "react-icons/md";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
@@ -51,6 +51,7 @@ const Sidebar = () => {
               />
             </Link>
           </div>
+      
         </div>
 
         <button
@@ -72,13 +73,16 @@ const Sidebar = () => {
           <div>
             <div className="w-full hidden md:flex px-4 py-4 shadow-lg rounded-lg justify-center items-center mx-auto">
               <Link to="/">
-                <img
-                  className="hidden md:block rounded-full"
+             <p>   <img
+                  className="hidden lg:inline md:block rounded-full"
                   src="https://i.ibb.co.com/gMWTKhm/nexthire-hiring-logo.jpg"
                   alt="logo"
                   width="200"
                   height="200"
                 />
+               <span className="font-bold text-pretty text-2xl text-primary"> Next-Hire</span>
+                </p>
+            
               </Link>
             </div>
           </div>
@@ -106,7 +110,8 @@ const Sidebar = () => {
 
               {/* View Jobs --> guest and admin*/}
               {loginUser?.role == "admin" && "host" && (
-                <NavLink
+              <div>
+                  <NavLink
                   to="/jobs"
                   className={({ isActive }) =>
                     `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
@@ -118,11 +123,27 @@ const Sidebar = () => {
 
                   <span className="mx-4 font-medium">View Jobs</span>
                 </NavLink>
+
+
+                <NavLink
+                  to="/dashboard/payment"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <FaCcApplePay className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Payment Management</span>
+                </NavLink>
+              </div>
               )}
 
               {/*Post jobs ---> Host*/}
               {loginUser?.role == "host" && (
-                <NavLink
+                <div>
+                  <NavLink
                   to="/dashboard/post-jobs"
                   className={({ isActive }) =>
                     `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
@@ -133,6 +154,35 @@ const Sidebar = () => {
                   <MdHomeWork className="w-5 h-5" />
 
                   <span className="mx-4 font-medium">Post Jobs</span>
+                </NavLink>
+                  <NavLink
+                  to="/dashboard/payment"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <FaCcApplePay className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Payment Management</span>
+                </NavLink>
+                </div>
+              )}
+              {/* create mock interview */}
+              
+              {loginUser?.role == "host" && (
+                <NavLink
+                  to="/dashboard/interview-schedule"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <MdHomeWork className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Interview schedule</span>
                 </NavLink>
               )}
 
