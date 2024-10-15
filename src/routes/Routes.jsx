@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Categories from "../pages/Categories/Categories";
 import App from "../App";
 import Home from "../pages/HomePage/Home";
+import Ai from "../pages/Ai/ai";
 import SignUp from "../pages/SignUp/SignUp";
 import Jobs from "../pages/Jobs/Jobs";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/ai",
+        element: <Ai />,
       },
       {
         path: "/categories",
@@ -105,6 +110,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/post-jobs",
         element: <PostJobs />,
+      },
+      {
+        path: "/dashboard/interview-schedule",
+        element: <InterviewSchedule></InterviewSchedule>
       },
       {
         path: "/dashboard/company-profile",

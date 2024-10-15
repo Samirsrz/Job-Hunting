@@ -6,8 +6,6 @@ import { FiLogIn } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import Lang from "../../libs/Lang";
 
-
-
 const links = [
   {
     title: "Home",
@@ -20,6 +18,10 @@ const links = [
   {
     title: "About Us",
     link: "/about",
+  },
+  {
+    title: "Ai",
+    link: "/ai",
   },
 ];
 const Navbar = () => {
@@ -106,21 +108,34 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
-          <Link to='/' className="flex items-center justify-center gap-1 text-2xl font-bold"><img className="rounded-full"  src="https://i.ibb.co.com/gMWTKhm/nexthire-hiring-logo.jpg" alt="" /> Next Hire</Link>
-         
+          <Link
+            to="/"
+            className="flex items-center justify-center gap-1 text-2xl font-bold"
+          >
+            <img
+              className="rounded-full"
+              src="https://i.ibb.co.com/gMWTKhm/nexthire-hiring-logo.jpg"
+              alt=""
+            />{" "}
+            Next Hire
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className=" menu-horizontal space-x-3 px-6">
             {links.map(({ title, link }, idx) => (
               <li key={idx}>
-                <NavLink className="font-semibold p-2 text-xl  lg:px-5" to={link}>{title}</NavLink>
+                <NavLink
+                  className="font-semibold p-2 text-xl  lg:px-5"
+                  to={link}
+                >
+                  {title}
+                </NavLink>
               </li>
             ))}
           </ul>
         </div>
         <div className="navbar-end flex items-center">
           <div className="md:mx-2 flex md:justify-center items-center h-full">
-     
             <button
               onClick={toggleDarkMode}
               className="rounded-full hover:bg-white/40 py-2 px-2 text-2xl md:px-2 md:text-3xl"

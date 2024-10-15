@@ -23,6 +23,7 @@ import { Autoplay, EffectCards } from "swiper/modules";
 import { SwiperSlide, Swiper } from "swiper/react";
 import getRandomColor from "../../libs/getRandomColor";
 import Rating from "react-rating";
+import Markdown from "react-markdown";
 
 const JobDetails = () => {
   const { user } = useAuth();
@@ -186,7 +187,7 @@ const JobDetails = () => {
           </div>
         </div>
         <div>
-          <p>{job?.description}</p>
+          <Markdown>{job?.description}</Markdown>
           <div className="mt-2 md:mt-4 gap-2 flex">
             <button
               disabled={job?.applied}

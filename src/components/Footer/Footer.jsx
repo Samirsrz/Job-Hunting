@@ -12,11 +12,11 @@ const Footer = () => {
                 <a href="#" className="flex gap-4 items-center">
                   <img
                     className="w-auto h-7"
-                    src="https://i.ibb.co.com/vdZjnCr/images-2.png"
+                    src="https://i.ibb.co.com/gMWTKhm/nexthire-hiring-logo.jpg"
                     alt=""
                   />{" "}
                   <span className="text-xl font-bold text-primary">
-                    JobHunting
+                    Next Hire
                   </span>
                 </a>
 
