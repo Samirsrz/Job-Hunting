@@ -59,9 +59,11 @@ const JobDetails = () => {
     const coverLetter = form.coverLetter.value;
     const formData = new FormData();
     formData.append("applicantName", applicantName);
+    formData.append("jobTitle", job?.title); //rahat change
+    formData.append("email", job?.email); //rahat change
+    formData.append("company", job?.company); //rahat change
     formData.append("file", file);
-    formData.append("email", job?.email);
-    formData.append("jobTitle", job?.title);
+
     if (coverLetter) {
       formData.append("coverLetter", coverLetter);
     }
@@ -232,73 +234,67 @@ const JobDetails = () => {
       )}
 
       <dialog id="apply_modal" className="modal">
-        <div className="modal-box w-full max-w-3xl">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              ✕
-            </button>
-          </form>
-          <div>
-            <form onSubmit={handleSubmit} method="dialog" className="w-full">
-              <h3 className="font-bold text-lg">Apply for the Job</h3>
+        <form
+          onSubmit={handleSubmit}
+          method="dialog"
+          className="modal-box w-full max-w-3xl"
+        >
+          <h3 className="font-bold text-lg">Apply for the Job</h3>
 
-              <div className="form-control my-4">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  name="applicantName"
-                  defaultValue={user?.displayName}
-                  type="text"
-                  placeholder="Your Name"
-                  className="input input-bordered w-full"
-                />
-              </div>
-
-              <div className="form-control my-4">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  name="email"
-                  defaultValue={user?.email}
-                  type="email"
-                  placeholder="Your Email"
-                  className="input input-bordered w-full"
-                />
-              </div>
-
-              <div className="form-control my-4">
-                <label className="label">
-                  <span className="label-text">Upload Resume</span>
-                </label>
-                <input
-                  name="resumeFile"
-                  type="file"
-                  accept="application/pdf"
-                  className="file-input file-input-bordered file-input-primary w-full border-dashed"
-                />
-              </div>
-
-              <div className="form-control my-4">
-                <label className="label">
-                  <span className="label-text">Cover Letter</span>
-                </label>
-                <textarea
-                  name="coverLetter"
-                  className="textarea textarea-bordered w-full h-48"
-                  placeholder="Write your cover letter here..."
-                ></textarea>
-              </div>
-
-              <div className="modal-action">
-                <button type="submit" className="btn btn-primary ">
-                  Apply
-                </button>
-              </div>
-            </form>
+          <div className="form-control my-4">
+            <label className="label">
+              <span className="label-text">Name</span>
+            </label>
+            <input
+              name="applicantName"
+              defaultValue={user?.displayName}
+              type="text"
+              placeholder="Your Name"
+              className="input input-bordered w-full"
+            />
           </div>
-        </div>
+
+          <div className="form-control my-4">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              name="email"
+              defaultValue={user?.email}
+              type="email"
+              placeholder="Your Email"
+              className="input input-bordered w-full"
+            />
+          </div>
+
+          <div className="form-control my-4">
+            <label className="label">
+              <span className="label-text">Upload Resume</span>
+            </label>
+            <input
+              name="resumeFile"
+              type="file"
+              className="file-input file-input-bordered file-input-primary w-full border-dashed"
+            />
+          </div>
+
+          <div className="form-control my-4">
+            <label className="label">
+              <span className="label-text">Cover Letter</span>
+            </label>
+            <textarea
+              name="coverLetter"
+              className="textarea textarea-bordered w-full h-48"
+              placeholder="Write your cover letter here..."
+            ></textarea>
+          </div>
+
+          <div className="modal-action">
+            <button type="submit" className="btn btn-primary ">
+              Apply
+            </button>
+          </div>
+        </form>
       </dialog>
 
       <dialog id="show_review_modal" className="modal">

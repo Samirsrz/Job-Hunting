@@ -24,6 +24,8 @@ import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Payment/Payment";
 import InterviewSchedule from "../../src/pages/InterviewSchedule/InterviewSchedule"
+import ViewJobs from "../DashboardLayout/ViewJobs";
+import ManageApplication from "../pages/HostDashboard/ManageApplication";
 
 export const router = createBrowserRouter([
   {
@@ -112,7 +114,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/interview-schedule",
-        element: <InterviewSchedule></InterviewSchedule>
+        element: <InterviewSchedule />,
       },
       {
         path: "/dashboard/company-profile",
@@ -134,6 +136,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/payment",
         element: <Payment />,
+      },
+      {
+        path: "/dashboard/viewjobs",
+        element: <ViewJobs />,
+      },
+      {
+        path: "/dashboard/manage_application",
+        element: <ManageApplication />,
       },
     ],
   },
