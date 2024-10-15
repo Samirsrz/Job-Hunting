@@ -22,6 +22,7 @@ import VeiwCompanyJob from "../pages/ViewAllJobsCompany/ViewCompanyJob/VeiwCompa
 import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Payment/Payment";
+import InterviewSchedule from "../../src/pages/InterviewSchedule/InterviewSchedule"
 
 
 export const router = createBrowserRouter([
@@ -99,6 +100,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/post-jobs",
         element: <PostJobs />,
+      },
+      {
+        path: "/dashboard/interview-schedule",
+        element: <InterviewSchedule></InterviewSchedule>
       },
       {
         path: "/dashboard/company-profile",
