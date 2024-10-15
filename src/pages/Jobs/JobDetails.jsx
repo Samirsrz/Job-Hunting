@@ -58,6 +58,9 @@ const JobDetails = () => {
     const coverLetter = form.coverLetter.value;
     const formData = new FormData();
     formData.append("applicantName", applicantName);
+    formData.append("jobTitle", job?.title); //rahat change
+    formData.append("email", job?.email); //rahat change
+    formData.append("company", job?.company); //rahat change
     formData.append("file", file);
 
     if (coverLetter) {
