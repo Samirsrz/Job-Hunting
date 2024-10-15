@@ -2,10 +2,8 @@ import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { GrUpdate } from "react-icons/gr";
-import Rating from "react-rating";
-import { MdStar, MdStarBorder } from "react-icons/md";
 import Swal from "sweetalert2";
+
 
 const ManageApplication = () => {
   const { user, loading, setLoading } = useAuth();
@@ -15,7 +13,6 @@ const ManageApplication = () => {
   //fetch jobs data by email
   try {
     setLoading(true);
-
     axiosSequre
       .get(`/applications-host?email=${user?.email}`)
       .then((res) => setApplications(res.data));
@@ -49,6 +46,17 @@ const ManageApplication = () => {
       }
     });
   };
+
+  //Resume downloader
+  function handleFileDownload(fileId) {
+    const url = `${import.meta.env.VITE_API_URL}/resume/${fileId}`;
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "resume.pdf");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
   return (
     <>
@@ -110,7 +118,10 @@ const ManageApplication = () => {
                     </select>
                   </td>
                   <th>
-                    <button className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+                    <button
+                      onClick={() => handleFileDownload(application.resume)}
+                      className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400"
+                    >
                       View
                     </button>
                   </th>
