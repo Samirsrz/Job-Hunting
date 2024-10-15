@@ -23,6 +23,7 @@ import VeiwCompanyJob from "../pages/ViewAllJobsCompany/ViewCompanyJob/VeiwCompa
 import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Payment/Payment";
+import InterviewSchedule from "../../src/pages/InterviewSchedule/InterviewSchedule"
 import ViewJobs from "../DashboardLayout/ViewJobs";
 import ManageApplication from "../pages/HostDashboard/ManageApplication";
 
@@ -113,7 +114,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/interview-schedule",
-        element: <InterviewSchedule></InterviewSchedule>
+        element: <InterviewSchedule />,
       },
       {
         path: "/dashboard/company-profile",
