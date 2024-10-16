@@ -13,7 +13,7 @@ const HostStatistic = () => {
   const { user } = useAuth();
   return (
     <div>
-      <div className="flex justify-between items-center rounded-lg bg-white p-5">
+      <div className="flex flex-col justify-between lg:items-center lg:flex-row rounded-lg bg-white p-5">
         <div className="space-y-2">
           <h1 className="text-2xl font-bold">
             Welcome Back{" "}
@@ -26,7 +26,7 @@ const HostStatistic = () => {
         </div>
 
         <div>
-          <div className="flex items-center  gap-4">
+          <div className="flex items-center  gap-4 mt-5 lg:mt-0">
             <div className="border rounded-full p-3 ">
               <GoBell className="text-xl" />
             </div>
@@ -45,9 +45,9 @@ const HostStatistic = () => {
         </div>
       </div>
 
-      <div className="flex  gap-5">
+      <div className="flex flex-col lg:flex-row gap-5">
         {/* small cards */}
-        <div className="flex-1">
+        <div className="flex-1 mt-3 lg:mt-0">
           <div className="h-24 my-14 grid gap-y-10 gap-x-6 md:grid-cols-3 lg:grid-cols-3">
             {/* jobs Card */}
             <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
@@ -100,13 +100,14 @@ const HostStatistic = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white p-4 shadow-lg rounded-lg">
+          <div className="hidden md:flex lg:flex mt-72 lg:mt-0 bg-white p-4 shadow-lg rounded-lg">
             <HostChart />
           </div>
         </div>
+
         {/* sidebar card */}
-        <div className="my-14">
-          <div className="max-w-sm p-4 bg-white shadow-lg rounded-xl">
+        <div className="mt-44 lg:my-14">
+          <div className="p-4 bg-white shadow-lg rounded-xl">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold">Get Premium</h2>
             </div>
