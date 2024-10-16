@@ -20,6 +20,7 @@ import Statictis from "../pages/UserDashboard/Statictis";
 import VeiwCompanyJob from "../pages/ViewAllJobsCompany/ViewCompanyJob/VeiwCompanyJob";
 import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 import PrivateRoute from "./PrivateRoute";
+import ViewEventChallenge from "../pages/Event/ViewEventChallenge/ViewEventChallenge";
 
 
 export const router = createBrowserRouter([
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
       {
         path:'view-all-companies',
         element:<ViewAllCompanies/>
+      },
+      {
+        path:"/event/details/:id",
+        element:<ViewEventChallenge/>
       }
     ],
   },

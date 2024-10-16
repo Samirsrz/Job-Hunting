@@ -10,6 +10,9 @@ const VeiwCompanyJob = () => {
     let [viewJob, setViewJob] = useState({})
     let { id } = useParams()
     console.log(id);
+
+   
+
     useEffect(() => {
         const fetchData = async () => {
             try {

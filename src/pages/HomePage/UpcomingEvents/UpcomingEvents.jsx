@@ -8,6 +8,7 @@ import eventCompany from '../../../../public/company/ll.gif';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from 'react-i18next';
+import { Link } from "react-router-dom";
 
 
 // Custom Next Arrow Component
@@ -141,7 +142,13 @@ const EventCard = () =>
                     <button className="text-purple-500 bg-purple-100 px-3 py-1 rounded-md text-xs font-medium">
                       Learn from experts
                     </button>
-                    <button className="text-blue-600 font-semibold">View details</button>
+                    <div>
+                         <Link to={`/event/details/${index}`}>
+                         <button className="text-blue-600 font-semibold">View details</button>
+                          </Link>
+                    </div>
+                 
+                    
                   </div>
                 </aside>
               </div>
