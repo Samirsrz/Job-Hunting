@@ -36,7 +36,11 @@ const JobDetails = () => {
   const [rating, setRating] = useState(5);
   const [descriptionLength, setDescriptionLength] = useState(300);
   const [interviewLoading, setInterviewLoading] = useState(false);
+  const [forYouLoading, setForYouLoading] = useState(false);
   const [interview, setInterview] = useState(
+    "Write your skills and click the send button to get ai response!"
+  );
+  const [forYou, setForYou] = useState(
     "Write your skills and click the send button to get ai response!"
   );
 
@@ -126,6 +130,24 @@ const JobDetails = () => {
       })
       .finally(() => {
         setInterviewLoading(false);
+      });
+  };
+  const handleForYou = (e) => {
+    e.preventDefault();
+    const skills = e.target.skills.value;
+    setForYouLoading(true);
+    setForYou("");
+
+    axiosSecure
+      .post("/ai", { skills, type: "isJobForYou", jobId: id })
+      .then(({ data }) => {
+        setForYou(data.response);
+      })
+      .catch((err) => {
+        toast.error(err?.response?.data?.message);
+      })
+      .finally(() => {
+        setForYouLoading(false);
       });
   };
 
@@ -300,6 +322,14 @@ const JobDetails = () => {
               className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
             >
               Get moke Interview
+            </button>
+            <button
+              onClick={() =>
+                document.getElementById("forYou_modal").showModal()
+              }
+              className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
+            >
+              This is for You?
             </button>
           </div>
         </div>
@@ -492,7 +522,7 @@ const JobDetails = () => {
                 disabled={interviewLoading}
                 type="text"
                 className="grow"
-                placeholder="Write your skills: javaScript, python"
+                placeholder="Enter your skills: javaScript, python"
                 name="skills"
                 required
               />
@@ -527,6 +557,60 @@ const JobDetails = () => {
               }}
             >
               {interview}
+            </Markdown>
+          </form>
+        </div>
+      </dialog>
+      <dialog id="forYou_modal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg">This job for you?</h3>
+          <form onSubmit={handleForYou} className="flex flex-col gap-4 mt-4">
+            <label className="input input-bordered flex items-center gap-2">
+              Skills
+              <input
+                disabled={forYouLoading}
+                type="text"
+                className="grow"
+                placeholder="Enter your skills: javaScript, python"
+                name="skills"
+                required
+              />
+            </label>
+            <div className="flex">
+              <button
+                disabled={forYouLoading}
+                className="btn btn-primary grow"
+                type="submit"
+              >
+                {forYouLoading ? (
+                  <span className="loading loading-spinner loading-sm"></span>
+                ) : (
+                  "Send"
+                )}
+              </button>
+            </div>
+            <Markdown
+              components={{
+                h1: ({ node, ...props }) => (
+                  <h1 className="text-4xl font-bold" {...props} />
+                ),
+                h2: ({ node, ...props }) => (
+                  <h2 className="text-3xl font-semibold" {...props} />
+                ),
+                h3: ({ node, ...props }) => (
+                  <h3 className="text-2xl font-semibold" {...props} />
+                ),
+                h4: ({ node, ...props }) => (
+                  <h4 className="text-xl font-medium" {...props} />
+                ),
+              }}
+            >
+              {forYou}
             </Markdown>
           </form>
         </div>
