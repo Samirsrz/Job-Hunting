@@ -13,7 +13,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Sidebar = () => {
-  const { logOut, user, setLoading, loading } = useAuth();
+  const { logOut, user, setLoading,loading} = useAuth();
   const [loginUser, setLoginUser] = useState("");
   const [isActive, setActive] = useState(false);
 
@@ -23,7 +23,7 @@ const Sidebar = () => {
   try {
     axionsequre
       .get(`/user?email=${user?.email}`)
-      .then((res) => setLoginUser(res.data));
+      .then((res) => setLoginUser(res?.data));
     setLoading(false);
   } catch (error) {
     console.log(error);

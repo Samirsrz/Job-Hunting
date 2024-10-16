@@ -22,6 +22,7 @@ import VeiwCompanyJob from "../pages/ViewAllJobsCompany/ViewCompanyJob/VeiwCompa
 import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Payment/Payment";
+import PaymentRecieve from "../pages/Payment/PaymentRecieve";
 
 
 export const router = createBrowserRouter([
@@ -120,6 +121,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/payment",
         element: <Payment/>,
+      },
+      {
+        path: "/dashboard/payment-form",
+        element: <PaymentRecieve/>,
       },
     ],
   },
