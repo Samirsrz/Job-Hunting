@@ -16,6 +16,7 @@ const Ai = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    setResponse("");
 
     axiosCommon
       .post("/ai", { message: e.target?.message?.value })
