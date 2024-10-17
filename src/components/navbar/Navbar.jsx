@@ -5,6 +5,7 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { FiLogIn } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import Lang from "../../libs/Lang";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const links = [
   {
@@ -19,17 +20,26 @@ const links = [
     title: "About Us",
     link: "/about",
   },
-  {
-    title: "Ai",
-    link: "/ai",
-  },
 ];
 const Navbar = () => {
-  const { user, logOut } = useAuth();
+  const { user, logOut, setLoading } = useAuth();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [lang, setLang] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const [loginUser, setLoginUser] = useState("");
+
+  const axiosCommon = useAxiosCommon();
+  setLoading(true);
+  //get user information
+  try {
+    axiosCommon
+      .get(`/user?email=${user?.email}`)
+      .then((res) => setLoginUser(res?.data));
+    setLoading(false);
+  } catch (error) {
+    console.log(error);
+  }
 
   const changeLangPath = (lang) => {
     const searchParams = new URLSearchParams(location.search);
@@ -165,9 +175,23 @@ const Navbar = () => {
                   <span className="mx-4 mt-2 font-bold">
                     {user?.displayName}
                   </span>
-                  <li className="dark:hover:bg-gray-500 rounded-xl">
-                    <Link to="/dashboard">Dashboard</Link>
-                  </li>
+
+                  {loginUser.role == "admin" && (
+                    <li className="dark:hover:bg-gray-500 rounded-xl">
+                      <Link to="/dashboard/adminstatictis">Dashboard</Link>
+                    </li>
+                  )}
+                  {loginUser.role == "host" && (
+                    <li className="dark:hover:bg-gray-500 rounded-xl">
+                      <Link to="/dashboard/host-statistic">Dashboard</Link>
+                    </li>
+                  )}
+                  {loginUser.role == "guest" && (
+                    <li className="dark:hover:bg-gray-500 rounded-xl">
+                      <Link to="/dashboard/userstatistic">Dashboard</Link>
+                    </li>
+                  )}
+
                   <button
                     className="btn btn-sm text-xs p-0 bg-white dark:bg-gray-500 dark:border-gray-400 dark:text-white"
                     onClick={logOut}

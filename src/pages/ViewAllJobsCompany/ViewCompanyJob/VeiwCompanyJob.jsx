@@ -25,7 +25,7 @@ const VeiwCompanyJob = () => {
         fetchData();
     }, [id]);
 
-    console.log(viewJob);
+   // console.log(viewJob);
 
     if (isLoading) {
         return <h1>Loading....</h1>
@@ -34,7 +34,7 @@ const VeiwCompanyJob = () => {
     if (isError) {
         <h1>something went wrong</h1>
     }
-    console.log(interestedJobs);
+    //console.log(interestedJobs);
 
 
     return (

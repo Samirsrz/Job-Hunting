@@ -275,7 +275,7 @@ const SponsoredCompanies = () => {
             <button
               key={index}
               onClick={() => setActiveCategory(category)}
-              className={`rounded-3xl border border-black px-4 py-1 transition-colors ${isActive ? "bg-gray-500 text-white" : "bg-transparent text-black"}`}
+              className={`rounded-3xl border border-black px-4 py-1 transition-colors ${isActive ? "bg-blue-600 text-white" : "bg-transparent text-black"}`}
             >
               {category}
             </button>

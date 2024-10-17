@@ -6,7 +6,7 @@ import PieCharts from "../../components/UserDashboard/PieCharts";
 
 const UserStatictis = () => {
   return (
-    <div className="mt-10">
+    <div className="mt-10 bg-[#f5f6fa] p-10">
       <WelcomeCard />
       <div className="mt-12">
         {/* small cards */}

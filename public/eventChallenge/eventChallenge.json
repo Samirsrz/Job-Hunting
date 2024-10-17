@@ -2,7 +2,7 @@
     {
       "id": "123abc456def",
       "logo": "https://example.com/logo1.png",
-      "coverPhoto": "https://example.com/cover1.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Google",
       "title": "Full Stack Developer Hiring Challenge",
       "tags": ["JavaScript", "React", "Node.js", "Full Stack", "Web Development"],
@@ -19,7 +19,7 @@
     {
       "id": "789ghi101jkl",
       "logo": "https://example.com/logo2.png",
-      "coverPhoto": "https://example.com/cover2.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Microsoft",
       "title": "Cloud Engineer Hiring Event",
       "tags": ["Azure", "Cloud Computing", "DevOps", "CI/CD"],
@@ -36,7 +36,7 @@
     {
       "id": "112mno134pqr",
       "logo": "https://example.com/logo3.png",
-      "coverPhoto": "https://example.com/cover3.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Amazon",
       "title": "Backend Engineer Challenge",
       "tags": ["Java", "Microservices", "AWS", "Backend"],
@@ -53,7 +53,7 @@
     {
       "id": "456stu789vwx",
       "logo": "https://example.com/logo4.png",
-      "coverPhoto": "https://example.com/cover4.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Meta",
       "title": "Data Science Hiring Challenge",
       "tags": ["Python", "Machine Learning", "Data Science", "AI"],
@@ -70,7 +70,7 @@
     {
       "id": "987yz123abc",
       "logo": "https://example.com/logo5.png",
-      "coverPhoto": "https://example.com/cover5.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Tesla",
       "title": "Embedded Systems Engineer Challenge",
       "tags": ["C", "Embedded Systems", "Hardware", "IoT"],
@@ -87,7 +87,7 @@
     {
       "id": "123def456ghi",
       "logo": "https://example.com/logo6.png",
-      "coverPhoto": "https://example.com/cover6.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Netflix",
       "title": "Frontend Developer Hiring Challenge",
       "tags": ["React", "JavaScript", "Frontend", "CSS"],
@@ -104,7 +104,7 @@
     {
       "id": "789ghi101jkl",
       "logo": "https://example.com/logo7.png",
-      "coverPhoto": "https://example.com/cover7.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Spotify",
       "title": "Mobile Developer Hiring Challenge",
       "tags": ["Swift", "Kotlin", "Mobile Development", "iOS", "Android"],
@@ -121,7 +121,7 @@
     {
       "id": "101klm112nop",
       "logo": "https://example.com/logo8.png",
-      "coverPhoto": "https://example.com/cover8.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Adobe",
       "title": "UX/UI Designer Hiring Challenge",
       "tags": ["UI Design", "UX Design", "Adobe XD", "Figma"],
@@ -138,7 +138,7 @@
     {
       "id": "112qrs134tuv",
       "logo": "https://example.com/logo9.png",
-      "coverPhoto": "https://example.com/cover9.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Cisco",
       "title": "Network Engineer Hiring Challenge",
       "tags": ["Networking", "Routing", "Switching", "CCNA", "CCNP"],
@@ -155,7 +155,7 @@
     {
       "id": "456uvw789xyz",
       "logo": "https://example.com/logo10.png",
-      "coverPhoto": "https://example.com/cover10.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "IBM",
       "title": "AI Research Engineer Hiring Challenge",
       "tags": ["AI", "Machine Learning", "Research", "Python"],
@@ -172,7 +172,7 @@
     {
       "id": "234abc567def",
       "logo": "https://example.com/logo11.png",
-      "coverPhoto": "https://example.com/cover11.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Intel",
       "title": "Hardware Engineer Hiring Challenge",
       "tags": ["VLSI", "Circuit Design", "Semiconductors"],
@@ -189,7 +189,7 @@
     {
       "id": "678ghi890jkl",
       "logo": "https://example.com/logo12.png",
-      "coverPhoto": "https://example.com/cover12.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Airbnb",
       "title": "DevOps Engineer Hiring Challenge",
       "tags": ["DevOps", "Kubernetes", "AWS", "CI/CD"],
@@ -206,7 +206,7 @@
     {
       "id": "345mno678pqr",
       "logo": "https://example.com/logo13.png",
-      "coverPhoto": "https://example.com/cover13.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Twitter",
       "title": "Frontend Developer Hiring Challenge",
       "tags": ["JavaScript", "HTML", "CSS", "React"],
@@ -223,7 +223,7 @@
     {
       "id": "123stu456vwx",
       "logo": "https://example.com/logo14.png",
-      "coverPhoto": "https://example.com/cover14.png",
+      "coverPhoto": "https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png",
       "companyName": "Apple",
       "title": "iOS Developer Hiring Challenge",
       "tags": ["iOS", "Swift", "Mobile Development", "Objective-C"],

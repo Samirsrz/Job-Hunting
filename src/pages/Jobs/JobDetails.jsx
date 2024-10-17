@@ -10,8 +10,9 @@ import {
   MdDelete,
   MdStarBorder,
   MdStar,
+  MdAttachMoney,
 } from "react-icons/md";
-import { GiRoundStar, GiCash } from "react-icons/gi";
+import { GiRoundStar } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { axiosCommon } from "../../hooks/useAxiosCommon";
@@ -33,6 +34,15 @@ const JobDetails = () => {
   const [existingReview, setExistingReview] = useState({});
   const [relatedJobs, setRelatedJobs] = useState([]);
   const [rating, setRating] = useState(5);
+  const [descriptionLength, setDescriptionLength] = useState(300);
+  const [interviewLoading, setInterviewLoading] = useState(false);
+  const [forYouLoading, setForYouLoading] = useState(false);
+  const [interview, setInterview] = useState(
+    "Write your skills and click the send button to get ai response!"
+  );
+  const [forYou, setForYou] = useState(
+    "Write your skills and click the send button to get ai response!"
+  );
 
   useEffect(() => {
     setExistingReview(
@@ -104,6 +114,42 @@ const JobDetails = () => {
         toast.error(err.response.data.message);
       });
   };
+  const handleInterview = (e) => {
+    e.preventDefault();
+    const skills = e.target.skills.value;
+    setInterviewLoading(true);
+    setInterview("");
+
+    axiosSecure
+      .post("/ai", { skills, type: "interview", jobId: id })
+      .then(({ data }) => {
+        setInterview(data.response);
+      })
+      .catch((err) => {
+        toast.error(err?.response?.data?.message);
+      })
+      .finally(() => {
+        setInterviewLoading(false);
+      });
+  };
+  const handleForYou = (e) => {
+    e.preventDefault();
+    const skills = e.target.skills.value;
+    setForYouLoading(true);
+    setForYou("");
+
+    axiosSecure
+      .post("/ai", { skills, type: "isJobForYou", jobId: id })
+      .then(({ data }) => {
+        setForYou(data.response);
+      })
+      .catch((err) => {
+        toast.error(err?.response?.data?.message);
+      })
+      .finally(() => {
+        setForYouLoading(false);
+      });
+  };
 
   const handleCancel = () => {
     axiosSecure
@@ -142,15 +188,16 @@ const JobDetails = () => {
             className="md:size-52 size-24 bg-white rounded-md aspect-square mx-auto md:mx-0"
           />
           <div className="flex flex-col justify-evenly">
-            <h1 className="font-semibold md:text-4xl md:mb-1 lg:text-5xl text-3xl lg:mb-2 text-sky-600">
+            <h1 className="font-semibold md:text-4xl md:mb-1 lg:text-5xl text-3xl lg:mb-2 text-sky-600 capitalize">
               {job?.title}
             </h1>
-            <h3 className="font-semibold md:text-xl text-lg">
+            <h3 className="font-semibold md:text-xl text-lg capitalize">
               <MdOutlineHomeWork className="inline mr-1" />
               {job?.company}
             </h3>
             <p>
-              <GiCash className="inline" /> <span>{job?.salary}</span>
+              <MdAttachMoney className="inline text-xl" />
+              {job?.salary}
             </p>
             <div>
               <button
@@ -187,7 +234,59 @@ const JobDetails = () => {
           </div>
         </div>
         <div>
-          <Markdown>{job?.description}</Markdown>
+          <Markdown
+            components={{
+              h1: ({ node, ...props }) => (
+                <h1
+                  className="text-4xl font-bold text-blue-600 mt-6"
+                  {...props}
+                />
+              ),
+              h2: ({ node, ...props }) => (
+                <h2
+                  className="text-3xl font-semibold text-blue-600 mt-6"
+                  {...props}
+                />
+              ),
+              h3: ({ node, ...props }) => (
+                <h3
+                  className="text-2xl font-semibold text-blue-600 mt-6"
+                  {...props}
+                />
+              ),
+              h4: ({ node, ...props }) => (
+                <h4
+                  className="text-xl font-medium text-blue-600 mt-6"
+                  {...props}
+                />
+              ),
+            }}
+          >
+            {job?.description?.slice(0, descriptionLength)}
+          </Markdown>
+          {job?.description?.length > 100 && (
+            <span>
+              {job?.description?.length > descriptionLength ? (
+                <button
+                  className="text-primary link hover:scale-105"
+                  onClick={() => {
+                    setDescriptionLength(job?.description?.length);
+                  }}
+                >
+                  see more
+                </button>
+              ) : (
+                <button
+                  className="text-primary link hover:scale-105"
+                  onClick={() => {
+                    setDescriptionLength(100);
+                  }}
+                >
+                  see less
+                </button>
+              )}
+            </span>
+          )}
           <div className="mt-2 md:mt-4 gap-2 flex">
             <button
               disabled={job?.applied}
@@ -215,6 +314,22 @@ const JobDetails = () => {
             >
               {existingReview ? "Update your" : "Give a"} review!{" "}
               <FaMessage className="inline" />
+            </button>
+            <button
+              onClick={() =>
+                document.getElementById("interview_modal").showModal()
+              }
+              className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
+            >
+              Get moke Interview
+            </button>
+            <button
+              onClick={() =>
+                document.getElementById("forYou_modal").showModal()
+              }
+              className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
+            >
+              This is for You?
             </button>
           </div>
         </div>
@@ -389,6 +504,114 @@ const JobDetails = () => {
                 </button>
               )}
             </div>
+          </form>
+        </div>
+      </dialog>
+      <dialog id="interview_modal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg">Get Moke Interview using AI</h3>
+          <form onSubmit={handleInterview} className="flex flex-col gap-4 mt-4">
+            <label className="input input-bordered flex items-center gap-2">
+              Skills
+              <input
+                disabled={interviewLoading}
+                type="text"
+                className="grow"
+                placeholder="Enter your skills: javaScript, python"
+                name="skills"
+                required
+              />
+            </label>
+            <div className="flex">
+              <button
+                disabled={interviewLoading}
+                className="btn btn-primary grow"
+                type="submit"
+              >
+                {interviewLoading ? (
+                  <span className="loading loading-spinner loading-sm"></span>
+                ) : (
+                  "Send"
+                )}
+              </button>
+            </div>
+            <Markdown
+              components={{
+                h1: ({ node, ...props }) => (
+                  <h1 className="text-4xl font-bold" {...props} />
+                ),
+                h2: ({ node, ...props }) => (
+                  <h2 className="text-3xl font-semibold" {...props} />
+                ),
+                h3: ({ node, ...props }) => (
+                  <h3 className="text-2xl font-semibold" {...props} />
+                ),
+                h4: ({ node, ...props }) => (
+                  <h4 className="text-xl font-medium" {...props} />
+                ),
+              }}
+            >
+              {interview}
+            </Markdown>
+          </form>
+        </div>
+      </dialog>
+      <dialog id="forYou_modal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg">This job for you?</h3>
+          <form onSubmit={handleForYou} className="flex flex-col gap-4 mt-4">
+            <label className="input input-bordered flex items-center gap-2">
+              Skills
+              <input
+                disabled={forYouLoading}
+                type="text"
+                className="grow"
+                placeholder="Enter your skills: javaScript, python"
+                name="skills"
+                required
+              />
+            </label>
+            <div className="flex">
+              <button
+                disabled={forYouLoading}
+                className="btn btn-primary grow"
+                type="submit"
+              >
+                {forYouLoading ? (
+                  <span className="loading loading-spinner loading-sm"></span>
+                ) : (
+                  "Send"
+                )}
+              </button>
+            </div>
+            <Markdown
+              components={{
+                h1: ({ node, ...props }) => (
+                  <h1 className="text-4xl font-bold" {...props} />
+                ),
+                h2: ({ node, ...props }) => (
+                  <h2 className="text-3xl font-semibold" {...props} />
+                ),
+                h3: ({ node, ...props }) => (
+                  <h3 className="text-2xl font-semibold" {...props} />
+                ),
+                h4: ({ node, ...props }) => (
+                  <h4 className="text-xl font-medium" {...props} />
+                ),
+              }}
+            >
+              {forYou}
+            </Markdown>
           </form>
         </div>
       </dialog>
