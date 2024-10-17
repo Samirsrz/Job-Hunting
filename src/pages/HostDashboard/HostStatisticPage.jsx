@@ -37,7 +37,7 @@ const HostStatisticPage = () => {
               </div>
             </div>
             <div className="pr-2">
-              <div className="stat-title">{user.displayName}</div>
+              <div className="stat-title">{user?.displayName}</div>
               <div className="stat-desc font-semibold text-secondary">Host</div>
             </div>
           </div>
