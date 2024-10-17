@@ -76,12 +76,31 @@ import CommonJobCard from '../CommonJobCard/CommonJobCard';
 const ViewAllCompanies = () => {
     const [currentPage, setCurrentPage] = useState(1); // Track the current page
     const limit = 12;  // Set the limit for the number of items per page
-
+    const [filter, setFilter] = useState(
+        {
+            industrySearch: '',
+            searchedCompany: '',
+            selectedBusinessTypes: [],
+            selectedCompanyTypes: [],
+            selectedIndustries: [],
+            selectedSectors: []
+        }
+    )
     // Fetch data from the server with pagination params (page and limit)
-    const { data: featuredCompanies, isError, isLoading } = useGetFeaturedComaniesQuery({
+    const { data: featuredCompanies = [], isError, isLoading } = useGetFeaturedComaniesQuery({
         page: currentPage,
-        limit
+        limit,
+        filterInfo: filter
     });
+
+    function getFilterPanel(infoFilter) {
+        setFilter(infoFilter);
+        console.log(infoFilter);
+
+
+    }
+
+    console.log(featuredCompanies);
 
     // Handle loading state
     if (isLoading) {
@@ -93,8 +112,11 @@ const ViewAllCompanies = () => {
         return <h1>Something went wrong</h1>;
     }
 
+
     // Destructure data from the API response
     const { jobs, totalPages } = featuredCompanies;
+
+
 
     // Handle page navigation
     const handlePreviousPage = () => {
@@ -109,16 +131,20 @@ const ViewAllCompanies = () => {
         }
     };
 
-   
-    
+
+
     return (
         <section className='max-w-screen-2xl m-auto'>
             <h1 className='font-bold text-3xl my-6 text-center'>Featured companies actively hiring</h1>
             <small className='w-[98%] flex justify-end'>Showing {featuredCompanies.totalJobs} companies</small>
             <aside className='grid grid-cols-1 md:grid-cols-[280px_1fr] gap-3 '>
-                <FilterPanel />
+                <FilterPanel getFilterPanel={getFilterPanel} />
 
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+                {jobs.length === 0 &&
+                    <h1 className='font-bold text-gray-400 text-3xl flex justify-center items-center'> No data found</h1>
+                }
+
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                     {
                         jobs.map(company => <CommonJobCard key={company._id} card={company} />)
                     }
@@ -126,7 +152,7 @@ const ViewAllCompanies = () => {
             </aside>
 
             {/* Pagination Controls */}
-            <div className="flex items-center justify-center mt-4">
+            {jobs.length == 12 && <div className="flex items-center justify-center mt-4">
                 <span className="text-gray-500 mr-4">
                     Page {currentPage} of {totalPages}
                 </span>
@@ -155,7 +181,8 @@ const ViewAllCompanies = () => {
                 >
                     <span className="text-sm">Next &gt;</span>
                 </button>
-            </div>
+            </div>}
+
         </section>
     );
 };
