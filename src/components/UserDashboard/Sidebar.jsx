@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
 import { BsFillHouseAddFill } from "react-icons/bs";
-import { FaCcApplePay } from "react-icons/fa";
+import { FaCcApplePay, FaFileImport } from "react-icons/fa";
 import { MdHomeWork } from "react-icons/md";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
@@ -23,7 +23,7 @@ const Sidebar = () => {
   try {
     axionsequre
       .get(`/user?email=${user?.email}`)
-      .then((res) => setLoginUser(res.data));
+      .then((res) => setLoginUser(res?.data));
     setLoading(false);
   } catch (error) {
     console.log(error);
@@ -34,7 +34,7 @@ const Sidebar = () => {
     setActive(!isActive);
   };
   if (setLoading) <p>loading...</p>;
-  
+
   return (
     <div>
       {/* Small Screen Navbar */}
@@ -51,7 +51,6 @@ const Sidebar = () => {
               />
             </Link>
           </div>
-      
         </div>
 
         <button
@@ -73,156 +72,234 @@ const Sidebar = () => {
           <div>
             <div className="w-full hidden md:flex px-4 py-4 shadow-lg rounded-lg justify-center items-center mx-auto">
               <Link to="/">
-             <p>   <img
-                  className="hidden lg:inline md:block rounded-full"
-                  src="https://i.ibb.co.com/gMWTKhm/nexthire-hiring-logo.jpg"
-                  alt="logo"
-                  width="200"
-                  height="200"
-                />
-               <span className="font-bold text-pretty text-2xl text-primary"> Next-Hire</span>
+                <p>
+                  {" "}
+                  <img
+                    className="hidden lg:inline md:block rounded-full"
+                    src="https://i.ibb.co.com/gMWTKhm/nexthire-hiring-logo.jpg"
+                    alt="logo"
+                    width="200"
+                    height="200"
+                  />
+                  <span className="font-bold text-pretty text-2xl text-primary">
+                    {" "}
+                    Next-Hire
+                  </span>
                 </p>
-            
               </Link>
             </div>
           </div>
 
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
-            {/* Conditional toggle button here.. */}
-
-            {/*  Menu Items */}
             <nav>
-              {/* Statistics for Admin , host, guest */}
-              <NavLink
-                to="/dashboard"
-                end
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-                <BsGraphUp className="w-5 h-5" />
-
-                <span className="mx-4 font-medium">Statistics</span>
-              </NavLink>
-
-              {/* View Jobs --> guest and admin*/}
-              {loginUser?.role == "admin" && "host" && (
-              <div>
-                  <NavLink
-                  to="/jobs"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <BsFillHouseAddFill className="w-5 h-5" />
-
-                  <span className="mx-4 font-medium">View Jobs</span>
-                </NavLink>
-
-
-                <NavLink
-                  to="/dashboard/payment"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <FaCcApplePay className="w-5 h-5" />
-
-                  <span className="mx-4 font-medium">Payment Management</span>
-                </NavLink>
-              </div>
-              )}
-
-              {/*Post jobs ---> Host*/}
+              {/*Post jobs ---> Host  */}
               {loginUser?.role == "host" && (
                 <div>
+                  {/* host statistic */}
                   <NavLink
-                  to="/dashboard/post-jobs"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <MdHomeWork className="w-5 h-5" />
+                    to="/dashboard/host-statistic"
+                    end
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <BsGraphUp className="w-5 h-5" />
 
-                  <span className="mx-4 font-medium">Post Jobs</span>
-                </NavLink>
+                    <span className="mx-4 font-medium">Statistics</span>
+                  </NavLink>
+                  {/*View Jobs */}
                   <NavLink
-                  to="/dashboard/payment"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <FaCcApplePay className="w-5 h-5" />
+                    to="/dashboard/viewhostjobs"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      } ${loginUser?.role == "guest" && "hidden"}`
+                    }
+                  >
+                    <BsFillHouseAddFill className="w-5 h-5" />
 
-                  <span className="mx-4 font-medium">Payment Management</span>
-                </NavLink>
+                    <span className="mx-4 font-medium">View Jobs</span>
+                  </NavLink>
+                  {/* Post Jobs */}
+                  <NavLink
+                    to="/dashboard/post-jobs"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <MdHomeWork className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Post Jobs</span>
+                  </NavLink>
+                  {/* Application Management */}
+                  <NavLink
+                    to="/dashboard/manage_application"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <FaFileImport className="text-2xl" />
+
+                    <span className="mx-4 font-medium">
+                      Application Management
+                    </span>
+                  </NavLink>
+                  {/* Payment Management */}
+                  <NavLink
+                    to="/dashboard/payment"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <FaCcApplePay className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Payment Management</span>
+                  </NavLink>
+                  {/* Interview schedule */}
+                  <NavLink
+                    to="/dashboard/interview-schedule"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <MdHomeWork className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Interview schedule</span>
+                  </NavLink>
                 </div>
-              )}
-              {/* create mock interview */}
-              
-              {loginUser?.role == "host" && (
-                <NavLink
-                  to="/dashboard/interview-schedule"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <MdHomeWork className="w-5 h-5" />
-
-                  <span className="mx-4 font-medium">Interview schedule</span>
-                </NavLink>
               )}
 
               {/*applied jobs --> guest  */}
               {loginUser.role == "guest" && (
-                <NavLink
-                  to="/dashboard/appliedjobs"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <MdHomeWork className="w-5 h-5" />
+                <div>
+                  {/* Guest Statistic */}
+                  <NavLink
+                    to="/dashboard/userstatistic"
+                    end
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <BsGraphUp className="w-5 h-5" />
 
-                  <span className="mx-4 font-medium">Applied Jobs</span>
-                </NavLink>
+                    <span className="mx-4 font-medium">Statistics</span>
+                  </NavLink>
+                  {/* // Applied Jobs */}
+
+                  <NavLink
+                    to="/dashboard/appliedjobs"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <MdHomeWork className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Applied Jobs</span>
+                  </NavLink>
+                </div>
               )}
 
-              {/* All User --> admin*/}
+              {/* All User,Payment Management --> admin*/}
               {loginUser.role == "admin" && (
-                <NavLink
-                  to="/dashboard/alluser"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <MdHomeWork className="w-5 h-5" />
+                <div>
+                  {/* admin statistic */}
+                  <NavLink
+                    to="/dashboard/adminstatictis"
+                    end
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <BsGraphUp className="w-5 h-5" />
 
-                  <span className="mx-4 font-medium">All Users</span>
-                </NavLink>
+                    <span className="mx-4 font-medium">Statistics</span>
+                  </NavLink>
+                  {/* View Jobs */}
+                  <NavLink
+                    to="/dashboard/viewalljobs"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      } ${loginUser?.role == "guest" && "hidden"}`
+                    }
+                  >
+                    <BsFillHouseAddFill className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">View Jobs</span>
+                  </NavLink>
+                  {/* Payment Management */}
+                  <NavLink
+                    to="/dashboard/payment"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <FaCcApplePay className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Payment Management</span>
+                  </NavLink>
+                  {/* All Users */}
+                  <NavLink
+                    to="/dashboard/alluser"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <MdHomeWork className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">All Users</span>
+                  </NavLink>
+                </div>
               )}
             </nav>
           </div>
         </div>
-
         {/* ************************************************************ */}
-
         <div>
           <hr />
 
@@ -239,7 +316,7 @@ const Sidebar = () => {
 
             <span className="mx-4 font-medium">Profile</span>
           </NavLink>
-
+          {/* Logout */}
           <button
             onClick={logOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"

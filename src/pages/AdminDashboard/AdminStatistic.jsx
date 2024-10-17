@@ -8,10 +8,9 @@ import AdminRecharts from "../../components/AdminDashboard/AdminRecharts";
 import Map from "../../components/AdminDashboard/Map";
 // import Map from "../../components/AdminDashboard/Map";
 
-
 const AdminStatistic = () => {
   return (
-    <div>
+    <div className="bg-[#f5f6fa] p-10">
       <div className="flex justify-between items-center rounded-lg bg-white p-5">
         <div className="space-y-2">
           <h1 className="text-2xl font-bold">Welcome Back Abu Rahat</h1>
@@ -110,10 +109,8 @@ const AdminStatistic = () => {
         </div>
       </div>
 
-     
-        <AdminRecharts />
-        {/* <Map /> */}
-     
+      <AdminRecharts />
+      {/* <Map /> */}
     </div>
   );
 };

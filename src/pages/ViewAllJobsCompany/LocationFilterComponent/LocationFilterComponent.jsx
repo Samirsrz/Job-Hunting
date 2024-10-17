@@ -38,7 +38,7 @@ const LocationFilterComponent = () => {
 
     const handleApply = () => {
         // Apply filter logic here
-        console.log('Applied filters:', selectedLocations);
+       // console.log('Applied filters:', selectedLocations);
     };
 
 
@@ -50,7 +50,7 @@ const LocationFilterComponent = () => {
             location.name.toLowerCase().includes(inputValue) // Match any part of the string
         );
     
-        console.log(matchedLocations); // Output the matched locations
+     //   console.log(matchedLocations); // Output the matched locations
         setLocationsData(matchedLocations)
         
     };

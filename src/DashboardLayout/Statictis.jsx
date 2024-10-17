@@ -3,6 +3,7 @@ import UserStatictis from "../pages/UserDashboard/UserStatictis";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import AdminStatistic from "../pages/AdminDashboard/AdminStatistic";
+import HostStatistic from "../pages/HostDashboard/HostStatistic";
 
 const Statictis = () => {
   const { user, setLoading } = useAuth();
@@ -23,8 +24,9 @@ const Statictis = () => {
       {/* here set all statictis role  */}
       {/* <UserStatictis /> */}
       {/* {loginUser.role == "admin" ? <AdminStatistic /> : <UserStatictis />} */}
-      {loginUser.role == "admin" && <AdminStatistic />}
-      {loginUser.role == "guest" && <UserStatictis />}
+      {/* {loginUser.role == "admin" && <AdminStatistic />}
+      {loginUser.role == "host" && <HostStatistic />}
+      {loginUser.role == "guest" && <UserStatictis />} */}
     </div>
   );
 };

@@ -243,7 +243,7 @@ import ExperienceSlider from '../ExperienceSlider/ExperienceSlider';
 import { Link } from 'react-router-dom';
 
 // const StandardCharteredJobs = () => {
-  
+
 //     const [btnDrop, setBtnDrop] = useState(''); // Store selected button
 //     const [toggle, setToggle] = useState(false); // Handle toggle visibility
 //     const [currentPage, setCurrentPage] = useState(1); // Pagination state
@@ -427,18 +427,18 @@ import { Link } from 'react-router-dom';
 // export default StandardCharteredJobs;
 
 
-const StandardCharteredJobs = ({companyName}) => {
+const StandardCharteredJobs = ({ companyName }) => {
     const [btnDrop, setBtnDrop] = useState(''); // Store selected button
     const [toggle, setToggle] = useState(false); // Handle toggle visibility
     const [currentPage, setCurrentPage] = useState(1); // Pagination state
     const jobsPerPage = 5; // Set the number of jobs per page
-     console.log(companyName);
-     
+   // console.log(companyName);
+
     // Fetch paginated jobs data from the API using RTK Query
     const { data: jobsData, isError, isLoading } = useGetCompanyBasedJobsQuery({
         page: currentPage,
         limit: jobsPerPage,
-        companyName:companyName
+        companyName: companyName
     });
 
     const jobs = jobsData?.jobs || [];  // Handle if jobs are undefined
@@ -457,8 +457,8 @@ const StandardCharteredJobs = ({companyName}) => {
         }
     };
 
-    console.log(jobsData);
-    
+   // console.log(jobsData);
+
     // Toggle dropdowns
     const handleToggle = (e) => {
         const selectedButton = e.target.innerText; // Get button text
@@ -478,6 +478,10 @@ const StandardCharteredJobs = ({companyName}) => {
     // Loading state
     if (isLoading) {
         return <h2 className='text-center my-6'>Data loading...</h2>;
+    }
+
+    if (jobs.length==0) {
+        return <h1 className='text-center font-bold text-gray-400 text-4xl my-7'>No data found in this company name</h1>
     }
 
     return (
@@ -527,8 +531,8 @@ const StandardCharteredJobs = ({companyName}) => {
                 <aside className=' grid grid-cols-1 gap-5'>
                     {/* Job cards */}
                     {jobs && jobs.map((job, index) => (
-                   
-                        <Link key={job._id || index} to={`/view-company-job/${job._id}`}>     <div  className="bg-white shadow-md rounded-lg p-5 flex flex-col justify-between ">
+
+                        <Link className='h-max' key={job._id || index} to={`/view-company-job/${job._id}`}>     <div className="bg-white shadow-md rounded-lg p-5 flex flex-col justify-between ">
                             <div className="flex justify-between flex-col-reverse lg:flex-row">
                                 <div>
                                     <h2 className="text-3xl md:text-xl font-semibold text-gray-800">{job.title}</h2>
@@ -574,11 +578,11 @@ const StandardCharteredJobs = ({companyName}) => {
                                 </button>
                             </div>
                         </div>
- </Link>
+                        </Link>
                     ))}
 
                     {/* Pagination */}
-                    {jobsData.totalJobs >=5 && <div className="flex justify-center items-center my-4">
+                    {jobsData.jobs.length >= 5 && <div className="flex justify-center items-center my-4">
                         <button
                             onClick={handlePreviousPage}
                             disabled={currentPage === 1}
@@ -586,7 +590,7 @@ const StandardCharteredJobs = ({companyName}) => {
                         >
                             Previous
                         </button>
-                        <span className="mx-4 text-lg">{currentPage} of {jobsData?.totalJobs/jobsPerPage}</span>
+                        <span className="mx-4 text-lg">{currentPage} of {jobsData?.totalJobs / jobsPerPage}</span>
                         <button
                             onClick={handleNextPage}
                             disabled={currentPage === totalPages}
@@ -598,6 +602,9 @@ const StandardCharteredJobs = ({companyName}) => {
                 </aside>
 
                 {/* Right-hand side content */}
+
+
+
                 <aside>
                     {/* Register section */}
                     <div className='w-full border rounded-xl p-4'>
@@ -612,6 +619,48 @@ const StandardCharteredJobs = ({companyName}) => {
                             <img className='w-[140px]' src="https://static.naukimg.com/s/7/109/assets/images/cp-register.be877ebb.png" alt="" />
                         </div>
                     </div>
+
+                                       <div id='reviews' className=' border rounded-xl p-4 mt-3'>
+                        {/* Reviews and other components */}
+                       
+
+                      <div className='space-y-3'>
+                             <div className='flex justify-between'>
+                                 <h1 className='font-semibold'>Reviews by Job Profile</h1>
+                                <Link className='text-blue-600 font-semibold text-[14px]' to={'/'}>View All</Link>
+                            </div>
+                            <div>
+                                 <p className='flex items-center'><FaStar className='text-yellow-300'></FaStar> <span className='opacity-70'>4.1</span> <span className='ml-4'>Senior Manager</span> <span className='opacity-60'>(123)</span></p>
+                                 <p className='flex items-center'><FaStar className='text-yellow-300'></FaStar> <span className='opacity-70'>4.1</span> <span className='ml-4'>Senior Manager</span> <span className='opacity-60'>(123)</span></p>
+                                <p className='flex items-center'><FaStar className='text-yellow-300'></FaStar> <span className='opacity-70'>4.1</span> <span className='ml-4'>Senior Manager</span> <span className='opacity-60'>(123)</span></p>
+                               <p className='flex items-center'><FaStar className='text-yellow-300'></FaStar> <span className='opacity-70'>4.1</span> <span className='ml-4'>Senior Manager</span> <span className='opacity-60'>(123)</span></p>
+                                <p className='flex items-center'><FaStar className='text-yellow-300'></FaStar> <span className='opacity-70'>4.1</span> <span className='ml-4'>Senior Manager</span> <span className='opacity-60'>(123)</span></p>
+
+                            </div>
+
+                             <div id='work place' className=' border rounded-xl p-4'>
+                                <div className='flex flex-col-reverse gap-3 lg:gap-0 md:flex-row justify-between'>
+                                   <div>
+                                        <p>Write a review & help millions!</p>
+                                        <h5>Rate Standard Chartered as a <br /> workplace</h5>
+                                     </div>
+                                    <div>
+                                      <img className='' src="https://static.naukimg.com/s/7/109/assets/images/write-review-ot.84ba0c93.png" alt="" />
+                                    </div>
+                              </div>
+                                <p className='my-4'>
+                                     <Link className='font-semibold text-blue-500 w-full h-full'>Write review </Link>
+                                 </p>
+
+                            </div>
+
+                            <div className='flex gap-1 items-center'>
+                                <img className='w-[15px]' src="https://static.naukimg.com/s/7/109/assets/images/ot-ambition-box.6be916cf.png" alt="" />
+                                <p>AmbitionBox</p>
+                            </div>
+                         </div>
+                     </div>
+
                 </aside>
             </section>
         </section>

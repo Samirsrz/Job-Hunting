@@ -20,7 +20,7 @@ const AllUser = () => {
   // console.log("this is all users", users);
   //handleAdmin
   const handleAdmin = (id) => {
-    console.log("this is admin ", id);
+  //  console.log("this is admin ", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You want to create an admin!",
@@ -32,7 +32,7 @@ const AllUser = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSequre.put(`/user/${id}`).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.deletedCount) {
             Swal.fire({
               title: "created!",
@@ -47,7 +47,7 @@ const AllUser = () => {
 
   //handle Delete function
   const handleDelete = (id) => {
-    console.log("user id ", id);
+  //  console.log("user id ", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to delete User!",

@@ -6,7 +6,6 @@ import { imageUpload } from "../../api/utils";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
-
 const PostJobs = () => {
   const [loading, setLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
@@ -38,8 +37,9 @@ const PostJobs = () => {
         location,
         description,
         logo,
-        experience
+        experience,
       };
+ //     console.log("this is post data info", jobData);
 
       const { data } = await axiosSecure.post(`/jobs/new`, jobData);
 
@@ -81,7 +81,6 @@ const PostJobs = () => {
                   name="company"
                   id="company"
                 />
-               
               </div>
 
               <div className="space-y-1 text-sm">
@@ -172,7 +171,7 @@ const PostJobs = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="space-y-1 text-sm">
                 <label htmlFor="job-type" className="block text-gray-600">
                   Experience
@@ -183,7 +182,6 @@ const PostJobs = () => {
                   name="experience"
                   id="experience"
                 >
-             
                   <option>fresher</option>
                   <option>1-year</option>
                   <option>2-year</option>
@@ -191,10 +189,6 @@ const PostJobs = () => {
                   <option>4-year</option>
                 </select>
               </div>
-
-
-
-
 
               <div className="justify-between gap-2">
                 <div className="space-y-1 text-sm">
@@ -226,13 +220,7 @@ const PostJobs = () => {
             </div>
           </div>
 
-             <Link to='/dashboard/payment'>
-  
-
-         </Link>
-
-
-
+          <Link to="/dashboard/payment"></Link>
 
           <button
             disabled={loading}

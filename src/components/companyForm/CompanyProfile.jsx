@@ -59,10 +59,10 @@ const navigate = useNavigate();
             className="h-96 w-72 lg:w-96"></Lottie>
 
 
-         <div className="max-w-lg  mx-auto p-6 bg-white shadow-lg rounded-lg">
+         {/* <div className="max-w-lg  mx-auto p-6 bg-white shadow-lg rounded-lg">
             <h1 className="text-2xl font-bold mb-4">Complete Your Company Profile</h1>
             <form onSubmit={handleSubmit}>
-                {/* Banner Image */}
+           
                 <div className="form-control mb-4">
                     <label className="label">
                         <span className="label-text">Banner Image</span>
@@ -76,7 +76,7 @@ const navigate = useNavigate();
                     />
                 </div>
 
-                {/* Logo Image */}
+                
                 <div className="form-control mb-4">
                     <label className="label">
                         <span className="label-text">Logo Image</span>
@@ -100,7 +100,7 @@ const navigate = useNavigate();
                     />
                 </div>
 
-                {/* Title */}
+             
                <div className="flex flex-col lg:flex-row gap-5 ">
                <div className="form-control mb-4">
                     <label className="label">
@@ -126,7 +126,7 @@ const navigate = useNavigate();
                 </div>
                </div>
 
-                {/* Description */}
+             
                 <div className="form-control mb-4">
                     <label className="label">
                         <span className="label-text">Description</span>
@@ -152,7 +152,108 @@ const navigate = useNavigate();
               </button>
             </div>
             </form>
+        </div> */}
+
+<div className="min-h-screen flex items-center justify-center bg-gray-50">
+  <div className="max-w-3xl w-full p-8 bg-white shadow-2xl rounded-lg">
+    <h1 className="text-3xl font-bold mb-6 text-center">Complete Your Company Profile</h1>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text text-lg font-medium">Banner Image</span>
+        </label>
+        <input
+          required
+          name="banner"
+          type="file"
+          className="file-input file-input-bordered w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg"
+        />
+      </div>
+
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text text-lg font-medium">Logo Image</span>
+        </label>
+        <input
+          required
+          name="logo"
+          type="file"
+          className="file-input file-input-bordered w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg"
+        />
+      </div>
+
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text text-lg font-medium">Company Name</span>
+        </label>
+        <input
+          required
+          name="companyname"
+          type="text"
+          className="input input-bordered w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg"
+        />
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-5">
+        <div className="form-control w-full">
+          <label className="label">
+            <span className="label-text text-lg font-medium">Title</span>
+          </label>
+          <input
+            required
+            name="title"
+            type="text"
+            className="input input-bordered w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg"
+            placeholder="Company Title"
+          />
         </div>
+        
+        <div className="form-control w-full">
+          <label className="label">
+            <span className="label-text text-lg font-medium">Tags</span>
+          </label>
+          <input
+            required
+            name="tag"
+            type="text"
+            className="input input-bordered w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg"
+            placeholder="Tags"
+          />
+        </div>
+      </div>
+
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text text-lg font-medium">Description</span>
+        </label>
+        <textarea
+          required
+          name="description"
+          className="textarea textarea-bordered w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg"
+          placeholder="Company Description"
+          rows="4"
+        />
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          className="bg-blue-500 w-full rounded-md py-4 text-white font-semibold transition duration-300 hover:bg-blue-600"
+        >
+          {loading ? (
+            <TbFidgetSpinner className="animate-spin m-auto"></TbFidgetSpinner>
+          ) : (
+            "Continue"
+          )}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+        
        </div>
     );
 };

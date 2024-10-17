@@ -55,10 +55,17 @@ const Jobs = () => {
       <Helmet>
         <title>Next-Hire | Jobs</title>
       </Helmet>
-      <h1 className="text-center text-5xl font-bold mt-10 mb-6">
-        Jobs ({jobs?.length})
-      </h1>
-      <div className="flex flex-wrap gap-6 mx-6">
+      <div className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] relative overflow-hidden">
+  <img
+    src="https://i.ibb.co.com/tb5pL4S/Career-Banner.jpg"
+    alt="Banner"
+    className="w-full h-full object-cover"
+  />
+</div>
+
+
+
+      <div className="flex mx-auto w-full justify-center items-center lg:mt-14 mb-5 flex-wrap gap-6 ">
         <div>
           <h2 className="text-lg font-semibold my-2">Categories</h2>
           <div className="flex flex-row flex-wrap gap-2">
@@ -152,7 +159,7 @@ const Jobs = () => {
           </div>
         </div>
       </div>
-      {jobs?.length || <p className="m-6">No jobs found!</p>}
+      {!jobs?.length && <p className="m-6">No jobs found!</p>}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6">
         {jobs?.map((job, idx) => (
           <JobCard {...{ job }} key={idx} />
