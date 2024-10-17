@@ -11,7 +11,7 @@ const ViewAllJobs = () => {
   } catch (error) {
     console.log(error);
   }
-  console.log(jobs);
+//  console.log(jobs);
 
   return (
     <div>
