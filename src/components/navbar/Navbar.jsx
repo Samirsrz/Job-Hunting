@@ -19,10 +19,10 @@ const links = [
     title: "About Us",
     link: "/about",
   },
-  {
-    title: "Ai",
-    link: "/ai",
-  },
+  // {
+  //   title: "Ai",
+  //   link: "/ai",
+  // },
 ];
 const Navbar = () => {
   const { user, logOut } = useAuth();

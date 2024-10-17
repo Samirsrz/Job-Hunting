@@ -1,4 +1,5 @@
 
+import { Link } from 'react-router-dom';
 import avatar from '../../../../public/avatar/job.png'
 import { useTranslation } from 'react-i18next';
 
@@ -14,9 +15,9 @@ const PracticeCustomizedMockInterview = () => {
                 <p className='text-white text-lg mb-4'>
                 {t('GetAIanswers,tipsandinsights')}  
                 </p>
-                <button className='bg-blue-600 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-700'>
+                <Link to='/ai' className='bg-blue-600 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-700'>
                     Start for free
-                </button>
+                </Link>
             </div>
 
             {/* Right Image Section */}
