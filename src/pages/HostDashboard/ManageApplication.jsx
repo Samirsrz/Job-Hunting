@@ -71,7 +71,7 @@ const ManageApplication = () => {
   // Update application status
   const handleStatus = (id) => {
     const status = document.getElementById(`status-${id}`).value;
-    console.log("Updated status for ID:", id, "Status:", status);
+    // console.log("Updated status for ID:", id, "Status:", status);
 
     //  now send the status update to the server
     axiosSequre

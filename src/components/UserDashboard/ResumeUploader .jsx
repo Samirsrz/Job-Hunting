@@ -72,7 +72,7 @@ const ResumeUploader = () => {
         }
       );
 
-      console.log(response.data);
+      // console.log(response.data);
       setFileId(response.data._id); // Store the file ID from MongoDB
       toast.success("resume uploaded successfully!");
     } catch (error) {

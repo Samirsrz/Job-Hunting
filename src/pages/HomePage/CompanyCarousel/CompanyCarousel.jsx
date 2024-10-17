@@ -49,7 +49,7 @@ const categories = [
   },
   {
     title: "Product",
-    hiring: "971 are actively hiring",
+    hiring: "97.8k are actively hiring",
     logos: [
       logo1,
       logo1,

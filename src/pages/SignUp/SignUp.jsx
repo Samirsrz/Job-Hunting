@@ -43,17 +43,17 @@ const SignUp = () => {
       role = "host";
     }
 
-    console.log(role);
+    // console.log(role);
     try {
 
       setLoading(true);
        
       //upload image and get image Url
       const photo = await imageUpload(image);
-      console.log(photo);
+      // console.log(photo);
       //user registration
       const result = await createUser(email, password);
-      console.log(result);
+      // console.log(result);
       await updateUserProfile(name, photo);
       toast.success("SignUp successfull");
       const userData = {
@@ -83,9 +83,9 @@ const SignUp = () => {
     try {
       if(isHostChecked || isGuestChecked){
     const login = await signInWithGoogle();
-       console.log(login);
+      //  console.log(login);
     // setLoading(false)
-    console.log(login?.user);
+    // console.log(login?.user);
     const user = login?.user
   
       let role = ""

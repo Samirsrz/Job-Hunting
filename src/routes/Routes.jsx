@@ -16,18 +16,22 @@ import JobDetails from "./../pages/Jobs/JobDetails";
 import ViewAllJobsCompany from "../pages/ViewAllJobsCompany/ViewAllJobsCompany";
 import Login from "../pages/Login/Login";
 import CompanyProfile from "../components/companyForm/CompanyProfile";
-import Statictis from "../DashboardLayout/Statictis";
 import AdminStatistic from "../pages/AdminDashboard/AdminStatistic";
 
 import VeiwCompanyJob from "../pages/ViewAllJobsCompany/ViewCompanyJob/VeiwCompanyJob";
 import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 import PrivateRoute from "./PrivateRoute";
+import ViewEventChallenge from "../pages/Event/ViewEventChallenge/ViewEventChallenge";
+
 import Payment from "../pages/Payment/Payment";
 import PaymentRecieve from "../pages/Payment/PaymentRecieve";
 
-import InterviewSchedule from "../../src/pages/InterviewSchedule/InterviewSchedule"
-import ViewJobs from "../DashboardLayout/ViewJobs";
+import InterviewSchedule from "../../src/pages/InterviewSchedule/InterviewSchedule";
 import ManageApplication from "../pages/HostDashboard/ManageApplication";
+import UserStatictis from "../pages/UserDashboard/UserStatictis";
+import ViewHostJobs from "../pages/HostDashboard/ViewHostJobs";
+import ViewAllJobs from "../pages/AdminDashboard/ViewAllJobs";
+import HostStatisticPage from "../pages/HostDashboard/HostStatisticPage";
 
 export const router = createBrowserRouter([
   {
@@ -87,9 +91,19 @@ export const router = createBrowserRouter([
         element: <VeiwCompanyJob />,
       },
       {
-        path: "view-all-companies",
-        element: <ViewAllCompanies />,
+        path:'view-all-companies',
+        element:<ViewAllCompanies/>
       },
+      {
+        path:"/event/details/:id",
+        element:<ViewEventChallenge/>
+      },
+      {
+                path: "view-all-companies",
+        element: <ViewAllCompanies />,
+      
+      }
+
     ],
   },
 
@@ -101,32 +115,47 @@ export const router = createBrowserRouter([
       </LangProvider>
     ),
     children: [
+      //user Route,
       {
-        path: "/dashboard",
-        element: <Statictis />,
+        path: "/dashboard/userstatistic",
+        element: <UserStatictis />,
       },
       {
         path: "/dashboard/appliedjobs",
         element: <AppliedJobs />,
-      },
-
-      {
-        path: "/dashboard/post-jobs",
-        element: <PostJobs />,
       },
       {
         path: "/dashboard/interview-schedule",
         element: <InterviewSchedule />,
       },
       {
+        path: "/dashboard/userprofile",
+        element: <UserProfile />,
+      },
+
+      //Host Route done*********
+      {
+        path: "/dashboard/host-statistic",
+        element: <HostStatisticPage />,
+      },
+      {
+        path: "/dashboard/post-jobs",
+        element: <PostJobs />,
+      },
+      {
+        path: "/dashboard/viewhostjobs",
+        element: <ViewHostJobs />,
+      },
+      {
         path: "/dashboard/company-profile",
         element: <CompanyProfile />,
       },
       {
-        path: "/dashboard/userprofile",
-        element: <UserProfile />,
+        path: "/dashboard/payment",
+        element: <Payment />,
       },
-      //admin route
+
+      //admin route done**********
       {
         path: "/dashboard/adminstatictis",
         element: <AdminStatistic />,
@@ -136,12 +165,8 @@ export const router = createBrowserRouter([
         element: <AllUser />,
       },
       {
-        path: "/dashboard/payment",
-        element: <Payment />,
-      },
-      {
-        path: "/dashboard/viewjobs",
-        element: <ViewJobs />,
+        path: "/dashboard/viewalljobs",
+        element: <ViewAllJobs />,
       },
       {
         path: "/dashboard/manage_application",
@@ -149,7 +174,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/payment-form",
-        element: <PaymentRecieve/>,
+        element: <PaymentRecieve />,
       },
     ],
   },
