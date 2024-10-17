@@ -51,7 +51,7 @@ let featuredJobsApi = createApi({
         getFeaturedComanies: builder.query({
             query: ({ page, limit, filterInfo }) => {
                 // Serialize filterInfo, ensuring arrays are correctly handled
-                console.log('rkt',filterInfo);
+                // console.log('rkt',filterInfo);
                 
                 const filterParams = new URLSearchParams();
                 

@@ -186,7 +186,7 @@ const SponsoredCompanies = () => {
 
   const { data: companies = [], error, isLoading } = useGetSponsoredCompaniesQuery(activeCategory);
 
-  console.log('compamy', companies);
+  // console.log('compamy', companies);
 
   const CustomPrevArrow = (props) => {
     const { onClick, currentSlide } = props;

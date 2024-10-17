@@ -15,7 +15,7 @@ const ViewJobs = () => {
       .get(`/user?email=${user?.email}`)
       .then((res) => setLoginUser(res.data));
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 
   return (
