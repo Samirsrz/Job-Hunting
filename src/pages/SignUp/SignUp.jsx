@@ -256,7 +256,7 @@ else{
                 />
               </div>
 
-              <div className="flex justify-center items-center mt-20">
+              {/* <div className="flex justify-center items-center mt-20">
                 <label className="flex items-center mr-10">
                   <input
                     type="checkbox"
@@ -277,7 +277,34 @@ else{
                   />
                   <span className="text-2xl">Join as a guest</span>
                 </label>
-              </div>
+              </div> */}
+
+<div className="flex justify-center items-center mt-20 space-x-10">
+  <label className="flex items-center space-x-4 bg-gray-100 p-4 rounded-lg shadow-md hover:bg-blue-50 transition duration-300 ease-in-out">
+    <input
+      type="radio"
+      name="joinOption"
+      checked={isHostChecked}
+      onChange={() => setIsHostChecked(true)}
+      className="w-6 h-6 text-blue-500 focus:ring-blue-400"
+    />
+    <span className="text-2xl font-semibold text-gray-700">Join as a host</span>
+  </label>
+  
+  <label className="flex items-center space-x-4 bg-gray-100 p-4 rounded-lg shadow-md hover:bg-blue-50 transition duration-300 ease-in-out">
+    <input
+      type="radio"
+      name="joinOption"
+      checked={isGuestChecked}
+      onChange={() => setIsGuestChecked(true)}
+      className="w-6 h-6 text-blue-500 focus:ring-blue-400"
+    />
+    <span className="text-2xl font-semibold text-gray-700">Join as a guest</span>
+  </label>
+</div>
+
+
+
             </div>
 
             <div>
