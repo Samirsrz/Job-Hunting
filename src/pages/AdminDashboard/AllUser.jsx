@@ -32,7 +32,7 @@ const AllUser = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSequre.put(`/user/${id}`).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.deletedCount) {
             Swal.fire({
               title: "created!",

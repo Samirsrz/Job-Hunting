@@ -95,12 +95,12 @@ const ViewAllCompanies = () => {
 
     function getFilterPanel(infoFilter) {
         setFilter(infoFilter);
-        console.log(infoFilter);
+        // console.log(infoFilter);
 
 
     }
 
-    console.log(featuredCompanies);
+    // console.log(featuredCompanies);
 
     // Handle loading state
     if (isLoading) {
