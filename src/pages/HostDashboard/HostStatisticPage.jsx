@@ -4,20 +4,19 @@ import { FaSackDollar } from "react-icons/fa6";
 import { FiUsers } from "react-icons/fi";
 import { GoBell } from "react-icons/go";
 import { LuFileInput } from "react-icons/lu";
-import { BiDollar } from "react-icons/bi";
 import useAuth from "./../../hooks/useAuth";
 import HostChart from "../../components/HostDashboard/HostChart";
 import ImpressionChart from "../../components/HostDashboard/ImpressionChart";
 
-const HostStatistic = () => {
+const HostStatisticPage = () => {
   const { user } = useAuth();
   return (
-    <div>
+    <div className="bg-[#f5f6fa] p-10">
       <div className="flex flex-col justify-between lg:items-center lg:flex-row rounded-lg bg-white p-5">
         <div className="space-y-2">
           <h1 className="text-2xl font-bold">
             Welcome Back{" "}
-            <span className="text-blue-700">{user.displayName}</span>
+            <span className="text-blue-700">{user?.displayName}</span>
           </h1>
           <p className="text-sm text-gray-700 font-semibold">
             you have <span className="text-blue-700">5 unread</span>{" "}
@@ -38,7 +37,7 @@ const HostStatistic = () => {
               </div>
             </div>
             <div className="pr-2">
-              <div className="stat-title">{user.displayName}</div>
+              <div className="stat-title">{user?.displayName}</div>
               <div className="stat-desc font-semibold text-secondary">Host</div>
             </div>
           </div>
@@ -149,4 +148,4 @@ const HostStatistic = () => {
   );
 };
 
-export default HostStatistic;
+export default HostStatisticPage;

@@ -24,9 +24,9 @@ const Statictis = () => {
       {/* here set all statictis role  */}
       {/* <UserStatictis /> */}
       {/* {loginUser.role == "admin" ? <AdminStatistic /> : <UserStatictis />} */}
-      {loginUser.role == "admin" && <AdminStatistic />}
+      {/* {loginUser.role == "admin" && <AdminStatistic />}
       {loginUser.role == "host" && <HostStatistic />}
-      {loginUser.role == "guest" && <UserStatictis />}
+      {loginUser.role == "guest" && <UserStatictis />} */}
     </div>
   );
 };
