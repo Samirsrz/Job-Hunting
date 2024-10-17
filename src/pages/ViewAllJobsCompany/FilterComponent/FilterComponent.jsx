@@ -9,7 +9,7 @@ const departments = [
  
 const FilterComponent = ({setBtnDrop,btnDrop}) => {
   const [selectedDepartments, setSelectedDepartments] = useState([]);
-console.log(btnDrop);
+// console.log(btnDrop);
 
   const handleCheckboxChange = (department) => {
     setSelectedDepartments((prev) =>
@@ -25,7 +25,7 @@ console.log(btnDrop);
 
   const handleApply = () => {
     // Apply filter logic here
-    console.log('Applied filters:', selectedDepartments);
+    // console.log('Applied filters:', selectedDepartments);
   };
 
   return (

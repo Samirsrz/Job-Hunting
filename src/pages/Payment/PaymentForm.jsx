@@ -57,7 +57,7 @@ const PaymentForm = () => {
                 toast.error(paymentResult.error.message)
             } else if (paymentResult.paymentIntent.status === 'succeeded') {
               toast.success('Payment Successfull')
-                console.log('Payment successful!');
+                // console.log('Payment successful!');
             }
         }
       }

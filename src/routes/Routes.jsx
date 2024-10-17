@@ -21,6 +21,8 @@ import AdminStatistic from "../pages/AdminDashboard/AdminStatistic";
 import VeiwCompanyJob from "../pages/ViewAllJobsCompany/ViewCompanyJob/VeiwCompanyJob";
 import ViewAllCompanies from "../pages/ViewAllCompanies/ViewAllCompanies";
 import PrivateRoute from "./PrivateRoute";
+import ViewEventChallenge from "../pages/Event/ViewEventChallenge/ViewEventChallenge";
+
 import Payment from "../pages/Payment/Payment";
 import PaymentRecieve from "../pages/Payment/PaymentRecieve";
 
@@ -89,9 +91,19 @@ export const router = createBrowserRouter([
         element: <VeiwCompanyJob />,
       },
       {
-        path: "view-all-companies",
-        element: <ViewAllCompanies />,
+        path:'view-all-companies',
+        element:<ViewAllCompanies/>
       },
+      {
+        path:"/event/details/:id",
+        element:<ViewEventChallenge/>
+      },
+      {
+                path: "view-all-companies",
+        element: <ViewAllCompanies />,
+      
+      }
+
     ],
   },
 
