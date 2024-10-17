@@ -301,7 +301,6 @@
 
 
 
-
 import Slider from "react-slick";
 import { useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
@@ -334,15 +333,13 @@ const FeaturedCompanies = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const { data: featuredJobs, isError, isLoading } = useGetFeaturedJobsQuery(selectedCategory);
-console.log(featuredJobs);
-console.log(selectedCategory);
 
   const settings = {
     infinite: false,
     speed: 500,
     slidesToShow: 4.5,
     slidesToScroll: 1,
-    nextArrow: <NextArrow isVisible={currentSlide < featuredJobs?.length - 4.5} />,
+    nextArrow: <NextArrow isVisible={currentSlide < (featuredJobs?.length || 0) - 4.5} />,
     prevArrow: <PrevArrow isVisible={currentSlide > 0} />,
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
     responsive: [
@@ -355,13 +352,18 @@ console.log(selectedCategory);
   if (isLoading) {
     return (
       <div className="flex justify-center">
+        {/* Add aria-label for testing */}
         <Blocks height="80" width="80" color="#4fa94d" ariaLabel="blocks-loading" />
       </div>
     );
   }
 
   if (isError) {
-    return <h1>Something went wrong</h1>;
+    return <h1 aria-label="error-message">Something went wrong</h1>;
+  }
+
+  if (featuredJobs?.length === 0) {
+    return <h2 aria-label="no-jobs-message">No jobs available</h2>;
   }
 
   return (

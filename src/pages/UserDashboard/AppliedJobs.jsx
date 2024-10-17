@@ -161,7 +161,6 @@ const AppliedJobs = () => {
                             >
                               <RiDeleteBin5Line className="text-xl" />
                             </button>
-
                           </div>
                         </td>
                       </tr>

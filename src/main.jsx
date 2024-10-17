@@ -4,7 +4,7 @@ import "./index.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./i18n.js";
-// import "swiper/css";
+import "swiper/css";
 import "swiper/css/effect-cards";
 
 import { RouterProvider } from "react-router-dom";

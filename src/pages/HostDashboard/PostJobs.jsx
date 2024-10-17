@@ -4,7 +4,7 @@ import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { imageUpload } from "../../api/utils";
 import toast from "react-hot-toast";
-import useAxiosCommon, { axiosCommon } from "../../hooks/useAxiosCommon";
+import { Link } from "react-router-dom";
 
 const PostJobs = () => {
   const [loading, setLoading] = useState(false);
@@ -22,6 +22,7 @@ const PostJobs = () => {
     const salary = form.salary.value;
     const location = form.location.value;
     const description = form.description.value;
+    const experience = form.experience.value;
     const image = form.image.files[0];
 
     try {
@@ -36,7 +37,9 @@ const PostJobs = () => {
         location,
         description,
         logo,
+        experience,
       };
+      console.log("this is post data info", jobData);
 
       const { data } = await axiosSecure.post(`/jobs/new`, jobData);
 
@@ -58,7 +61,7 @@ const PostJobs = () => {
   return (
     <div>
       <Helmet>
-        <title>Job-Hunting | Post-Jobs</title>
+        <title>Next-Hire | Post-Jobs</title>
       </Helmet>
       <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
         <h1 className="lg:text-5xl my-7 font-bold">~~Post-Jobs Form~~</h1>
@@ -71,22 +74,13 @@ const PostJobs = () => {
                   Company Name
                 </label>
 
-                <select
+                <input
                   required
+                  placeholder="Company Name"
                   className="w-full px-4 py-3 border-primary focus:outline-blue-800 rounded-md"
                   name="company"
                   id="company"
-                >
-                  {/* <option defaultValue="" disabled selected>Select your company</option> */}
-                  <option value="google">Google</option>
-                  <option value="microsoft">Microsoft</option>
-                  <option value="amazon">Amazon</option>
-                  <option value="apple">Apple</option>
-                  <option value="facebook">Facebook</option>
-                  <option value="netflix">Netflix</option>
-                  <option value="tesla">Tesla</option>
-                  <option value="adobe">Adobe</option>
-                </select>
+                />
               </div>
 
               <div className="space-y-1 text-sm">
@@ -178,6 +172,24 @@ const PostJobs = () => {
                 </div>
               </div>
 
+              <div className="space-y-1 text-sm">
+                <label htmlFor="job-type" className="block text-gray-600">
+                  Experience
+                </label>
+                <select
+                  required
+                  className="w-full px-4 py-3 border-primary focus:outline-blue-800 rounded-md"
+                  name="experience"
+                  id="experience"
+                >
+                  <option>fresher</option>
+                  <option>1-year</option>
+                  <option>2-year</option>
+                  <option>3-year</option>
+                  <option>4-year</option>
+                </select>
+              </div>
+
               <div className="justify-between gap-2">
                 <div className="space-y-1 text-sm">
                   <label htmlFor="location" className="block text-gray-600">
@@ -207,6 +219,8 @@ const PostJobs = () => {
               </div>
             </div>
           </div>
+
+          <Link to="/dashboard/payment"></Link>
 
           <button
             disabled={loading}

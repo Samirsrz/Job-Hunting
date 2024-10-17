@@ -2,7 +2,8 @@
 import { useState } from "react";
 import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import logo1 from '../../../../public/company/4467146.gif'; 
+// import logo1 from '../../../../public/company/4467146.gif'; 
+import logo1 from '../../../../public/company/dow.png'; 
 import { useTranslation } from 'react-i18next';
 // Example company logos
 const categories = [
@@ -138,7 +139,7 @@ const CompanyCarousel = () => {
           <div key={index} className="p-4" style={{ width: "auto" }}>
             <div className="border rounded-lg p-4 shadow-lg h-full flex flex-col justify-between">
               <div>
-                <h3 className="text-xl font-semibold mb-2 flex items-center">
+                <h3 className="text-xl font-bold mb-2 flex items-center  text-teal-500">
                   {category.title}
                   <IoIosArrowForward className="opacity-45 ml-2" />
                 </h3>

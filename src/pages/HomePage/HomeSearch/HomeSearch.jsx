@@ -13,10 +13,10 @@ const HomeSearch = () => {
 
     return (
         <div className='max-w-6xl mx-auto p-4'>
-            <h1 className='text-center text-4xl font-bold m-8'>{t('FindYourDreamJobNow')}</h1>
-            <p className='text-center text-lg '>{t('Over500,000jobsforyoutoexplore')}</p>
+            <h1 className='text-center text-4xl font-bold m-4'>{t('FindYourDreamJobNow')}</h1>
+            <p className='text-center text-lg font-thin'>{t('Over500,000jobsforyoutoexplore')}</p>
 
-            <div className='flex justify-center'>
+            <div className='flex justify-center mt-2'>
                 <div className='bg-white shadow-lg lg:rounded-full p-4 flex-col lg:flex-row  flex items-center space-x-4'>
                     {/* Input Field */}
                     <input 
