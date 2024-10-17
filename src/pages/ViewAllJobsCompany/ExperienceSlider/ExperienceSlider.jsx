@@ -68,7 +68,7 @@ const ExperienceSlider = () => {
   };
 
   const handleApply = () => {
-    console.log('Selected experience:', experience);
+  //  console.log('Selected experience:', experience);
   };
 
   // Calculate the background style based on experience

@@ -8,7 +8,8 @@ import toast from "react-hot-toast";
 import remarkGfm from "remark-gfm";
 import "highlight.js/styles/github.css";
 import rehypeHighlight from "rehype-highlight";
-
+import AiAnnimation from '../../../public/Annimations/AiInterviewAnnimation.json'
+import Lottie from "lottie-react";
 const Ai = () => {
   const [response, setResponse] = useState(
     "Write a message and click the *send* button to get ai response!"
@@ -32,29 +33,33 @@ const Ai = () => {
       });
   };
   return (
-    <div className="px-4 md:px-10 lg:px-20">
+    <div className="px-4 justify-center lg:my-11  items-center flex mx-auto gap-9 flex-col lg:flex-row md:px-10 lg:px-20">
       <Helmet>
         <title>Next-Hire | Ai </title>
       </Helmet>
-      <div
-        className="hero h-72 my-5 rounded-lg"
-        style={{
-          backgroundImage:
-            "url(https://www.nibib.nih.gov/sites/default/files/inline-images/AI%20600%20x%20400.jpg)",
-        }}
-      >
-        <div className="hero-overlay bg-opacity-60 rounded-lg"></div>
-      </div>
-      <form
+     <div>
+     <figure>
+          <Lottie
+            animationData={AiAnnimation}
+            className="h-96 w-full"
+          ></Lottie>
+        </figure>
+     </div>
+     <div>
+     <form
         onSubmit={handleSubmit}
         className="flex flex-col mb-4 md:mb-8 lg:mt-10"
       >
+        <h1 className="font-semibold text-gray-600 py-6 text-3xl">Ask your Queries About Job</h1>
         <textarea
-          disabled={loading}
-          className="textarea textarea-bordered border-primary grow px-3"
-          name="message"
-          placeholder="Write Your message"
-        ></textarea>
+  disabled={loading}
+  className="textarea textarea-bordered border-primary grow px-3 w-full h-40"
+  name="message"
+  placeholder="Write Your message"
+  rows="10"
+  cols="50"
+></textarea>
+
         <button
           disabled={loading}
           className="btn bg-blue-400 font-bold mt-3 text-white text-lg"
@@ -89,6 +94,7 @@ const Ai = () => {
           {response}
         </Markdown>
       </div>
+     </div>
     </div>
   );
 };
