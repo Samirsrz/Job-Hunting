@@ -38,7 +38,7 @@ const {user, loading} = useAuth();
 }, [user?.email, loading]);
 
 
-console.log(paymentInfo);
+//console.log(paymentInfo);
 
     return (
       <div className="">

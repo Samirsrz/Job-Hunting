@@ -22,14 +22,14 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(email);
+ //   console.log(email);
     userSignIn(email, password)
       .then((result) => {
         const loggedInUser = result.user;
         toast.success("Signup Successful");
         navigate(from)
         
-        console.log(loggedInUser);
+  //      console.log(loggedInUser);
         setLoading(true);
       })
       .catch((error) => {

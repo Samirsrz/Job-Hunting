@@ -72,7 +72,7 @@ const ViewAllJobsCompany = () => {
 
     const handleunFollow = async () => {
         let user2 = user.email;
-        console.log('unfollow', user2);
+     //   console.log('unfollow', user2);
         let res = await unfollowCompany(user2).unwrap();
         setFollower(false); // Set follower state to false after unfollowing
         // console.log(res);

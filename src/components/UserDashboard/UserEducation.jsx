@@ -21,7 +21,7 @@ const UserEducation = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setEeducationainfo(formData);
-    console.log("Form Data Submitted", formData);
+  //  console.log("Form Data Submitted", formData);
   };
 
   return (

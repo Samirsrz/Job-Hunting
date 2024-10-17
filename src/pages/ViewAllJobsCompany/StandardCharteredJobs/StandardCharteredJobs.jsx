@@ -432,7 +432,7 @@ const StandardCharteredJobs = ({ companyName }) => {
     const [toggle, setToggle] = useState(false); // Handle toggle visibility
     const [currentPage, setCurrentPage] = useState(1); // Pagination state
     const jobsPerPage = 5; // Set the number of jobs per page
-    console.log(companyName);
+   // console.log(companyName);
 
     // Fetch paginated jobs data from the API using RTK Query
     const { data: jobsData, isError, isLoading } = useGetCompanyBasedJobsQuery({
@@ -457,7 +457,7 @@ const StandardCharteredJobs = ({ companyName }) => {
         }
     };
 
-    console.log(jobsData);
+   // console.log(jobsData);
 
     // Toggle dropdowns
     const handleToggle = (e) => {

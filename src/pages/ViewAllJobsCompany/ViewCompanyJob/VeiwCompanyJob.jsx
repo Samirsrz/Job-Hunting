@@ -9,7 +9,7 @@ const VeiwCompanyJob = () => {
     let { data: interestedJobs, isLoading, isError } = useGetRandom5InterestedJobsQuery()
     let [viewJob, setViewJob] = useState({})
     let { id } = useParams()
-    console.log(id);
+   // console.log(id);
 
    
 

@@ -26,7 +26,7 @@ const InterviewSchedule = () => {
       selectedDate,
       selectedTime,
     };
-    console.log(newEvent);
+ //   console.log(newEvent);
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/schedule`, {
         method: "POST",
@@ -36,7 +36,7 @@ const InterviewSchedule = () => {
         body: JSON.stringify(newEvent),
       });
       // const data = await response.json();
-      console.log(response);
+  //    console.log(response);
       if (response.status == 201) {
         toast.success("Successfully create interview schedule");
       }

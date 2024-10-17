@@ -39,7 +39,7 @@ const PostJobs = () => {
         logo,
         experience,
       };
-      console.log("this is post data info", jobData);
+ //     console.log("this is post data info", jobData);
 
       const { data } = await axiosSecure.post(`/jobs/new`, jobData);
 
