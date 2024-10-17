@@ -11,7 +11,7 @@ import ImpressionChart from "../../components/HostDashboard/ImpressionChart";
 const HostStatisticPage = () => {
   const { user } = useAuth();
   return (
-    <div>
+    <div className="bg-[#f5f6fa] p-10">
       <div className="flex flex-col justify-between lg:items-center lg:flex-row rounded-lg bg-white p-5">
         <div className="space-y-2">
           <h1 className="text-2xl font-bold">

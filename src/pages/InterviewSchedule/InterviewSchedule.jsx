@@ -25,22 +25,24 @@ const InterviewSchedule = () => {
       selectedDate,
       selectedTime,
     };
-  
+
     try {
-      const response = await fetch("http://localhost:8000/interviews", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newEvent),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/interviews`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newEvent),
+        }
+      );
       const data = await response.json();
       console.log(data);
     } catch (error) {
       console.error("Error creating event:", error);
     }
   };
-  
 
   return (
     <div className="flex h-screen">
@@ -94,7 +96,10 @@ const InterviewSchedule = () => {
           </button>
         </div> */}
 
-        <button className="btn  bg-slate-500 text-white w-full" onClick={handleCreateEvent}>
+        <button
+          className="btn  bg-slate-500 text-white w-full"
+          onClick={handleCreateEvent}
+        >
           Create
         </button>
       </div>
