@@ -55,9 +55,6 @@ const Jobs = () => {
       <Helmet>
         <title>Next-Hire | Jobs</title>
       </Helmet>
-      <h1 className="text-center text-5xl font-bold mt-10 mb-6">
-        Jobs ({jobs?.length})
-      </h1>
       <div className="flex flex-wrap gap-6 mx-6">
         <div>
           <h2 className="text-lg font-semibold my-2">Categories</h2>
@@ -152,7 +149,7 @@ const Jobs = () => {
           </div>
         </div>
       </div>
-      {jobs?.length || <p className="m-6">No jobs found!</p>}
+      {!jobs?.length && <p className="m-6">No jobs found!</p>}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6">
         {jobs?.map((job, idx) => (
           <JobCard {...{ job }} key={idx} />

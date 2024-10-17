@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+//http://surl.li/gbhhni
 import { useState } from "react";
 import Markdown from "react-markdown";
 import { axiosCommon } from "../../hooks/useAxiosCommon";
@@ -35,17 +36,28 @@ const Ai = () => {
       <Helmet>
         <title>Next-Hire | Ai </title>
       </Helmet>
-      <h1 className="text-center text-5xl font-bold mt-10 mb-6">AI</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col mb-4 md:mb-8">
+      <div
+        className="hero h-72 my-5 rounded-lg"
+        style={{
+          backgroundImage:
+            "url(https://www.nibib.nih.gov/sites/default/files/inline-images/AI%20600%20x%20400.jpg)",
+        }}
+      >
+        <div className="hero-overlay bg-opacity-60 rounded-lg"></div>
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col mb-4 md:mb-8 lg:mt-10"
+      >
         <textarea
           disabled={loading}
-          className="textarea textarea-bordered border-primary rounded-b-none grow"
+          className="textarea textarea-bordered border-primary grow px-3"
           name="message"
           placeholder="Write Your message"
         ></textarea>
         <button
           disabled={loading}
-          className="btn btn-primary rounded-t-none"
+          className="btn bg-blue-400 font-bold mt-3 text-white text-lg"
           type="submit"
         >
           {loading ? (

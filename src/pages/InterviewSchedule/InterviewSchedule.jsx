@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const InterviewSchedule = () => {
   const [eventName, setEventName] = useState("");
@@ -25,20 +26,20 @@ const InterviewSchedule = () => {
       selectedDate,
       selectedTime,
     };
-
+    console.log(newEvent);
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/interviews`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newEvent),
-        }
-      );
-      const data = await response.json();
-      // console.log(data);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/schedule`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newEvent),
+      });
+      // const data = await response.json();
+      console.log(response);
+      if (response.status == 201) {
+        toast.success("Successfully create interview schedule");
+      }
     } catch (error) {
       console.error("Error creating event:", error);
     }
@@ -47,7 +48,7 @@ const InterviewSchedule = () => {
   return (
     <div className="flex h-screen">
       {/* Left Side: Create Event Form */}
-      <div className="w-1/3 p-6  bg-sky-300 text-white">
+      <div className="w-1/3 p-6  bg-sky-300">
         <button className="btn btn-ghost mb-4  text-white">Cancel</button>
         <h1 className="text-2xl font-bold mb-6">Create New Interview</h1>
 
