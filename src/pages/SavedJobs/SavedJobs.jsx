@@ -25,6 +25,7 @@ const SavedJobs = () => {
       </div>
     );
   }
+
   if (error) {
     return (
       <div className="flex items-center justify-center flex-col py-20">
