@@ -1,8 +1,20 @@
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaRegTrashAlt } from "react-icons/fa";
 import { TbListDetails } from "react-icons/tb";
 import { LuSaveAll } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import {
+  localAddJob,
+  localJobExists,
+  localDeleteJob,
+} from "../../libs/localJobs";
+import { useEffect, useState } from "react";
 const JobCard = ({ job }) => {
+  const [exist, setExist] = useState(false);
+
+  useEffect(() => {
+    setExist(localJobExists(job?._id));
+  }, []);
+
   return (
     <div className="text-center flex flex-col rounded-md p-6 bg-white drop-shadow-md">
       <img className="h-12 mx-auto" src={job?.logo} alt={job?.logo} />
@@ -20,9 +32,27 @@ const JobCard = ({ job }) => {
             View <TbListDetails className="inline" />
           </button>
         </Link>
-        <button className="btn btn-sm bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-300 mt-4">
-          Save <LuSaveAll className="inline" />
-        </button>
+        {exist ? (
+          <button
+            onClick={() => {
+              localDeleteJob(job?._id);
+              setExist(false);
+            }}
+            className="btn btn-sm bg-red-100 border-red-300 text-red-700 hover:bg-red-300 mt-4"
+          >
+            Unsaved <FaRegTrashAlt className="inline" />
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              localAddJob(job?._id);
+              setExist(true);
+            }}
+            className="btn btn-sm bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-300 mt-4"
+          >
+            Save <LuSaveAll className="inline" />
+          </button>
+        )}
       </div>
     </div>
   );
