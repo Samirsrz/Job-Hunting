@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import DepartmentsHiring from './DepartmentsHiring/DepartmentsHiring';
 import StandardCharteredJobs from './StandardCharteredJobs/StandardCharteredJobs';
@@ -17,7 +17,7 @@ const ViewAllJobsCompany = () => {
     let [follower, setFollower] = useState(false);
     let [unfollowCompany] = useUnfollowCompanyMutation();
     let axiosCommon = useAxiosCommon();
-   let  [fjob, setfjob] = useState({})
+    let [fjob, setfjob] = useState({})
     let { user } = useAuth() || {};
     let { id } = useParams();
 
@@ -31,16 +31,16 @@ const ViewAllJobsCompany = () => {
             }
         };
         fetchData();
-    }, [axiosCommon,id]);
-    
+    }, [axiosCommon, id]);
+
     // console.log(fjob);
-    
+
 
 
     let { data, refetch } = useGetuserFromFollowersQuery(user?.email, { skip: !user?.email });
 
     const [activeTab, setActiveTab] = useState('jobs'); // Default is 'jobs'
-   
+
 
     useEffect(() => {
         if (!user?.email) return;
@@ -72,14 +72,19 @@ const ViewAllJobsCompany = () => {
 
     const handleunFollow = async () => {
         let user2 = user.email;
-     //   console.log('unfollow', user2);
+        //   console.log('unfollow', user2);
         let res = await unfollowCompany(user2).unwrap();
         setFollower(false); // Set follower state to false after unfollowing
         // console.log(res);
     };
 
+
+    if (fjob.length == 0) {
+        return <h1 className='text-center text-3xl text-gray-500'>No data</h1>
+    }
+
     return (
-        <section className="w-full font-sans">
+        <section className="max-w-screen-xl m-auto p-4 font-sans">
             {/* Background Section */}
             <div className="relative text-left">
                 <img src={company} alt="Optum Header" className="w-full h-auto" />
@@ -131,7 +136,7 @@ const ViewAllJobsCompany = () => {
             </div>
 
             {/* Tab Navigation */}
-            <aside className=' max-w-6xl mx-auto mt-5'>
+            <aside className=''>
                 <div className='text-gray-500 flex gap-7 border-b-2 '>
                     <p
                         className={`cursor-pointer ${activeTab === 'overview' ? 'text-blue-600 border-b-2 pb-2 border-blue-600' : ''}`}

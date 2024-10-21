@@ -6,9 +6,10 @@ import { companyApi } from "../RTK/Api/SponsoredCompaniesApi/SponsoredCompaniesA
 
 let store = configureStore({
     reducer: {
-        [companyApi.reducerPath]:companyApi.reducer,
+      
         [featuredJobsApi.reducerPath]: featuredJobsApi.reducer,
         [paymentApi.reducerPath]: paymentApi.reducer,
+        [companyApi.reducerPath]:companyApi.reducer,
    
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware()
