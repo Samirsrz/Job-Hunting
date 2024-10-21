@@ -1,6 +1,3 @@
-
-
-
 // // // this compo right not above
 
 // import { useState } from 'react';
@@ -8,7 +5,6 @@
 // import Slider from "react-slick";
 // import logo from '../../../../public/company/838020_file.svg';
 // import { useTranslation } from 'react-i18next';
-
 
 // const SponsoredCompanies = () => {
 //   const { t } = useTranslation();
@@ -46,7 +42,6 @@
 //   };
 
 //   const CustomNextArrow = (props) => {
-
 
 //     const { onClick, currentSlide, slideCount } = props;
 //     const showArrow = currentSlide < slideCount - 4 && slideCount > 4; // Show if not on the last slide and enough slides
@@ -154,18 +149,12 @@
 
 // export default SponsoredCompanies;
 
-
-
-
-
-
-
-import { useState } from 'react';
-import { FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useState } from "react";
+import { FaStar, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Slider from "react-slick";
-import logo from '../../../../public/company/838020_file.svg';
-import { useTranslation } from 'react-i18next';
-import { useGetSponsoredCompaniesQuery } from '../../../RTK/Api/SponsoredCompaniesApi/SponsoredCompaniesApi';
+import logo from "../../../../public/company/838020_file.svg";
+import { useTranslation } from "react-i18next";
+import { useGetSponsoredCompaniesQuery } from "../../../RTK/Api/SponsoredCompaniesApi/SponsoredCompaniesApi";
 
 const SponsoredCompanies = () => {
   const { t } = useTranslation();
@@ -179,12 +168,16 @@ const SponsoredCompanies = () => {
     "BFSI",
     "BPM",
     "Consumer, Retail & Hospitality",
-    "Professional Services"
+    "Professional Services",
   ];
 
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const { data: companies = [], error, isLoading } = useGetSponsoredCompaniesQuery(activeCategory);
+  const {
+    data: companies = [],
+    error,
+    isLoading,
+  } = useGetSponsoredCompaniesQuery(activeCategory);
 
   // console.log('compamy', companies);
 
@@ -264,9 +257,9 @@ const SponsoredCompanies = () => {
   }
 
   return (
-    <section className="mt-11 relative">
-      <h1 className='font-bold text-center text-3xl my-8'>
-        {t('Sponsoredcompanies')}
+    <section className="mt-24 relative">
+      <h1 className="font-bold text-center text-3xl my-8">
+        {t("Sponsoredcompanies")}
       </h1>
       <div id="btns" className="flex flex-wrap gap-3 justify-center">
         {categories.map((category, index) => {
@@ -275,7 +268,11 @@ const SponsoredCompanies = () => {
             <button
               key={index}
               onClick={() => setActiveCategory(category)}
-              className={`rounded-3xl border border-black px-4 py-1 transition-colors ${isActive ? "bg-blue-600 text-white" : "bg-transparent text-black"}`}
+              className={`rounded-3xl border border-black px-4 py-1 transition-colors ${
+                isActive
+                  ? "bg-blue-600 text-white"
+                  : "bg-transparent text-black"
+              }`}
             >
               {category}
             </button>
@@ -290,12 +287,17 @@ const SponsoredCompanies = () => {
             <div key={index} className="p-3">
               <div className="shadow-lg rounded-xl p-4 text-center flex flex-col gap-3 items-center border border-gray-200">
                 <div className="flex justify-center mb-2">
-                  <img src={company.logo || logo} alt={company.companyName} className="w-16 h-16" />
+                  <img
+                    src={company.logo || logo}
+                    alt={company.companyName}
+                    className="w-16 h-16"
+                  />
                 </div>
 
-                <div className='text-center flex flex-col gap-3 items-center h-[164px] overflow-hidden'>
-
-                  <h1 className="text-lg font-semibold">{company.companyName}</h1>
+                <div className="text-center flex flex-col gap-3 items-center h-[164px] overflow-hidden">
+                  <h1 className="text-lg font-semibold">
+                    {company.companyName}
+                  </h1>
                   <div className="flex items-center gap-1 text-gray-600 text-sm">
                     <FaStar className="text-yellow-400" />
                     <span className="font-semibold">{company.rating}</span>
@@ -304,10 +306,14 @@ const SponsoredCompanies = () => {
                   </div>
                   <div className="flex flex-wrap gap-2 justify-center mt-2">
                     {company.tags.map((cat, i) => (
-                      <button key={i} className="px-2 py-1 text-xs rounded-3xl border border-gray-300">{cat}</button>
+                      <button
+                        key={i}
+                        className="px-2 py-1 text-xs rounded-3xl border border-gray-300"
+                      >
+                        {cat}
+                      </button>
                     ))}
                   </div>
-
                 </div>
               </div>
             </div>
@@ -319,12 +325,17 @@ const SponsoredCompanies = () => {
             <div key={index} className="p-3 h-full">
               <div className="h-full shadow-lg rounded-xl p-4 text-center flex flex-col gap-3 items-center border border-gray-200">
                 <div className="flex justify-center mb-2">
-                  <img src={company.logo || logo} alt={company.companyName} className="w-16 h-16" />
+                  <img
+                    src={company.logo || logo}
+                    alt={company.companyName}
+                    className="w-16 h-16"
+                  />
                 </div>
 
-                <div className='text-center flex flex-col gap-3 items-center h-[164px] overflow-hidden'>
-
-                  <h1 className="text-lg font-semibold">{company.companyName}</h1>
+                <div className="text-center flex flex-col gap-3 items-center h-[164px] overflow-hidden">
+                  <h1 className="text-lg font-semibold">
+                    {company.companyName}
+                  </h1>
                   <div className="flex items-center gap-1 text-gray-600 text-sm">
                     <FaStar className="text-yellow-400" />
                     <span className="font-semibold">{company.rating}</span>
@@ -333,10 +344,14 @@ const SponsoredCompanies = () => {
                   </div>
                   <div className="flex flex-wrap gap-2 justify-center mt-2">
                     {company.tags.map((cat, i) => (
-                      <button key={i} className="px-2 py-1 text-xs rounded-3xl border border-gray-300">{cat}</button>
+                      <button
+                        key={i}
+                        className="px-2 py-1 text-xs rounded-3xl border border-gray-300"
+                      >
+                        {cat}
+                      </button>
                     ))}
                   </div>
-
                 </div>
               </div>
             </div>
