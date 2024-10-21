@@ -299,7 +299,7 @@ const JobDetails = () => {
             </span>
           )}
         </div>
-        <div className="mt-4 lg:px-8 px-4 mt-4 gap-2 flex flex-wrap border-t-2 pt-4">
+        <div className="mt-4 lg:px-8 px-4 gap-2 flex flex-wrap border-t-2 pt-4">
           <button
             disabled={job?.applied}
             onClick={() => document.getElementById("apply_modal").showModal()}
