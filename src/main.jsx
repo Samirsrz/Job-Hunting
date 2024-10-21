@@ -15,16 +15,19 @@ import { HelmetProvider } from "react-helmet-async";
 import { I18nextProvider } from "react-i18next";
 import { Provider } from "react-redux";
 import store from "./store/store.jsx";
+import { SavedJobsProvider } from "./providers/SavedJobsContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <StrictMode>
       <HelmetProvider>
         <I18nextProvider>
-          <AuthProvider>
-            <RouterProvider router={router} />
-            <Toaster />
-          </AuthProvider>
+          <SavedJobsProvider>
+            <AuthProvider>
+              <RouterProvider router={router} />
+              <Toaster />
+            </AuthProvider>
+          </SavedJobsProvider>
         </I18nextProvider>
       </HelmetProvider>
     </StrictMode>

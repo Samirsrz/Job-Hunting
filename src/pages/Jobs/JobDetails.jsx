@@ -31,10 +31,13 @@ import {
   localDeleteJob,
 } from "../../libs/localJobs";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { useSavedJobs } from "../../providers/SavedJobsContext";
 
 const JobDetails = () => {
+  const { updateSavedJobs } = useSavedJobs();
   const { user } = useAuth();
   const [exist, setExist] = useState(false);
+
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [job, setJob] = useState({});
@@ -52,7 +55,7 @@ const JobDetails = () => {
   );
 
   useEffect(() => {
-    setExist(localJobExists(job?._id));
+    setExist(localJobExists(id));
   }, []);
 
   useEffect(() => {
@@ -323,6 +326,7 @@ const JobDetails = () => {
               onClick={() => {
                 localDeleteJob(job?._id);
                 setExist(false);
+                updateSavedJobs();
               }}
               className="btn btn-sm md:btn-md bg-red-100 border-red-300 text-red-700 hover:bg-red-300"
             >
@@ -333,6 +337,7 @@ const JobDetails = () => {
               onClick={() => {
                 localAddJob(job?._id);
                 setExist(true);
+                updateSavedJobs();
               }}
               className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-300"
             >

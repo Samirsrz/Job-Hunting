@@ -32,6 +32,7 @@ import UserStatictis from "../pages/UserDashboard/UserStatictis";
 import ViewHostJobs from "../pages/HostDashboard/ViewHostJobs";
 import ViewAllJobs from "../pages/AdminDashboard/ViewAllJobs";
 import HostStatisticPage from "../pages/HostDashboard/HostStatisticPage";
+import SavedJobs from "../pages/SavedJobs/SavedJobs";
 
 export const router = createBrowserRouter([
   {
@@ -64,7 +65,6 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
-
       {
         path: "/jobs",
         element: (
@@ -83,6 +83,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "/saved-jobs",
+        element: <SavedJobs />,
+      },
+      {
         path: "/jobs/viewAllJobsCompany/:id",
         element: <ViewAllJobsCompany />,
       },
@@ -91,19 +95,17 @@ export const router = createBrowserRouter([
         element: <VeiwCompanyJob />,
       },
       {
-        path:'view-all-companies',
-        element:<ViewAllCompanies/>
-      },
-      {
-        path:"/event/details/:id",
-        element:<ViewEventChallenge/>
-      },
-      {
-                path: "view-all-companies",
+        path: "view-all-companies",
         element: <ViewAllCompanies />,
-      
-      }
-
+      },
+      {
+        path: "/event/details/:id",
+        element: <ViewEventChallenge />,
+      },
+      {
+        path: "view-all-companies",
+        element: <ViewAllCompanies />,
+      },
     ],
   },
 

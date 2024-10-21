@@ -8,8 +8,10 @@ import {
   localDeleteJob,
 } from "../../libs/localJobs";
 import { useEffect, useState } from "react";
+import { useSavedJobs } from "../../providers/SavedJobsContext";
 const JobCard = ({ job }) => {
   const [exist, setExist] = useState(false);
+  const { updateSavedJobs } = useSavedJobs();
 
   useEffect(() => {
     setExist(localJobExists(job?._id));
@@ -37,6 +39,7 @@ const JobCard = ({ job }) => {
             onClick={() => {
               localDeleteJob(job?._id);
               setExist(false);
+              updateSavedJobs();
             }}
             className="btn btn-sm bg-red-100 border-red-300 text-red-700 hover:bg-red-300 mt-4"
           >
@@ -47,6 +50,7 @@ const JobCard = ({ job }) => {
             onClick={() => {
               localAddJob(job?._id);
               setExist(true);
+              updateSavedJobs();
             }}
             className="btn btn-sm bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-300 mt-4"
           >

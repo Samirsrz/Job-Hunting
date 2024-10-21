@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Lang from "../../libs/Lang";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { useSavedJobs } from "../../providers/SavedJobsContext";
 
 const links = [
   {
@@ -23,6 +24,7 @@ const links = [
   },
 ];
 const Navbar = () => {
+  const { savedJobs } = useSavedJobs();
   const { user, logOut, setLoading } = useAuth();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [lang, setLang] = useState(null);
@@ -157,7 +159,7 @@ const Navbar = () => {
                 <MdFavoriteBorder />
               </button>
               <span className="absolute opacity-0 group-hover:opacity-100 right-1 top-1 bg-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
-                8
+                {savedJobs?.length}
               </span>
             </div>
             <button
