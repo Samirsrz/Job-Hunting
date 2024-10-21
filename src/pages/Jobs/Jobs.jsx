@@ -56,17 +56,15 @@ const Jobs = () => {
         <title>Next-Hire | Jobs</title>
       </Helmet>
       <div className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] relative overflow-hidden">
-  <img
-    src="https://i.ibb.co.com/tb5pL4S/Career-Banner.jpg"
-    alt="Banner"
-    className="w-full h-full object-cover"
-  />
-</div>
-
-
+        <img
+          src="https://i.ibb.co.com/tb5pL4S/Career-Banner.jpg"
+          alt="Banner"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
       <div className="flex mx-auto w-full justify-center items-center lg:mt-14 mb-5 flex-wrap gap-6 ">
-        <div>
+        <div className="px-4">
           <h2 className="text-lg font-semibold my-2">Categories</h2>
           <div className="flex flex-row flex-wrap gap-2">
             <button
