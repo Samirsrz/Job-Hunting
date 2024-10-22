@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Lang from "../../libs/Lang";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
-import { useSavedJobs } from "../../providers/SavedJobsContext";
+import { useSavedJobs } from "../../RTK/features/savedJobSlice";
 
 const links = [
   {

@@ -31,7 +31,7 @@ import {
   localDeleteJob,
 } from "../../libs/localJobs";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { useSavedJobs } from "../../providers/SavedJobsContext";
+import { useSavedJobs } from "../../RTK/features/savedJobSlice";
 
 const JobDetails = () => {
   const { updateSavedJobs } = useSavedJobs();

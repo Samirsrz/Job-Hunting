@@ -8,7 +8,7 @@ import {
   localDeleteJob,
 } from "../../libs/localJobs";
 import { useEffect, useState } from "react";
-import { useSavedJobs } from "../../providers/SavedJobsContext";
+import { useSavedJobs } from "../../RTK/features/savedJobSlice";
 const JobCard = ({ job }) => {
   const [exist, setExist] = useState(false);
   const { updateSavedJobs } = useSavedJobs();

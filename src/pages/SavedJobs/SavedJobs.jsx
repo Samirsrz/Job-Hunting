@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import JobCard from "../../components/jobs/JobCard";
 import { localGetJobs } from "../../libs/localJobs";
 import { useGetJobsByIdsQuery } from "../../RTK/features/jobsApi";
-import { useSavedJobs } from "../../providers/SavedJobsContext";
 import Lottie from "lottie-react";
 import { RxReload } from "react-icons/rx";
 import noData from "../../../public/Annimations/no-data.json";
 import errorData from "../../../public/Annimations/error.json";
 import loadingData from "../../../public/Annimations/loading.json";
+import { useSavedJobs } from "../../RTK/features/savedJobSlice";
 
 const SavedJobs = () => {
   const { savedJobs } = useSavedJobs();
