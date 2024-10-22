@@ -12,7 +12,6 @@ const Jobs = () => {
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [catCount, setCatCount] = useState(5);
-
   useEffect(() => {
     axiosCommon
       .get(`/jobs?category=${category}&sort=${sort}&search=${search}`)

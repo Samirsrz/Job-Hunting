@@ -11,8 +11,22 @@ export const companyApi = createApi({
         params: { category },
       }),
     }),
+
+    getJobsSearch:builder.query({
+      query:({location,query})=>{
+        const params=new URLSearchParams();
+        if (location) params.append('location',location)
+        if(query) params.append('type',query)
+     
+          return `/job/search?${params.toString()}`
+      }
+    })
   }),
 });
 
 // Export the hook
-export const { useGetSponsoredCompaniesQuery } = companyApi;
+export const { 
+  useGetSponsoredCompaniesQuery,
+  useGetJobsSearchQuery
+
+ } = companyApi;
