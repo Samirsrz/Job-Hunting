@@ -197,6 +197,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
+import { useGetEventQuery } from "../../../RTK/Api/FeaturedJobsApi/FeaturedJobsApi";
 
 // Custom Next Arrow Component
 const NextArrow = ({ onClick }) => (
@@ -221,16 +222,7 @@ const PrevArrow = ({ onClick }) => (
 const EventCard = () => {
   const { t } = useTranslation();
   
-  // State for the challenge data
-  const [challenge, setChallenge] = useState([]);
-
-  // Fetch challenge data on component mount
-  useEffect(() => {
-    fetch('/eventChallenge/eventChallenge.json')
-      .then((res) => res.json())
-      .then((data) => setChallenge(data))
-      .catch((error) => console.error('Error fetching challenges:', error));
-  }, []);
+let {data:challenge,isError,isLoading}=useGetEventQuery()
 
   // Slick settings for the slider
   const settings = {
@@ -262,6 +254,14 @@ const EventCard = () => {
       }
     ]
   };
+
+  if (isError) {
+    return <h1> something error</h1>
+  }
+
+  if (isLoading) {
+    return <h1>Loading...</h1>
+  }
 
   return (
     <div className="mt-16">
@@ -337,7 +337,7 @@ const EventCard = () => {
                       Learn from experts
                     </button>
                     <div>
-                      <Link to={`/event/details/${event.id}`}>
+                      <Link to={`/event/details/${event._id}`}>
                         <button className="text-blue-600 font-semibold">View details</button>
                       </Link>
                     </div>

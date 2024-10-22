@@ -66,16 +66,23 @@
 
 
 
-
+import ReactMarkdown from 'react-markdown';
 import React, { useEffect, useState } from 'react';
 import { FaFacebookF, FaTwitter, FaXing, FaLinkedinIn, FaBriefcase, FaFacebook } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
+import { useGetEventByIdQuery } from '../../../RTK/Api/FeaturedJobsApi/FeaturedJobsApi';
 
 const ViewEventChallenge = () => {
 
   let {id}=useParams()
   console.log(id);
 
+  let {data:event,error,isLoading}=useGetEventByIdQuery(id)
+  console.log(event);
+
+  if (isLoading) {
+    return <h1>Loading.....</h1>
+  }
   
   return (
     <section>
@@ -95,7 +102,7 @@ const ViewEventChallenge = () => {
           <div className="bg-yellow-500 text-black inline-block px-3 py-1 rounded-full mb-4">
             Hiring challenge
           </div>
-          <h1 className="text-3xl font-bold mb-4">Hiring Challenge for Senior Salesforce Developer</h1>
+          <h1 className="text-3xl font-bold mb-4">{event.title}</h1>
           <div className="flex items-center mb-4">
             <div className="bg-gray-700 p-3 rounded-full">
               <img
@@ -105,7 +112,7 @@ const ViewEventChallenge = () => {
               />
             </div>
             <div className="ml-4">
-              <p className="text-lg">Tavant Technologies</p>
+              <p className="text-lg">{event.companyName}</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mb-4">
@@ -117,7 +124,7 @@ const ViewEventChallenge = () => {
           </div>
           <div className="flex items-center justify-between mb-4">
             <p>22 Oct, 12:33 pm - 28 Oct, 12:25 am</p>
-            <p>565 Enrolled</p>
+            <p>{event.enrolled} Enrolled</p>
           </div>
           <div className="text-right">
             <p className="text-sm">
@@ -154,7 +161,10 @@ const ViewEventChallenge = () => {
       <aside>
         <div className=" bg-gray-100 ">
           <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h1 className="text-2xl font-bold mb-4">Tavant Technologies Hiring Challenge</h1>
+            
+          
+
+            <h1 className="text-2xl font-bold mb-4">{event.title}</h1>
             <p className="mb-4">
               Tavant Technologies is seeking talented Salesforce Senior Software Engineers to join their team. If you are a Salesforce developer, this is an excellent opportunity to prove your SFDC expertise.
             </p>
@@ -190,6 +200,7 @@ const ViewEventChallenge = () => {
         {/* eligibility */}
 
         <div className=" p-6 bg-white shadow-md rounded-lg">
+          
           <h1 className="text-2xl font-bold mb-4">Eligibility Criteria</h1>
           <p className="mb-4">You should register for this Contest if:</p>
           <ul className="list-disc list-inside space-y-2">
@@ -211,7 +222,7 @@ const ViewEventChallenge = () => {
         {/* last part */}
 
         <div id='organize' className="p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-2">Tavant Technologies</h1>
+      <h1 className="text-2xl font-bold mb-2">{event.companyName}</h1>
       <div className="flex items-center mb-4">
         <span className="text-yellow-500">★ ★ ★ ★ ☆</span>
         <span className="ml-2 text-gray-600">(3.9 based on 954 reviews)</span>

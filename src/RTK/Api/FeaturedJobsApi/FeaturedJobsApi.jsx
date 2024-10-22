@@ -70,7 +70,13 @@ let featuredJobsApi = createApi({
         }),
 
         getEvent:builder.query({
-            query:()=>
+            query:()=> '/event/challenge',
+            providesTags:['EventChallnge']
+        }),
+
+        getEventById:builder.query({
+            query:(id)=>  `/event/challenge/${id}`,
+            providesTags:['EventChallnge']
         })
         
     })
@@ -85,6 +91,8 @@ export let {
     useUnfollowCompanyMutation,
     useGetCompanyBasedJobsQuery,
     useGetRandom5InterestedJobsQuery,
-    useGetFeaturedComaniesQuery
+    useGetFeaturedComaniesQuery,
+    useGetEventByIdQuery,
+    useGetEventQuery
 } = featuredJobsApi
 export default featuredJobsApi
