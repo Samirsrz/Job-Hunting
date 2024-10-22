@@ -32,6 +32,7 @@ import UserStatictis from "../pages/UserDashboard/UserStatictis";
 import ViewHostJobs from "../pages/HostDashboard/ViewHostJobs";
 import ViewAllJobs from "../pages/AdminDashboard/ViewAllJobs";
 import HostStatisticPage from "../pages/HostDashboard/HostStatisticPage";
+import SavedJobs from "../pages/SavedJobs/SavedJobs";
 import HostProfile from "../components/HostDashboard/HostProfile";
 
 export const router = createBrowserRouter([
@@ -65,15 +66,9 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
-
       {
         path: "/jobs",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Jobs />
-          </PrivateRoute>
-        ),
+        element: <Jobs />,
       },
       {
         path: "/jobs/:id",
@@ -82,6 +77,10 @@ export const router = createBrowserRouter([
             <JobDetails />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/saved-jobs",
+        element: <SavedJobs />,
       },
       {
         path: "/jobs/viewAllJobsCompany/:id",
