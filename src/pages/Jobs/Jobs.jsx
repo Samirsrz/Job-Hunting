@@ -2,51 +2,53 @@ import { useEffect, useState } from "react";
 import JobCard from "../../components/jobs/JobCard";
 import { FaSearch } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
-import { axiosCommon } from "../../hooks/useAxiosCommon";
 import Lottie from "lottie-react";
+import { RxReload } from "react-icons/rx";
 import noData from "../../../public/Annimations/no-data.json";
-// import errorData from "../../../public/Annimations/error.json";
-// import loadingData from "../../../public/Annimations/loading.json";
+import errorData from "../../../public/Annimations/error.json";
+import loadingData from "../../../public/Annimations/loading.json";
+import {
+  useGetJobsQuery,
+  useGetCategoriesQuery,
+  useGetJobSuggestionsQuery,
+} from "../../RTK/features/jobsApi";
 
 const Jobs = () => {
-  const [jobs, setJobs] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
   const [sort, setSort] = useState("asc");
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [catCount, setCatCount] = useState(5);
 
-  useEffect(() => {
-    axiosCommon
-      .get(`/jobs?category=${category}&sort=${sort}&search=${search}`)
-      .then((data) => setJobs(data.data.data));
-  }, [category, sort, search]);
+  const {
+    data: jobData,
+    isFetching: isFetchingJobs,
+    isError,
+    refetch,
+  } = useGetJobsQuery({
+    category,
+    sort,
+    search,
+  });
+  const jobs = jobData?.data || [];
+
+  const { data: categoryData } = useGetCategoriesQuery();
+  const categories = categoryData?.data || [];
+
+  const { data: suggestionData } = useGetJobSuggestionsQuery(search, {
+    skip: !search,
+  });
 
   useEffect(() => {
-    axiosCommon.get(`/category`).then((data) => setCategories(data.data.data));
-  }, []);
-
-  const fetchSuggestions = async (search) => {
-    if (search?.length > 0) {
-      try {
-        const { data } = await axiosCommon(`/job-suggestions?search=${search}`);
-
-        if (data.success) {
-          setSuggestions(data.data);
-        }
-      } catch (error) {
-        console.error("Error fetching job suggestions:", error);
-      }
-    } else {
-      setSuggestions([]);
+    if (suggestionData?.success) {
+      setSuggestions(suggestionData.data);
     }
-  };
+  }, [suggestionData]);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
     if (!value) setSearch("");
-    else fetchSuggestions(value);
+    else setSearch(value);
   };
 
   const handleSubmit = (e) => {
@@ -54,31 +56,31 @@ const Jobs = () => {
     setSearch(e.target.search.value);
   };
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="flex items-center justify-center flex-col py-20">
-  //       <Lottie
-  //         animationData={loadingData}
-  //         className="h-72 w-72 lg:w-96 my-10"
-  //       ></Lottie>
-  //     </div>
-  //   );
-  // }
+  if (isFetchingJobs) {
+    return (
+      <div className="flex items-center justify-center flex-col py-20">
+        <Lottie
+          animationData={loadingData}
+          className="h-72 w-72 lg:w-96 my-10"
+        ></Lottie>
+      </div>
+    );
+  }
 
-  // if (error) {
-  //   return (
-  //     <div className="flex items-center justify-center flex-col py-20">
-  //       <h2 className="text-3xl font-semibold">Something went wrong!</h2>
-  //       <Lottie
-  //         animationData={errorData}
-  //         className="h-44 w-44 lg:w-96 my-10"
-  //       ></Lottie>
-  //       <button onClick={refetch} className="btn btn-error">
-  //         Try Again <RxReload className="inline" />
-  //       </button>
-  //     </div>
-  //   );
-  // }
+  if (isError) {
+    return (
+      <div className="flex items-center justify-center flex-col py-20">
+        <h2 className="text-3xl font-semibold">Something went wrong!</h2>
+        <Lottie
+          animationData={errorData}
+          className="h-44 w-44 lg:w-96 my-10"
+        ></Lottie>
+        <button onClick={refetch} className="btn btn-error">
+          Try Again <RxReload className="inline" />
+        </button>
+      </div>
+    );
+  }
 
   if (!jobs?.length) {
     return (
@@ -108,9 +110,7 @@ const Jobs = () => {
           <div className="flex flex-row flex-wrap gap-2">
             <button
               className={`btn btn-sm ${category || "bg-primary text-white"}`}
-              onClick={() => {
-                setCategory("");
-              }}
+              onClick={() => setCategory("")}
             >
               All
             </button>
@@ -119,9 +119,7 @@ const Jobs = () => {
                 className={`btn btn-sm ${
                   category === cat && "bg-primary text-white"
                 }`}
-                onClick={() => {
-                  setCategory(cat);
-                }}
+                onClick={() => setCategory(cat)}
                 key={idx}
               >
                 {cat}
@@ -133,11 +131,11 @@ const Jobs = () => {
                   ? "bg-orange-500 text-white"
                   : "bg-green-500 text-white"
               }`}
-              onClick={() => {
+              onClick={() =>
                 setCatCount(
                   catCount === categories?.length ? 5 : categories?.length
-                );
-              }}
+                )
+              }
             >
               {catCount !== categories?.length ? "+ more" : "- less"}
             </button>
@@ -177,9 +175,7 @@ const Jobs = () => {
               className={`btn btn-sm ${
                 sort === "asc" && "bg-primary text-white"
               }`}
-              onClick={() => {
-                setSort("asc");
-              }}
+              onClick={() => setSort("asc")}
             >
               Asc Salary
             </button>
@@ -187,9 +183,7 @@ const Jobs = () => {
               className={`btn btn-sm ${
                 sort === "dsc" && "bg-primary text-white"
               }`}
-              onClick={() => {
-                setSort("dsc");
-              }}
+              onClick={() => setSort("dsc")}
             >
               Dsc Salary
             </button>

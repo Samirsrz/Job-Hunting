@@ -67,12 +67,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/jobs",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Jobs />
-          </PrivateRoute>
-        ),
+        element: <Jobs />,
       },
       {
         path: "/jobs/:id",

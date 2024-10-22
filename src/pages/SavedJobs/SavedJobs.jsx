@@ -11,11 +11,14 @@ import { useSavedJobs } from "../../RTK/features/savedJobSlice";
 
 const SavedJobs = () => {
   const { savedJobs } = useSavedJobs();
-  const { data, error, isLoading, refetch } = useGetJobsByIdsQuery(savedJobs, {
-    skip: savedJobs.length === 0,
-  });
+  const { data, isError, isFetching, refetch } = useGetJobsByIdsQuery(
+    savedJobs,
+    {
+      skip: savedJobs.length === 0,
+    }
+  );
 
-  if (isLoading) {
+  if (isFetching) {
     return (
       <div className="flex items-center justify-center flex-col py-20">
         <Lottie
@@ -26,7 +29,7 @@ const SavedJobs = () => {
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className="flex items-center justify-center flex-col py-20">
         <h2 className="text-3xl font-semibold">Something went wrong!</h2>
@@ -56,7 +59,7 @@ const SavedJobs = () => {
         Saved Jobs
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6">
-        {data.data.map((job, idx) => (
+        {data?.data?.map((job, idx) => (
           <JobCard
             {...{ job }}
             key={idx}
