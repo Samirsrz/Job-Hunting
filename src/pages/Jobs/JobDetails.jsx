@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 // import Rating from "react-rating";
 import moment from "moment";
 import { FaLocationDot, FaClockRotateLeft, FaMessage } from "react-icons/fa6";
-import { LuFileType } from "react-icons/lu";
+import { LuFileType, LuSaveAll } from "react-icons/lu";
 import {
   MdOutlineCategory,
   MdOutlineHomeWork,
@@ -25,9 +25,19 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import getRandomColor from "../../libs/getRandomColor";
 import Rating from "react-rating";
 import Markdown from "react-markdown";
+import {
+  localAddJob,
+  localJobExists,
+  localDeleteJob,
+} from "../../libs/localJobs";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { useSavedJobs } from "../../RTK/features/savedJobSlice";
 
 const JobDetails = () => {
+  const { updateSavedJobs } = useSavedJobs();
   const { user } = useAuth();
+  const [exist, setExist] = useState(false);
+
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [job, setJob] = useState({});
@@ -43,6 +53,10 @@ const JobDetails = () => {
   const [forYou, setForYou] = useState(
     "Write your skills and click the send button to get ai response!"
   );
+
+  useEffect(() => {
+    setExist(localJobExists(id));
+  }, []);
 
   useEffect(() => {
     setExistingReview(
@@ -180,8 +194,8 @@ const JobDetails = () => {
       <Helmet>
         <title>{job?.title ?? "Job Details"} | Job hunting</title>
       </Helmet>
-      <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4 drop-shadow-sm">
-        <div className="flex flex-col md:flex-row gap-6 md:items-center border-b md:mb-6 mb-2 border-gray-400 md:pb-6 pb-4">
+      <div className="bg-gray-100 rounded-md lg:py-8 py-4 lg:m-10 m-4 drop-shadow-sm">
+        <div className="flex lg:mx-8 mx-4 flex-col md:flex-row gap-6 md:items-center border-b md:mb-6 mb-2 border-gray-400 md:pb-6 pb-4">
           <img
             src={job?.logo}
             alt={`logo for ${job?.title}`}
@@ -233,7 +247,7 @@ const JobDetails = () => {
             </p>
           </div>
         </div>
-        <div>
+        <div className="lg:mx-8 mx-4">
           <Markdown
             components={{
               h1: ({ node, ...props }) => (
@@ -287,51 +301,70 @@ const JobDetails = () => {
               )}
             </span>
           )}
-          <div className="mt-2 md:mt-4 gap-2 flex">
+        </div>
+        <div className="mt-4 lg:px-8 px-4 gap-2 flex flex-wrap border-t-2 pt-4">
+          <button
+            disabled={job?.applied}
+            onClick={() => document.getElementById("apply_modal").showModal()}
+            className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
+          >
+            {job?.applied ? "Applied" : "Apply"}{" "}
+            <MdGroupAdd className="inline" />
+          </button>
+          {job?.applied && (
             <button
-              disabled={job?.applied}
-              onClick={() => document.getElementById("apply_modal").showModal()}
+              disabled={!job?.applied}
+              onClick={handleCancel}
               className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
             >
-              {job?.applied ? "Applied" : "Apply"}{" "}
-              <MdGroupAdd className="inline" />
+              Cancel
+              <MdDelete className="inline" />
             </button>
-            {job?.applied && (
-              <button
-                disabled={!job?.applied}
-                onClick={handleCancel}
-                className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
-              >
-                Cancel
-                <MdDelete className="inline" />
-              </button>
-            )}
+          )}
+          {exist ? (
             <button
-              onClick={() =>
-                document.getElementById("review_modal").showModal()
-              }
-              className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
+              onClick={() => {
+                localDeleteJob(job?._id);
+                setExist(false);
+                updateSavedJobs();
+              }}
+              className="btn btn-sm md:btn-md bg-red-100 border-red-300 text-red-700 hover:bg-red-300"
             >
-              {existingReview ? "Update your" : "Give a"} review!{" "}
-              <FaMessage className="inline" />
+              Unsaved <FaRegTrashAlt className="inline" />
             </button>
+          ) : (
             <button
-              onClick={() =>
-                document.getElementById("interview_modal").showModal()
-              }
-              className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
+              onClick={() => {
+                localAddJob(job?._id);
+                setExist(true);
+                updateSavedJobs();
+              }}
+              className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-300"
             >
-              Get moke Interview
+              Save <LuSaveAll className="inline" />
             </button>
-            <button
-              onClick={() =>
-                document.getElementById("forYou_modal").showModal()
-              }
-              className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
-            >
-              This is for You?
-            </button>
-          </div>
+          )}
+          <button
+            onClick={() => document.getElementById("review_modal").showModal()}
+            className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
+          >
+            {existingReview ? "Update your" : "Give a"} review!{" "}
+            <FaMessage className="inline" />
+          </button>
+          <button
+            onClick={() =>
+              document.getElementById("interview_modal").showModal()
+            }
+            className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
+          >
+            Get moke Interview
+          </button>
+          <button
+            onClick={() => document.getElementById("forYou_modal").showModal()}
+            className="btn btn-sm md:btn-md bg-sky-100 border-sky-300 text-sky-700 hover:text-sky-900 hover:bg-sky-300"
+          >
+            This is for You?
+          </button>
         </div>
       </div>
       {/* related jobs */}
