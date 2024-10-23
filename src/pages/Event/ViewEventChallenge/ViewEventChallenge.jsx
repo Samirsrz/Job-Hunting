@@ -89,7 +89,7 @@ const ViewEventChallenge = () => {
       <div
         className="relative bg-gray-800 text-white p-6"
         style={{
-          backgroundImage: "url(https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png)",
+          backgroundImage: `url(${event.coverPhoto})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -106,7 +106,7 @@ const ViewEventChallenge = () => {
           <div className="flex items-center mb-4">
             <div className="bg-gray-700 p-3 rounded-full">
               <img
-                src="https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/tavant/contest_banner_1536.png"
+                src={event.logo}
                 alt="Tavant Technologies"
                 className="w-10 h-10"
               />
@@ -141,7 +141,7 @@ const ViewEventChallenge = () => {
 
 
 
-      <nav className="flex items-center justify-between p-4 bg-white shadow-md">
+      <nav className="flex items-center justify-between p-4 bg-white shadow-md flex-wrap lg:gap-0 gap-7">
         <div className="flex space-x-4">
           <a href="#about" id='#about' className="text-gray-700 hover:text-red-500 hover:underline">About</a>
           <a href="#Rewards" className="text-gray-700 hover:text-red-500 hover:underline">Rewards</a>

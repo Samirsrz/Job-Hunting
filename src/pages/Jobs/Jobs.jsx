@@ -12,13 +12,19 @@ import {
   useGetCategoriesQuery,
   useGetJobSuggestionsQuery,
 } from "../../RTK/features/jobsApi";
+import { useLocation } from "react-router-dom";
 
-const Jobs = () => {
+const Jobs = ({job}) => {
   const [category, setCategory] = useState("");
   const [sort, setSort] = useState("asc");
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [catCount, setCatCount] = useState(5);
+  const location = useLocation();
+  const searchJobs = location.state?.jobs || [];
+  const [sJobs,setSjobs]=useState(searchJobs)
+  console.log(sJobs);
+  
 
   const {
     data: jobData,
@@ -30,7 +36,11 @@ const Jobs = () => {
     sort,
     search,
   });
-  const jobs = jobData?.data || [];
+  let jobs = jobData?.data || [];
+
+  // if (searchJobs.length>0) {
+  //   return jobs=searchJobs
+  // }
 
   const { data: categoryData } = useGetCategoriesQuery();
   const categories = categoryData?.data || [];
@@ -191,7 +201,11 @@ const Jobs = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6">
-        {jobs?.map((job, idx) => (
+      { sJobs?.length>0 ? sJobs?.map((job, idx) => (
+          <JobCard {...{ job }} key={idx} />
+        )):
+
+        jobs?.map((job, idx) => (
           <JobCard {...{ job }} key={idx} />
         ))}
       </div>
