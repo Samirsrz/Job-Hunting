@@ -3,8 +3,8 @@ import { FaHome, FaBuilding, FaCertificate, FaUserGraduate, FaBriefcase, FaChart
 
 const categories = [
   { name: "Remote", icon: <FaHome /> },
-  { name: "MNC", icon: <FaBuilding /> },
-  { name: "Fortune 500", icon: <FaCertificate /> },
+  { name: "Design", icon: <FaBuilding /> },
+  { name: "Tourism", icon: <FaCertificate /> },
   { name: "Internship", icon: <FaHandshake /> },
   { name: "Fresher", icon: <FaUserGraduate /> },
   { name: "Banking & Finance", icon: <FaBriefcase /> },

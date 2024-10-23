@@ -120,6 +120,15 @@ const PostJobs = () => {
                   <option>Customer Service</option>
                   <option>Supply Chain</option>
                   <option>Human Resources</option>
+                  <option>Internship</option>
+                  <option>Startup</option>
+                  <option>Banking & Finance</option>
+                  <option>Data Science</option>
+                  <option>Remote</option>
+                  <option>Software & IT</option>
+                  <option>Project Mgmt</option>
+                  <option>Analytics</option>
+
                 </select>
               </div>
 
