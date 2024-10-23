@@ -280,7 +280,7 @@ let {data:challenge,isError,isLoading}=useGetEventQuery()
         {/* Slider wrapper */}
         <div className="w-full lg:w-[70%]">
           <Slider {...settings} className="">
-            {challenge.map((event, index) => (
+            {challenge&& challenge.map((event, index) => (
               <div className="px-2" key={index}> {/* Added padding to create gap between cards */}
                 <aside className="p-4 bg-white rounded-xl relative border-[2px]">
                   {/* Upper part with event details */}

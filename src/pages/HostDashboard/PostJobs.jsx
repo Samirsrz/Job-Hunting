@@ -48,13 +48,13 @@ const PostJobs = () => {
         throw new Error(data.message);
       }
       setLoading(false);
-      form.reset();
+      // form.reset();
     } catch (error) {
       console.log(error);
       toast.error(error.message);
     }
 
-    form.reset();
+    // form.reset();
     setLoading(false);
   };
 
