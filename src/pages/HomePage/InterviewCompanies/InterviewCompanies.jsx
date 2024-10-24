@@ -74,11 +74,11 @@ const InterviewCompanies = () => {
           </div>
 
           {/* View all companies link */}
-          <div className="mt-4 text-right">
+          {/* <div className="mt-4 text-right">
             <a href="#" className="text-blue-600 font-semibold">
               View all companies <IoIosArrowForward className="inline-block" />
             </a>
-          </div>
+          </div> */}
         </div>
 
         <div className="lg:h-[440px] mb-3 lg:mb-0 ">
@@ -99,11 +99,11 @@ const InterviewCompanies = () => {
               ))}
             </div>
 
-            <div className="mt-6 text-right">
+            {/* <div className="mt-6 text-right">
               <a href="#" className="text-blue-600 font-semibold text-sm">
                 View all roles <IoIosArrowForward className="inline-block" />
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </aside>

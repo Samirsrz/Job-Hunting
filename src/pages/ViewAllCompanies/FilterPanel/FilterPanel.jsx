@@ -275,7 +275,7 @@ const FilterPanel = ({ getFilterPanel }) => {
   ]);
 
   return (
-    <div className="w-64 p-4 mt-3 bg-white shadow-md rounded-lg h-max">
+    <div className="w-full lg:w-64 p-4 mt-3 bg-white shadow-md rounded-lg h-max">
       <h2 className="text-lg font-bold mb-4">All Filters</h2>
 
       {/* Sector Section */}

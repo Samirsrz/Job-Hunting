@@ -23,7 +23,7 @@ const Jobs = ({job}) => {
   const location = useLocation();
   const searchJobs = location.state?.jobs || [];
   const [sJobs,setSjobs]=useState(searchJobs)
-  console.log(sJobs);
+  // console.log(sJobs,location);
   
 
   const {
