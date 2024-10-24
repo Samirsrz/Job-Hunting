@@ -130,7 +130,7 @@ const CompanyCarousel = () => {
   };
 
   return (
-    <div className="py-8 relative">
+    <div className="py-8 relative hidden">
       <h2 className="font-bold text-center text-3xl mb-8">
       {t('Topcompanieshiringnow')} 
       </h2>

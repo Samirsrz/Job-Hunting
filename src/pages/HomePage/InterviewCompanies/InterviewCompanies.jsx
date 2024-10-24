@@ -3,6 +3,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import logo from "../../../../public/company/amazon-ot.png";
 import interviewPng from "../../../../public/interview/ab-interview-ot-removebg-preview.png";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 //amazon-ot.png
 
@@ -74,11 +75,11 @@ const InterviewCompanies = () => {
           </div>
 
           {/* View all companies link */}
-          {/* <div className="mt-4 text-right">
-            <a href="#" className="text-blue-600 font-semibold">
+          <div className="mt-4 text-right">
+            <Link to={'/view-all-companies'} className="text-blue-600 font-semibold">
               View all companies <IoIosArrowForward className="inline-block" />
-            </a>
-          </div> */}
+            </Link>
+          </div>
         </div>
 
         <div className="lg:h-[440px] mb-3 lg:mb-0 ">

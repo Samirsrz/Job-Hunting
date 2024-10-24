@@ -38,9 +38,7 @@ const Jobs = ({job}) => {
   });
   let jobs = jobData?.data || [];
 
-  // if (searchJobs.length>0) {
-  //   return jobs=searchJobs
-  // }
+
 
   const { data: categoryData } = useGetCategoriesQuery();
   const categories = categoryData?.data || [];
