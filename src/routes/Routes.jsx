@@ -32,6 +32,7 @@ import UserStatictis from "../pages/UserDashboard/UserStatictis";
 import ViewHostJobs from "../pages/HostDashboard/ViewHostJobs";
 import ViewAllJobs from "../pages/AdminDashboard/ViewAllJobs";
 import HostStatisticPage from "../pages/HostDashboard/HostStatisticPage";
+import ResumeBuilder from "../pages/ResumeBuilder/ResumeBuilder";
 
 export const router = createBrowserRouter([
   {
@@ -127,6 +128,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/interview-schedule",
         element: <InterviewSchedule />,
+      },
+      {
+        path: "/dashboard/resume-builder",
+        element: <ResumeBuilder></ResumeBuilder>,
       },
       {
         path: "/dashboard/userprofile",
