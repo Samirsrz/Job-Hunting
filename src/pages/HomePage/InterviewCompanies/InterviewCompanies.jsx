@@ -31,7 +31,7 @@ const roles = [
 const InterviewCompanies = () => {
   const { t } = useTranslation();
   return (
-    <section className="mt-7 relative bg-gradient-to-r from-orange-100 to-orange-50 rounded-xl flex flex-col lg:flex-row justify-between lg:h-[410px]">
+    <section className="mt-20 relative bg-gradient-to-r from-orange-100 to-orange-50 rounded-xl flex flex-col lg:flex-row justify-between lg:h-[410px]">
       <aside className="text-center flex gap-3 flex-col items-center justify-center p-3">
         <img src={interviewPng} className="bg-transparent w-[270px]" alt="" />
         <h1 className="font-bold text-2xl">

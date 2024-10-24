@@ -2,66 +2,41 @@
 import { useState } from "react";
 import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-// import logo1 from '../../../../public/company/4467146.gif'; 
-import logo1 from '../../../../public/company/dow.png'; 
-import { useTranslation } from 'react-i18next';
+// import logo1 from '../../../../public/company/4467146.gif';
+import logo1 from "../../../../public/company/dow.png";
+import { useTranslation } from "react-i18next";
+import { Autoplay } from "swiper/modules";
 // Example company logos
 const categories = [
   {
     title: "MNCs",
     hiring: "1.9K+ are actively hiring",
-    logos: [
-      logo1,
-      logo1,
-      logo1,
-      logo1,
-    ],
+    logos: [logo1, logo1, logo1, logo1],
   },
   {
     title: "Internet",
     hiring: "194 are actively hiring",
-    logos: [
-      logo1,
-      logo1,
-      logo1,
-      logo1,
-    ],
+    logos: [logo1, logo1, logo1, logo1],
   },
   {
     title: "Manufacturing",
     hiring: "831 are actively hiring",
-    logos: [
-      logo1,
-      logo1,
-      logo1,
-      logo1,
-    ],
+    logos: [logo1, logo1, logo1, logo1],
   },
   {
     title: "Fortune 500",
     hiring: "107 are actively hiring",
-    logos: [
-      logo1,
-      logo1,
-      logo1,
-      logo1,
-    ],
+    logos: [logo1, logo1, logo1, logo1],
   },
   {
     title: "Product",
     hiring: "97.8k are actively hiring",
-    logos: [
-      logo1,
-      logo1,
-      logo1,
-      logo1,
-    ],
+    logos: [logo1, logo1, logo1, logo1],
   },
 ];
 
 // Custom Arrow Components
 const NextArrow = ({ onClick, hide }) => {
-  
   return (
     <div
       className={`absolute top-1/2 right-0 transform -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300 ${
@@ -97,13 +72,17 @@ const CompanyCarousel = () => {
   };
 
   const settings = {
-    
     // dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     variableWidth: true,
+
+    autoplay: true,
+    autoplaySpeed: 1500, // Time in milliseconds between each slide (3 seconds)
+    pauseOnHover: true,
+
     beforeChange: handleBeforeChange,
     nextArrow: <NextArrow hide={currentSlide === categories?.length - 1} />, // Hide if at last slide
     prevArrow: <PrevArrow hide={currentSlide === 0} />, // Hide if at first slide
@@ -132,7 +111,7 @@ const CompanyCarousel = () => {
   return (
     <div className="py-8 relative hidden">
       <h2 className="font-bold text-center text-3xl mb-8">
-      {t('Topcompanieshiringnow')} 
+        {t("Topcompanieshiringnow")}
       </h2>
       <Slider {...settings}>
         {categories.map((category, index) => (

@@ -42,7 +42,7 @@ const {user, loading} = useAuth();
 
     return (
       <div className="">
-        <h1 className="text-center text-5xl font-bold lg:space-y-28 lg:my-20 mx-auto">~~Payment Gateway~~</h1>
+        <h1 className="text-center text-5xl font-bold lg:space-y-28 lg:my-20 mx-auto">Payment Gateway</h1>
        
 
 <div className="flex flex-col sm:mx-auto sm:p-2 lg:flex-row justify-center space-x-6 py-8">

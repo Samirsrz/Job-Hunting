@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useGetJobsSearchQuery } from '../../../RTK/Api/SponsoredCompaniesApi/SponsoredCompaniesApi';
 import Jobs from '../../Jobs/Jobs';
 import { Link, useNavigate } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
 
 const HomeSearch = () => {
     const { t } = useTranslation();
@@ -123,6 +124,7 @@ const HomeSearch = () => {
         }
     };
     return (
+        <FadeIn>
         <div className='max-w-screen-xl m-auto p-4'>
             <h1 className='text-center text-4xl font-bold m-4'>{t('FindYourDreamJobNow')}</h1>
             <p className='text-center text-lg font-thin'>{t('Over500,000jobsforyoutoexplore')}</p>
@@ -236,7 +238,9 @@ const HomeSearch = () => {
                 )}
             </div>
         </div>
-    );
+      </FadeIn>
+
+  );
 };
 
 export default HomeSearch;
