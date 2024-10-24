@@ -49,7 +49,7 @@ const Home = () => {
 
    
 
-      <Helmet><title>Job Hunting | Home</title></Helmet>
+      <Helmet><title>Next Hire | Home</title></Helmet>
 
     </div>
   );

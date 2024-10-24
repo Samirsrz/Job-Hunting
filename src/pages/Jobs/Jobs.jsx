@@ -100,7 +100,7 @@ const Jobs = ({job}) => {
   }
 
   return (
-    <div className="dark:bg-gray-900 text-white">
+    <div>
       <Helmet>
         <title>Next-Hire | Jobs</title>
       </Helmet>
