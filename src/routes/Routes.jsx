@@ -32,6 +32,10 @@ import UserStatictis from "../pages/UserDashboard/UserStatictis";
 import ViewHostJobs from "../pages/HostDashboard/ViewHostJobs";
 import ViewAllJobs from "../pages/AdminDashboard/ViewAllJobs";
 import HostStatisticPage from "../pages/HostDashboard/HostStatisticPage";
+import ResumeBuilder from "../pages/ResumeBuilder/ResumeBuilder";
+import SavedJobs from "../pages/SavedJobs/SavedJobs";
+import HostProfile from "../components/HostDashboard/HostProfile";
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +53,11 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/about",
+        element: <AboutUs></AboutUs>,
+      },
+
+      {
         path: "/ai",
         element: <Ai />,
       },
@@ -64,15 +73,9 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
-
       {
         path: "/jobs",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Jobs />
-          </PrivateRoute>
-        ),
+        element: <Jobs />,
       },
       {
         path: "/jobs/:id",
@@ -83,6 +86,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "/saved-jobs",
+        element: <SavedJobs />,
+      },
+      {
         path: "/jobs/viewAllJobsCompany/:id",
         element: <ViewAllJobsCompany />,
       },
@@ -91,19 +98,17 @@ export const router = createBrowserRouter([
         element: <VeiwCompanyJob />,
       },
       {
-        path:'view-all-companies',
-        element:<ViewAllCompanies/>
-      },
-      {
-        path:"/event/details/:id",
-        element:<ViewEventChallenge/>
-      },
-      {
-                path: "view-all-companies",
+        path: "view-all-companies",
         element: <ViewAllCompanies />,
-      
-      }
-
+      },
+      {
+        path: "/event/details/:id",
+        element: <ViewEventChallenge />,
+      },
+      {
+        path: "view-all-companies",
+        element: <ViewAllCompanies />,
+      },
     ],
   },
 
@@ -129,11 +134,19 @@ export const router = createBrowserRouter([
         element: <InterviewSchedule />,
       },
       {
+        path: "/dashboard/resume-builder",
+        element: <ResumeBuilder></ResumeBuilder>,
+      },
+      {
         path: "/dashboard/userprofile",
         element: <UserProfile />,
       },
 
       //Host Route done*********
+      {
+        path: "/dashboard/host-profile",
+        element: <HostProfile />,
+      },
       {
         path: "/dashboard/host-statistic",
         element: <HostStatisticPage />,

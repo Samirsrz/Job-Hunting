@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 let featuredJobsApi = createApi({
     reducerPath: 'FeaturedJobsApi',
     baseQuery: fetchBaseQuery({ baseUrl: `${import.meta.env.VITE_API_URL}` }),
-    tagTypes: ['FeaturedJobs', 'Followers', 'CompanyJobs'],
+    tagTypes: ['FeaturedJobs', 'Followers', 'CompanyJobs','EventChallnge'],
     endpoints: (builder) => ({
         // getFeaturedJobs: builder.query({
         //     query: () => '/featured/jobs',
@@ -67,6 +67,16 @@ let featuredJobsApi = createApi({
                 return `/featured/company/jobs?page=${page}&limit=${limit}&${filterParams.toString()}`;
             },
             providesTags: ['FeaturedJobs']
+        }),
+
+        getEvent:builder.query({
+            query:()=> '/event/challenge',
+            providesTags:['EventChallnge']
+        }),
+
+        getEventById:builder.query({
+            query:(id)=>  `/event/challenge/${id}`,
+            providesTags:['EventChallnge']
         })
         
     })
@@ -81,6 +91,8 @@ export let {
     useUnfollowCompanyMutation,
     useGetCompanyBasedJobsQuery,
     useGetRandom5InterestedJobsQuery,
-    useGetFeaturedComaniesQuery
+    useGetFeaturedComaniesQuery,
+    useGetEventByIdQuery,
+    useGetEventQuery
 } = featuredJobsApi
 export default featuredJobsApi

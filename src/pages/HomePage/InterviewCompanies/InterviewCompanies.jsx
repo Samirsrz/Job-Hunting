@@ -3,6 +3,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import logo from "../../../../public/company/amazon-ot.png";
 import interviewPng from "../../../../public/interview/ab-interview-ot-removebg-preview.png";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 //amazon-ot.png
 
@@ -30,7 +31,7 @@ const roles = [
 const InterviewCompanies = () => {
   const { t } = useTranslation();
   return (
-    <section className="mt-7 relative bg-gradient-to-r from-orange-100 to-orange-50 rounded-xl flex flex-col lg:flex-row justify-between lg:h-[410px]">
+    <section className="mt-20 relative bg-gradient-to-r from-orange-100 to-orange-50 rounded-xl flex flex-col lg:flex-row justify-between lg:h-[410px]">
       <aside className="text-center flex gap-3 flex-col items-center justify-center p-3">
         <img src={interviewPng} className="bg-transparent w-[270px]" alt="" />
         <h1 className="font-bold text-2xl">
@@ -75,9 +76,9 @@ const InterviewCompanies = () => {
 
           {/* View all companies link */}
           <div className="mt-4 text-right">
-            <a href="#" className="text-blue-600 font-semibold">
+            <Link to={'/view-all-companies'} className="text-blue-600 font-semibold">
               View all companies <IoIosArrowForward className="inline-block" />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -99,11 +100,11 @@ const InterviewCompanies = () => {
               ))}
             </div>
 
-            <div className="mt-6 text-right">
+            {/* <div className="mt-6 text-right">
               <a href="#" className="text-blue-600 font-semibold text-sm">
                 View all roles <IoIosArrowForward className="inline-block" />
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </aside>

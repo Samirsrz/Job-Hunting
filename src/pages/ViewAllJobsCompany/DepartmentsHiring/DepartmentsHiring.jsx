@@ -1,31 +1,31 @@
-import React from 'react';
+import React from "react";
 
 const DepartmentsHiring = () => {
   const departments = [
     {
-      name: 'Engineering - Software & QA',
+      name: "Engineering - Software & QA",
       openings: 22,
     },
     {
-      name: 'BFSI, Investments & Trading',
+      name: "BFSI, Investments & Trading",
       openings: 4,
     },
     {
-      name: 'Sales & Business Development',
+      name: "Sales & Business Development",
       openings: 4,
     },
     {
-      name: 'Finance & Accounting',
+      name: "Finance & Accounting",
       openings: 3,
     },
     {
-      name: 'Risk Management & Compliance',
+      name: "Risk Management & Compliance",
       openings: 3,
     },
   ];
 
   return (
-    <section className=" bg-gradient-to-t from-[#fff4df] to-[#fffbf5eb] py-8 px-4 rounded-lg max-w-7xl mx-auto">
+    <section className="bg-gradient-to-t from-[#fff4df] to-[#fffbf5eb] py-8 px-4 rounded-lg max-w-7xl">
       <h2 className="text-lg font-semibold text-gray-800 mb-6">
         Departments hiring at Standard Chartered
       </h2>

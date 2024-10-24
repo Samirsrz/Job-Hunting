@@ -2,11 +2,11 @@ import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
 import { BsFillHouseAddFill } from "react-icons/bs";
-import { FaCcApplePay, FaFileImport } from "react-icons/fa";
+import { FaCcApplePay, FaEdit, FaFileImport } from "react-icons/fa";
 import { MdHomeWork } from "react-icons/md";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
@@ -18,6 +18,15 @@ const Sidebar = () => {
   const [isActive, setActive] = useState(false);
 
   const axionsequre = useAxiosSecure();
+  const navigate = useNavigate();
+
+  //profile dropdown
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   setLoading(true);
   //get user information
   try {
@@ -33,7 +42,17 @@ const Sidebar = () => {
   const handleToggle = () => {
     setActive(!isActive);
   };
-  if (setLoading) <p>loading...</p>;
+
+  //handle logout
+  const handleLogout = () => {
+    logOut();
+    if (logOut) {
+      navigate("/");
+    }
+    console.error("Logout error:", error);
+  };
+
+  // if (setLoading) <p>loading...</p>;
 
   return (
     <div>
@@ -189,6 +208,24 @@ const Sidebar = () => {
 
                     <span className="mx-4 font-medium">Interview schedule</span>
                   </NavLink>
+                  {/* Interview schedule */}
+                  {/*  resume builder*/}
+                  <NavLink
+                    to="/dashboard/resume-builder"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <MdHomeWork className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Create Resume</span>
+                  </NavLink>
+
+                  {/*  resume builder*/}
                 </div>
               )}
 
@@ -304,21 +341,54 @@ const Sidebar = () => {
           <hr />
 
           {/* Profile Menu */}
-          <NavLink
-            to="/dashboard/userprofile"
-            className={({ isActive }) =>
-              `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-              }`
-            }
-          >
-            <FcSettings className="w-5 h-5" />
 
-            <span className="mx-4 font-medium">Profile</span>
-          </NavLink>
+          <div className="relative">
+            {/* Dropdown toggle button */}
+            <div
+              onClick={toggleDropdown}
+              className={`relative z-10 flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 `}
+            >
+              <FcSettings className="w-5 h-5" />
+
+              <span className="mx-4 font-medium">Profile</span>
+            </div>
+
+            {/* Dropdown menu */}
+            {isOpen && (
+              <div
+                className="absolute right-0 z-20 w-56 py-2 mt-2 mb-10 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
+                onMouseLeave={() => setIsOpen(false)} // Close on mouse leave
+              >
+                <NavLink
+                  to="/dashboard/host-profile"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <FcSettings className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">See Profile</span>
+                </NavLink>
+                <NavLink
+                  to="/dashboard/company-profile"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <FaEdit className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Edit Profile</span>
+                </NavLink>
+              </div>
+            )}
+          </div>
           {/* Logout */}
           <button
-            onClick={logOut}
+            onClick={handleLogout}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
           >
             <GrLogout className="w-5 h-5" />
