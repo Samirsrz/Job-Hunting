@@ -93,9 +93,9 @@ const Jobs = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>Next-Hire | Jobs</title>
-      </Helmet>
+        <Helmet>
+          <title>Next-Hire | Jobs</title>
+        </Helmet>
       <div className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] relative overflow-hidden">
         <img
           src="https://i.ibb.co.com/tb5pL4S/Career-Banner.jpg"

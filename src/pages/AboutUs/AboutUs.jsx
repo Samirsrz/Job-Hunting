@@ -2,7 +2,9 @@ import React from 'react';
 
 const AboutUs = () => {
   return (
+    
     <div className="bg-base-100">
+        
       {/* Hero Section */}
       <div className="hero min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">
         <div className="hero-content flex-col lg:flex-row-reverse">
