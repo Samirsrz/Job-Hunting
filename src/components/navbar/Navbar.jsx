@@ -165,7 +165,7 @@ const Navbar = () => {
               <button className="rounded-full group-hover:hidden hover:bg-white/40 py-2 px-2 text-2xl md:px-2 md:text-3xl">
                 <MdFavoriteBorder />
               </button>
-              <span className="absolute opacity-0 group-hover:opacity-100 right-1 top-1 bg-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
+              <span className="absolute  opacity-100 right-1 top-1 bg-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
                 {savedJobs?.length}
               </span>
             </div>
