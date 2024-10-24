@@ -118,6 +118,14 @@ const Navbar = () => {
                   <NavLink to={link}>{title}</NavLink>
                 </li>
               ))}
+              <li className="dark:hover:bg-gray-500 md:hidden">
+                <NavLink
+                  to="/signup"
+                  className="btn btn-sm text-sm bg-white dark:bg-gray-500 dark:border-gray-400 dark:text-white"
+                >
+                  Join Us <FiLogIn />
+                </NavLink>
+              </li>
             </ul>
           </div>
           <Link
