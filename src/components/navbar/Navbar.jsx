@@ -25,23 +25,23 @@ const links = [
 ];
 const Navbar = () => {
   const { savedJobs } = useSavedJobs();
-  const { user, logOut } = useAuth();
+  const { user, logOut, loading } = useAuth();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [lang, setLang] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const [loginUser, setLoginUser] = useState("");
+  const [loginUser, setLoginUser] = useState({});
 
   const axiosCommon = useAxiosCommon();
 
   //get user information
-  try {
-    axiosCommon
-      .get(`/user?email=${user?.email}`)
-      .then((res) => setLoginUser(res?.data));
-  } catch (error) {
-    console.log(error);
-  }
+  useEffect(() => {
+    if (!loading) {
+      axiosCommon.get(`/user?email=${user?.email}`).then((res) => {
+        setLoginUser(res?.data);
+      });
+    }
+  }, [user, loading]);
 
   const changeLangPath = (lang) => {
     const searchParams = new URLSearchParams(location.search);
