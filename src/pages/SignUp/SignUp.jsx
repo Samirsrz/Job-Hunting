@@ -172,7 +172,7 @@ else{
       <div className="flex justify-center  flex-1 items-center min-h-screen">
         <div className="flex flex-col lg:w-full p-6 rounded-md sm:p-10 border-x-2  text-gray-900">
           <div className="mb-8 text-center">
-            <h1 className="my-3 text-6xl italic font-bold">~~Sign Up~~</h1>
+            <h1 className="my-3 text-6xl italic font-bold">Sign Up</h1>
             <p className="text-sm text-gray-500">
               Create your Next-Hire profile
             </p>
