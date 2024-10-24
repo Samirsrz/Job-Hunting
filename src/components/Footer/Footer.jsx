@@ -21,8 +21,7 @@ const Footer = () => {
                 </a>
 
                 <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">
-                  Join 31,000+ other and never miss out on new tips, tutorials,
-                  and more.
+                  Join us for start your journey as a new way
                 </p>
 
                 <div className="flex mt-6 -mx-2">
@@ -77,75 +76,75 @@ const Footer = () => {
             <div className="mt-6 lg:mt-0 lg:flex-1">
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <div>
-                  <h3 className="text-gray-700 uppercase dark:text-white">
+                  {/* <h3 className="text-gray-700 uppercase dark:text-white">
                     About
-                  </h3>
-                  <a
+                  </h3> */}
+                  {/* <a
                     href="#"
                     className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
                     Company
-                  </a>
-                  <a
+                  </a> */}
+                  {/* <a
                     href="#"
                     className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
                     community
-                  </a>
-                  <a
+                  </a> */}
+                  {/* <a
                     href="#"
                     className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
                     Careers
-                  </a>
+                  </a> */}
                 </div>
 
                 <div>
-                  <h3 className="text-gray-700 uppercase dark:text-white">
+                  {/* <h3 className="text-gray-700 uppercase dark:text-white">
                     Blog
-                  </h3>
-                  <a
+                  </h3> */}
+                  {/* <a
                     href="#"
                     className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
                     Tec
-                  </a>
-                  <a
+                  </a> */}
+                  {/* <a
                     href="#"
                     className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
                     Music
-                  </a>
-                  <a
+                  </a> */}
+                  {/* <a
                     href="#"
                     className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
                     Videos
-                  </a>
+                  </a> */}
                 </div>
 
                 <div>
-                  <h3 className="text-gray-700 uppercase dark:text-white">
+                  {/* <h3 className="text-gray-700 uppercase dark:text-white">
                     Products
-                  </h3>
-                  <a
+                  </h3> */}
+                  {/* <a
                     href="#"
                     className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
                     Mega cloud
-                  </a>
-                  <a
+                  </a> */}
+                  {/* <a
                     href="#"
                     className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
                     Aperion UI
-                  </a>
-                  <a
+                  </a> */}
+                  {/* <a
                     href="#"
                     className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
                     Meraki UI
-                  </a>
+                  </a> */}
                 </div>
 
                 <div>
@@ -153,10 +152,10 @@ const Footer = () => {
                     Contact
                   </h3>
                   <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-                    +1 526 654 8965
+                    +8801911002211
                   </span>
                   <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-                    example@email.com
+                    nexthire@gmail.com
                   </span>
                 </div>
               </div>
