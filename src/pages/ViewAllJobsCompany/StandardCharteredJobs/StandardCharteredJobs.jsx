@@ -632,8 +632,10 @@ const StandardCharteredJobs = ({ companyName }) => {
                 </h3>
                 <p>Register with us and let company recruiters find you</p>
                 <div>
+
                   <button className="px-4 py-2 bg-red-500 rounded-3xl text-white font-semibold">
-                    Register Now
+                   
+                    <Link to={"/signup"}>  Register Now</Link>
                   </button>
                 </div>
               </div>

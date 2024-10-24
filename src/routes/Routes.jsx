@@ -35,6 +35,7 @@ import HostStatisticPage from "../pages/HostDashboard/HostStatisticPage";
 import ResumeBuilder from "../pages/ResumeBuilder/ResumeBuilder";
 import SavedJobs from "../pages/SavedJobs/SavedJobs";
 import HostProfile from "../components/HostDashboard/HostProfile";
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,11 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/about",
+        element: <AboutUs></AboutUs>,
+      },
+
       {
         path: "/ai",
         element: <Ai />,

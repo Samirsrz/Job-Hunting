@@ -52,7 +52,7 @@ const Sidebar = () => {
     console.error("Logout error:", error);
   };
 
-  if (setLoading) <p>loading...</p>;
+  // if (setLoading) <p>loading...</p>;
 
   return (
     <div>
