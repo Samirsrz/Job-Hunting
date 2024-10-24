@@ -25,7 +25,7 @@ const links = [
 ];
 const Navbar = () => {
   const { savedJobs } = useSavedJobs();
-  const { user, logOut, setLoading } = useAuth();
+  const { user, logOut } = useAuth();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [lang, setLang] = useState(null);
   const navigate = useNavigate();
@@ -33,13 +33,12 @@ const Navbar = () => {
   const [loginUser, setLoginUser] = useState("");
 
   const axiosCommon = useAxiosCommon();
-  setLoading(true);
+
   //get user information
   try {
     axiosCommon
       .get(`/user?email=${user?.email}`)
       .then((res) => setLoginUser(res?.data));
-    setLoading(false);
   } catch (error) {
     console.log(error);
   }

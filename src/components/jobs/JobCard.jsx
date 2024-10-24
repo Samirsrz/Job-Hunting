@@ -23,8 +23,8 @@ const JobCard = ({ job }) => {
       <div className="bg-gray-300/30 p-6 my-4 flex flex-col items-center justify-center rounded-md gap-2">
         <h3 className="font-semibold text-lg">{job?.title}</h3>
         <div className="text-sm text-gray-500">
-          <FaStar className="text-yellow-400 inline" /> {job?.rating} |{" "}
-          {job?.reviews?.length} reviews
+          <FaStar className="text-yellow-400 inline" />
+          {(job?.rating ?? 0).toFixed(1)} | {job?.reviews?.length} reviews
         </div>
       </div>
       <p className="text-sm text-black grow">{job?.des}</p>

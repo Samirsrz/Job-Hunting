@@ -12,6 +12,8 @@ import {
   MdStar,
   MdAttachMoney,
 } from "react-icons/md";
+import loadingData from "../../../public/Annimations/loading.json";
+import errorData from "../../../public/Annimations/error.json";
 import { GiRoundStar } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -32,6 +34,7 @@ import {
 } from "../../libs/localJobs";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useSavedJobs } from "../../RTK/features/savedJobSlice";
+import Lottie from "lottie-react";
 
 const JobDetails = () => {
   const { updateSavedJobs } = useSavedJobs();
@@ -41,6 +44,7 @@ const JobDetails = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [job, setJob] = useState({});
+  const [loading, setLoading] = useState(true);
   const [existingReview, setExistingReview] = useState({});
   const [relatedJobs, setRelatedJobs] = useState([]);
   const [rating, setRating] = useState(5);
@@ -65,7 +69,10 @@ const JobDetails = () => {
   }, [job, user]);
 
   useEffect(() => {
-    axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
+    axiosSecure
+      .get(`/jobs/${id}`)
+      .then((data) => setJob(data.data.data))
+      .finally(() => setLoading(false));
   }, [id, axiosSecure]);
 
   useEffect(() => {
@@ -188,6 +195,41 @@ const JobDetails = () => {
         toast.error(err.response.data.message);
       });
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center flex-col py-20">
+        <Lottie
+          animationData={loadingData}
+          className="h-72 w-72 lg:w-96 my-10"
+        ></Lottie>
+      </div>
+    );
+  }
+
+  if (!job?.title) {
+    return (
+      <div className="flex items-center justify-center flex-col py-20">
+        <h2 className="text-3xl font-semibold">Something went wrong!</h2>
+        <Lottie
+          animationData={errorData}
+          className="h-44 w-44 lg:w-96 my-10"
+        ></Lottie>
+        <button
+          onClick={() => {
+            setLoading(true);
+            axiosSecure
+              .get(`/jobs/${id}`)
+              .then((data) => setJob(data.data.data))
+              .finally(() => setLoading(false));
+          }}
+          className="btn btn-error"
+        >
+          Try Again <RxReload className="inline" />
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div>
