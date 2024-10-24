@@ -41,7 +41,7 @@ const Sidebar = () => {
   const handleToggle = () => {
     setActive(!isActive);
   };
-  if (setLoading) <p>loading...</p>;
+  // if (setLoading) <p>loading...</p>;
 
   return (
     <div>

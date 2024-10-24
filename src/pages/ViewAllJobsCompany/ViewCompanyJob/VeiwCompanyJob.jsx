@@ -38,7 +38,7 @@ const VeiwCompanyJob = () => {
 
 
     return (
-        <section className='flex gap-5 max-w-6xl mx-auto'>
+        <section className='flex flex-col lg:flex-row gap-5 max-w-6xl mx-auto'>
             <aside>
                 <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 flex items-center justify-between space-x-6">
                     {/* Left Section */}
@@ -91,7 +91,7 @@ const VeiwCompanyJob = () => {
 
                             <div className='w-full h-[1px] bg-slate-100 my-5'></div>
 
-                            <div className="flex mt-2 space-x-6">
+                            <div className="hidden mt-2 space-x-6 lg:flex">
                                 <div className='flex gap-2'>
                                     <span><span className='opacity-80'>Posted:  </span> <b>1 day ago </b></span>
                                     <span> <span className='opacity-80'>Openings: </span>  <b>5</b></span>
@@ -225,12 +225,12 @@ const VeiwCompanyJob = () => {
             </aside>
 
 
-            <aside className='w-[400px]'>
+            <aside className='lg:w-[400px]'>
                 <h1 className='font-bold p-4'>Jobs you might be interested in</h1>
 
                 {interestedJobs.map((value, index) => <Link key={value._id} to={`/view-company-job/${value._id}`}> 
 
-                  <div className='flex justify-between items-center w-full p-4  border-b'>
+                  <div className='flex flex-col-reverse items-start lg:flex-row justify-between lg:items-center w-full p-4  border-b'>
                     <div className='h-[50%] space-y-2'>
                         <h1 className='font-bold'>{value.companyName}</h1>
                         <p>{value.title}</p>

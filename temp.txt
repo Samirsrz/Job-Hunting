@@ -1,0 +1,11 @@
+ee8a028 Merge pull request #93 from Samirsrz/home
+526dc43 Merge pull request #92 from Samirsrz/home
+e8b5eac Merge pull request #74 from Samirsrz/home
+96a970f Merge pull request #69 from Samirsrz/home
+f8a1538 Merge pull request #44 from Samirsrz/home
+838597a Delete vercel.json
+59ac4d7 Merge pull request #43 from Samirsrz/home
+174344c Merge pull request #16 from Samirsrz/home
+4ba66b5 Merge pull request #15 from Samirsrz/home
+190786c Merge pull request #14 from Samirsrz/home
+03aba34 Merge pull request #13 from Samirsrz/home
