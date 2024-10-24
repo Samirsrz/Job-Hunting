@@ -92,7 +92,7 @@ const Jobs = () => {
   }
 
   return (
-    <div>
+    <div className="dark:bg-gray-900 text-white">
       <Helmet>
         <title>Next-Hire | Jobs</title>
       </Helmet>
@@ -104,7 +104,7 @@ const Jobs = () => {
         />
       </div>
 
-      <div className="flex mx-auto w-full justify-center items-center lg:mt-14 mb-5 flex-wrap gap-6 ">
+      <div className="flex mx-auto w-full justify-center items-center lg:mt-14 mb-5 flex-wrap gap-6">
         <div className="px-4">
           <h2 className="text-lg font-semibold my-2">Categories</h2>
           <div className="flex flex-row flex-wrap gap-2">
