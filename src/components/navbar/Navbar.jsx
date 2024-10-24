@@ -6,6 +6,8 @@ import { FiLogIn } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import Lang from "../../libs/Lang";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { useSavedJobs } from "../../RTK/features/savedJobSlice";
 
 const links = [
   {
@@ -22,6 +24,7 @@ const links = [
   },
 ];
 const Navbar = () => {
+  const { savedJobs } = useSavedJobs();
   const { user, logOut, setLoading } = useAuth();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [lang, setLang] = useState(null);
@@ -146,6 +149,19 @@ const Navbar = () => {
         </div>
         <div className="navbar-end flex items-center">
           <div className="md:mx-2 flex md:justify-center items-center h-full">
+            <div className="relative group">
+              <Link to="/saved-jobs">
+                <button className="rounded-full hidden group-hover:inline hover:bg-white/40 py-2 px-2 text-2xl md:px-2 md:text-3xl">
+                  <MdFavorite />
+                </button>
+              </Link>
+              <button className="rounded-full group-hover:hidden hover:bg-white/40 py-2 px-2 text-2xl md:px-2 md:text-3xl">
+                <MdFavoriteBorder />
+              </button>
+              <span className="absolute opacity-0 group-hover:opacity-100 right-1 top-1 bg-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
+                {savedJobs?.length}
+              </span>
+            </div>
             <button
               onClick={toggleDarkMode}
               className="rounded-full hover:bg-white/40 py-2 px-2 text-2xl md:px-2 md:text-3xl"

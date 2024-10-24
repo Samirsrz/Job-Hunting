@@ -1,20 +1,21 @@
-
-
 // import React from "react";
-import { FaCalendarAlt, FaUserAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  FaCalendarAlt,
+  FaUserAlt,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 import Slider from "react-slick";
-import eventImage from '../../../../public/events/eventsBannerFallback_1.png';
-import eventCompany from '../../../../public/company/ll.gif';
+import eventImage from "../../../../public/events/eventsBannerFallback_1.png";
+import eventCompany from "../../../../public/company/ll.gif";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-
 // Custom Next Arrow Component
 const NextArrow = ({ onClick }) => (
-  
   <div
     className="absolute right-[0px] top-[50%] bg-white rounded-full p-2 shadow-md transform translate-y-[-50%] z-10 cursor-pointer text-purple-500 hover:text-purple-600"
     onClick={onClick}
@@ -33,11 +34,7 @@ const PrevArrow = ({ onClick }) => (
   </div>
 );
 
-const EventCard = () =>
-
-  
- 
- {
+const EventCard = () => {
   const { t } = useTranslation();
   let events = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; // Sample events data
 
@@ -54,35 +51,38 @@ const EventCard = () =>
         breakpoint: 1024, // Large screens
         settings: {
           slidesToShow: 2, // Show 2 cards on large screens
-        }
+        },
       },
       {
         breakpoint: 768, // Medium screens
         settings: {
           slidesToShow: 1, // Show 1 card on medium/small screens
-        }
+        },
       },
       {
         breakpoint: 480, // Small screens
         settings: {
           slidesToShow: 1, // Show 1 card on small screens
           arrows: false, // Hide arrows on small screens for a cleaner look
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
   return (
-    <div className="mt-16">
+    <div className="mt-24">
       <section className="flex flex-col lg:flex-row mb-6 gap-3 overflow-hidden">
-
         {/* Sidebar for the title and image */}
         <aside className="w-full lg:w-[30%] text-center mb-4 lg:mb-0 md:p-2">
           <h1 className="font-bold text-xl lg:text-3xl">
-          {t('Upcomingeventsand')}  <br />  {t('challenges')}
+            {t("Upcomingeventsand")} <br /> {t("challenges")}
           </h1>
           <div className="w-full flex justify-center">
-            <img className="w-[50%] lg:w-[70%]" src="https://static.naukimg.com/s/0/0/i/Events/eventsSwiperLeft-ot.png" alt="" />
+            <img
+              className="w-[50%] lg:w-[70%]"
+              src="https://static.naukimg.com/s/0/0/i/Events/eventsSwiperLeft-ot.png"
+              alt=""
+            />
           </div>
         </aside>
 
@@ -90,7 +90,9 @@ const EventCard = () =>
         <div className="w-full lg:w-[70%]">
           <Slider {...settings} className="">
             {events.map((event, index) => (
-              <div className="px-2" key={index}> {/* Added padding to create gap between cards */}
+              <div className="px-2" key={index}>
+                {" "}
+                {/* Added padding to create gap between cards */}
                 <aside className="p-4 bg-white rounded-xl relative border-[2px]">
                   {/* Upper part with event details */}
                   <div className="relative">
@@ -146,12 +148,12 @@ const EventCard = () =>
                       Learn from experts
                     </button>
                     <div>
-                         <Link to={`/event/details/${index}`}>
-                         <button className="text-blue-600 font-semibold">View details</button>
-                          </Link>
+                      <Link to={`/event/details/${index}`}>
+                        <button className="text-blue-600 font-semibold">
+                          View details
+                        </button>
+                      </Link>
                     </div>
-                 
-                    
                   </div>
                 </aside>
               </div>
@@ -165,28 +167,7 @@ const EventCard = () =>
 
 export default EventCard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // // next weak task. I will complete it
-
-
 
 // import { useState, useEffect } from "react";
 // import { FaCalendarAlt, FaUserAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -220,7 +201,7 @@ export default EventCard;
 
 // const EventCard = () => {
 //   const { t } = useTranslation();
-  
+
 //   // State for the challenge data
 //   const [challenge, setChallenge] = useState([]);
 
