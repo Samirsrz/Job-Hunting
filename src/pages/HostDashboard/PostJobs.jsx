@@ -48,13 +48,13 @@ const PostJobs = () => {
         throw new Error(data.message);
       }
       setLoading(false);
-      form.reset();
+      // form.reset();
     } catch (error) {
       console.log(error);
       toast.error(error.message);
     }
 
-    form.reset();
+    // form.reset();
     setLoading(false);
   };
 
@@ -64,7 +64,7 @@ const PostJobs = () => {
         <title>Next-Hire | Post-Jobs</title>
       </Helmet>
       <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
-        <h1 className="lg:text-5xl my-7 font-bold">~~Post-Jobs Form~~</h1>
+        <h1 className="lg:text-5xl my-7 font-bold">Job Post Form</h1>
 
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -120,6 +120,15 @@ const PostJobs = () => {
                   <option>Customer Service</option>
                   <option>Supply Chain</option>
                   <option>Human Resources</option>
+                  <option>Internship</option>
+                  <option>Startup</option>
+                  <option>Banking & Finance</option>
+                  <option>Data Science</option>
+                  <option>Remote</option>
+                  <option>Software & IT</option>
+                  <option>Project Mgmt</option>
+                  <option>Analytics</option>
+
                 </select>
               </div>
 
