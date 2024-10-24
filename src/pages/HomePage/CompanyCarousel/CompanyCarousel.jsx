@@ -4,6 +4,18 @@ import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 // import logo1 from '../../../../public/company/4467146.gif';
 import logo1 from "../../../../public/company/dow.png";
+import logo2 from "../../../../public/company/company1.jpg";
+import logo3 from "../../../../public/company/company2.png";
+// import logo4 from "../../../../public/company/company3.png";
+// import logo5 from "../../../../public/company/company4.jpg";
+import logo6 from "../../../../public/company/company5.jpg";
+import logo7 from "../../../../public/company/company6.png";
+import logo8 from "../../../../public/company/company7.png";
+import logo9 from "../../../../public/company/company8.jpg";
+// import logo10 from "../../../../public/company/company9.jpg";
+
+// import img from '../../../../public/company/'
+
 import { useTranslation } from "react-i18next";
 import { Autoplay } from "swiper/modules";
 // Example company logos
@@ -11,27 +23,27 @@ const categories = [
   {
     title: "MNCs",
     hiring: "1.9K+ are actively hiring",
-    logos: [logo1, logo1, logo1, logo1],
+    logos: [logo1, logo2, logo7, logo6],
   },
   {
     title: "Internet",
     hiring: "194 are actively hiring",
-    logos: [logo1, logo1, logo1, logo1],
+    logos: [logo6, logo1, logo6, logo7],
   },
   {
     title: "Manufacturing",
     hiring: "831 are actively hiring",
-    logos: [logo1, logo1, logo1, logo1],
+    logos: [logo8, logo9, logo2, logo1],
   },
   {
     title: "Fortune 500",
     hiring: "107 are actively hiring",
-    logos: [logo1, logo1, logo1, logo1],
+    logos: [logo6, logo9, logo2, logo7],
   },
   {
     title: "Product",
     hiring: "97.8k are actively hiring",
-    logos: [logo1, logo1, logo1, logo1],
+    logos: [logo6, logo1, logo2, logo3],
   },
 ];
 
