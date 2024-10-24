@@ -6,7 +6,7 @@ import { FaCcApplePay, FaEdit, FaFileImport } from "react-icons/fa";
 import { MdHomeWork } from "react-icons/md";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
@@ -18,6 +18,7 @@ const Sidebar = () => {
   const [isActive, setActive] = useState(false);
 
   const axionsequre = useAxiosSecure();
+  const navigate = useNavigate();
 
   //profile dropdown
   const [isOpen, setIsOpen] = useState(false);
@@ -41,6 +42,16 @@ const Sidebar = () => {
   const handleToggle = () => {
     setActive(!isActive);
   };
+
+  //handle logout
+  const handleLogout = () => {
+    logOut();
+    if (logOut) {
+      navigate("/");
+    }
+    console.error("Logout error:", error);
+  };
+
   // if (setLoading) <p>loading...</p>;
 
   return (
@@ -215,7 +226,6 @@ const Sidebar = () => {
                   </NavLink>
 
                   {/*  resume builder*/}
-
                 </div>
               )}
 
@@ -378,7 +388,7 @@ const Sidebar = () => {
           </div>
           {/* Logout */}
           <button
-            onClick={logOut}
+            onClick={handleLogout}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
           >
             <GrLogout className="w-5 h-5" />

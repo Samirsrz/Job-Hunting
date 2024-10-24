@@ -45,14 +45,21 @@ const InterviewSchedule = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 p-6">
+    <div className="flex flex-col-reverse md:flex-row">
+      <hr className="flex md:hidden" />
       {/* Left Side: Create Event Form */}
-      <div className="w-1/3 bg-white rounded-lg shadow-md p-8">
-        <button className="text-gray-600 mb-4 text-sm hover:text-gray-800">Cancel</button>
-        <h1 className="text-3xl font-semibold mb-6 text-gray-800">New Interview</h1>
+      <div className="w-full mt-3 md:w-1/3 bg-white rounded-lg shadow-md p-8">
+        <button className="text-gray-600 mb-4 text-sm hover:text-gray-800">
+          Cancel
+        </button>
+        <h1 className="text-3xl font-semibold mb-6 text-gray-800">
+          New Interview
+        </h1>
 
         <div className="form-group mb-6">
-          <label className="block text-gray-600 font-medium mb-2">Interview Name *</label>
+          <label className="block text-gray-600 font-medium mb-2">
+            Interview Name *
+          </label>
           <input
             type="text"
             placeholder="Enter interview name"
@@ -63,7 +70,9 @@ const InterviewSchedule = () => {
         </div>
 
         <div className="form-group mb-6">
-          <label className="block text-gray-600 font-medium mb-2">Short Description</label>
+          <label className="block text-gray-600 font-medium mb-2">
+            Short Description
+          </label>
           <input
             type="text"
             placeholder="Enter a short description"
@@ -74,7 +83,9 @@ const InterviewSchedule = () => {
         </div>
 
         <div className="form-group mb-6">
-          <label className="block text-gray-600 font-medium mb-2">Duration *</label>
+          <label className="block text-gray-600 font-medium mb-2">
+            Duration *
+          </label>
           <select
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
             value={duration}
@@ -96,11 +107,15 @@ const InterviewSchedule = () => {
       </div>
 
       {/* Right Side: Calendar & Time Picker */}
-      <div className="w-2/3 pl-12">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-6">Schedule Interview</h2>
+      <div className="w-full mt-8 md:w-2/3 px-12">
+        <h2 className="text-3xl font-semibold text-gray-800 mb-6">
+          Schedule Interview
+        </h2>
 
         <div className="form-group mb-6">
-          <label className="block text-gray-600 font-medium mb-2">Select Date & Time</label>
+          <label className="block text-gray-600 font-medium mb-2">
+            Select Date & Time
+          </label>
           <input
             type="date"
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
@@ -113,7 +128,9 @@ const InterviewSchedule = () => {
               <button
                 key={idx}
                 className={`py-2 px-4 rounded-lg border text-center transition-colors duration-200 ${
-                  selectedTime === time ? "bg-blue-500 text-white" : "border-gray-300 text-gray-600"
+                  selectedTime === time
+                    ? "bg-blue-500 text-white"
+                    : "border-gray-300 text-gray-600"
                 } hover:bg-blue-100`}
                 onClick={() => setSelectedTime(time)}
               >
