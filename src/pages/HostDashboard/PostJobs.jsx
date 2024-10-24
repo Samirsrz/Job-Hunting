@@ -39,7 +39,7 @@ const PostJobs = () => {
         logo,
         experience,
       };
- //     console.log("this is post data info", jobData);
+      //     console.log("this is post data info", jobData);
 
       const { data } = await axiosSecure.post(`/jobs/new`, jobData);
 
@@ -63,32 +63,38 @@ const PostJobs = () => {
       <Helmet>
         <title>Next-Hire | Post-Jobs</title>
       </Helmet>
-      <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
+      <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl lg:mt-5">
         <h1 className="lg:text-5xl my-7 font-bold">Job Post Form</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="mt-8 p-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="space-y-6">
               <div className="space-y-1 text-sm">
-                <label htmlFor="company" className="block text-gray-600">
+                <label
+                  htmlFor="company"
+                  className="block font-semibold text-gray-600"
+                >
                   Company Name
                 </label>
 
                 <input
                   required
                   placeholder="Company Name"
-                  className="w-full px-4 py-3 border-primary focus:outline-blue-800 rounded-md"
+                  className="w-full px-4 py-3 focus:outline-blue-800 rounded-md"
                   name="company"
                   id="company"
                 />
               </div>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="Job-Title" className="block text-gray-600">
+                <label
+                  htmlFor="Job-Title"
+                  className="block font-semibold text-gray-600"
+                >
                   Job Title
                 </label>
                 <input
-                  className="w-full px-4 py-3 text-gray-800 border border-primary focus:outline-blue-800 rounded-md "
+                  className="w-full px-4 py-3 text-gray-800 border focus:outline-blue-800 rounded-md "
                   name="title"
                   id="title"
                   type="text"
@@ -98,7 +104,10 @@ const PostJobs = () => {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="category" className="block text-gray-600">
+                <label
+                  htmlFor="category"
+                  className="block font-semibold text-gray-600"
+                >
                   Category
                 </label>
                 <select
@@ -124,7 +133,10 @@ const PostJobs = () => {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="job-type" className="block text-gray-600">
+                <label
+                  htmlFor="job-type"
+                  className="block font-semibold text-gray-600"
+                >
                   Job-Type
                 </label>
                 <select
@@ -142,14 +154,18 @@ const PostJobs = () => {
                 </select>
               </div>
             </div>
-            <div className="space-y-6">
-              <div className="flex justify-between gap-2">
+
+            <div className=" space-y-6">
+              <div className="flex flex-col lg:space-y-0 lg:flex-row justify-between items-start gap-2">
                 <div className="space-y-1 w-full text-sm">
-                  <label htmlFor="salary" className="block text-gray-600">
+                  <label
+                    htmlFor="salary"
+                    className="block font-semibold text-gray-600"
+                  >
                     Salary
                   </label>
                   <input
-                    className="w-full px-4 py-3 text-gray-800 border border-primary focus:outline-blue-800 rounded-md "
+                    className="w-full px-4 py-3 text-gray-800 border focus:outline-blue-800 rounded-md "
                     name="salary"
                     id="salary"
                     type="number"
@@ -158,8 +174,11 @@ const PostJobs = () => {
                   />
                 </div>
 
-                <div className="p-3">
-                  <label htmlFor="image" className="block mb-2 text-sm">
+                <div className="ml-0 lg:ml-3">
+                  <label
+                    htmlFor="image"
+                    className="block font-semibold mb-2 text-sm"
+                  >
                     Select Company Logo:
                   </label>
                   <input
@@ -173,7 +192,10 @@ const PostJobs = () => {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="job-type" className="block text-gray-600">
+                <label
+                  htmlFor="job-type"
+                  className="block font-semibold text-gray-600"
+                >
                   Experience
                 </label>
                 <select
@@ -192,11 +214,14 @@ const PostJobs = () => {
 
               <div className="justify-between gap-2">
                 <div className="space-y-1 text-sm">
-                  <label htmlFor="location" className="block text-gray-600">
+                  <label
+                    htmlFor="location"
+                    className="block font-semibold text-gray-600"
+                  >
                     Location
                   </label>
                   <input
-                    className="w-full px-4 py-3 text-gray-800 border border-primary focus:outline-blue-800 rounded-md "
+                    className="w-full px-4 py-3 text-gray-800 border focus:outline-blue-800 rounded-md "
                     name="location"
                     id="location"
                     type="text"
@@ -207,13 +232,16 @@ const PostJobs = () => {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label htmlFor="description" className="block text-gray-600">
+                <label
+                  htmlFor="description"
+                  className="block font-semibold text-gray-600"
+                >
                   Description
                 </label>
 
                 <textarea
                   id="description"
-                  className="block rounded-md focus:rose-300 w-full h-36 px-4 py-3 text-gray-800  border border-primary focus:outline-blue-800 "
+                  className="block rounded-md focus:rose-300 w-full h-36 px-4 py-3 text-gray-800  border focus:outline-blue-800 "
                   name="description"
                 ></textarea>
               </div>
@@ -225,7 +253,7 @@ const PostJobs = () => {
           <button
             disabled={loading}
             type="submit"
-            className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-primary"
+            className="w-full p-3 mt-5 text-center font-semibold text-white transition duration-200 rounded shadow-md bg-primary"
           >
             {loading ? (
               <TbFidgetSpinner className="animate-spin m-auto" />
