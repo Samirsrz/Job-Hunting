@@ -6,14 +6,18 @@ import { GoBell } from "react-icons/go";
 import { LuFileInput } from "react-icons/lu";
 import AdminRecharts from "../../components/AdminDashboard/AdminRecharts";
 import Map from "../../components/AdminDashboard/Map";
+import useAuth from "../../hooks/useAuth";
 // import Map from "../../components/AdminDashboard/Map";
 
 const AdminStatistic = () => {
+  const { user } = useAuth();
   return (
     <div className="bg-[#f5f6fa] p-10">
       <div className="flex justify-between items-center rounded-lg bg-white p-5">
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold">Welcome Back Abu Rahat</h1>
+          <h1 className="text-2xl font-bold">
+            Welcome Back {user?.displayName}
+          </h1>
           <p className="text-sm text-gray-700 font-semibold">
             you have <span className="text-blue-700">5 unread</span>{" "}
             notification
@@ -27,7 +31,7 @@ const AdminStatistic = () => {
             <div className="stat-figure text-secondary">
               <div className="avatar">
                 <div className="w-12 rounded-full">
-                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                  <img src={user?.photoURL} />
                 </div>
               </div>
             </div>
