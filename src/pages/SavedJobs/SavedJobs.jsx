@@ -20,7 +20,7 @@ const SavedJobs = () => {
 
   if (isFetching) {
     return (
-      <div className="flex items-center justify-center flex-col py-20">
+      <div className="flex items-center justify-center flex-col py-20 dark:bg-gray-700">
         <Lottie
           animationData={loadingData}
           className="h-72 w-72 lg:w-96 my-10"
@@ -31,8 +31,10 @@ const SavedJobs = () => {
 
   if (isError) {
     return (
-      <div className="flex items-center justify-center flex-col py-20">
-        <h2 className="text-3xl font-semibold">Something went wrong!</h2>
+      <div className="flex items-center justify-center flex-col py-20 dark:bg-gray-700">
+        <h2 className="text-3xl font-semibold dark:text-white">
+          Something went wrong!
+        </h2>
         <Lottie
           animationData={errorData}
           className="h-44 w-44 lg:w-96 my-10"
@@ -46,8 +48,10 @@ const SavedJobs = () => {
 
   if (!savedJobs?.length) {
     return (
-      <div className="flex items-center justify-center flex-col py-20">
-        <h2 className="text-3xl font-semibold">No saved job found!</h2>
+      <div className="flex items-center justify-center flex-col py-20 dark:bg-gray-700">
+        <h2 className="text-3xl font-semibold dark:text-white">
+          No saved job found!
+        </h2>
         <Lottie animationData={noData} className="h-72 w-72 lg:w-96"></Lottie>
       </div>
     );
