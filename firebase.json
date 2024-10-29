@@ -9,7 +9,8 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "https://lucky-tarsier-c4b37e.netlify.app/?lang=en",
+        "type":301
       }
     ]
   }

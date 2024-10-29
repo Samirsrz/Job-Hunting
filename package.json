@@ -50,6 +50,7 @@
     "react-scroll-parallax": "^3.4.5",
     "react-simple-maps": "^3.0.0",
     "react-slick": "^0.30.2",
+    "react-transition-group": "^4.4.5",
     "recharts": "^2.12.7",
     "rehype-highlight": "^7.0.0",
     "remark-gfm": "^4.0.0",
