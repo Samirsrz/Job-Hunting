@@ -17,15 +17,8 @@ export const jobsApi = createApi({
     getCategories: builder.query({
       query: () => "/category",
     }),
-    getJobSuggestions: builder.query({
-      query: (search) => `/job-suggestions?search=${search}`,
-    }),
   }),
 });
 
-export const {
-  useGetJobsByIdsQuery,
-  useGetCategoriesQuery,
-  useGetJobSuggestionsQuery,
-  useGetJobsQuery,
-} = jobsApi;
+export const { useGetJobsByIdsQuery, useGetCategoriesQuery, useGetJobsQuery } =
+  jobsApi;

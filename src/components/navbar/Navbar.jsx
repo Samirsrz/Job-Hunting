@@ -86,10 +86,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="  bg-slate-200 py-2  ">
+    <div className="bg-slate-200 py-2">
       <div
         id="sidebar"
-        className="container max-w-screen-xl m-auto navbar   text-primary"
+        className="container max-w-screen-xl m-auto navbar text-primary"
       >
         <div className="navbar-start">
           <div className="dropdown">
