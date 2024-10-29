@@ -14,7 +14,7 @@ import {
 } from "../../RTK/features/jobsApi";
 import { useLocation } from "react-router-dom";
 
-const Jobs = ({job}) => {
+const Jobs = ({ job }) => {
   const [category, setCategory] = useState("");
   const [sort, setSort] = useState("asc");
   const [search, setSearch] = useState("");
@@ -22,9 +22,8 @@ const Jobs = ({job}) => {
   const [catCount, setCatCount] = useState(5);
   const location = useLocation();
   const searchJobs = location.state?.jobs || [];
-  const [sJobs,setSjobs]=useState(searchJobs)
+  const [sJobs, setSjobs] = useState(searchJobs);
   // console.log(sJobs,location);
-  
 
   const {
     data: jobData,
@@ -37,8 +36,6 @@ const Jobs = ({job}) => {
     search,
   });
   let jobs = jobData?.data || [];
-
-
 
   const { data: categoryData } = useGetCategoriesQuery();
   const categories = categoryData?.data || [];
@@ -179,33 +176,21 @@ const Jobs = ({job}) => {
         <div>
           <h2 className="text-lg font-semibold my-2">Sort</h2>
           <div className="flex flex-row flex-wrap gap-2">
-            <button
-              className={`btn btn-sm ${
-                sort === "asc" && "bg-primary text-white"
-              }`}
-              onClick={() => setSort("asc")}
+            <select
+              onChange={(e) => setSort(e.target.value)}
+              className="select select-bordered select-sm border-sky-500 hover:outline-sky-500 hover:border-sky-500"
             >
-              Asc Salary
-            </button>
-            <button
-              className={`btn btn-sm ${
-                sort === "dsc" && "bg-primary text-white"
-              }`}
-              onClick={() => setSort("dsc")}
-            >
-              Dsc Salary
-            </button>
+              <option value="">Default</option>
+              <option value="dsc">Max Salary</option>
+              <option value="asc">Min Salary</option>
+            </select>
           </div>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6">
-      { sJobs?.length>0 ? sJobs?.map((job, idx) => (
-          <JobCard {...{ job }} key={idx} />
-        )):
-
-        jobs?.map((job, idx) => (
-          <JobCard {...{ job }} key={idx} />
-        ))}
+        {sJobs?.length > 0
+          ? sJobs?.map((job, idx) => <JobCard {...{ job }} key={idx} />)
+          : jobs?.map((job, idx) => <JobCard {...{ job }} key={idx} />)}
       </div>
     </div>
   );
