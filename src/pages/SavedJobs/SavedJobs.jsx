@@ -54,8 +54,8 @@ const SavedJobs = () => {
   }
 
   return (
-    <div>
-      <h1 className="text-center md:font-semibold font-medium md:text-4xl text-2xl lg:my-20 md:my-10 my-6">
+    <div className="bg-white dark:bg-gray-700 overflow-auto">
+      <h1 className="text-center dark:text-white md:font-semibold font-medium md:text-4xl text-2xl lg:my-20 md:my-10 my-6">
         Saved Jobs
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6">
