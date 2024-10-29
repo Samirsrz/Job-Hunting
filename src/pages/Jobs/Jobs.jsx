@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import JobCard from "../../components/jobs/JobCard";
 import { FaSearch } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
@@ -6,7 +6,6 @@ import Lottie from "lottie-react";
 import { RxReload } from "react-icons/rx";
 import noData from "../../../public/Annimations/no-data.json";
 import errorData from "../../../public/Annimations/error.json";
-import loadingData from "../../../public/Annimations/loading.json";
 import {
   useGetJobsQuery,
   useGetCategoriesQuery,
@@ -19,7 +18,6 @@ const Jobs = ({ job }) => {
   const [sort, setSort] = useState("asc");
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [catCount, setCatCount] = useState(5);
   const location = useLocation();
   const searchJobs = location.state?.jobs || [];
   const [sJobs, setSjobs] = useState(searchJobs);
@@ -28,7 +26,6 @@ const Jobs = ({ job }) => {
   const {
     data: jobData,
     isFetching: isFetchingJobs,
-    isLoading,
     isError,
     refetch,
   } = useGetJobsQuery({
@@ -66,41 +63,6 @@ const Jobs = ({ job }) => {
     e.preventDefault();
     setSearch(e.target.search.value);
   };
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center flex-col py-20">
-        <Lottie
-          animationData={loadingData}
-          className="h-72 w-72 lg:w-96 my-10"
-        ></Lottie>
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div className="flex items-center justify-center flex-col py-20">
-        <h2 className="text-3xl font-semibold">Something went wrong!</h2>
-        <Lottie
-          animationData={errorData}
-          className="h-44 w-44 lg:w-96 my-10"
-        ></Lottie>
-        <button onClick={refetch} className="btn btn-error">
-          Try Again <RxReload className="inline" />
-        </button>
-      </div>
-    );
-  }
-
-  if (!jobs?.length) {
-    return (
-      <div className="flex items-center justify-center flex-col py-20">
-        <h2 className="text-3xl font-semibold">No job found!</h2>
-        <Lottie animationData={noData} className="h-72 w-72 lg:w-96"></Lottie>
-      </div>
-    );
-  }
 
   return (
     <div className="bg-white dark:bg-gray-900">
@@ -174,9 +136,27 @@ const Jobs = ({ job }) => {
           </form>
         </div>
       </div>
-      {isFetchingJobs && (
+      {isFetchingJobs && !isError && (
         <div className="flex  justify-center">
           <span className="loading loading-dots loading-lg"></span>
+        </div>
+      )}
+      {isError && (
+        <div className="flex items-center justify-center flex-col py-20">
+          <h2 className="text-3xl font-semibold">Something went wrong!</h2>
+          <Lottie
+            animationData={errorData}
+            className="h-44 w-44 lg:w-96 my-10"
+          ></Lottie>
+          <button onClick={refetch} className="btn btn-error">
+            Try Again <RxReload className="inline" />
+          </button>
+        </div>
+      )}
+      {!jobs?.length && !isError && (
+        <div className="flex items-center justify-center flex-col py-20">
+          <h2 className="text-3xl font-semibold">No job found!</h2>
+          <Lottie animationData={noData} className="h-72 w-72 lg:w-96"></Lottie>
         </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6">
