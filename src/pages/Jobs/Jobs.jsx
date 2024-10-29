@@ -28,6 +28,7 @@ const Jobs = ({ job }) => {
   const {
     data: jobData,
     isFetching: isFetchingJobs,
+    isLoading,
     isError,
     refetch,
   } = useGetJobsQuery({
@@ -66,7 +67,7 @@ const Jobs = ({ job }) => {
     setSearch(e.target.search.value);
   };
 
-  if (isFetchingJobs) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center flex-col py-20">
         <Lottie
@@ -102,7 +103,7 @@ const Jobs = ({ job }) => {
   }
 
   return (
-    <div>
+    <div className="bg-white dark:bg-gray-900">
       <Helmet>
         <title>Next-Hire | Jobs</title>
       </Helmet>
@@ -113,46 +114,40 @@ const Jobs = ({ job }) => {
           className="w-full h-full object-cover"
         />
       </div>
-
-      <div className="flex mx-auto w-full justify-center items-center lg:mt-14 mb-5 flex-wrap gap-6">
-        <div className="px-4">
-          <h2 className="text-lg font-semibold my-2">Categories</h2>
-          <div className="flex flex-row flex-wrap gap-2">
-            <button
-              className={`btn btn-sm ${category || "bg-primary text-white"}`}
-              onClick={() => setCategory("")}
-            >
-              All
-            </button>
-            {categories?.slice(0, catCount)?.map((cat, idx) => (
-              <button
-                className={`btn btn-sm ${
-                  category === cat && "bg-primary text-white"
-                }`}
-                onClick={() => setCategory(cat)}
-                key={idx}
-              >
+      <div className="flex mx-auto w-full justify-center items-center lg:mt-14 mb-5 flex-wrap gap-2 md:gap-4 lg:gap-6 p-4">
+        <div>
+          <h2 className="text-base md:text-lg font-semibold mb-1 md:mb-2 dark:text-white">
+            Categories
+          </h2>
+          <select
+            onChange={(e) => setCategory(e.target.value)}
+            className="select select-bordered select-sm border-sky-500 hover:outline-sky-500 hover:border-sky-500"
+          >
+            <option value="">Default</option>
+            {categories?.map((cat, idx) => (
+              <option key={idx} value={cat}>
                 {cat}
-              </button>
+              </option>
             ))}
-            <button
-              className={`btn btn-sm ${
-                catCount !== 5
-                  ? "bg-orange-500 text-white"
-                  : "bg-green-500 text-white"
-              }`}
-              onClick={() =>
-                setCatCount(
-                  catCount === categories?.length ? 5 : categories?.length
-                )
-              }
-            >
-              {catCount !== categories?.length ? "+ more" : "- less"}
-            </button>
-          </div>
+          </select>
         </div>
         <div>
-          <h2 className="text-lg font-semibold my-2">Search</h2>
+          <h2 className="text-base md:text-lg font-semibold mb-1 md:mb-2 dark:text-white">
+            Sort
+          </h2>
+          <select
+            onChange={(e) => setSort(e.target.value)}
+            className="select select-bordered select-sm border-sky-500 hover:outline-sky-500 hover:border-sky-500"
+          >
+            <option value="">Default</option>
+            <option value="dsc">Max Salary</option>
+            <option value="asc">Min Salary</option>
+          </select>
+        </div>
+        <div>
+          <h2 className="text-base md:text-lg font-semibold mb-1 md:mb-2 dark:text-white">
+            Search
+          </h2>
           <form
             className="flex items-center justify-center w-fit"
             onSubmit={handleSubmit}
@@ -178,20 +173,12 @@ const Jobs = ({ job }) => {
             </datalist>
           </form>
         </div>
-        <div>
-          <h2 className="text-lg font-semibold my-2">Sort</h2>
-          <div className="flex flex-row flex-wrap gap-2">
-            <select
-              onChange={(e) => setSort(e.target.value)}
-              className="select select-bordered select-sm border-sky-500 hover:outline-sky-500 hover:border-sky-500"
-            >
-              <option value="">Default</option>
-              <option value="dsc">Max Salary</option>
-              <option value="asc">Min Salary</option>
-            </select>
-          </div>
-        </div>
       </div>
+      {isFetchingJobs && (
+        <div className="flex  justify-center">
+          <span className="loading loading-dots loading-lg"></span>
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6">
         {sJobs?.length > 0
           ? sJobs?.map((job, idx) => <JobCard {...{ job }} key={idx} />)
