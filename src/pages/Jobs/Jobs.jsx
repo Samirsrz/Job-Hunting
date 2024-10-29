@@ -65,7 +65,7 @@ const Jobs = ({ job }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900">
+    <div className="bg-white dark:bg-gray-700 pb-6 md:pb-10 lg:pb-16">
       <Helmet>
         <title>Next-Hire | Jobs</title>
       </Helmet>
@@ -159,7 +159,7 @@ const Jobs = ({ job }) => {
           <Lottie animationData={noData} className="h-72 w-72 lg:w-96"></Lottie>
         </div>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6 mb-0">
         {sJobs?.length > 0
           ? sJobs?.map((job, idx) => <JobCard {...{ job }} key={idx} />)
           : jobs?.map((job, idx) => <JobCard {...{ job }} key={idx} />)}

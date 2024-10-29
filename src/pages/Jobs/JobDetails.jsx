@@ -232,11 +232,11 @@ const JobDetails = () => {
   }
 
   return (
-    <div className="dark:bg-gray-900">
+    <div className="dark:bg-gray-700 lg:py-10 py-4">
       <Helmet>
         <title>{job?.title ?? "Job Details"} | Job hunting</title>
       </Helmet>
-      <div className="bg-gray-100 dark:bg-gray-600 dark:text-white rounded-md lg:py-8 py-4 lg:m-10 m-4 drop-shadow-sm">
+      <div className="bg-gray-100 dark:bg-gray-600 dark:text-white rounded-md lg:py-8 py-4 lg:m-10 lg:mt-0 m-4 mt-0 drop-shadow-sm">
         <div className="flex lg:mx-8 mx-4 flex-col md:flex-row gap-6 md:items-center border-b md:mb-6 mb-2 border-gray-400 md:pb-6 pb-4">
           <img
             src={job?.logo}
@@ -344,7 +344,7 @@ const JobDetails = () => {
             </span>
           )}
         </div>
-        <div className="mt-4 lg:px-8 px-4 gap-2 flex flex-wrap border-t-2 pt-4">
+        <div className="mt-4 lg:px-8 px-4 gap-2 flex flex-wrap border-t dark:border-gray-400 pt-4">
           <button
             disabled={job?.applied}
             onClick={() => document.getElementById("apply_modal").showModal()}
@@ -411,8 +411,10 @@ const JobDetails = () => {
       </div>
       {/* related jobs */}
       {relatedJobs?.length ? (
-        <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4 drop-shadow-sm">
-          <h3 className="text-3xl font-semibold">Related Jobs</h3>
+        <div className="lg:mx-10 lg:mb-0 mb-0 mx-4 drop-shadow-sm">
+          <h3 className="text-3xl font-semibold dark:text-white mt-10">
+            Related Jobs
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-4 mt-6">
             {relatedJobs?.map((job, idx) => (
               <JobCard {...{ job }} key={idx} />
@@ -420,7 +422,7 @@ const JobDetails = () => {
           </div>
         </div>
       ) : (
-        <p className="lg:m-10 m-4">No related jobs found!</p>
+        <p className="lg:m-10 m-4 dark:text-white">No related jobs found!</p>
       )}
 
       <dialog id="apply_modal" className="modal">
