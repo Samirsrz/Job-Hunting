@@ -10,9 +10,9 @@ import loadingData from "../../../public/Annimations/loading.json";
 import {
   useGetJobsQuery,
   useGetCategoriesQuery,
-  useGetJobSuggestionsQuery,
 } from "../../RTK/features/jobsApi";
 import { useLocation } from "react-router-dom";
+import { axiosCommon } from "../../hooks/useAxiosCommon";
 
 const Jobs = ({ job }) => {
   const [category, setCategory] = useState("");
@@ -40,20 +40,25 @@ const Jobs = ({ job }) => {
   const { data: categoryData } = useGetCategoriesQuery();
   const categories = categoryData?.data || [];
 
-  const { data: suggestionData } = useGetJobSuggestionsQuery(search, {
-    skip: !search,
-  });
+  const fetchSuggestions = async (search) => {
+    if (search?.length > 0) {
+      try {
+        const { data } = await axiosCommon(`/job-suggestions?search=${search}`);
 
-  useEffect(() => {
-    if (suggestionData?.success) {
-      setSuggestions(suggestionData.data);
+        if (data.success) {
+          setSuggestions(data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching job suggestions:", error);
+      }
+    } else {
+      setSuggestions([]);
     }
-  }, [suggestionData]);
+  };
 
   const handleInputChange = (e) => {
     const value = e.target.value;
-    if (!value) setSearch("");
-    else setSearch(value);
+    fetchSuggestions(value);
   };
 
   const handleSubmit = (e) => {
@@ -157,17 +162,17 @@ const Jobs = ({ job }) => {
               list="job-suggestions"
               onInput={handleInputChange}
               type="text"
-              className="input input-primary input-sm rounded-r-none"
+              className="input border-sky-500 hover:outline-sky-500 hover:border-sky-500 input-sm rounded-r-none"
               placeholder="Search Here"
             />
             <button
               type="submit"
-              className="btn btn-sm btn-primary rounded-l-none"
+              className="btn btn-sm bg-sky-500 border-sky-500 text-white rounded-l-none"
             >
               <FaSearch className="inline" />
             </button>
             <datalist id="job-suggestions">
-              {suggestions.map((suggestion, index) => (
+              {suggestions?.map((suggestion, index) => (
                 <option key={index} value={suggestion} />
               ))}
             </datalist>
