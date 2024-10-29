@@ -12,6 +12,8 @@ import {
   MdStar,
   MdAttachMoney,
 } from "react-icons/md";
+import loadingData from "../../../public/Annimations/loading.json";
+import errorData from "../../../public/Annimations/error.json";
 import { GiRoundStar } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -32,6 +34,7 @@ import {
 } from "../../libs/localJobs";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useSavedJobs } from "../../RTK/features/savedJobSlice";
+import Lottie from "lottie-react";
 
 const JobDetails = () => {
   const { updateSavedJobs } = useSavedJobs();
@@ -41,6 +44,7 @@ const JobDetails = () => {
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [job, setJob] = useState({});
+  const [loading, setLoading] = useState(true);
   const [existingReview, setExistingReview] = useState({});
   const [relatedJobs, setRelatedJobs] = useState([]);
   const [rating, setRating] = useState(5);
@@ -65,7 +69,10 @@ const JobDetails = () => {
   }, [job, user]);
 
   useEffect(() => {
-    axiosSecure.get(`/jobs/${id}`).then((data) => setJob(data.data.data));
+    axiosSecure
+      .get(`/jobs/${id}`)
+      .then((data) => setJob(data.data.data))
+      .finally(() => setLoading(false));
   }, [id, axiosSecure]);
 
   useEffect(() => {
@@ -189,12 +196,47 @@ const JobDetails = () => {
       });
   };
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center flex-col py-20">
+        <Lottie
+          animationData={loadingData}
+          className="h-72 w-72 lg:w-96 my-10"
+        ></Lottie>
+      </div>
+    );
+  }
+
+  if (!job?.title) {
+    return (
+      <div className="flex items-center justify-center flex-col py-20">
+        <h2 className="text-3xl font-semibold">Something went wrong!</h2>
+        <Lottie
+          animationData={errorData}
+          className="h-44 w-44 lg:w-96 my-10"
+        ></Lottie>
+        <button
+          onClick={() => {
+            setLoading(true);
+            axiosSecure
+              .get(`/jobs/${id}`)
+              .then((data) => setJob(data.data.data))
+              .finally(() => setLoading(false));
+          }}
+          className="btn btn-error"
+        >
+          Try Again <RxReload className="inline" />
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div>
+    <div className="dark:bg-gray-700 lg:py-10 py-4">
       <Helmet>
         <title>{job?.title ?? "Job Details"} | Job hunting</title>
       </Helmet>
-      <div className="bg-gray-100 rounded-md lg:py-8 py-4 lg:m-10 m-4 drop-shadow-sm">
+      <div className="bg-gray-100 dark:bg-gray-600 dark:text-white rounded-md lg:py-8 py-4 lg:m-10 lg:mt-0 m-4 mt-0 drop-shadow-sm">
         <div className="flex lg:mx-8 mx-4 flex-col md:flex-row gap-6 md:items-center border-b md:mb-6 mb-2 border-gray-400 md:pb-6 pb-4">
           <img
             src={job?.logo}
@@ -202,7 +244,7 @@ const JobDetails = () => {
             className="md:size-52 size-24 bg-white rounded-md aspect-square mx-auto md:mx-0"
           />
           <div className="flex flex-col justify-evenly">
-            <h1 className="font-semibold md:text-4xl md:mb-1 lg:text-5xl text-3xl lg:mb-2 text-sky-600 capitalize">
+            <h1 className="font-semibold md:text-4xl md:mb-1 lg:text-5xl text-3xl lg:mb-2 text-sky-600 dark:text-sky-400 capitalize">
               {job?.title}
             </h1>
             <h3 className="font-semibold md:text-xl text-lg capitalize">
@@ -279,10 +321,10 @@ const JobDetails = () => {
             {job?.description?.slice(0, descriptionLength)}
           </Markdown>
           {job?.description?.length > 100 && (
-            <span>
+            <span className="text-sky-600 dark:text-sky-400">
               {job?.description?.length > descriptionLength ? (
                 <button
-                  className="text-primary link hover:scale-105"
+                  className="link hover:scale-105"
                   onClick={() => {
                     setDescriptionLength(job?.description?.length);
                   }}
@@ -291,7 +333,7 @@ const JobDetails = () => {
                 </button>
               ) : (
                 <button
-                  className="text-primary link hover:scale-105"
+                  className="link hover:scale-105"
                   onClick={() => {
                     setDescriptionLength(100);
                   }}
@@ -302,7 +344,7 @@ const JobDetails = () => {
             </span>
           )}
         </div>
-        <div className="mt-4 lg:px-8 px-4 gap-2 flex flex-wrap border-t-2 pt-4">
+        <div className="mt-4 lg:px-8 px-4 gap-2 flex flex-wrap border-t dark:border-gray-400 pt-4">
           <button
             disabled={job?.applied}
             onClick={() => document.getElementById("apply_modal").showModal()}
@@ -369,8 +411,10 @@ const JobDetails = () => {
       </div>
       {/* related jobs */}
       {relatedJobs?.length ? (
-        <div className="bg-gray-100 rounded-md lg:p-8 p-4 lg:m-10 m-4 drop-shadow-sm">
-          <h3 className="text-3xl font-semibold">Related Jobs</h3>
+        <div className="lg:mx-10 lg:mb-0 mb-0 mx-4 drop-shadow-sm">
+          <h3 className="text-3xl font-semibold dark:text-white mt-10">
+            Related Jobs
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-4 mt-6">
             {relatedJobs?.map((job, idx) => (
               <JobCard {...{ job }} key={idx} />
@@ -378,71 +422,78 @@ const JobDetails = () => {
           </div>
         </div>
       ) : (
-        <p className="lg:m-10 m-4">No related jobs found!</p>
+        <p className="lg:m-10 m-4 dark:text-white">No related jobs found!</p>
       )}
 
       <dialog id="apply_modal" className="modal">
-        <form
-          onSubmit={handleSubmit}
-          method="dialog"
-          className="modal-box w-full max-w-3xl"
-        >
-          <h3 className="font-bold text-lg">Apply for the Job</h3>
-
-          <div className="form-control my-4">
-            <label className="label">
-              <span className="label-text">Name</span>
-            </label>
-            <input
-              name="applicantName"
-              defaultValue={user?.displayName}
-              type="text"
-              placeholder="Your Name"
-              className="input input-bordered w-full"
-            />
-          </div>
-
-          <div className="form-control my-4">
-            <label className="label">
-              <span className="label-text">Email</span>
-            </label>
-            <input
-              name="email"
-              defaultValue={user?.email}
-              type="email"
-              placeholder="Your Email"
-              className="input input-bordered w-full"
-            />
-          </div>
-
-          <div className="form-control my-4">
-            <label className="label">
-              <span className="label-text">Upload Resume</span>
-            </label>
-            <input
-              name="resumeFile"
-              type="file"
-              className="file-input file-input-bordered file-input-primary w-full border-dashed"
-            />
-          </div>
-
-          <div className="form-control my-4">
-            <label className="label">
-              <span className="label-text">Cover Letter</span>
-            </label>
-            <textarea
-              name="coverLetter"
-              className="textarea textarea-bordered w-full h-48"
-              placeholder="Write your cover letter here..."
-            ></textarea>
-          </div>
-
-          <div className="modal-action">
-            <button type="submit" className="btn btn-primary ">
-              Apply
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
             </button>
-          </div>
-        </form>
+          </form>
+          <form
+            onSubmit={handleSubmit}
+            method="dialog"
+            className="w-full max-w-3xl"
+          >
+            <h3 className="font-bold text-lg">Apply for the Job</h3>
+
+            <div className="form-control my-4">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                name="applicantName"
+                defaultValue={user?.displayName}
+                type="text"
+                placeholder="Your Name"
+                className="input input-bordered w-full"
+              />
+            </div>
+
+            <div className="form-control my-4">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                name="email"
+                defaultValue={user?.email}
+                type="email"
+                placeholder="Your Email"
+                className="input input-bordered w-full"
+              />
+            </div>
+
+            <div className="form-control my-4">
+              <label className="label">
+                <span className="label-text">Upload Resume</span>
+              </label>
+              <input
+                name="resumeFile"
+                type="file"
+                className="file-input file-input-bordered w-full border-dashed border-sky-600"
+              />
+            </div>
+
+            <div className="form-control my-4">
+              <label className="label">
+                <span className="label-text">Cover Letter</span>
+              </label>
+              <textarea
+                name="coverLetter"
+                className="textarea textarea-bordered w-full h-48"
+                placeholder="Write your cover letter here..."
+              ></textarea>
+            </div>
+
+            <div className="modal-action">
+              <button type="submit" className="btn bg-sky-600 text-white">
+                Apply
+              </button>
+            </div>
+          </form>
+        </div>
       </dialog>
 
       <dialog id="show_review_modal" className="modal">
@@ -524,7 +575,7 @@ const JobDetails = () => {
               />
             </label>
             <div className="flex gap-3">
-              <button className="btn btn-primary grow" type="submit">
+              <button className="btn bg-sky-600 text-white grow" type="submit">
                 Review
               </button>
               {existingReview && (
@@ -541,38 +592,44 @@ const JobDetails = () => {
         </div>
       </dialog>
       <dialog id="interview_modal" className="modal">
-        <div className="modal-box">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              ✕
-            </button>
-          </form>
-          <h3 className="font-bold text-lg">Get Moke Interview using AI</h3>
-          <form onSubmit={handleInterview} className="flex flex-col gap-4 mt-4">
-            <label className="input input-bordered flex items-center gap-2">
-              Skills
-              <input
-                disabled={interviewLoading}
-                type="text"
-                className="grow"
-                placeholder="Enter your skills: javaScript, python"
-                name="skills"
-                required
-              />
-            </label>
-            <div className="flex">
-              <button
-                disabled={interviewLoading}
-                className="btn btn-primary grow"
-                type="submit"
-              >
-                {interviewLoading ? (
-                  <span className="loading loading-spinner loading-sm"></span>
-                ) : (
-                  "Send"
-                )}
+        <div className="modal-box max-w-max relative p-0">
+          <div className="sticky top-0 left-0 w-full p-4 bg-white">
+            <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                ✕
               </button>
-            </div>
+            </form>
+            <h3 className="font-bold text-lg">Get Moke Interview using AI</h3>
+            <form
+              onSubmit={handleInterview}
+              className="flex flex-wrap gap-2 mt-2 md:mt-4"
+            >
+              <label className="input input-sm md:input-md input-bordered flex items-center gap-2">
+                Skills
+                <input
+                  disabled={interviewLoading}
+                  type="text"
+                  placeholder="Enter your skills: javaScript, python"
+                  name="skills"
+                  required
+                />
+              </label>
+              <div className="flex">
+                <button
+                  disabled={interviewLoading}
+                  className="btn bg-sky-600 text-white btn-sm md:btn-md"
+                  type="submit"
+                >
+                  {interviewLoading ? (
+                    <span className="loading loading-spinner loading-sm"></span>
+                  ) : (
+                    "Send"
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="max-h-max p-4 pt-0">
             <Markdown
               components={{
                 h1: ({ node, ...props }) => (
@@ -591,42 +648,48 @@ const JobDetails = () => {
             >
               {interview}
             </Markdown>
-          </form>
+          </div>
         </div>
       </dialog>
       <dialog id="forYou_modal" className="modal">
-        <div className="modal-box">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              ✕
-            </button>
-          </form>
-          <h3 className="font-bold text-lg">This job for you?</h3>
-          <form onSubmit={handleForYou} className="flex flex-col gap-4 mt-4">
-            <label className="input input-bordered flex items-center gap-2">
-              Skills
-              <input
-                disabled={forYouLoading}
-                type="text"
-                className="grow"
-                placeholder="Enter your skills: javaScript, python"
-                name="skills"
-                required
-              />
-            </label>
-            <div className="flex">
-              <button
-                disabled={forYouLoading}
-                className="btn btn-primary grow"
-                type="submit"
-              >
-                {forYouLoading ? (
-                  <span className="loading loading-spinner loading-sm"></span>
-                ) : (
-                  "Send"
-                )}
+        <div className="modal-box max-w-max relative p-0">
+          <div className="sticky top-0 left-0 w-full p-4 bg-white">
+            <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                ✕
               </button>
-            </div>
+            </form>
+            <h3 className="font-bold text-lg">Get Moke Interview using AI</h3>
+            <form
+              onSubmit={handleForYou}
+              className="flex flex-wrap gap-2 mt-2 md:mt-4"
+            >
+              <label className="input input-sm md:input-md input-bordered flex items-center gap-2">
+                Skills
+                <input
+                  disabled={forYouLoading}
+                  type="text"
+                  placeholder="Enter your skills: javaScript, python"
+                  name="skills"
+                  required
+                />
+              </label>
+              <div className="flex">
+                <button
+                  disabled={forYouLoading}
+                  className="btn bg-sky-600 text-white btn-sm md:btn-md"
+                  type="submit"
+                >
+                  {forYouLoading ? (
+                    <span className="loading loading-spinner loading-sm"></span>
+                  ) : (
+                    "Send"
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="max-h-max p-4 pt-0">
             <Markdown
               components={{
                 h1: ({ node, ...props }) => (
@@ -645,7 +708,7 @@ const JobDetails = () => {
             >
               {forYou}
             </Markdown>
-          </form>
+          </div>
         </div>
       </dialog>
     </div>

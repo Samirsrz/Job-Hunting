@@ -25,24 +25,23 @@ const links = [
 ];
 const Navbar = () => {
   const { savedJobs } = useSavedJobs();
-  const { user, logOut, setLoading } = useAuth();
+  const { user, logOut, loading } = useAuth();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [lang, setLang] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const [loginUser, setLoginUser] = useState("");
+  const [loginUser, setLoginUser] = useState({});
 
   const axiosCommon = useAxiosCommon();
-  setLoading(true);
+
   //get user information
-  try {
-    axiosCommon
-      .get(`/user?email=${user?.email}`)
-      .then((res) => setLoginUser(res?.data));
-    setLoading(false);
-  } catch (error) {
-    console.log(error);
-  }
+  useEffect(() => {
+    if (!loading) {
+      axiosCommon.get(`/user?email=${user?.email}`).then((res) => {
+        setLoginUser(res?.data);
+      });
+    }
+  }, [user, loading]);
 
   const changeLangPath = (lang) => {
     const searchParams = new URLSearchParams(location.search);
@@ -87,10 +86,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="  bg-slate-200 py-2  ">
+    <div className="bg-slate-200 py-2">
       <div
         id="sidebar"
-        className="container max-w-screen-xl m-auto navbar   text-primary"
+        className="container max-w-screen-xl m-auto navbar text-primary"
       >
         <div className="navbar-start">
           <div className="dropdown">
@@ -119,6 +118,14 @@ const Navbar = () => {
                   <NavLink to={link}>{title}</NavLink>
                 </li>
               ))}
+              <li className="dark:hover:bg-gray-500 md:hidden">
+                <NavLink
+                  to="/signup"
+                  className="btn btn-sm text-sm bg-white dark:bg-gray-500 dark:border-gray-400 dark:text-white"
+                >
+                  Join Us <FiLogIn />
+                </NavLink>
+              </li>
             </ul>
           </div>
           <Link

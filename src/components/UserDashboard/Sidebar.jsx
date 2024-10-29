@@ -6,7 +6,7 @@ import { FaCcApplePay, FaEdit, FaFileImport } from "react-icons/fa";
 import { MdHomeWork } from "react-icons/md";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
@@ -18,6 +18,7 @@ const Sidebar = () => {
   const [isActive, setActive] = useState(false);
 
   const axionsequre = useAxiosSecure();
+  const navigate = useNavigate();
 
   //profile dropdown
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +42,17 @@ const Sidebar = () => {
   const handleToggle = () => {
     setActive(!isActive);
   };
-  if (setLoading) <p>loading...</p>;
+
+  //handle logout
+  const handleLogout = () => {
+    logOut();
+    if (logOut) {
+      navigate("/");
+    }
+    console.error("Logout error:", error);
+  };
+
+  // if (setLoading) <p>loading...</p>;
 
   return (
     <div>
@@ -197,6 +208,24 @@ const Sidebar = () => {
 
                     <span className="mx-4 font-medium">Interview schedule</span>
                   </NavLink>
+                  {/* Interview schedule */}
+                  {/*  resume builder*/}
+                  <NavLink
+                    to="/dashboard/resume-builder"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <MdHomeWork className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Create Resume</span>
+                  </NavLink>
+
+                  {/*  resume builder*/}
                 </div>
               )}
 
@@ -359,7 +388,7 @@ const Sidebar = () => {
           </div>
           {/* Logout */}
           <button
-            onClick={logOut}
+            onClick={handleLogout}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
           >
             <GrLogout className="w-5 h-5" />

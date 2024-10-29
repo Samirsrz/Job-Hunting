@@ -82,12 +82,15 @@ const ViewAllJobsCompany = () => {
     // console.log(res);
   };
 
+  console.log(fjob);
+  
+
   return (
     <section className="container max-w-screen-2xl m-auto font-sans">
       {/* Background Section */}
       <div className="relative text-left">
         <img
-          src={company}
+          src={fjob.cover_photo}
           alt="Optum Header"
           className="w-full h-auto rounded-t-none"
         />
@@ -96,7 +99,7 @@ const ViewAllJobsCompany = () => {
         <div className="flex flex-col lg:flex-row p-6 bg-white rounded-b-lg shadow-lg relative md:-top-12">
           {/* Company Logo */}
           <img
-            src={logoCompany}
+            src={fjob.logo}
             alt="Company Logo"
             className="w-[100px] h-20 rounded-2xl mr-6 mt-[-60px]"
           />
@@ -105,7 +108,8 @@ const ViewAllJobsCompany = () => {
           <div className="flex-grow">
             <div className="flex gap-3 items-center">
               <h2 className="text-2xl font-bold text-orange-600">
-                Standard Chartered
+                {/* Standard Chartered */}
+                {fjob.companyName}
               </h2>
               <span className="text-lg flex items-center gap-2">
                 <FaStar className="text-yellow-400" /> 4.0 (3.6K reviews)
@@ -174,8 +178,8 @@ const ViewAllJobsCompany = () => {
       </div>
 
       {/* Tab Navigation */}
-      <aside className=" max-w-6xl mx-auto mt-5">
-        <div className="text-gray-500 flex gap-7 border-b-2 ">
+      <aside className=" max-w-6xl mx-auto mt-10">
+        <div className="text-gray-500 flex justify-center md:justify-start gap-7 border-b-2 ">
           <p
             className={`cursor-pointer ${
               activeTab === "overview"

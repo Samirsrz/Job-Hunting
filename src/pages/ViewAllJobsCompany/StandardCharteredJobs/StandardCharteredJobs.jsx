@@ -479,7 +479,10 @@ const StandardCharteredJobs = ({ companyName }) => {
     <section className="max-w-7xl">
       {/* Filter Section */}
       <aside className="relative my-3">
-        <div id="btns for dropdown" className="flex gap-3 flex-wrap mt-10">
+        <div
+          id="btns for dropdown"
+          className="flex justify-center md:justify-start gap-3 flex-wrap mt-10"
+        >
           <button
             className="px-4 py-2 rounded-3xl border border-black flex items-center gap-1"
             onClick={handleToggle}
@@ -521,8 +524,8 @@ const StandardCharteredJobs = ({ companyName }) => {
       </aside>
 
       {/* Jobs Section */}
-      <section className="flex gap-4">
-        <aside className=" flex-1 mt-5">
+      <section className="flex flex-col md:flex-row gap-4">
+        <aside className=" flex-1 mt-5 md:mt-0 md:p-0">
           {/* Job cards */}
           {jobs &&
             jobs.map((job, index) => (
@@ -532,15 +535,15 @@ const StandardCharteredJobs = ({ companyName }) => {
                 to={`/view-company-job/${job._id}`}
               >
                 {" "}
-                <div className="bg-white shadow-md mt-5 rounded-lg p-5 flex flex-col justify-between ">
-                  <div className="flex justify-between flex-col-reverse lg:flex-row">
+                <div className="bg-white shadow-md mt-5 rounded-lg p-8 flex flex-col justify-between ">
+                  <div className="flex justify-between items-center flex-col-reverse lg:flex-row">
                     <div>
                       <h2 className="text-3xl md:text-xl font-semibold text-gray-800">
                         {job.title}
                       </h2>
                       <div className="text-sm text-gray-600 flex items-center gap-1">
                         <span>{job.companyName}</span>
-                        <AiFillStar className="text-yellow-400" />
+                        <AiFillStar className="text-yellow-400 my-2" />
                         <span>3.8</span>
                         <span className="text-gray-500">({job.ratings})</span>
                       </div>
@@ -548,11 +551,11 @@ const StandardCharteredJobs = ({ companyName }) => {
                     <img
                       src={job.logo}
                       alt="Company Logo"
-                      className="w-full md:w-[80%] lg:w-10 lg:h-10"
+                      className="mb-5 w-[80%] lg:w-10 lg:h-10 shadow-lg"
                     />
                   </div>
 
-                  <div className="flex flex-col md:flex-row items-center gap-4 text-gray-600 my-3">
+                  <div className="flex flex-col md:flex-row gap-4 text-gray-600">
                     <div className="flex items-center gap-1">
                       <FaBriefcase />
                       <span>{job.years} Yrs</span>
@@ -619,7 +622,7 @@ const StandardCharteredJobs = ({ companyName }) => {
 
         {/* Right-hand side content */}
 
-        <aside className="w-[400px]">
+        <aside className="w-[400px] px-4 mt-5">
           {/* Register section */}
           <div className="w-full border rounded-xl p-4">
             <div className="flex justify-between w-full">
@@ -629,8 +632,10 @@ const StandardCharteredJobs = ({ companyName }) => {
                 </h3>
                 <p>Register with us and let company recruiters find you</p>
                 <div>
+
                   <button className="px-4 py-2 bg-red-500 rounded-3xl text-white font-semibold">
-                    Register Now
+                   
+                    <Link to={"/signup"}>  Register Now</Link>
                   </button>
                 </div>
               </div>
