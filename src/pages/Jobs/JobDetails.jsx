@@ -590,38 +590,44 @@ const JobDetails = () => {
         </div>
       </dialog>
       <dialog id="interview_modal" className="modal">
-        <div className="modal-box">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              ✕
-            </button>
-          </form>
-          <h3 className="font-bold text-lg">Get Moke Interview using AI</h3>
-          <form onSubmit={handleInterview} className="flex flex-col gap-4 mt-4">
-            <label className="input input-bordered flex items-center gap-2">
-              Skills
-              <input
-                disabled={interviewLoading}
-                type="text"
-                className="grow"
-                placeholder="Enter your skills: javaScript, python"
-                name="skills"
-                required
-              />
-            </label>
-            <div className="flex">
-              <button
-                disabled={interviewLoading}
-                className="btn bg-sky-600 text-white grow"
-                type="submit"
-              >
-                {interviewLoading ? (
-                  <span className="loading loading-spinner loading-sm"></span>
-                ) : (
-                  "Send"
-                )}
+        <div className="modal-box max-w-max relative p-0">
+          <div className="sticky top-0 left-0 w-full p-4 bg-white">
+            <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                ✕
               </button>
-            </div>
+            </form>
+            <h3 className="font-bold text-lg">Get Moke Interview using AI</h3>
+            <form
+              onSubmit={handleInterview}
+              className="flex flex-wrap gap-2 mt-2 md:mt-4"
+            >
+              <label className="input input-sm md:input-md input-bordered flex items-center gap-2">
+                Skills
+                <input
+                  disabled={interviewLoading}
+                  type="text"
+                  placeholder="Enter your skills: javaScript, python"
+                  name="skills"
+                  required
+                />
+              </label>
+              <div className="flex">
+                <button
+                  disabled={interviewLoading}
+                  className="btn bg-sky-600 text-white btn-sm md:btn-md"
+                  type="submit"
+                >
+                  {interviewLoading ? (
+                    <span className="loading loading-spinner loading-sm"></span>
+                  ) : (
+                    "Send"
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="max-h-max p-4 pt-0">
             <Markdown
               components={{
                 h1: ({ node, ...props }) => (
@@ -640,42 +646,48 @@ const JobDetails = () => {
             >
               {interview}
             </Markdown>
-          </form>
+          </div>
         </div>
       </dialog>
       <dialog id="forYou_modal" className="modal">
-        <div className="modal-box">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              ✕
-            </button>
-          </form>
-          <h3 className="font-bold text-lg">This job for you?</h3>
-          <form onSubmit={handleForYou} className="flex flex-col gap-4 mt-4">
-            <label className="input input-bordered flex items-center gap-2">
-              Skills
-              <input
-                disabled={forYouLoading}
-                type="text"
-                className="grow"
-                placeholder="Enter your skills: javaScript, python"
-                name="skills"
-                required
-              />
-            </label>
-            <div className="flex">
-              <button
-                disabled={forYouLoading}
-                className="btn bg-sky-600grow"
-                type="submit"
-              >
-                {forYouLoading ? (
-                  <span className="loading loading-spinner loading-sm"></span>
-                ) : (
-                  "Send"
-                )}
+        <div className="modal-box max-w-max relative p-0">
+          <div className="sticky top-0 left-0 w-full p-4 bg-white">
+            <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                ✕
               </button>
-            </div>
+            </form>
+            <h3 className="font-bold text-lg">Get Moke Interview using AI</h3>
+            <form
+              onSubmit={handleForYou}
+              className="flex flex-wrap gap-2 mt-2 md:mt-4"
+            >
+              <label className="input input-sm md:input-md input-bordered flex items-center gap-2">
+                Skills
+                <input
+                  disabled={forYouLoading}
+                  type="text"
+                  placeholder="Enter your skills: javaScript, python"
+                  name="skills"
+                  required
+                />
+              </label>
+              <div className="flex">
+                <button
+                  disabled={forYouLoading}
+                  className="btn bg-sky-600 text-white btn-sm md:btn-md"
+                  type="submit"
+                >
+                  {forYouLoading ? (
+                    <span className="loading loading-spinner loading-sm"></span>
+                  ) : (
+                    "Send"
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="max-h-max p-4 pt-0">
             <Markdown
               components={{
                 h1: ({ node, ...props }) => (
@@ -694,7 +706,7 @@ const JobDetails = () => {
             >
               {forYou}
             </Markdown>
-          </form>
+          </div>
         </div>
       </dialog>
     </div>
