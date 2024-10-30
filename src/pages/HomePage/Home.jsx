@@ -15,10 +15,6 @@ import SponsoredCompanies from "./SponsoredCompanies/SponsoredCompanies";
 import EventCard from "./UpcomingEvents/UpcomingEvents";
 import InterviewCompanies from "./InterviewCompanies/InterviewCompanies";
 
-
-
-
-
 const Home = () => {
   return (
 
@@ -45,7 +41,7 @@ const Home = () => {
       </div>
       <InterviewCompanies />
      
-      
+ 
 
    
 

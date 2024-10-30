@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 const BiggestContest = () => {
   const { t } = useTranslation();
   return (
-    <section className="hidden lg:flex bg-[#b08af1f9] mt-12 relative justify-between flex-col lg:flex-row gap-3 items-center lg:h-[200px] rounded-3xl">
+    <section className="hidden lg:flex bg-[#1652ecf9] mt-16 relative justify-between flex-col lg:flex-row gap-3 items-center lg:h-[200px] rounded-3xl">
       <article className="flex justify-between items-center lg:justify-normal lg:gap-10 bg-[#00000055] px-14 w-full lg:w-[300px] rounded-r-3xl  lg:rounded-r-[70px] rounded-l-3xl overflow-hidden">
         {/* First Column (Top to Bottom Animation) */}
         <div className="flex flex-col gap-3 h-[200px] w-[50%] overflow-hidden">
@@ -67,18 +67,19 @@ const BiggestContest = () => {
         <h1 className="font-bold text-3xl text-white px-3 lg:p-0 tracking-wide">
         {t('Bangladeshsbiggestskillcontesttohelpyoustandouttoreqruiters')} 
         </h1>
-        <button className="border mr-2 border-white rounded-3xl px-4 mt-3 py-2 bg-[#d7cceb54] text-white font-semibold tracking-wide">
+        {/* <button className="border mr-2 border-white rounded-3xl px-4 mt-3 py-2 bg-[#d7cceb54] text-white font-semibold tracking-wide">
         {t('winfromaprizepoolof2lacTk')} 
         </button>
         <button className="border border-white rounded-3xl px-4 mt-3 py-2  tracking-wide bg-[#d6c8ee54] text-white font-semibold">
           {" "}
           {t('Boostwithawinner&#39;scertificate')} 
-        </button>
+        </button> */}
       </article>
       <article className="my-3 lg:my-0">
-        <button className=" font-semibold text-2xl bg-yellow-200 rounded-2xl px-2 py-2 mr-3">
-        {t('Tell')} 
-        </button>
+        {/* <button className=" font-semibold text-2xl bg-yellow-200 rounded-2xl px-2 py-2 mr-3">
+        
+        Tell more
+        </button> */}
       </article>
     </section>
   );

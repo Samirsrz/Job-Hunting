@@ -289,7 +289,7 @@ const ViewEventChallenge = () => {
         </div>
       </div>
 
-      <button className="mt-6 bg-blue-600 text-white py-2 px-4 rounded-lg">View all openings</button>
+     
     </div>
       </aside>
     </section>
