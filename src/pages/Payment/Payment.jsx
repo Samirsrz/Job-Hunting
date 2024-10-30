@@ -10,7 +10,7 @@ const Payment = () => {
   const [paymentInfo, setPaymentInfo] = useState("");
   const [isFetching, setIsFetching] = useState(false);
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchPaymentInfo = async () => {
       if (!user?.email || loading) return;
 
@@ -36,7 +36,7 @@ const Payment = () => {
 
     fetchPaymentInfo();
   }, [user?.email, loading]);
-
+ 
   //console.log(paymentInfo);
 
   return (
