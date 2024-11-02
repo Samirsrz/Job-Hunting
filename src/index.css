@@ -2,10 +2,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 #sidebar a.active,
 #sidebar2 a.active {
-  @apply font-semibold  border-b px-2 border-primary lg:text-2xl;
+  @apply font-semibold border-b border-primary;
 }
+
 body {
   @apply font-open-sans select-none;
 }

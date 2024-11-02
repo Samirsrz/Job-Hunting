@@ -65,7 +65,7 @@ const Jobs = ({ job }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-700 pb-6 md:pb-10 lg:pb-16">
+    <div className="dark:bg-gray-700 pb-6 md:pb-10 lg:pb-16">
       <Helmet>
         <title>Next-Hire | Jobs</title>
       </Helmet>
