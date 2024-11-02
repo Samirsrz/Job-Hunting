@@ -149,6 +149,7 @@ const ManageApplication = () => {
                       <option value="pending">pending</option>
                       <option value="View">View</option>
                       <option value="Reject">Reject</option>
+                      <option value="Hired">Hired</option>
                     </select>
                   </td>
                   <td>
