@@ -13,6 +13,7 @@ const HostStatisticPage = () => {
   const axiosSecure = useAxiosSecure();
   const { user, setLoading } = useAuth();
   const [jobs, setJobs] = useState(null);
+  const [applications, setApplications] = useState([]);
 
   //fatch jobs data
   useEffect(() => {
@@ -33,7 +34,30 @@ const HostStatisticPage = () => {
     }
   }, [user, axiosSecure, setLoading]);
 
-  console.log("this is login usere information", jobs);
+  //fatch application data
+  useEffect(() => {
+    const fetchApplications = async () => {
+      try {
+        setLoading(true);
+        const res = await axiosSecure.get(
+          `/applications-host?email=${user?.email}`
+        );
+        setApplications(res.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user?.email) {
+      fetchApplications();
+    }
+  }, [user, axiosSecure, setLoading]);
+
+  const hiredInfo = applications.filter((hired) => hired.status == "Hired");
+
+  // console.log("this is applications information", applications);
 
   return (
     <div className="mt-10 p-5">
@@ -102,7 +126,7 @@ const HostStatisticPage = () => {
                   Application
                 </p>
                 <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                  10
+                  {applications?.length}
                 </h4>
               </div>
             </div>
@@ -119,13 +143,17 @@ const HostStatisticPage = () => {
                   Hired
                 </p>
                 <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                  02
+                  {hiredInfo?.length}
                 </h4>
               </div>
             </div>
           </div>
           <div className="hidden md:flex lg:flex mt-72 lg:mt-0 bg-white p-4 shadow-lg rounded-lg">
-            <HostChart />
+            <HostChart
+              jobs={jobs?.length}
+              applications={applications?.length}
+              hiredInfo={hiredInfo?.length}
+            />
           </div>
         </div>
 

@@ -1,13 +1,31 @@
 import * as React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 
-const aData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-const bData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-const cData = [2100, 2098, 4000, 3908, 2400, 8000, 4300];
-
 const xLabels = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
-export default function HostChart() {
+export default function HostChart({ jobs, applications, hiredInfo }) {
+  const aData = [jobs, jobs, jobs, jobs, jobs, jobs, jobs];
+  const bData = [
+    applications,
+    applications,
+    applications,
+    applications,
+    applications,
+    applications,
+    applications,
+  ];
+  const cData = [
+    hiredInfo,
+    hiredInfo,
+    hiredInfo,
+    hiredInfo,
+    hiredInfo,
+    hiredInfo,
+    hiredInfo,
+  ];
+
+  console.log("sldkflakslfd", aData);
+
   return (
     <BarChart
       width={500}
