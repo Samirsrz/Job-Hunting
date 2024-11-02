@@ -1,6 +1,5 @@
 // import React from "react";
 
-
 import BiggestContest from "./BiggestContest/BiggestContest";
 import CategoryButtons from "./CategoryButtons/CategoryButtons";
 import CompanyCarousel from "./CompanyCarousel/CompanyCarousel";
@@ -17,13 +16,10 @@ import InterviewCompanies from "./InterviewCompanies/InterviewCompanies";
 
 const Home = () => {
   return (
-
     <div className="container max-w-screen-xl m-auto">
-
       {/* here add all section of home page,
       every section import here. create home page section inside the home page folder
       */}
-
 
       <HomeSearch />
       <PracticeCustomizedMockInterview />
@@ -36,17 +32,12 @@ const Home = () => {
 
       <EventCard />
 
-      <div className="h-[10px]">
-
-      </div>
+      <div className="h-[10px]"></div>
       <InterviewCompanies />
-     
- 
 
-   
-
-      <Helmet><title>Next Hire | Home</title></Helmet>
-
+      <Helmet>
+        <title>Next Hire | Home</title>
+      </Helmet>
     </div>
   );
 };
