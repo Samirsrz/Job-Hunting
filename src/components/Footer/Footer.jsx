@@ -1,7 +1,7 @@
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <div className="bg-base-200 dark:bg-gray-900">
+    <div className="bg-base-200 dark:bg-gray-900 mt-20">
       <footer className="container p-6 mx-auto">
         <div className="lg:flex">
           {/* Logo and Description Section */}

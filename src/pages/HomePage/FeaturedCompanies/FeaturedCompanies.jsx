@@ -370,7 +370,7 @@ const FeaturedCompanies = () => {
 
   return (
     <section>
-      <div>
+      <div className="mt-7">
         <h1 className="font-bold text-center text-3xl mb-3">
           {t("Featuredcompaniesactivelyhiring")}
         </h1>

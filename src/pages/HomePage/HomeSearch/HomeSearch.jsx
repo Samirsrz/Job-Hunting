@@ -125,11 +125,11 @@ const HomeSearch = () => {
     };
     return (
         <FadeIn>
-        <div className='max-w-screen-xl m-auto p-4'>
+        <div className='max-w-screen-xl m-auto p-4 mt-7'>
             <h1 className='text-center text-4xl font-bold m-4'>{t('FindYourDreamJobNow')}</h1>
             <p className='text-center text-lg font-thin'>{t('Over500,000jobsforyoutoexplore')}</p>
 
-            <div className='flex justify-center mt-2'>
+            <div className='flex justify-center mt-7'>
                 <div className='bg-white shadow-lg lg:rounded-full gap-4 lg:gap-0 p-4 flex-col lg:flex-row flex items-center space-x-4 relative'>
                     {/* Job Input Field with Suggestions */}
                     <div className='relative flex-grow'>
