@@ -24,7 +24,7 @@ export default function HostChart({ jobs, applications, hiredInfo }) {
     hiredInfo,
   ];
 
-  console.log("sldkflakslfd", aData);
+  
 
   return (
     <BarChart

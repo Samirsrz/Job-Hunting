@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsPostcard } from "react-icons/bs";
 import { FaSackDollar } from "react-icons/fa6";
 import { FiUsers } from "react-icons/fi";
@@ -7,10 +7,65 @@ import { LuFileInput } from "react-icons/lu";
 import AdminRecharts from "../../components/AdminDashboard/AdminRecharts";
 import Map from "../../components/AdminDashboard/Map";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 // import Map from "../../components/AdminDashboard/Map";
 
 const AdminStatistic = () => {
-  const {user} = useAuth()
+  const { user, setLoading } = useAuth();
+  const [users, setUsers] = useState();
+  const [jobs, setJobs] = useState();
+  const [applications, setApplications] = useState();
+  const axiosSecure = useAxiosSecure();
+
+  //fatch user data
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axiosSecure.get("/users"); // Update the endpoint as needed
+        setUsers(response.data); // Set the users data
+      } catch (error) {
+        console.log(error);
+        setError(error); // Set error state if there's an error
+      } finally {
+        setLoading(false); // Set loading to false after the request completes
+      }
+    };
+
+    fetchUsers(); // Call the fetch function
+  }, []);
+  //fatch jobs data
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axiosSecure.get("/jobs");
+        setJobs(response.data.data);
+      } catch (error) {
+        console.log(error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers(); // Call the fetch function
+  }, []);
+  //fatch applications data
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axiosSecure.get("/applications");
+        setApplications(response.data);
+      } catch (error) {
+        console.log(error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers(); // Call the fetch function
+  }, []);
+
   return (
     <div className="bg-[#f5f6fa] p-10">
       <div className="flex justify-between items-center rounded-lg bg-white p-5">
@@ -29,7 +84,7 @@ const AdminStatistic = () => {
             <div className="stat-figure text-secondary">
               <div className="avatar">
                 <div className="w-12 rounded-full">
-                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                  <img src={user?.photoURL} />
                 </div>
               </div>
             </div>
@@ -57,7 +112,7 @@ const AdminStatistic = () => {
               User's
             </p>
             <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-              05
+              {users?.length}
             </h4>
           </div>
         </div>
@@ -73,7 +128,7 @@ const AdminStatistic = () => {
               Job's
             </p>
             <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-              05
+              {jobs?.length}
             </h4>
           </div>
         </div>
@@ -89,7 +144,7 @@ const AdminStatistic = () => {
               Application
             </p>
             <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-              05
+              {applications?.length}
             </h4>
           </div>
         </div>

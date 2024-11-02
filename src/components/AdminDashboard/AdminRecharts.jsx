@@ -13,18 +13,18 @@ import TrafficChart from "./TrafficChart";
 
 // Sample data
 const data = [
-  { name: "Jan", total: 400, success: 300, failed: 50 },
-  { name: "Feb", total: 500, success: 450, failed: 0 },
-  { name: "Mar", total: 600, success: 500, failed: 100 },
-  { name: "Apr", total: 700, success: 650, failed: 100 },
-  { name: "May", total: 456, success: 587, failed: 200 },
-  { name: "Jun", total: 600, success: 400, failed: 100 },
-  { name: "Jul", total: 700, success: 500, failed: 100 },
-  { name: "Aug", total: 500, success: 450, failed: 100 },
-  { name: "Sep", total: 600, success: 500, failed: 100 },
-  { name: "Oct", total: 700, success: 600, failed: 50 },
-  { name: "Nov", total: 500, success: 400, failed: 100 },
-  { name: "Dec", total: 600, success: 500, failed: 300 },
+  { name: "Jan", users: 0, Jobs: 0, Application: 0 },
+  { name: "Feb", users: 0, Jobs: 0, Application: 0 },
+  { name: "Mar", users: 11, Jobs: 0, Application: 0 },
+  { name: "Apr", users: 14, Jobs: 0, Application: 0 },
+  { name: "May", users: 15, Jobs: 0, Application: 0 },
+  { name: "Jun", users: 10, Jobs: 12, Application: 0 },
+  { name: "Jul", users: 9, Jobs: 1, Application: 0 },
+  { name: "Aug", users: 7, Jobs: 7, Application: 0 },
+  { name: "Sep", users: 0, Jobs: 2, Application: 5 },
+  { name: "Oct", users: 2, Jobs: 9, Application: 10 },
+  { name: "Nov", users: 1, Jobs: 7, Application: 2 },
+  { name: "Dec", users: 0, Jobs: 0, Application: 0 },
 ];
 
 const AdminRecharts = () => {
@@ -51,15 +51,15 @@ const AdminRecharts = () => {
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <XAxis dataKey="name" />
             <YAxis
-              domain={[0, 800]} // Setting the range of Y axis
-              tickCount={9} // Control the number of ticks (increments of 100)
+              domain={[0, 100]} // Setting the range of Y axis
+              tickCount={5} // Control the number of ticks (increments of 100)
               interval={0} // Force rendering every tick
               tickFormatter={(value) => `${value}`} // Format Y axis values
             />
             <Tooltip />
-            <Line type="monotone" dataKey="total" stroke="#8884d8" />
-            <Line type="monotone" dataKey="success" stroke="#82ca9d" />
-            <Line type="monotone" dataKey="failed" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="users" stroke="#8884d8" />
+            <Line type="monotone" dataKey="Jobs" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="Application" stroke="#82ca9d" />
           </LineChart>
         </ResponsiveContainer>
       </div>
