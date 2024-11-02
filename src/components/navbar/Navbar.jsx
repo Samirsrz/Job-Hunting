@@ -92,7 +92,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-slate-200 py-2 md:fixed z-50 w-full md:-mt-6 opacity-100 md:opacity-80">
+    <div className="bg-slate-200 py-2 md:fixed z-50 w-full md:-mt-7 opacity-100 md:opacity-80">
       <div
         id="sidebar"
         className="container max-w-screen-xl m-auto navbar text-primary"
