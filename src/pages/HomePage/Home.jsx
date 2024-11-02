@@ -36,7 +36,7 @@ const Home = () => {
 
       <EventCard />
 
-      <div className="h-[30px]">
+      <div className="h-[10px]">
 
       </div>
       <InterviewCompanies />
@@ -45,7 +45,7 @@ const Home = () => {
 
    
 
-      <Helmet><title>Job Hunting | Home</title></Helmet>
+      <Helmet><title>Next Hire | Home</title></Helmet>
 
     </div>
   );

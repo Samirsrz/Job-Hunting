@@ -178,8 +178,8 @@ const ViewAllJobsCompany = () => {
       </div>
 
       {/* Tab Navigation */}
-      <aside className=" max-w-6xl mx-auto mt-5">
-        <div className="text-gray-500 flex gap-7 border-b-2 ">
+      <aside className=" max-w-6xl mx-auto mt-10">
+        <div className="text-gray-500 flex justify-center md:justify-start gap-7 border-b-2 ">
           <p
             className={`cursor-pointer ${
               activeTab === "overview"

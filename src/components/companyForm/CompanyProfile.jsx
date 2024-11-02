@@ -48,14 +48,14 @@ const CompanyProfile = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row p-3 overflow-x-auto gap-4 justify-center items-center">
+    <div className="flex flex-col lg:flex-row  p-3 overflow-x-auto gap-5 justify-center items-center pt-10">
       <Helmet>
         <title>Job Hunting | Company Form</title>
       </Helmet>
 
       <Lottie
         animationData={CompanyAnnimation}
-        className="h-96 w-72 lg:w-96"
+        className="h-96 w-72 lg:w-96 hidden md:flex"
       ></Lottie>
 
       {/* <div className="max-w-lg  mx-auto p-6 bg-white shadow-lg rounded-lg">

@@ -20,7 +20,7 @@ const SavedJobs = () => {
 
   if (isFetching) {
     return (
-      <div className="flex items-center justify-center flex-col py-20">
+      <div className="flex items-center justify-center flex-col py-20 dark:bg-gray-700">
         <Lottie
           animationData={loadingData}
           className="h-72 w-72 lg:w-96 my-10"
@@ -31,8 +31,10 @@ const SavedJobs = () => {
 
   if (isError) {
     return (
-      <div className="flex items-center justify-center flex-col py-20">
-        <h2 className="text-3xl font-semibold">Something went wrong!</h2>
+      <div className="flex items-center justify-center flex-col py-20 dark:bg-gray-700">
+        <h2 className="text-3xl font-semibold dark:text-white">
+          Something went wrong!
+        </h2>
         <Lottie
           animationData={errorData}
           className="h-44 w-44 lg:w-96 my-10"
@@ -46,16 +48,18 @@ const SavedJobs = () => {
 
   if (!savedJobs?.length) {
     return (
-      <div className="flex items-center justify-center flex-col py-20">
-        <h2 className="text-3xl font-semibold">No saved job found!</h2>
+      <div className="flex items-center justify-center flex-col py-20 dark:bg-gray-700">
+        <h2 className="text-3xl font-semibold dark:text-white">
+          No saved job found!
+        </h2>
         <Lottie animationData={noData} className="h-72 w-72 lg:w-96"></Lottie>
       </div>
     );
   }
 
   return (
-    <div>
-      <h1 className="text-center md:font-semibold font-medium md:text-4xl text-2xl lg:my-20 md:my-10 my-6">
+    <div className="bg-white dark:bg-gray-700 overflow-auto">
+      <h1 className="text-center dark:text-white md:font-semibold font-medium md:text-4xl text-2xl lg:my-20 md:my-10 my-6">
         Saved Jobs
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-6 m-6">
