@@ -3,15 +3,29 @@ import React, { useEffect, useState } from 'react';
 import { FaBriefcase, FaMoneyBillWave, FaMapMarkerAlt, FaStar, FaLocationArrow } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
 import { useGetRandom5InterestedJobsQuery } from '../../../RTK/Api/FeaturedJobsApi/FeaturedJobsApi';
+import JobApplicationModal from '../JobApplicationModal/JobApplicationModal';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 
 const VeiwCompanyJob = () => {
     let { data: interestedJobs, isLoading, isError } = useGetRandom5InterestedJobsQuery()
     let [viewJob, setViewJob] = useState({})
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
     let { id } = useParams()
-   // console.log(id);
+    // console.log(id);
+    const [job, setJob] = useState({});
+    const axiosSecure = useAxiosSecure();
+    console.log(job);
+    
+    useEffect(() => {
+        axiosSecure
+            .get(`/jobs/${id}`)
+            .then((data) => setJob(data.data.data))
+            // .finally(() => setLoading(false));
+    }, [id, axiosSecure]);
 
-   
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,7 +39,7 @@ const VeiwCompanyJob = () => {
         fetchData();
     }, [id]);
 
-   // console.log(viewJob);
+    // console.log(viewJob);
 
     if (isLoading) {
         return <h1>Loading....</h1>
@@ -91,16 +105,20 @@ const VeiwCompanyJob = () => {
 
                             <div className='w-full h-[1px] bg-slate-100 my-5'></div>
 
-                            <div className="hidden mt-2 space-x-6 lg:flex">
-                                <div className='flex gap-2'>
+                            <div className=" mt-2 md:space-x-6 flex">
+                                <div className='hidden gap-2 md:flex'>
                                     <span><span className='opacity-80'>Posted:  </span> <b>1 day ago </b></span>
                                     <span> <span className='opacity-80'>Openings: </span>  <b>5</b></span>
                                     <span><span className='opacity-80'> Applicants: </span> <b>271</b> </span>
                                 </div>
 
                                 <div className='flex gap-2'>
-                                    <button className=' border border-blue-700 px-4 py-2 rounded-3xl'>Register to apply</button>
-                                    <button className='bg-blue-700 text-white rounded-3xl border-none px-4 py-2'>Log in to apply</button>
+                                    <button
+                                        disabled={job?.applied}
+                                        onClick={openModal}
+                                        className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                                    >   {job?.applied ? "Applied" : "Apply"}{" "}</button>
+                                    {/* <button className='bg-blue-700 text-white rounded-3xl border-none px-4 py-2'>Log in to apply</button> */}
                                 </div>
                             </div>
 
@@ -113,8 +131,8 @@ const VeiwCompanyJob = () => {
 
                 <div className='mt-9'>
 
-                    <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
-                        <div className="p-4">
+                    <div className="max-w-4xl mx-auto bg-white rounded-xl overflow-hidden p-6">
+                        <div className="">
                             <h2 className="text-lg font-semibold">Job description</h2>
                             <p className="mt-2 text-sm text-gray-600">
                                 Mapping experience with good communication skills is what is preferred
@@ -228,29 +246,29 @@ const VeiwCompanyJob = () => {
             <aside className='lg:w-[400px]'>
                 <h1 className='font-bold p-4'>Jobs you might be interested in</h1>
 
-                {interestedJobs.map((value, index) => <Link key={value._id} to={`/view-company-job/${value._id}`}> 
+                {interestedJobs.map((value, index) => <Link key={value._id} to={`/view-company-job/${value._id}`}>
 
-                  <div className='flex flex-col-reverse items-start lg:flex-row justify-between lg:items-center w-full p-4  border-b'>
-                    <div className='h-[50%] space-y-2'>
-                        <h1 className='font-bold'>{value.companyName}</h1>
-                        <p>{value.title}</p>
-                        <span className='flex gap-2'>
-                            <span className='flex gap-2 items-center'>
-                                <FaStar className='text-yellow-300' /> <span className='opacity-75'> {value.ratings}</span> <span>|</span>
-                                <span className='opacity-70'>reviews {value.reviews}</span>
+                    <div className='flex flex-col-reverse items-start lg:flex-row justify-between lg:items-center w-full p-4  border-b'>
+                        <div className='h-[50%] space-y-2'>
+                            <h1 className='font-bold'>{value.companyName}</h1>
+                            <p>{value.title}</p>
+                            <span className='flex gap-2'>
+                                <span className='flex gap-2 items-center'>
+                                    <FaStar className='text-yellow-300' /> <span className='opacity-75'> {value.ratings}</span> <span>|</span>
+                                    <span className='opacity-70'>reviews {value.reviews}</span>
+                                </span>
                             </span>
-                        </span>
-                        <p className='opacity-70 flex items-center gap-1'><FaLocationArrow /> {value.location}</p>
-                    </div>
-                    <div className='flex flex-col justify-between h-full'>
-                        <div>
-                            <img className='' src={value.logo} alt="" />
+                            <p className='opacity-70 flex items-center gap-1'><FaLocationArrow /> {value.location}</p>
                         </div>
-                        <p className='mt-4'>Posted: 3 days ago</p>
+                        <div className='flex flex-col justify-between h-full'>
+                            <div>
+                                <img className='' src={value.logo} alt="" />
+                            </div>
+                            <p className='mt-4'>Posted: 3 days ago</p>
+                        </div>
+
+
                     </div>
-
-
-                </div>
                 </Link>
 
 
@@ -258,7 +276,7 @@ const VeiwCompanyJob = () => {
 
 
             </aside>
-
+            <JobApplicationModal isOpen={isModalOpen} onClose={closeModal} id={id} />
         </section>
     );
 };
