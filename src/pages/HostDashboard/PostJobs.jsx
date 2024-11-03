@@ -1,17 +1,57 @@
 import { TbFidgetSpinner } from "react-icons/tb";
 import { Helmet } from "react-helmet-async";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { imageUpload } from "../../api/utils";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { FaCreditCard } from "react-icons/fa";
 
 const PostJobs = () => {
   const [loading, setLoading] = useState(false);
+const {user} = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [paymentDone, setPaymentDone] = useState(false);
+  const [fetching, setIsFetching] = useState(false)
+  useEffect(() => {
+    const fetchPaymentInfo = async () => {
+   //   if (!user?.email || loading) return;
+  
+      try {
+        setIsFetching(true);
+        const response = await axiosSecure.get(
+          `${import.meta.env.VITE_API_URL}/api/payment/${user?.email}`
+        );
+  
+       
+     if(response.data){
+      setPaymentDone(true)
+     }
+     else{
+      setPaymentDone(false)
+     }
+        
+     console.log(paymentDone);
+      } catch (error) {
+        console.error("Error fetching payment data:", error);
+        //toast.error('Error fetching payment data');
+      } finally {
+        setIsFetching(false);
+      }
+    };
+  
+    fetchPaymentInfo();
+  }, [user?.email, loading]);
+  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!paymentDone){
+      return toast.error('Please take subscription before posting')
+     
+    }
     setLoading(true);
 
     const form = e.target;
@@ -257,7 +297,41 @@ const PostJobs = () => {
             </div>
           </div>
 
-          <Link to="/dashboard/payment"></Link>
+        
+
+
+<div className="max-w-md mx-auto bg-white shadow-lg rounded-lg animate-bounce overflow-hidden mt-10">
+      <div className="px-6 py-8">
+        <h2 className="text-2xl font-semibold text-gray-800">
+          {paymentDone ? "Thank you for subscribing!" : "Subscription Needed"}
+        </h2>
+        <p className="mt-4 text-gray-600">
+          {paymentDone 
+            ? "Your subscription is active. Enjoy our features!"
+            : "Please complete your payment to activate your subscription and access exclusive features."}
+        </p>
+
+      
+        {!paymentDone && (
+          <div className="mt-6">
+            <Link
+              to="/dashboard/payment"
+              className="flex items-center justify-center w-full bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-md transition duration-300 ease-in-out"
+            >
+              <FaCreditCard className="mr-2" />
+              Pay Now
+            </Link>
+          </div>
+        )}
+      </div>
+
+      {!paymentDone && (
+        <div className="px-6 py-4 bg-gray-100 border-t text-gray-500 text-sm">
+          Secure and fast payments are powered by trusted providers.
+        </div>
+      )}
+    </div>
+
 
           <button
             disabled={loading}

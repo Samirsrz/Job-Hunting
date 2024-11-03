@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsPersonWorkspace, BsPostcard } from "react-icons/bs";
 import { FaSackDollar } from "react-icons/fa6";
 import { FiUsers } from "react-icons/fi";
@@ -7,9 +7,58 @@ import { LuFileInput } from "react-icons/lu";
 import useAuth from "./../../hooks/useAuth";
 import HostChart from "../../components/HostDashboard/HostChart";
 import ImpressionChart from "../../components/HostDashboard/ImpressionChart";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const HostStatisticPage = () => {
-  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const { user, setLoading } = useAuth();
+  const [jobs, setJobs] = useState(null);
+  const [applications, setApplications] = useState([]);
+
+  //fatch jobs data
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        setLoading(true);
+        const res = await axiosSecure.get(`/job?email=${user?.email}`);
+        setJobs(res.data);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user?.email) {
+      fetchJobs();
+    }
+  }, [user, axiosSecure, setLoading]);
+
+  //fatch application data
+  useEffect(() => {
+    const fetchApplications = async () => {
+      try {
+        setLoading(true);
+        const res = await axiosSecure.get(
+          `/applications-host?email=${user?.email}`
+        );
+        setApplications(res.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user?.email) {
+      fetchApplications();
+    }
+  }, [user, axiosSecure, setLoading]);
+
+  const hiredInfo = applications.filter((hired) => hired.status == "Hired");
+
+  // console.log("this is applications information", applications);
+
   return (
     <div className="mt-10 p-5">
       <div className="flex flex-col justify-between lg:items-center lg:flex-row rounded-lg bg-white p-5">
@@ -60,7 +109,7 @@ const HostStatisticPage = () => {
                   Job's
                 </p>
                 <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                  02
+                  {jobs?.length}
                 </h4>
               </div>
             </div>
@@ -77,7 +126,7 @@ const HostStatisticPage = () => {
                   Application
                 </p>
                 <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                  10
+                  {applications?.length}
                 </h4>
               </div>
             </div>
@@ -94,13 +143,17 @@ const HostStatisticPage = () => {
                   Hired
                 </p>
                 <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                  02
+                  {hiredInfo?.length}
                 </h4>
               </div>
             </div>
           </div>
           <div className="hidden md:flex lg:flex mt-72 lg:mt-0 bg-white p-4 shadow-lg rounded-lg">
-            <HostChart />
+            <HostChart
+              jobs={jobs?.length}
+              applications={applications?.length}
+              hiredInfo={hiredInfo?.length}
+            />
           </div>
         </div>
 

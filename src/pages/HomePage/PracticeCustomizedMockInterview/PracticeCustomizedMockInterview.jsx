@@ -11,7 +11,7 @@ const PracticeCustomizedMockInterview = () => {
         {/* Left Text Section */}
         <div>
           <h2 className="text-white text-3xl font-bold mb-2">
-            {t("PracticecustomisedmockinterviewwithAI!")}
+            {t("PracticecustomizedmockinterviewwithAI!")}
           </h2>
           <p className="text-white text-lg mb-4">
             {t("GetAIanswers,tipsandinsights")}

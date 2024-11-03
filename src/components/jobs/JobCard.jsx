@@ -18,7 +18,7 @@ const JobCard = ({ job }) => {
   }, []);
 
   return (
-    <div className="text-center flex flex-col rounded-md p-6 bg-white drop-shadow-md dark:bg-gray-600">
+    <div className="text-center flex flex-col rounded-md p-6 bg-white drop-shadow-md dark:bg-gray-600 border dark:border-gray-700">
       <img className="h-12 mx-auto" src={job?.logo} alt={job?.logo} />
       <div className="bg-gray-300/30 p-6 my-4 flex flex-col items-center justify-center rounded-md gap-2">
         <h3 className="font-semibold text-lg dark:text-white">{job?.title}</h3>

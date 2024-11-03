@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsPostcard } from "react-icons/bs";
 import { FaSackDollar } from "react-icons/fa6";
 import { FiUsers } from "react-icons/fi";
@@ -7,17 +7,70 @@ import { LuFileInput } from "react-icons/lu";
 import AdminRecharts from "../../components/AdminDashboard/AdminRecharts";
 import Map from "../../components/AdminDashboard/Map";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 // import Map from "../../components/AdminDashboard/Map";
 
 const AdminStatistic = () => {
-  const { user } = useAuth();
+  const { user, setLoading } = useAuth();
+  const [users, setUsers] = useState();
+  const [jobs, setJobs] = useState();
+  const [applications, setApplications] = useState();
+  const axiosSecure = useAxiosSecure();
+
+  //fatch user data
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axiosSecure.get("/users"); // Update the endpoint as needed
+        setUsers(response.data); // Set the users data
+      } catch (error) {
+        console.log(error);
+        setError(error); // Set error state if there's an error
+      } finally {
+        setLoading(false); // Set loading to false after the request completes
+      }
+    };
+
+    fetchUsers(); // Call the fetch function
+  }, []);
+  //fatch jobs data
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axiosSecure.get("/jobs");
+        setJobs(response.data.data);
+      } catch (error) {
+        console.log(error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers(); // Call the fetch function
+  }, []);
+  //fatch applications data
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axiosSecure.get("/applications");
+        setApplications(response.data);
+      } catch (error) {
+        console.log(error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers(); // Call the fetch function
+  }, []);
+
   return (
     <div className="bg-[#f5f6fa] p-10">
       <div className="flex justify-between items-center rounded-lg bg-white p-5">
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold">
-            Welcome Back {user?.displayName}
-          </h1>
+          <h1 className="text-2xl font-bold">Welcome Back {user?.name}</h1>
           <p className="text-sm text-gray-700 font-semibold">
             you have <span className="text-blue-700">5 unread</span>{" "}
             notification
@@ -59,7 +112,7 @@ const AdminStatistic = () => {
               User's
             </p>
             <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-              05
+              {users?.length}
             </h4>
           </div>
         </div>
@@ -75,7 +128,7 @@ const AdminStatistic = () => {
               Job's
             </p>
             <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-              05
+              {jobs?.length}
             </h4>
           </div>
         </div>
@@ -91,7 +144,7 @@ const AdminStatistic = () => {
               Application
             </p>
             <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-              05
+              {applications?.length}
             </h4>
           </div>
         </div>

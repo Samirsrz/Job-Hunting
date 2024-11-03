@@ -36,6 +36,7 @@ import ResumeBuilder from "../pages/ResumeBuilder/ResumeBuilder";
 import SavedJobs from "../pages/SavedJobs/SavedJobs";
 import HostProfile from "../components/HostDashboard/HostProfile";
 import AboutUs from "../pages/AboutUs/AboutUs";
+import AdminPayment from "../pages/AdminDashboard/AdminPayment";
 
 export const router = createBrowserRouter([
   {
@@ -188,6 +189,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/payment-form",
         element: <PaymentRecieve />,
+      },
+      {
+        path: "/dashboard/payment-transaction",
+        element: <AdminPayment />,
       },
     ],
   },
